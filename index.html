@@ -175,15 +175,23 @@
         
         /* ヒーローセクション - 軽量化 */
         .hero {
-            height: 100vh;
-            background: var(--primary-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+    height: 100vh;
+    background: var(--primary-gradient);
+    /* ↓ここから追加 */
+    background-image: 
+        linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
+        url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* ↑ここまで追加 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
         
         .hero::before {
             content: '';
