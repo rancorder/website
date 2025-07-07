@@ -1014,8 +1014,8 @@
         <h2 class="section-title" style="color: white;">お問い合わせ</h2>
         <p style="margin-bottom: 2rem;">あなたのアイデアを形にしませんか？お気軽にご相談ください。</p>
         
-        <form class="contact-form" id="contactForm">
-            <div class="form-group">
+       <form class="contact-form" name="contact" method="POST" data-netlify="true">
+    　  <input type="hidden" name="form-name" value="contact" />
                 <label for="name">お名前 *</label>
                 <input type="text" id="name" name="name" placeholder="お名前を入力してください" required>
             </div>
