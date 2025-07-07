@@ -1277,11 +1277,7 @@
                 }
             `;
             document.head.appendChild(style);
-            
-            // フォーム送信処理
-            contactForm?.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
+                          
                 const formData = new FormData(this);
                 const name = formData.get('name');
                 const email = formData.get('email');
