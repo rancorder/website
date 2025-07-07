@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ完了 - AI Art Studio</title>
+    <meta name="description" content="お問い合わせありがとうございます。24時間以内にご返信いたします。">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-gradient: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            --success-gradient: linear-gradient(135deg, #66bb6a 0%, #4caf50 100%);
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-dark: rgba(0, 0, 0, 0.95);
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 背景エフェクト */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: grid-move 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+        
+        /* パーティクルエフェクト */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float-up 15s infinite linear;
+        }
+        
+        .particle.success {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes float-up {
+            0% { 
+                transform: translateY(100vh) translateX(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) translateX(50px) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+        
+        /* メインコンテナ */
+        .success-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: var(--shadow-heavy);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* アイコン */
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: var(--success-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: var(--text-light);
+            animation: bounce 1s ease-out 0.5s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                transform: translate3d(0,0,0) scale(1);
+            }
+            40%, 43% {
+                animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+                transform: translate3d(0, -15px, 0) scale(1.1);
+            }
+            70% {
+                animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+                transform: translate3d(0, -7px, 0) scale(1.05);
+            }
+            90% {
+                transform: translate3d(0,-2px,0) scale(1.02);
+            }
+        }
+        
+        /* テキスト */
+        .success-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            background: var(--success-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .success-message {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease-out 1s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .success-details {
+            background: rgba(102, 187, 106, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #66bb6a;
+            animation: fadeInUp 0.8s ease-out 1.2s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .success-details h3 {
+            color: #4caf50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .success-details ul {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .success-details li {
+            margin-bottom: 0.5rem;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .success-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ボタン */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 1.4s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+        }
+        
+        .btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: var(--text-light);
+        }
+        
+        /* ソーシャルシェア */
+        .social-share {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            animation: fadeInUp 0.8s ease-out 1.6s both;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .social-share h4 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            animation: socialFloat 3s ease-in-out infinite;
+        }
+        
+        .social-links a:nth-child(1) { animation-delay: 0s; }
+        .social-links a:nth-child(2) { animation-delay: 0.5s; }
+        .social-links a:nth-child(3) { animation-delay: 1s; }
+        
+        @keyframes socialFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation-play-state: paused;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 3rem 2rem;
+                margin: 1rem;
+            }
+            
+            .success-title {
+                font-size: 1.8rem;
+            }
+            
+            .success-message {
+                font-size: 1.1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .success-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .success-title {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* アクセシビリティ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* フォーカス状態 */
+        .btn:focus {
+            outline: 2px solid #00ffff;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- パーティクルエフェクト -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- メインコンテンツ -->
+    <div class="success-container">
+        <div class="success-icon">✨</div>
+        
+        <h1 class="success-title">お問い合わせ完了！</h1>
+        
+        <p class="success-message">
+            お問い合わせいただき、ありがとうございます。<br>
+            あなたのメッセージを確実に受信いたしました。
+        </p>
+        
+        <div class="success-details">
+            <h3>次のステップ</h3>
+            <ul>
+                <li>24時間以内にご返信いたします</li>
+                <li>プロジェクトの詳細をご相談</li>
+                <li>お見積もりをご提示</li>
+                <li>制作スケジュールを調整</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/" class="btn btn-primary">ホームに戻る</a>
+            <a href="#portfolio" class="btn btn-secondary">作品を見る</a>
+        </div>
+        
+        <div class="social-share">
+            <h4>AI Art Studioをフォロー</h4>
+            <div class="social-links">
+                <a href="#" title="Instagram" aria-label="Instagram">📷</a>
+                <a href="#" title="Twitter" aria-label="Twitter">🐦</a>
+                <a href="#" title="Behance" aria-label="Behance">🎨</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // サクセスパーティクル生成
+            const successEmojis = ['✨', '🎉', '🎊', '⭐', '🌟', '💫', '🎨', '🚀', '💎', '🔮'];
+            let particleCount = 0;
+            const maxParticles = 20;
+            
+            function createSuccessParticle() {
+                if (particleCount >= maxParticles) return;
+                
+                const particle = document.createElement('div');
+                particle.className = 'particle success';
+                particle.textContent = successEmojis[Math.floor(Math.random() * successEmojis.length)];
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (12 + Math.random() * 8) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                
+                const scale = 0.8 + Math.random() * 0.4;
+                particle.style.transform = `scale(${scale})`;
+                
+                document.getElementById('particles').appendChild(particle);
+                particleCount++;
+                
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                        particleCount--;
+                    }
+                }, 20000);
+            }
+            
+            // 初期パーティクル生成
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createSuccessParticle, i * 500);
+            }
+            
+            // 継続的なパーティクル生成
+            setInterval(createSuccessParticle, 1500);
+            
+            // ボタンクリック効果
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // リップルエフェクト
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.4);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+            
+            // 成功アイコンの追加アニメーション
+            const successIcon = document.querySelector('.success-icon');
+            let iconIndex = 0;
+            const icons = ['✨', '🎉', '🎊', '⭐', '🌟'];
+            
+            setInterval(() => {
+                iconIndex = (iconIndex + 1) % icons.length;
+                successIcon.textContent = icons[iconIndex];
+            }, 3000);
+            
+            // 自動リダイレクト（オプション）
+            setTimeout(() => {
+                const redirectMessage = document.createElement('div');
+                redirectMessage.style.cssText = `
+                    position: fixed;
+                    bottom: 2rem;
+                    right: 2rem;
+                    background: rgba(102, 126, 234, 0.9);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    font-size: 0.9rem;
+                    animation: slideInUp 0.5s ease-out;
+                    z-index: 1000;
+                `;
+                redirectMessage.innerHTML = '30秒後にホームページに戻ります...';
+                document.body.appendChild(redirectMessage);
+                
+                setTimeout(() => {
+                    redirectMessage.remove();
+                }, 5000);
+            }, 25000);
+            
+            // 実際のリダイレクト
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 30000);
+            
+            // CSS追加アニメーション
+            const additionalStyles = document.createElement('style');
+            additionalStyles.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(additionalStyles);
+        });
+    </script>
+</body>
+</html>
