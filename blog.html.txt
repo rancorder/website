@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログ - AI Art Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(45deg, #667eea, #764ba2);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-dark: rgba(0, 0, 0, 0.9);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #4ecdc4;
+        }
+        
+        /* メインコンテンツ */
+        .main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ブログ記事一覧 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .blog-category {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #4ecdc4;
+        }
+        
+        /* カテゴリフィルター */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-filter {
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎨 AI Art Studio</a>
+            <ul class="nav-links">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#about">プロフィール</a></li>
+                <li><a href="index.html#portfolio">作品</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="blog.html">ブログ</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+        <div class="container">
+            <h1 class="page-title">✨ AI Art Blog</h1>
+            
+            <!-- カテゴリフィルター -->
+            <div class="category-filter">
+                <a href="#" class="filter-btn active">すべて</a>
+                <a href="#" class="filter-btn">AI技術</a>
+                <a href="#" class="filter-btn">作品解説</a>
+                <a href="#" class="filter-btn">チュートリアル</a>
+                <a href="#" class="filter-btn">業界ニュース</a>
+            </div>
+
+            <!-- ブログ記事一覧 -->
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>🤖 AI技術の最前線</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI技術</span>
+                            <span>2025.01.07</span>
+                        </div>
+                        <h2 class="blog-title">Stable Diffusion 3.0の新機能を徹底解説</h2>
+                        <p class="blog-excerpt">
+                            最新のStable Diffusion 3.0で追加された革新的な機能について、実際の使用例と共に詳しく解説します。画質の向上、生成速度の改善、新しいコントロール機能など...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>🎨 作品制作過程</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">作品解説</span>
+                            <span>2025.01.05</span>
+                        </div>
+                        <h2 class="blog-title">サイバーパンク都市の制作プロセス</h2>
+                        <p class="blog-excerpt">
+                            人気作品「Cyberpunk City」の制作過程を公開。プロンプト設計から後処理まで、プロフェッショナルな仕上がりを実現するテクニックを解説...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>📚 初心者ガイド</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">チュートリアル</span>
+                            <span>2025.01.03</span>
+                        </div>
+                        <h2 class="blog-title">AI画像生成入門：基礎から応用まで</h2>
+                        <p class="blog-excerpt">
+                            AI画像生成を始めたい方向けの完全ガイド。ツールの選び方、基本的なプロンプトの書き方、よくある問題の解決法まで分かりやすく説明...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>💼 ビジネス活用</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">業界ニュース</span>
+                            <span>2025.01.01</span>
+                        </div>
+                        <h2 class="blog-title">企業がAI画像生成を導入する5つのメリット</h2>
+                        <p class="blog-excerpt">
+                            コスト削減、制作時間の短縮、無限のクリエイティビティなど、企業がAI画像生成技術を導入することで得られる具体的なメリットを事例と共に紹介...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>🔮 未来予測</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">AI技術</span>
+                            <span>2024.12.28</span>
+                        </div>
+                        <h2 class="blog-title">2025年のAI画像生成技術トレンド予測</h2>
+                        <p class="blog-excerpt">
+                            リアルタイム生成、3D統合、動画生成の進化など、2025年に注目すべきAI画像生成技術のトレンドを専門家の視点から分析・予測します...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <span>🏆 成功事例</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">作品解説</span>
+                            <span>2024.12.25</span>
+                        </div>
+                        <h2 class="blog-title">クライアント満足度100%を達成した制作事例</h2>
+                        <p class="blog-excerpt">
+                            大手企業のブランディングプロジェクトで、AI画像生成技術を活用して従来の10分の1のコストで高品質な素材を制作した成功事例を詳しく解説...
+                        </p>
+                        <a href="#" class="read-more">続きを読む →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // カテゴリフィルター機能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // アクティブクラスの切り替え
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 実際のフィルタリング機能はここに実装
+                console.log('フィルター:', this.textContent);
+            });
+        });
+
+        // ブログカードのクリックイベント
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.blog-title').textContent;
+                alert(`「${title}」の詳細ページに移動します。\n実際のサイトでは個別の記事ページが開きます。`);
+            });
+        });
+    </script>
+</body>
+</html>
