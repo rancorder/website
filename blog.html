@@ -760,7 +760,7 @@
 
             <!-- ブログ記事一覧 -->
             <div class="blog-grid" id="blogGrid">
-                <article class="blog-card" data-category="ai-tech" data-title="Stable Diffusion 3.0の新機能を徹底解説">
+                <article class="blog-card" data-category="ai-tech" data-title="Stable Diffusion 3.0の新機能を徹底解説" onclick="location.href='blog/stable-diffusion-3-guide.html'">
                     <div class="blog-image">
                         <span>🤖 AI技術の最前線</span>
                     </div>
@@ -778,7 +778,7 @@
                             <span class="blog-tag">新機能</span>
                             <span class="blog-tag">アップデート</span>
                         </div>
-                        <a href="#" class="read-more">続きを読む</a>
+                        <a href="blog/stable-diffusion-3-guide.html" class="read-more">続きを読む</a>
                     </div>
                 </article>
 
@@ -1153,6 +1153,9 @@
             
             // ブログカードのクリックイベント
             blogCards.forEach(card => {
+                // すでにonclickが設定されている場合はそちらを優先
+                if (card.onclick) return;
+                
                 card.addEventListener('click', function(e) {
                     // read-moreリンクのクリックの場合は処理しない
                     if (e.target.classList.contains('read-more')) return;
