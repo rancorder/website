@@ -1,0 +1,1824 @@
+<!-- 記事ヘッダー -->
+        <header class="article-header">
+            <h1 class="article-title">プロが教えるプロンプト作成の秘訣</h1>
+            <div class="article-meta">
+                <span>📅 2025年1月25日</span>
+                <span>👤 AI Art Studio</span>
+                <span>⏰ 読了時間: 約15分</span>
+                <span>🏷️ 実践テクニック</span>
+            </div>
+            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=300&fit=crop" alt="プロンプト作成のイメージ" class="featured-image">
+        </header>
+        
+        <!-- 目次 -->
+        <nav class="table-of-contents">
+            <h3>📚 学習内容</h3>
+            <ul class="toc-list">
+                <li><a href="#introduction">プロンプト作成の重要性</a></li>
+                <li><a href="#basics">基本構造の理解</a></li>
+                <li><a href="#structure">構造化プロンプト手法</a></li>
+                <li><a href="#keywords">効果的なキーワード選択</a></li>
+                <li><a href="#styles">スタイル指定のコツ</a></li>
+                <li><a href="#advanced">上級テクニック</a></li>
+                <li><a href="#examples">実践例とビフォーアフター</a></li>
+                <li><a href="#cheatsheet">プロンプトチートシート</a></li>
+                <li><a href="#troubleshooting">よくある問題と解決法</a></li>
+                <li><a href="#conclusion">まとめ</a></li>
+            </ul>
+        </nav>
+        
+        <!-- 記事本文 -->
+        <article class="article-content">
+            <div id="introduction">
+                <p>AI画像生成において、プロンプト（指示文）の品質は生成される画像の品質を直接左右します。同じAIモデルを使用していても、プロンプトの書き方次第で、素人レベルの画像からプロフェッショナルな作品まで、大きな差が生まれるのです。</p>
+                
+                <p>本記事では、数千回の生成を通じて蓄積したプロフェッショナルレベルのプロンプト作成技術を、具体例とともに完全公開します。初心者から上級者まで、すぐに実践できるテクニックが満載です。</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">品質向上率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3倍</div>
+                        <div class="stat-label">成功確率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">時間短縮</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">実証済み技法</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="basics">🎯 基本構造の理解</h2>
+            
+            <p>優れたプロンプトには明確な構造があります。ランダムなキーワードの羅列ではなく、論理的な組み立てが重要です。</p>
+            
+            <div class="prompt-structure">
+                <div class="structure-element" data-step="1">
+                    <div class="structure-title">主題（Subject）</div>
+                    <div class="structure-example">a beautiful woman, an ancient castle, a cyberpunk city</div>
+                    <p>何を描きたいかを明確に示す中心的な要素です。具体的で視覚的な表現を心がけましょう。</p>
+                </div>
+                
+                <div class="structure-element" data-step="2">
+                    <div class="structure-title">詳細・修飾語（Details）</div>
+                    <div class="structure-example">long flowing hair, medieval architecture, neon lights reflecting</div>
+                    <p>主題をより具体的に描写する要素です。色、形、質感、動作などを含めます。</p>
+                </div>
+                
+                <div class="structure-element" data-step="3">
+                    <div class="structure-title">環境・背景（Environment）</div>
+                    <div class="structure-example">in a mystical forest, surrounded by mountains, bustling street scene</div>
+                    <p>主題が存在する環境や背景を設定します。場所、時間、天候なども含まれます。</p>
+                </div>
+                
+                <div class="structure-element" data-step="4">
+                    <div class="structure-title">スタイル・品質（Style & Quality）</div>
+                    <div class="structure-example">photorealistic, oil painting style, highly detailed, 8k resolution</div>
+                    <p>画像の芸術的スタイルと技術的品質を指定します。これが最終的な仕上がりを決定します。</p>
+                </div>
+            </div>
+            
+            <h2 id="structure">🏗️ 構造化プロンプト手法</h2>
+            
+            <div class="technique-card">
+                <span class="technique-icon">📝</span>
+                <h3 class="technique-title">階層化記述法</h3>
+                <p>重要度に応じてキーワードを階層化し、優先順位を明確にする手法です。重要な要素ほど文の前半に配置し、詳細な修飾語を後に続けます。</p>
+                
+                <div class="prompt-example">
+                    <div class="prompt-label">構造化プロンプト例</div>
+                    <div class="prompt-text">
+                        [主題] Portrait of an elegant Japanese woman<br>
+                        [外見] with traditional kimono, intricate hair ornaments, gentle smile<br>
+                        [環境] sitting in a traditional tea room, soft natural lighting<br>
+                        [スタイル] photorealistic, professional photography, shallow depth of field, 85mm lens<br>
+                        [品質] highly detailed, 4k resolution, award-winning composition
+                    </div>
+                    <div class="prompt-result">
+                        伝統的な茶室で着物を着た日本女性の上品なポートレート。プロレベルの構図と照明で、被写体の美しさが際立つ高品質な写真が生成されます。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">⚖️</span>
+                <h3 class="technique-title">重み付け技法</h3>
+                <p>特定の要素を強調したい場合に使用する技法です。括弧や特殊記号を使って重要度を調整できます。</p>
+                
+                <div class="before-after">
+                    <div class="comparison-box before-box">
+                        <div class="comparison-label">❌ 重み付けなし</div>
+                        <div class="comparison-prompt">
+                            a cat in a garden with flowers, sunny day, detailed
+                        </div>
+                    </div>
+                    <div class="comparison-box after-box">
+                        <div class="comparison-label">✅ 重み付けあり</div>
+                        <div class="comparison-prompt">
+                            a (fluffy orange cat:1.3) in a (vibrant flower garden:1.2), ((sunny golden hour lighting:1.4)), highly detailed, masterpiece
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip-box">
+                    <div class="tip-title">重み付けの記号</div>
+                    <ul>
+                        <li><strong>(keyword:1.2)</strong> - 1.2倍の重み付け</li>
+                        <li><strong>((keyword))</strong> - 1.1倍の重み付け</li>
+                        <li><strong>[keyword]</strong> - 0.9倍の重み付け（軽減）</li>
+                        <li><strong>{keyword}</strong> - モデルによって異なる強調</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 id="keywords">🔑 効果的なキーワード選択</h2>
+            
+            <div class="keyword-importance">
+                <div class="importance-grid">
+                    <div class="importance-item high-importance">
+                        <div class="importance-level">最重要</div>
+                        <div class="importance-category">主題・オブジェクト</div>
+                        <div class="importance-examples">
+                            person, cat, building, landscape, abstract art
+                        </div>
+                    </div>
+                    
+                    <div class="importance-item high-importance">
+                        <div class="importance-level">最重要</div>
+                        <div class="importance-category">スタイル指定</div>
+                        <div class="importance-examples">
+                            photorealistic, oil painting, anime style, minimalist
+                        </div>
+                    </div>
+                    
+                    <div class="importance-item medium-importance">
+                        <div class="importance-level">重要</div>
+                        <div class="importance-category">品質・技術</div>
+                        <div class="importance-examples">
+                            highly detailed, 4k, professional, masterpiece
+                        </div>
+                    </div>
+                    
+                    <div class="importance-item medium-importance">
+                        <div class="importance-level">重要</div>
+                        <div class="importance-category">照明・雰囲気</div>
+                        <div class="importance-examples">
+                            soft lighting, dramatic shadows, golden hour
+                        </div>
+                    </div>
+                    
+                    <div class="importance-item low-importance">
+                        <div class="importance-level">補助</div>
+                        <div class="importance-category">色彩・質感</div>
+                        <div class="importance-examples">
+                            vibrant colors, metallic texture, matte finish
+                        </div>
+                    </div>
+                    
+                    <div class="importance-item low-importance">
+                        <div class="importance-level">補助</div>
+                        <div class="importance-category">構図・視点</div>
+                        <div class="importance-examples">
+                            close-up, wide angle, bird's eye view, symmetrical
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="styles">🎨 スタイル指定のコツ</h2>
+            
+            <p>AI画像生成において、スタイル指定は最終的な画像の品質と印象を決定する重要な要素です。適切なスタイルキーワードを使用することで、プロフェッショナルレベルの仕上がりを実現できます。</p>
+            
+            <div class="technique-card">
+                <span class="technique-icon">📸</span>
+                <h3 class="technique-title">写実的スタイル</h3>
+                <div class="prompt-example">
+                    <div class="prompt-label">フォトリアル指定例</div>
+                    <div class="prompt-text">
+                        photorealistic, professional photography, DSLR camera, 85mm lens, shallow depth of field, natural lighting, high resolution, detailed skin texture, sharp focus
+                    </div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">🖼️</span>
+                <h3 class="technique-title">アートスタイル</h3>
+                <div class="prompt-example">
+                    <div class="prompt-label">油絵風指定例</div>
+                    <div class="prompt-text">
+                        oil painting style, impressionist technique, visible brush strokes, rich colors, textured canvas, artistic composition, museum quality
+                    </div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">⚡</span>
+                <h3 class="technique-title">デジタルアート</h3>
+                <div class="prompt-example">
+                    <div class="prompt-label">デジタル指定例</div>
+                    <div class="prompt-text">
+                        digital art, concept art style, matte painting, sci-fi aesthetic, cyberpunk elements, neon colors, futuristic design, 3D rendered
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="advanced">🚀 上級テクニック</h2>
+            
+            <div class="technique-card">
+                <span class="technique-icon">🎭</span>
+                <h3 class="technique-title">ネガティブプロンプト活用法</h3>
+                <p>不要な要素を明示的に除外することで、より精密な画像生成が可能になります。</p>
+                
+                <div class="prompt-example">
+                    <div class="prompt-label">ネガティブプロンプト例</div>
+                    <div class="prompt-text">
+                        <strong>通常プロンプト:</strong><br>
+                        beautiful landscape, mountain, lake, sunset<br><br>
+                        <strong>ネガティブプロンプト:</strong><br>
+                        people, buildings, cars, blur, low quality, watermark, signature, text
+                    </div>
+                    <div class="prompt-result">
+                        人工物や不要な要素を排除し、純粋な自然風景のみを生成。品質も大幅に向上します。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">🔄</span>
+                <h3 class="technique-title">プロンプト・チェイニング</h3>
+                <p>複数のプロンプトを段階的に組み合わせて、複雑な画像を生成する技法です。</p>
+                
+                <div class="prompt-example">
+                    <div class="prompt-label">チェイニング例</div>
+                    <div class="prompt-text">
+                        <strong>Stage 1:</strong> base composition, simple shapes<br>
+                        <strong>Stage 2:</strong> + detailed textures, lighting effects<br>
+                        <strong>Stage 3:</strong> + final polish, color grading, atmosphere
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="examples">📝 実践例とビフォーアフター</h2>
+            
+            <h3>ケーススタディ1: ポートレート写真</h3>
+            
+            <div class="before-after">
+                <div class="comparison-box before-box">
+                    <div class="comparison-label">❌ 改善前</div>
+                    <div class="comparison-prompt">
+                        woman, beautiful, photo
+                    </div>
+                </div>
+                <div class="comparison-box after-box">
+                    <div class="comparison-label">✅ 改善後</div>
+                    <div class="comparison-prompt">
+                        Professional headshot of an elegant woman in her 30s, (confident smile:1.2), (natural makeup:1.1), wearing a sophisticated business blazer, (soft studio lighting:1.3), shot with 85mm lens, shallow depth of field, neutral background, photorealistic, high resolution, award-winning photography
+                    </div>
+                </div>
+            </div>
+            
+            <h3>ケーススタディ2: 建築ビジュアライゼーション</h3>
+            
+            <div class="before-after">
+                <div class="comparison-box before-box">
+                    <div class="comparison-label">❌ 改善前</div>
+                    <div class="comparison-prompt">
+                        modern house, design
+                    </div>
+                </div>
+                <div class="comparison-box after-box">
+                    <div class="comparison-label">✅ 改善後</div>
+                    <div class="comparison-prompt">
+                        ((Contemporary minimalist villa:1.4)) with (floor-to-ceiling windows:1.2), clean geometric lines, white concrete and natural wood materials, (surrounded by zen garden:1.1), (dramatic sunset lighting:1.3), architectural photography, shot with tilt-shift lens, highly detailed, 8K resolution, professional architectural visualization
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="cheatsheet">📋 プロンプトチートシート</h2>
+            
+            <div class="cheat-sheet">
+                <h3>🎯 即戦力キーワード集</h3>
+                <div class="cheat-categories">
+                    <div class="cheat-category">
+                        <h4>📷 写真品質</h4>
+                        <ul class="cheat-items">
+                            <li>photorealistic</li>
+                            <li>professional photography</li>
+                            <li>DSLR camera</li>
+                            <li>85mm lens</li>
+                            <li>shallow depth of field</li>
+                            <li>sharp focus</li>
+                            <li>high resolution</li>
+                            <li>award-winning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cheat-category">
+                        <h4>🎨 アートスタイル</h4>
+                        <ul class="cheat-items">
+                            <li>oil painting</li>
+                            <li>watercolor</li>
+                            <li>digital art</li>
+                            <li>concept art</li>
+                            <li>impressionist</li>
+                            <li>minimalist</li>
+                            <li>abstract</li>
+                            <li>surreal</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cheat-category">
+                        <h4>💡 照明効果</h4>
+                        <ul class="cheat-items">
+                            <li>soft lighting</li>
+                            <li>dramatic lighting</li>
+                            <li>golden hour</li>
+                            <li>studio lighting</li>
+                            <li>natural light</li>
+                            <li>rim lighting</li>
+                            <li>volumetric lighting</li>
+                            <li>ambient lighting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cheat-category">
+                        <h4>🌈 色彩・質感</h4>
+                        <ul class="cheat-items">
+                            <li>vibrant colors</li>
+                            <li>muted tones</li>
+                            <li>metallic sheen</li>
+                            <li>matte finish</li>
+                            <li>glossy surface</li>
+                            <li>textured</li>
+                            <li>iridescent</li>
+                            <li>translucent</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cheat-category">
+                        <h4>📐 構図・視点</h4>
+                        <ul class="cheat-items">
+                            <li>close-up portrait</li>
+                            <li>wide angle</li>
+                            <li>bird's eye view</li>
+                            <li>low angle shot</li>
+                            <li>symmetrical</li>
+                            <li>rule of thirds</li>
+                            <li>dynamic pose</li>
+                            <li>centered composition</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cheat-category">
+                        <h4>⭐ 品質向上</h4>
+                        <ul class="cheat-items">
+                            <li>highly detailed</li>
+                            <li>masterpiece</li>
+                            <li>4K resolution</li>
+                            <li>ultra-realistic</li>
+                            <li>intricate details</li>
+                            <li>fine art quality</li>
+                            <li>museum quality</li>
+                            <li>perfection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="troubleshooting">🔧 よくある問題と解決法</h2>
+            
+            <div class="technique-card">
+                <span class="technique-icon">❌</span>
+                <h3 class="technique-title">問題1: 画像がぼやけて不鮮明</h3>
+                <p><strong>原因:</strong> 品質指定が不足、または矛盾するキーワードの使用</p>
+                <p><strong>解決法:</strong> "sharp focus", "highly detailed", "4K resolution"を追加。"blur", "soft"などの語句をネガティブプロンプトに追加。</p>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">⚠️</span>
+                <h3 class="technique-title">問題2: 意図しない要素が含まれる</h3>
+                <p><strong>原因:</strong> 曖昧なキーワード使用、ネガティブプロンプト不足</p>
+                <p><strong>解決法:</strong> より具体的なキーワードを使用。不要な要素をネガティブプロンプトで明示的に除外。</p>
+            </div>
+            
+            <div class="technique-card">
+                <span class="technique-icon">🎭</span>
+                <h3 class="technique-title">問題3: スタイルが安定しない</h3>
+                <p><strong>原因:</strong> 複数のスタイルキーワードが競合</p>
+                <p><strong>解決法:</strong> 一つの明確なスタイルに絞り込み、重み付けで強調。競合するスタイルはネガティブプロンプトで除外。</p>
+            </div>
+            
+            <div class="tip-box">
+                <div class="tip-title">💡 プロからのワンポイントアドバイス</div>
+                <p>完璧なプロンプトは一度では作れません。基本形を作成した後、段階的に調整・改善を重ねることが重要です。生成結果を分析し、不足している要素を追加、不要な要素を除外する反復プロセスを心がけましょう。</p>
+            </div>
+            
+            <h2 id="conclusion">🎯 まとめ</h2>
+            
+            <p>プロフェッショナルレベルのプロンプト作成は、技術と芸術の融合です。構造化された論理的なアプローチと、創造的な表現力の両方が必要となります。</p>
+            
+            <h3>重要なポイントの再確認：</h3>
+            <ul>
+                <li><strong>構造化</strong>: 主題→詳細→環境→スタイルの順序を守る</li>
+                <li><strong>具体性</strong>: 曖昧なキーワードより具体的な表現を選ぶ</li>
+                <li><strong>重み付け</strong>: 重要な要素は適切に強調する</li>
+                <li><strong>品質指定</strong>: 必要な品質キーワードを忘れずに含める</li>
+                <li><strong>ネガティブプロンプト</strong>: 不要な要素は明示的に除外する</li>
+                <li><strong>反復改善</strong>: 一度で完璧を求めず、段階的に改善する</li>
+            </ul>
+            
+            <p>これらのテクニックを実践することで、AI画像生成の品質が劇的に向上し、より効率的でプロフェッショナルな作品制作が可能になります。継続的な練習と実験を通じて、さらに高度なプロンプト作成技術を習得していきましょう。</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">成功率向上</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5倍</div>
+                    <div class="stat-label">効率化</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">満足度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">実用技法</div>
+                </div>
+            </div>
+            
+        </article>
+        
+        <!-- インタラクティブプロンプトビルダー -->
+        <section class="interactive-prompt">
+            <h3>🛠️ インタラクティブプロンプトビルダー</h3>
+            <p>下記のフォームを使って、構造化プロンプトを作成してみましょう：</p>
+            <div class="prompt-builder">
+                <div class="builder-section">
+                    <label class="builder-label">主題（Subject）</label>
+                    <input type="text" class="builder-input" id="subject" placeholder="例: a beautiful woman, a modern building">
+                </div>
+                <div class="builder-section">
+                    <label class="builder-label">詳細（Details）</label>
+                    <input type="text" class="builder-input" id="details" placeholder="例: long brown hair, wearing elegant dress">
+                </div>
+                <div class="builder-section">
+                    <label class="builder-label">環境（Environment）</label>
+                    <input type="text" class="builder-input" id="environment" placeholder="例: in a mystical forest, soft lighting">
+                </div>
+                <div class="builder-section">
+                    <label class="builder-label">スタイル（Style）</label>
+                    <input type="text" class="builder-input" id="style" placeholder="例: photorealistic, highly detailed, 4k">
+                </div>
+                <div class="generated-prompt" id="generatedPrompt">
+                    生成されたプロンプトがここに表示されます...
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA セクション -->
+        <div class="cta-section">
+            <h3>🚀 プロレベルのAI画像生成サービス</h3>
+            <p>学んだテクニックを活用して、あなたのプロジェクトを次のレベルへ。プロフェッショナルな画像生成サービスをご利用ください。</p>
+            <a href="../index.html#contact" class="cta-button">プロジェクトを相談する</a>
+        </div>
+        
+        <!-- シェアセクション -->
+        <div class="share-section">
+            <h3>📢 この記事をシェア</h3>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=プロが教えるプロンプト作成の秘訣&url=https://aistudio.netlify.app/blog/prompt-techniques.html" target="_blank" class="share-btn twitter">
+                    🐦 Twitter
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://aistudio.netlify.app/blog/prompt-techniques.html" target="_blank" class="share-btn facebook">
+                    📘 Facebook
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://aistudio.netlify.app/blog/prompt-techniques.html" target="_blank" class="share-btn linkedin">
+                    💼 LinkedIn
+                </a>
+                <a href="https://social-plugins.line.me/lineit/share?url=https://aistudio.netlify.app/blog/prompt-techniques.html" target="_blank" class="share-btn line">
+                    💬 LINE
+                </a>
+            </div>
+        </div>
+        
+        <!-- 関連記事 -->
+        <section class="related-posts">
+            <h3>📚 関連記事</h3>
+            <div class="related-grid">
+                <a href="ai-trends-2025.html" class="related-card">
+                    <div class="related-image">🔮</div>
+                    <div class="related-content">
+                        <div class="related-excerpt">AI画像生成技術を企業が導入することで得られる具体的なメリットを詳しく解説します。</div>
+                    </div>
+                </a>
+                
+                <a href="stable-diffusion-3-guide.html" class="related-card">
+                    <div class="related-image">🎨</div>
+                    <div class="related-content">
+                        <div class="related-title">Stable Diffusion 3.0 完全活用ガイド</div>
+                        <div class="related-excerpt">最新のStable Diffusion 3.0の新機能と効果的な活用方法を詳しく解説します。</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
+            <a href="../index.html" style="color: #999; text-decoration: none;">ホーム</a> | 
+            <a href="../blog.html" style="color: #999; text-decoration: none;">ブログ</a> | 
+            <a href="../index.html#contact" style="color: #999; text-decoration: none;">お問い合わせ</a>
+        </p>
+    </footer>
+    
+    <script>
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 目次のアクティブ状態管理
+        const observerOptions = {
+            rootMargin: '-20% 0px -80% 0px',
+            threshold: 0
+        };
+        
+        const headings = document.querySelectorAll('h2[id]');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+                
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => {
+                        link.style.fontWeight = 'normal';
+                        link.style.color = 'rgba(255, 255, 255, 0.9)';
+                    });
+                    if (tocLink) {
+                        tocLink.style.fontWeight = 'bold';
+                        tocLink.style.color = 'white';
+                        tocLink.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        headings.forEach(heading => observer.observe(heading));
+        
+        // インタラクティブプロンプトビルダー
+        function updateGeneratedPrompt() {
+            const subject = document.getElementById('subject').value.trim();
+            const details = document.getElementById('details').value.trim();
+            const environment = document.getElementById('environment').value.trim();
+            const style = document.getElementById('style').value.trim();
+            
+            let prompt = '';
+            
+            if (subject) {
+                prompt += subject;
+            }
+            
+            if (details) {
+                prompt += (prompt ? ', ' : '') + details;
+            }
+            
+            if (environment) {
+                prompt += (prompt ? ', ' : '') + environment;
+            }
+            
+            if (style) {
+                prompt += (prompt ? ', ' : '') + style;
+            }
+            
+            const generatedPrompt = document.getElementById('generatedPrompt');
+            if (prompt) {
+                generatedPrompt.textContent = prompt;
+                generatedPrompt.style.color = '#e2e8f0';
+            } else {
+                generatedPrompt.textContent = '生成されたプロンプトがここに表示されます...';
+                generatedPrompt.style.color = '#a0aec0';
+            }
+        }
+        
+        // プロンプトビルダーのイベントリスナー
+        ['subject', 'details', 'environment', 'style'].forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                input.addEventListener('input', updateGeneratedPrompt);
+            }
+        });
+        
+        // コピーボタンの機能
+        function addCopyButtons() {
+            const promptExamples = document.querySelectorAll('.prompt-example');
+            promptExamples.forEach(example => {
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-button';
+                copyButton.textContent = 'コピー';
+                copyButton.style.position = 'absolute';
+                copyButton.style.top = '1rem';
+                copyButton.style.right = '3rem';
+                
+                copyButton.addEventListener('click', () => {
+                    const promptText = example.querySelector('.prompt-text').textContent;
+                    navigator.clipboard.writeText(promptText).then(() => {
+                        copyButton.textContent = 'コピー完了!';
+                        copyButton.classList.add('copied');
+                        setTimeout(() => {
+                            copyButton.textContent = 'コピー';
+                            copyButton.classList.remove('copied');
+                        }, 2000);
+                    });
+                });
+                
+                example.style.position = 'relative';
+                example.appendChild(copyButton);
+            });
+        }
+        
+        // 統計数値のアニメーション
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(statNumber => {
+                const text = statNumber.textContent;
+                const hasPercent = text.includes('%');
+                const hasX = text.includes('倍');
+                const hasPlus = text.includes('+');
+                
+                let finalValue;
+                let suffix = '';
+                
+                if (hasPercent) {
+                    finalValue = parseInt(text);
+                    suffix = '%';
+                } else if (hasX) {
+                    finalValue = parseInt(text);
+                    suffix = '倍';
+                } else if (hasPlus) {
+                    finalValue = parseInt(text);
+                    suffix = '+';
+                } else {
+                    finalValue = parseInt(text) || 0;
+                }
+                
+                let currentValue = 0;
+                const increment = finalValue / 60;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    statNumber.textContent = Math.floor(currentValue) + suffix;
+                }, 30);
+            });
+        }
+        
+        // フェードインアニメーション
+        function setupFadeInAnimation() {
+            const elements = document.querySelectorAll('.technique-card, .before-after, .cheat-sheet');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(30px)';
+                        entry.target.style.transition = 'all 0.8s ease';
+                        
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, 100);
+                        
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => fadeInObserver.observe(element));
+        }
+        
+        // チートシートアイテムのホバーエフェクト
+        function setupCheatSheetEffects() {
+            const cheatItems = document.querySelectorAll('.cheat-items li');
+            cheatItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // クリックでコピー
+                    const text = item.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalBg = item.style.backgroundColor;
+                        item.style.backgroundColor = '#4ecdc4';
+                        item.style.color = 'white';
+                        setTimeout(() => {
+                            item.style.backgroundColor = originalBg;
+                            item.style.color = '';
+                        }, 500);
+                    });
+                });
+                
+                // ツールチップ表示
+                item.title = 'クリックでコピー: ' + item.textContent;
+            });
+        }
+        
+        // 重み付け例のインタラクティブ機能
+        function setupWeightingDemo() {
+            const weightingExamples = document.querySelectorAll('.comparison-prompt');
+            weightingExamples.forEach(example => {
+                // 重み付け記号をハイライト
+                let html = example.innerHTML;
+                html = html.replace(/\(([^:)]+):([0-9.]+)\)/g, '<span style="background: rgba(78, 205, 196, 0.3); padding: 2px 4px; border-radius: 3px;">($1:$2)</span>');
+                html = html.replace(/\(\(([^)]+)\)\)/g, '<span style="background: rgba(255, 107, 107, 0.3); padding: 2px 4px; border-radius: 3px;">(($1))</span>');
+                example.innerHTML = html;
+            });
+        }
+        
+        // プロンプト構造の可視化
+        function visualizePromptStructure() {
+            const structureElements = document.querySelectorAll('.structure-element');
+            structureElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateX(-30px)';
+                    element.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateX(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        }
+        
+        // キーボードショートカット
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', (e) => {
+                // Ctrl+K でプロンプトビルダーにフォーカス
+                if (e.ctrlKey && e.key === 'k') {
+                    e.preventDefault();
+                    const subjectInput = document.getElementById('subject');
+                    if (subjectInput) {
+                        subjectInput.focus();
+                    }
+                }
+                
+                // Escでフォーカスを外す
+                if (e.key === 'Escape') {
+                    document.activeElement.blur();
+                }
+            });
+        }
+        
+        // ページ読み込み完了時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 各種機能の初期化
+            addCopyButtons();
+            setupFadeInAnimation();
+            setupCheatSheetEffects();
+            setupWeightingDemo();
+            setupKeyboardShortcuts();
+            
+            // アニメーションの実行（遅延）
+            setTimeout(() => {
+                animateStats();
+                visualizePromptStructure();
+            }, 500);
+            
+            // プロンプトビルダーのプレースホルダー更新
+            const builderInputs = document.querySelectorAll('.builder-input');
+            builderInputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '#4ecdc4';
+                    this.style.boxShadow = '0 0 10px rgba(78, 205, 196, 0.3)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.style.borderColor = '#4a5568';
+                    this.style.boxShadow = 'none';
+                });
+            });
+            
+            // 技法カードのホバーエフェクト強化
+            const techniqueCards = document.querySelectorAll('.technique-card');
+            techniqueCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = 'var(--shadow-light)';
+                });
+            });
+        });
+        
+        // シェアボタンの分析追跡
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const platform = this.classList[1];
+                console.log(`Shared Prompt Techniques article on ${platform}`);
+                // 実際のサイトではGoogle Analyticsなどで追跡
+            });
+        });
+        
+        // スクロール進捗表示
+        function createScrollProgress() {
+            const progressBar = document.createElement('div');
+            progressBar.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 3px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                z-index: 10000;
+                transition: width 0.3s ease;
+            `;
+            document.body.appendChild(progressBar);
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                progressBar.style.width = scrolled + '%';
+            });
+        }
+        
+        // プログレスバーの初期化
+        createScrollProgress();
+        
+        // パフォーマンス監視
+        window.addEventListener('load', () => {
+            console.log('Prompt Techniques article loaded successfully');
+            
+            // 読了時間の推定表示更新
+            const wordCount = document.querySelector('.article-content').textContent.split(' ').length;
+            const readingSpeed = 200; // 日本語の平均読書速度（文字/分）
+            const estimatedTime = Math.ceil(wordCount / readingSpeed);
+            
+            const timeElement = document.querySelector('.article-meta span:nth-child(3)');
+            if (timeElement && estimatedTime > 0) {
+                timeElement.textContent = `⏰ 読了時間: 約${estimatedTime}分`;
+            }
+        });
+    </script>
+</body>
+</html>d-title">2025年のAI画像生成技術トレンド予測</div>
+                        <div class="related-excerpt">来年注目すべきAI画像生成技術の最新トレンドと業界への影響を詳しく解析します。</div>
+                    </div>
+                </a>
+                
+                <a href="business-benefits.html" class="related-card">
+                    <div class="related-image">💼</div>
+                    <div class="related-content">
+                        <div class="related-title">企業がAI画像生成を導入する5つのメリット</div>
+                        <div class="relate<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロが教えるプロンプト作成の秘訣 | AI Art Studio Blog</title>
+    <meta name="description" content="AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開。構造化手法、キーワード選択、スタイル指定まで具体例とともに詳しく解説します。">
+    <meta name="keywords" content="プロンプト作成,AI画像生成,テクニック,コツ,構造化,キーワード,スタイル指定,品質向上">
+    <meta name="author" content="AI Art Studio">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="プロが教えるプロンプト作成の秘訣">
+    <meta property="og:description" content="AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://aistudio.netlify.app/blog/prompt-techniques.html">
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "プロが教えるプロンプト作成の秘訣",
+        "description": "AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開",
+        "author": {
+            "@type": "Organization",
+            "name": "AI Art Studio"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI Art Studio"
+        },
+        "datePublished": "2025-01-25",
+        "dateModified": "2025-01-25",
+        "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=1200&h=630&fit=crop"
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(45deg, #667eea, #764ba2);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            --success-gradient: linear-gradient(45deg, #56ab2f, #a8e6cf);
+            --warning-gradient: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-dark: rgba(0, 0, 0, 0.9);
+            --bg-light: #f8f9fa;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --code-bg: #2d3748;
+            --code-border: #4a5568;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+        
+        /* ヘッダー */
+        .header {
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-links a:hover {
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+        }
+        
+        /* メインコンテンツ */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .article-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            position: relative;
+        }
+        
+        .article-title::before {
+            content: '🎯';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: target 2s ease-in-out infinite;
+        }
+        
+        @keyframes target {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        /* 目次 */
+        .table-of-contents {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .table-of-contents h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc-list a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.3rem 0;
+        }
+        
+        .toc-list a:hover {
+            color: white;
+            padding-left: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        /* 記事本文 */
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem 0;
+            color: var(--text-dark);
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 2rem;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--text-dark);
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* プロンプト例のボックス */
+        .prompt-example {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #4ecdc4;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .prompt-example::before {
+            content: '💡';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .prompt-label {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .prompt-text {
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .prompt-result {
+            background: var(--bg-light);
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: var(--text-dark);
+            font-family: inherit;
+        }
+        
+        .prompt-result::before {
+            content: '✨ 生成結果のイメージ:';
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* ビフォーアフター比較 */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-box {
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .before-box {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+        }
+        
+        .after-box {
+            background: var(--success-gradient);
+            color: white;
+        }
+        
+        .comparison-label {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-prompt {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* テクニックカード */
+        .technique-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .technique-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .technique-card:hover::before {
+            left: 100%;
+        }
+        
+        .technique-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            border-color: #667eea;
+        }
+        
+        .technique-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .technique-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+        
+        /* 構造化プロンプトの図解 */
+        .prompt-structure {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .structure-element {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .structure-element::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -10px;
+            left: 1rem;
+            background: #667eea;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .structure-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .structure-example {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            color: var(--text-dark);
+        }
+        
+        /* キーワード重要度表 */
+        .keyword-importance {
+            margin: 2rem 0;
+        }
+        
+        .importance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .importance-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .importance-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .high-importance {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .medium-importance {
+            background: linear-gradient(135deg, #ffa726, #ffb74d);
+        }
+        
+        .low-importance {
+            background: linear-gradient(135deg, #66bb6a, #81c784);
+        }
+        
+        .importance-level {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .importance-category {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .importance-examples {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        /* チートシート */
+        .cheat-sheet {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .cheat-sheet h3 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+        
+        .cheat-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cheat-category {
+            background: var(--bg-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        
+        .cheat-category h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .cheat-items {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .cheat-items li {
+            background: white;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border-left: 3px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+        
+        .cheat-items li:hover {
+            background: #f0f8ff;
+            transform: translateX(5px);
+        }
+        
+        /* インタラクティブ要素 */
+        .interactive-prompt {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #4a5568;
+        }
+        
+        .prompt-builder {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .builder-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        
+        .builder-label {
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .builder-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #4a5568;
+            border-radius: 5px;
+            padding: 0.5rem;
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .builder-input:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
+        }
+        
+        .generated-prompt {
+            background: rgba(78, 205, 196, 0.2);
+            border: 2px solid #4ecdc4;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* 統計・データ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        /* ワンポイントアドバイス */
+        .tip-box {
+            background: var(--warning-gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .tip-box::before {
+            content: '💡';
+            font-size: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .tip-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* シェアボタン */
+        .share-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #4267b2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.line { background: #00c300; }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 関連記事 */
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .related-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .related-image {
+            width: 100%;
+            height: 150px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .related-content {
+            padding: 1.5rem;
+        }
+        
+        .related-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .related-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* CTA セクション */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* フッター */
+        .footer {
+            background: #333;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+            
+            .cheat-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* スムーズスクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* コピーボタン */
+        .copy-button {
+            position: absolute;
+            top: 1rem;
+            right: 3rem;
+            background: rgba(78, 205, 196, 0.8);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-button:hover {
+            background: #4ecdc4;
+            transform: scale(1.05);
+        }
+        
+        .copy-button.copied {
+            background: #56ab2f;
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="logo">🎨 AI Art Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#about">プロフィール</a></li>
+                <li><a href="../index.html#portfolio">作品</a></li>
+                <li><a href="../index.html#services">サービス</a></li>
+                <li><a href="../blog.html" style="color: #4ecdc4;">ブログ</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- メインコンテンツ -->
+    <main class="main-content fade-in">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / <a href="../blog.html">ブログ</a> / プロが教えるプロンプト作成の秘訣
+        </nav>
+        
+        <!-- 記事ヘッダー -->
