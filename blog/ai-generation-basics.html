@@ -3,22 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI画像生成入門：基礎から応用まで - AI Art Studio</title>
+    <title>AI画像生成入門：基礎から応用まで完全ガイド | AI Art Studio Blog</title>
     <meta name="description" content="AI画像生成を始めたい方向けの完全ガイド。ツールの選び方、基本的なプロンプトの書き方、よくある問題の解決法まで分かりやすく説明します。">
+    <meta name="keywords" content="AI画像生成,入門,基礎,プロンプト,ツール選び,初心者,ガイド">
+    <meta name="author" content="AI Art Studio">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI画像生成入門：基礎から応用まで完全ガイド">
+    <meta property="og:description" content="AI画像生成を始めたい方向けの完全ガイド">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://aistudio.netlify.app/blog/ai-generation-basics.html">
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AI画像生成入門：基礎から応用まで完全ガイド",
+        "description": "AI画像生成を始めたい方向けの完全ガイド",
+        "author": {
+            "@type": "Organization",
+            "name": "AI Art Studio"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI Art Studio"
+        },
+        "datePublished": "2025-01-30",
+        "dateModified": "2025-01-30",
+        "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=630&fit=crop"
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
     
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --accent-gradient: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
-            --text-dark: #333333;
-            --text-gray: #666666;
-            --bg-light: #f8f9fa;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(45deg, #667eea, #764ba2);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            --success-gradient: linear-gradient(45deg, #56ab2f, #a8e6cf);
+            --warning-gradient: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            --cyber-cyan: #00ffff;
+            --cyber-magenta: #ff00ff;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-dark: rgba(0, 0, 0, 0.9);
+            --bg-light: #f8f9fa;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
         body {
@@ -26,15 +67,163 @@
             line-height: 1.7;
             color: var(--text-dark);
             background: var(--bg-light);
+            overflow-x: hidden;
         }
         
+        /* サイバーパンク風ヘッダー - メインサイトと統一 */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 255, 0.05) 25%, 
+                rgba(255, 0, 255, 0.05) 75%, 
+                transparent 100%);
+            animation: fantasy-flow 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes fantasy-flow {
+            0%, 100% { transform: translateX(-50px); opacity: 0.5; }
+            50% { transform: translateX(50px); opacity: 1; }
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '✨';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .logo::after {
+            content: '🔮';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite 1s;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-links a:hover {
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* メインコンテンツ */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
+            margin-top: 100px; /* ヘッダーの高さ分調整 */
         }
         
-        .header {
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .header-section {
             text-align: center;
             margin-bottom: 3rem;
             padding-bottom: 2rem;
@@ -53,18 +242,38 @@
         }
         
         .title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 800;
             margin-bottom: 1rem;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+        }
+        
+        .title::before {
+            content: '📚';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: book-bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes book-bounce {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2) rotate(5deg); }
         }
         
         .meta {
             color: var(--text-gray);
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
         
         .excerpt {
@@ -78,7 +287,7 @@
             background: white;
             padding: 3rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
             margin-bottom: 2rem;
         }
         
@@ -88,6 +297,18 @@
             color: var(--text-dark);
             border-left: 4px solid #667eea;
             padding-left: 1rem;
+            position: relative;
+        }
+        
+        .content h2::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
         }
         
         .content h3 {
@@ -96,9 +317,16 @@
             color: var(--text-dark);
         }
         
+        .content h4 {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+            color: var(--text-dark);
+        }
+        
         .content p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
         
         .content ul, .content ol {
@@ -113,14 +341,24 @@
         .info-box {
             padding: 1.5rem;
             margin: 2rem 0;
-            border-radius: 10px;
+            border-radius: 15px;
             border-left: 4px solid #4caf50;
             background: rgba(76, 175, 80, 0.1);
+            position: relative;
+        }
+        
+        .info-box::before {
+            content: '💡';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
         }
         
         .info-box h4 {
             color: #4caf50;
             margin-bottom: 0.5rem;
+            font-weight: bold;
         }
         
         .tool-table {
@@ -128,9 +366,9 @@
             border-collapse: collapse;
             margin: 2rem 0;
             background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-light);
         }
         
         .tool-table th, .tool-table td {
@@ -142,23 +380,45 @@
         .tool-table th {
             background: var(--primary-gradient);
             color: white;
+            font-weight: bold;
+        }
+        
+        .tool-table tr:hover {
+            background: #f8f9fa;
         }
         
         .prompt-example {
             background: rgba(102, 126, 234, 0.05);
             border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 1.5rem;
             margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .prompt-example::before {
+            content: '🎨';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .prompt-example h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: bold;
         }
         
         .prompt-text {
-            background: white;
+            background: var(--bg-dark);
+            color: #e2e8f0;
             padding: 1rem;
             border-radius: 8px;
-            font-family: 'Monaco', monospace;
+            font-family: 'Monaco', 'Courier New', monospace;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            line-height: 1.6;
         }
         
         .hero-image {
@@ -173,11 +433,189 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: hero-shine 4s ease-in-out infinite;
+        }
+        
+        @keyframes hero-shine {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        
+        /* シェアボタン */
+        .share-section {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #4267b2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.line { background: #00c300; }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 関連記事 */
+        .related-posts {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .related-posts h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .related-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .related-image {
+            width: 100%;
+            height: 150px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .related-content {
+            padding: 1.5rem;
+        }
+        
+        .related-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .related-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+        
+        /* CTA セクション */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* フッター */
+        .footer {
+            background: #333;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* レスポンシブ */
         @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
             .container {
                 padding: 1rem;
+                margin-top: 100px;
             }
             
             .content {
@@ -191,15 +629,76 @@
             .tool-table {
                 font-size: 0.9rem;
             }
+            
+            .meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* スムーズスクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="logo">🎨 AI Art Studio</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../blog.html">ブログ</a></li>
+                <li><a href="../index.html#about">プロフィール</a></li>
+                <li><a href="../index.html#portfolio">作品</a></li>
+                <li><a href="../index.html#services">サービス</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container fade-in">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a> / <a href="../blog.html">ブログ</a> / AI画像生成入門：基礎から応用まで完全ガイド
+        </nav>
+        
+        <header class="header-section">
             <div class="category">チュートリアル</div>
-            <h1 class="title">AI画像生成入門：基礎から応用まで</h1>
-            <div class="meta">📅 2025年1月3日 | ⏱️ 読了時間: 15分 | 👁️ 4,892 views</div>
+            <h1 class="title">AI画像生成入門：基礎から応用まで完全ガイド</h1>
+            <div class="meta">
+                <span>📅 2025年1月30日</span>
+                <span>👤 AI Art Studio</span>
+                <span>⏱️ 読了時間: 15分</span>
+                <span>🏷️ 初心者向け</span>
+            </div>
             <p class="excerpt">
                 AI画像生成を始めたい方向けの完全ガイド。ツールの選び方、基本的なプロンプトの書き方、よくある問題の解決法まで分かりやすく説明します。
             </p>
@@ -346,6 +845,24 @@
                 <li>アップスケーリング機能を使用</li>
             </ul>
 
+            <h3>問題3：意図しない要素が含まれる</h3>
+            <p><strong>解決法：</strong></p>
+            <ul>
+                <li>ネガティブプロンプトで不要な要素を除外</li>
+                <li>より具体的なキーワードを使用</li>
+                <li>画像生成のシード値を調整</li>
+            </ul>
+
+            <div class="prompt-example">
+                <h4>ネガティブプロンプトの例</h4>
+                <div class="prompt-text">
+                    <strong>通常プロンプト:</strong><br>
+                    beautiful portrait of a woman<br><br>
+                    <strong>ネガティブプロンプト:</strong><br>
+                    blurry, low quality, distorted, extra limbs, text, watermark
+                </div>
+            </div>
+
             <h2>次のステップ：スキルアップのために</h2>
             
             <h3>1. 継続的な練習</h3>
@@ -367,6 +884,65 @@
                 <li><strong>img2img</strong>：既存画像の変換・編集</li>
             </ul>
 
+            <div class="info-box">
+                <h4>🎯 学習のポイント</h4>
+                <ul>
+                    <li>他の人の作品を参考にして、使用されたプロンプトを研究する</li>
+                    <li>同じ主題で異なるスタイルを試してみる</li>
+                    <li>生成結果を保存し、成功パターンを記録する</li>
+                    <li>最新のアップデートや新機能を定期的にチェックする</li>
+                </ul>
+            </div>
+
+            <h2>AI画像生成の応用分野</h2>
+            
+            <h3>🎨 クリエイティブ分野</h3>
+            <ul>
+                <li><strong>デジタルアート</strong>：個人作品や展示用アート</li>
+                <li><strong>イラストレーション</strong>：書籍や雑誌の挿絵</li>
+                <li><strong>ゲーム開発</strong>：キャラクターやアイテムデザイン</li>
+                <li><strong>映像制作</strong>：コンセプトアートやストーリーボード</li>
+            </ul>
+
+            <h3>💼 ビジネス分野</h3>
+            <ul>
+                <li><strong>マーケティング</strong>：広告バナーやSNS投稿画像</li>
+                <li><strong>Webデザイン</strong>：サイトのヒーロー画像や背景</li>
+                <li><strong>プロダクトデザイン</strong>：商品の概念図やモックアップ</li>
+                <li><strong>プレゼンテーション</strong>：資料用のイラストや図解</li>
+            </ul>
+
+            <h3>📚 教育・学習分野</h3>
+            <ul>
+                <li><strong>教材作成</strong>：教科書や学習資料の挿絵</li>
+                <li><strong>研究発表</strong>：論文やプレゼン用の図表</li>
+                <li><strong>語学学習</strong>：単語カードや文法説明図</li>
+                <li><strong>歴史・科学</strong>：過去の再現や科学現象の可視化</li>
+            </ul>
+
+            <h2>倫理的な配慮と注意点</h2>
+            
+            <p>AI画像生成を利用する際は、以下の点に注意が必要です：</p>
+
+            <h3>🔒 著作権・肖像権</h3>
+            <ul>
+                <li>既存のキャラクターや有名人の肖像を無断で使用しない</li>
+                <li>商用利用時は各ツールの利用規約を確認する</li>
+                <li>生成画像に著作権表示やクレジット表記を適切に行う</li>
+            </ul>
+
+            <h3>⚖️ 社会的責任</h3>
+            <ul>
+                <li>差別的・暴力的な内容の生成は避ける</li>
+                <li>フェイクニュースや誤情報の拡散に注意する</li>
+                <li>AI生成であることを明示する（必要に応じて）</li>
+            </ul>
+
+            <div class="info-box">
+                <h4>💡 プロフェッショナルな活用のコツ</h4>
+                <p>AI画像生成は創作のパートナーとして活用し、完全に依存するのではなく、自身の創造性と組み合わせることで最大の効果を発揮します。技術は手段であり、目的は常に価値ある作品の創造であることを忘れずに。</p>
+            </div>
+
             <h2>まとめ</h2>
             <p>
                 AI画像生成は、創造性と技術が融合した革新的な分野です。最初は戸惑うかもしれませんが、基本的な概念とツールの使い方を理解すれば、誰でも美しい画像を生成できるようになります。
@@ -382,9 +958,214 @@
             
             <div class="info-box">
                 <h4>🚀 次のステップ</h4>
-                <p>このガイドを出発点として、実際にツールを選んで最初の画像生成にチャレンジしてみましょう。きっと新しい創造の扉が開かれるはずです。</p>
+                <p>このガイドを出発点として、実際にツールを選んで最初の画像生成にチャレンジしてみましょう。きっと新しい創造の扉が開かれるはずです。始めは思うような結果が得られなくても、継続することで必ずスキルは向上します。</p>
             </div>
         </main>
+
+        <!-- CTA セクション -->
+        <div class="cta-section">
+            <h3>🎨 プロフェッショナルなAI画像生成サービス</h3>
+            <p>学んだ知識を活用して、あなたのプロジェクトを次のレベルへ。AI画像生成のプロがサポートします。</p>
+            <a href="../index.html#contact" class="cta-button">プロジェクトを相談する</a>
+        </div>
+
+        <!-- シェアセクション -->
+        <div class="share-section">
+            <h3>📢 この記事をシェア</h3>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=AI画像生成入門：基礎から応用まで完全ガイド&url=https://aistudio.netlify.app/blog/ai-generation-basics.html" target="_blank" class="share-btn twitter">
+                    🐦 Twitter
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://aistudio.netlify.app/blog/ai-generation-basics.html" target="_blank" class="share-btn facebook">
+                    📘 Facebook
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://aistudio.netlify.app/blog/ai-generation-basics.html" target="_blank" class="share-btn linkedin">
+                    💼 LinkedIn
+                </a>
+                <a href="https://social-plugins.line.me/lineit/share?url=https://aistudio.netlify.app/blog/ai-generation-basics.html" target="_blank" class="share-btn line">
+                    💬 LINE
+                </a>
+            </div>
+        </div>
+
+        <!-- 関連記事 -->
+        <section class="related-posts">
+            <h3>📚 関連記事</h3>
+            <div class="related-grid">
+                <a href="prompt-techniques.html" class="related-card">
+                    <div class="related-image">🎯</div>
+                    <div class="related-content">
+                        <div class="related-title">プロが教えるプロンプト作成の秘訣</div>
+                        <div class="related-excerpt">AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開。構造化手法からキーワード選択まで詳しく解説します。</div>
+                    </div>
+                </a>
+                
+                <a href="stable-diffusion-3-guide.html" class="related-card">
+                    <div class="related-image">🎨</div>
+                    <div class="related-content">
+                        <div class="related-title">Stable Diffusion 3.0 完全活用ガイド</div>
+                        <div class="related-excerpt">最新のStable Diffusion 3.0の新機能と効果的な活用方法を詳しく解説します。</div>
+                    </div>
+                </a>
+            </div>
+        </section>
     </div>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
+            <a href="../index.html" style="color: #999; text-decoration: none;">ホーム</a> | 
+            <a href="../blog.html" style="color: #999; text-decoration: none;">ブログ</a> | 
+            <a href="../index.html#contact" style="color: #999; text-decoration: none;">お問い合わせ</a>
+        </p>
+    </footer>
+    
+    <script>
+        // ハンバーガーメニュー
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger?.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // ヘッダーのスクロール効果
+        let lastScrollY = window.scrollY;
+        function handleScroll() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollY = window.scrollY;
+        }
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // フェードインアニメーション
+        function setupFadeInAnimation() {
+            const elements = document.querySelectorAll('.info-box, .prompt-example, .tool-table');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '0';
+                        entry.target.style.transform = 'translateY(30px)';
+                        entry.target.style.transition = 'all 0.8s ease';
+                        
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, 100);
+                        
+                        fadeInObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => fadeInObserver.observe(element));
+        }
+        
+        // プロンプト例のコピー機能
+        function addCopyButtons() {
+            const promptExamples = document.querySelectorAll('.prompt-text');
+            promptExamples.forEach(example => {
+                const copyButton = document.createElement('button');
+                copyButton.textContent = 'コピー';
+                copyButton.style.cssText = `
+                    position: absolute;
+                    top: 0.5rem;
+                    right: 0.5rem;
+                    background: rgba(102, 126, 234, 0.8);
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 0.3rem 0.8rem;
+                    cursor: pointer;
+                    font-size: 0.8rem;
+                    transition: all 0.3s ease;
+                `;
+                
+                copyButton.addEventListener('click', () => {
+                    const text = example.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        copyButton.textContent = 'コピー完了!';
+                        copyButton.style.background = '#4caf50';
+                        setTimeout(() => {
+                            copyButton.textContent = 'コピー';
+                            copyButton.style.background = 'rgba(102, 126, 234, 0.8)';
+                        }, 2000);
+                    });
+                });
+                
+                const parent = example.parentElement;
+                if (parent && parent.classList.contains('prompt-example')) {
+                    parent.style.position = 'relative';
+                    parent.appendChild(copyButton);
+                }
+            });
+        }
+        
+        // キーボードショートカット
+        function setupKeyboardShortcuts() {
+            document.addEventListener('keydown', (e) => {
+                // Escでメニューを閉じる
+                if (e.key === 'Escape') {
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+        
+        // ページ読み込み完了時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            setupFadeInAnimation();
+            addCopyButtons();
+            setupKeyboardShortcuts();
+            
+            // テーブルのホバーエフェクト
+            const tableRows = document.querySelectorAll('.tool-table tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+        
+        // シェアボタンのクリック追跡
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const platform = this.classList[1];
+                console.log(`Shared AI Generation Basics article on ${platform}`);
+            });
+        });
+        
+        // パフォーマンス監視
+        window.addEventListener('load', () => {
+            console.log('AI Generation Basics article loaded successfully');
+        });
+    </script>
 </body>
 </html>
