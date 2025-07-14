@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+.modal-image {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -432,15 +447,41 @@
             background: var(--primary-gradient);
         }
         
-        .portfolio-image img {
+        .portfolio-placeholder {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
         
-        .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.1);
+        .portfolio-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 15px 15px;
+            animation: cyber-grid-mini 3s linear infinite;
+        }
+        
+        @keyframes cyber-grid-mini {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(15px, 15px); }
+        }
+        
+        .portfolio-placeholder .placeholder-icon {
+            font-size: 3rem;
+            z-index: 2;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         
         .image-overlay {
@@ -1242,12 +1283,26 @@
         
         // ポートフォリオアイテムのHTML生成
         function createPortfolioItemHTML(item) {
+            // 実際の画像がある場合とプレースホルダーの場合で処理を分ける
+            const imageHTML = item.actualImage ? 
+                `<img src="${item.image}" alt="${item.title}" loading="lazy" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">` :
+                '';
+                
+            const placeholderHTML = item.actualImage ? 
+                `<div class="portfolio-placeholder" style="display: none;">
+                    <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
+                </div>` :
+                `<div class="portfolio-placeholder">
+                    <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
+                </div>`;
+            
             return `
                 <div class="portfolio-item fade-in" data-id="${item.id}">
                     <div class="portfolio-image">
-                        <div class="portfolio-placeholder">
-                            <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
-                        </div>
+                        ${imageHTML}
+                        ${placeholderHTML}
                         <div class="image-overlay">
                             <span>👁️ 詳細を見る</span>
                         </div>
@@ -1308,7 +1363,12 @@
             modalTitle.textContent = item.title;
             modalBody.innerHTML = `
                 <div class="modal-image-container">
-                    <div class="modal-placeholder-image">
+                    ${item.actualImage ? 
+                        `<img src="${item.image}" alt="${item.title}" class="modal-image" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                         <div class="modal-placeholder-image" style="display: none;">` :
+                        `<div class="modal-placeholder-image">`
+                    }
                         <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
                         <div class="placeholder-text">${item.title}</div>
                     </div>
