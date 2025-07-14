@@ -1,19 +1,4 @@
-.modal-image {
-            width: 100%;
-            max-height: 60vh;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }        .portfolio-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .portfolio-item:hover .portfolio-image img {
-            transform: scale(1.1);
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +11,7 @@
     <meta property="og:title" content="AI Art Studio - 作品ポートフォリオ">
     <meta property="og:description" content="最先端AI技術による美しいデジタルアート作品集">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://aistudio.netlify.app/portfolio-og.jpg">
+    <meta property="og:image" content="IMG_4448.JPG">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
@@ -59,7 +44,7 @@
             overflow-x: hidden;
         }
         
-        /* ヘッダー（既存と同じ） */
+        /* ヘッダー */
         .header {
             position: fixed;
             top: 0;
@@ -447,6 +432,17 @@
             background: var(--primary-gradient);
         }
         
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
         .portfolio-placeholder {
             width: 100%;
             height: 100%;
@@ -506,15 +502,6 @@
         
         .portfolio-item:hover .image-overlay {
             opacity: 1;
-        }
-        
-        .portfolio-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         
         .portfolio-content {
@@ -619,7 +606,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* モーダルの改善されたスタイル */
+        /* モーダル */
         .modal {
             position: fixed;
             top: 0;
@@ -698,6 +685,14 @@
             padding: 2rem;
             overflow-y: auto;
             flex: 1;
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
         }
         
         .modal-placeholder-image {
@@ -1032,95 +1027,119 @@
     </footer>
     
     <script>
-        // ポートフォリオデータ（実際には外部APIから取得）
+        // ポートフォリオデータ（IMG_4448.JPGを含む実際の画像統合版）
         const portfolioData = [
             {
                 id: 1,
                 title: "Cyber Dragon Portrait",
                 category: "cyberpunk",
                 tags: ["Stable Diffusion", "Photoshop", "Digital Art"],
-                description: "未来的なドラゴンポートレート。ネオンと機械の融合による新世代のファンタジー表現。",
-                image: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?w=400&h=300&fit=crop",
+                description: "未来的なドラゴンポートレート。ネオンと機械の融合による新世代のファンタジー表現。高度なAI技術と伝統的なデジタルアート技法を組み合わせて制作された代表作品です。",
+                image: "IMG_4448.JPG",
+                actualImage: true,
                 date: "2025-01-10",
                 likes: 245,
-                views: 1520
+                views: 1520,
+                techniques: "Stable Diffusion XLモデルを使用し、プロンプトエンジニアリングによる詳細な指定とPhotoshopでの後処理により完成。約15時間の制作時間を要した本格的な作品です。",
+                mood: "サイバーパンクとファンタジーの融合。未来への憧憬と神秘的な力強さを表現。観る者に新時代の到来を予感させる印象的なビジュアルです。"
             },
             {
                 id: 2,
                 title: "Ethereal Forest Goddess",
                 category: "fantasy",
                 tags: ["Midjourney", "Nature", "Portrait"],
-                description: "森の女神をテーマにした幻想的なポートレート。光と影の繊細な表現が特徴。",
+                description: "森の女神をテーマにした幻想的なポートレート。光と影の繊細な表現と自然の神秘性を融合させた美しい作品。",
                 image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2025-01-08",
                 likes: 189,
-                views: 934
+                views: 934,
+                techniques: "Midjourney v6を使用したプロンプト設計と、複数回の生成による最適解の選定。自然光の表現に特にこだわりました。",
+                mood: "神聖で穏やかな森の精霊。自然との調和と生命力あふれる美しさを表現しています。"
             },
             {
                 id: 3,
                 title: "Neon City Skyline",
                 category: "cyberpunk",
                 tags: ["DALL-E", "Architecture", "Urban"],
-                description: "サイバーパンク風の未来都市。ネオンライトが織りなす美しい夜景。",
+                description: "サイバーパンク風の未来都市。ネオンライトが織りなす美しい夜景と先進技術の調和を表現した都市景観作品。",
                 image: "https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2025-01-05",
                 likes: 312,
-                views: 1876
+                views: 1876,
+                techniques: "DALL-E 3による建築ビジュアライゼーション。細部のネオン効果は後処理で強化しています。",
+                mood: "近未来都市の活気と美しさ。テクノロジーと人間性の共存を表現した希望に満ちた未来像です。"
             },
             {
                 id: 4,
                 title: "Corporate Brand Identity",
                 category: "branding",
                 tags: ["Figma", "Branding", "Logo Design"],
-                description: "モダンテック企業のブランドアイデンティティデザイン。シンプルで印象的なビジュアル。",
+                description: "モダンテック企業のブランドアイデンティティデザイン。シンプルで印象的なビジュアルアイデンティティシステム。",
                 image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2025-01-03",
                 likes: 156,
-                views: 742
+                views: 742,
+                techniques: "AI生成ツールとFigmaを組み合わせたデザインワークフロー。ブランド戦略から実装まで一貫して制作。",
+                mood: "革新的でありながら信頼感のある企業イメージ。未来志向と安定感のバランスを重視しました。"
             },
             {
                 id: 5,
                 title: "Anime Character Design",
                 category: "character",
                 tags: ["NovelAI", "Anime", "Character"],
-                description: "オリジナルアニメキャラクターのデザイン。表情豊かで個性的な魅力を表現。",
+                description: "オリジナルアニメキャラクターのデザイン。表情豊かで個性的な魅力を表現したキャラクター作品。",
                 image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2025-01-01",
                 likes: 498,
-                views: 2341
+                views: 2341,
+                techniques: "NovelAI Diffusionを使用したアニメ調イラスト生成。細部の調整は手描きツールで行いました。",
+                mood: "親しみやすく魅力的なキャラクター。観る人に愛着を感じさせる温かみのある表現を心がけました。"
             },
             {
                 id: 6,
                 title: "Abstract Ocean Waves",
                 category: "abstract",
                 tags: ["AI Generated", "Abstract", "Blue"],
-                description: "海の波を抽象化したアート作品。色彩の流れと動きを表現。",
+                description: "海の波を抽象化したアート作品。色彩の流れと動きを表現した流動的なデジタルアート。",
                 image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2024-12-28",
                 likes: 134,
-                views: 687
+                views: 687,
+                techniques: "生成AIによる抽象表現の探求。色彩理論に基づいた調和のとれた配色設計。",
+                mood: "海の持つ無限の力と美しさ。自然の躍動感と平安を同時に表現した瞑想的な作品です。"
             },
             {
                 id: 7,
                 title: "Futuristic Architecture",
                 category: "architecture",
                 tags: ["Blender", "3D", "Architecture"],
-                description: "未来建築の3Dビジュアライゼーション。有機的なフォルムと先進技術の融合。",
+                description: "未来建築の3Dビジュアライゼーション。有機的なフォルムと先進技術の融合による革新的な建築デザイン。",
                 image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2024-12-25",
                 likes: 267,
-                views: 1203
+                views: 1203,
+                techniques: "AI生成による初期デザインをBlenderで3Dモデル化。リアルなマテリアルとライティングで仕上げ。",
+                mood: "持続可能な未来建築。環境との調和と機能美を両立した理想的な建築空間を表現しています。"
             },
             {
                 id: 8,
                 title: "Mystical Portrait",
                 category: "portrait",
                 tags: ["Portrait", "Fantasy", "Magic"],
-                description: "神秘的な人物ポートレート。魔法的な雰囲気と美しい光の演出。",
+                description: "神秘的な人物ポートレート。魔法的な雰囲気と美しい光の演出による幻想的な肖像画作品。",
                 image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+                actualImage: false,
                 date: "2024-12-22",
                 likes: 378,
-                views: 1654
+                views: 1654,
+                techniques: "高解像度ポートレート生成と光学効果の後処理。魔法的な要素の追加により神秘性を演出。",
+                mood: "内なる力と美しさの表現。見る者を魔法の世界へと誘う神秘的で力強い存在感を表現しました。"
             }
         ];
         
@@ -1162,7 +1181,6 @@
             // カテゴリフィルター
             categoryFilters.addEventListener('click', (e) => {
                 if (e.target.classList.contains('filter-btn')) {
-                    // アクティブ状態の更新
                     categoryFilters.querySelectorAll('.filter-btn').forEach(btn => {
                         btn.classList.remove('active');
                     });
@@ -1174,15 +1192,18 @@
             });
             
             // 検索
+            let searchTimeout;
             searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value.toLowerCase();
-                filterAndDisplayItems();
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    currentSearch = e.target.value.toLowerCase();
+                    filterAndDisplayItems();
+                }, 300);
             });
             
             // ビュー切り替え
             viewToggle.addEventListener('click', (e) => {
                 if (e.target.classList.contains('view-btn')) {
-                    // アクティブ状態の更新
                     viewToggle.querySelectorAll('.view-btn').forEach(btn => {
                         btn.classList.remove('active');
                     });
@@ -1207,7 +1228,7 @@
                 }
             });
             
-            // 無限スクロール
+            // スクロール処理
             window.addEventListener('scroll', handleScroll);
         }
         
@@ -1231,7 +1252,6 @@
         function loadPortfolioItems() {
             showLoading();
             
-            // 実際のAPIコールをシミュレート
             setTimeout(() => {
                 displayedItems = [...portfolioData];
                 filterAndDisplayItems();
@@ -1274,20 +1294,15 @@
             const itemsHTML = displayedItems.map(item => createPortfolioItemHTML(item)).join('');
             portfolioGrid.innerHTML = itemsHTML;
             
-            // イベントリスナーの追加
             addPortfolioItemListeners();
-            
-            // アニメーション
             animateItems();
         }
         
         // ポートフォリオアイテムのHTML生成
         function createPortfolioItemHTML(item) {
-            // 実際の画像がある場合とプレースホルダーの場合で処理を分ける
             const imageHTML = item.actualImage ? 
                 `<img src="${item.image}" alt="${item.title}" loading="lazy" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                     style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">` :
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
                 '';
                 
             const placeholderHTML = item.actualImage ? 
@@ -1336,7 +1351,6 @@
             const portfolioItems = document.querySelectorAll('.portfolio-item');
             portfolioItems.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    // ボタンクリック以外の場合のみモーダルを開く
                     if (!e.target.closest('.portfolio-actions')) {
                         const itemId = parseInt(item.dataset.id);
                         openModal(itemId);
@@ -1353,12 +1367,7 @@
         // モーダルを開く
         function openModal(itemId) {
             const item = portfolioData.find(p => p.id === itemId);
-            if (!item) {
-                console.error('作品が見つかりません:', itemId);
-                return;
-            }
-            
-            console.log('モーダルを開きます:', item.title);
+            if (!item) return;
             
             modalTitle.textContent = item.title;
             modalBody.innerHTML = `
@@ -1411,9 +1420,6 @@
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // モーダル表示の確認
-            console.log('モーダルがアクティブになりました');
         }
         
         // カテゴリ名を日本語で取得
@@ -1467,9 +1473,7 @@
             const item = portfolioData.find(p => p.id === itemId);
             if (item) {
                 item.likes += 1;
-                // 表示を更新
                 filterAndDisplayItems();
-                // モーダルが開いている場合は更新
                 if (modal.classList.contains('active')) {
                     openModal(itemId);
                 }
@@ -1514,7 +1518,7 @@
             });
         }
         
-        // スクロール処理（無限スクロール用）
+        // スクロール処理
         function handleScroll() {
             if (isLoading) return;
             
@@ -1522,47 +1526,23 @@
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
             
-            // ページ下部に近づいたら追加読み込み（実際の実装では必要に応じて）
             if (scrollTop + windowHeight >= documentHeight - 1000) {
-                // loadMoreItems(); // 追加アイテムの読み込み
+                // 追加読み込み処理（必要に応じて実装）
             }
         }
         
-        // パフォーマンス最適化
-        function optimizeImages() {
-            const images = document.querySelectorAll('.portfolio-image img');
-            images.forEach(img => {
-                img.addEventListener('load', function() {
-                    this.style.opacity = '1';
-                });
-                
-                img.addEventListener('error', function() {
-                    this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23ddd" width="400" height="300"/><text x="50%" y="50%" text-anchor="middle" fill="%23999">画像読み込みエラー</text></svg>';
-                });
-            });
-        }
-        
-        // 検索のデバウンス
-        let searchTimeout;
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                currentSearch = e.target.value.toLowerCase();
-                filterAndDisplayItems();
-            }, 300);
-        });
-        
-        // パフォーマンス監視
+        // ページ読み込み完了時の処理
         window.addEventListener('load', () => {
-            console.log('Portfolio page loaded successfully');
-            optimizeImages();
+            console.log('Portfolio page with IMG_4448.JPG loaded successfully');
             
-            // Intersection Observer for lazy loading
+            // 画像の遅延読み込み設定
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
-                        img.src = img.dataset.src || img.src;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
                         imageObserver.unobserve(img);
                     }
                 });
