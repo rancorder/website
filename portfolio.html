@@ -432,14 +432,20 @@
             background: var(--primary-gradient);
         }
         
+        /* 画像表示の最適化 */
         .portfolio-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease;
+            opacity: 1;
         }
         
-        .portfolio-item:hover .portfolio-image img {
+        .portfolio-image img.error {
+            display: none;
+        }
+        
+        .portfolio-item:hover .portfolio-image img:not(.error) {
             transform: scale(1.1);
         }
         
@@ -447,12 +453,19 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: var(--primary-gradient);
             color: white;
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             overflow: hidden;
+        }
+        
+        .portfolio-placeholder.hidden {
+            display: none;
         }
         
         .portfolio-placeholder::before {
@@ -478,6 +491,15 @@
             font-size: 3rem;
             z-index: 2;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-placeholder .placeholder-title {
+            font-size: 1rem;
+            font-weight: bold;
+            z-index: 2;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         
         .image-overlay {
@@ -498,6 +520,7 @@
             transition: all 0.3s ease;
             color: white;
             font-size: 1.2rem;
+            z-index: 10;
         }
         
         .portfolio-item:hover .image-overlay {
@@ -957,7 +980,6 @@
                         <button class="filter-btn active" data-filter="all">すべて</button>
                         <button class="filter-btn" data-filter="portrait">ポートレート</button>
                         <button class="filter-btn" data-filter="fantasy">ファンタジー</button>
-                        <button class="filter-btn" data-filter="fantasy">ファンタジー</button>
                         <button class="filter-btn" data-filter="cyberpunk">サイバーパンク</button>
                         <button class="filter-btn" data-filter="fashion">ファッション</button>
                         <button class="filter-btn" data-filter="character">キャラクター</button>
@@ -965,8 +987,6 @@
                         <button class="filter-btn" data-filter="lifestyle">ライフスタイル</button>
                         <button class="filter-btn" data-filter="branding">ブランディング</button>
                         <button class="filter-btn" data-filter="architecture">建築</button>
-                        <button class="filter-btn" data-filter="abstract">抽象</button>
-                        <button class="filter-btn" data-filter="branding">ブランディング</button>
                     </div>
                 </div>
                 
@@ -1031,7 +1051,10 @@
     </footer>
     
     <script>
-        // ポートフォリオデータ（9作品統合版）
+        // GitHub Raw URL ベースURL（rancorder/website リポジトリ用）
+        const GITHUB_BASE_URL = "https://raw.githubusercontent.com/rancorder/website/main/";
+        
+        // ポートフォリオデータ（GitHub Raw URL対応版）
         const portfolioData = [
             {
                 id: 1,
@@ -1039,8 +1062,7 @@
                 category: "cyberpunk",
                 tags: ["Stable Diffusion", "Photoshop", "Digital Art"],
                 description: "未来的なドラゴンポートレート。ネオンと機械の融合による新世代のファンタジー表現。高度なAI技術と伝統的なデジタルアート技法を組み合わせて制作された代表作品です。",
-                image: "images/IMG_4448.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4448.JPG",
                 date: "2025-01-10",
                 likes: 245,
                 views: 1520,
@@ -1053,8 +1075,7 @@
                 category: "portrait",
                 tags: ["AI Portrait", "Light Mastery", "Fashion Photography"],
                 description: "黄金の秋光に包まれた洗練されたポートレート。自然光とファッションの調和が生み出す、温かみと上品さを併せ持つ現代的なライフスタイル表現。AI技術による光の演出と質感の再現が際立つ作品です。",
-                image: "images/IMG_4694.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4694.JPG",
                 date: "2025-01-12",
                 likes: 189,
                 views: 1034,
@@ -1067,8 +1088,7 @@
                 category: "lifestyle",
                 tags: ["Lifestyle Photography", "Interior Aesthetics", "Color Harmony"],
                 description: "洗練されたカフェ空間で過ごすひととき。ベリー色のワンピースが織りなす暖かな雰囲気と、コーヒーの香りが漂う午後のシーン。AI技術により再現された自然な日常の美しさと、インテリアとファッションの完璧な調和を表現した作品です。",
-                image: "images/IMG_4660.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4660.JPG",
                 date: "2025-01-14",
                 likes: 167,
                 views: 892,
@@ -1081,8 +1101,7 @@
                 category: "character",
                 tags: ["Character Design", "Kawaii Culture", "Pastel Aesthetics"],
                 description: "春の桜と共に咲き誇るパステルカラーの世界。可愛らしさの極致を表現したキャラクターデザインで、日本のカワイイ文化とファンタジー要素を融合。ピンクとミントグリーンの絶妙な配色と、繊細なレースとリボンのディテールが織りなす、夢見るような美しさを表現した作品です。",
-                image: "images/IMG_4681.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4681.JPG",
                 date: "2025-01-16",
                 likes: 312,
                 views: 1456,
@@ -1095,8 +1114,7 @@
                 category: "fashion",
                 tags: ["Vintage Fashion", "Studio Photography", "Classic Elegance"],
                 description: "1950年代のクラシックな美意識を現代のAI技術で蘇らせた、究極のヴィンテージファッションポートレート。ブラウンレザージャケットとプリーツスカートの完璧なバランス、そして小物使いまで計算し尽くされたスタイリング。ノワール映画を彷彿とさせる深いブルーの背景が、時代を超えた女性の強さと美しさを際立たせる珠玉の作品です。",
-                image: "images/IMG_4650.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4650.JPG",
                 date: "2025-01-18",
                 likes: 278,
                 views: 1203,
@@ -1109,8 +1127,7 @@
                 category: "fantasy",
                 tags: ["Cyberpunk Kawaii", "Holographic Art", "Future Fashion"],
                 description: "サイバーパンクとカワイイ文化の革命的融合。透明なサイバーボディとパステルパープルヘアが織りなす、未来の美少女サイボーグ像。ホログラフィックインターフェースと虹色エフェクトに囲まれた彼女は、デジタル世界の女神として、技術と美の完璧な調和を体現している。日本のポップカルチャーが描く理想的な未来像を、最先端AI技術で実現した革新的作品です。",
-                image: "images/IMG_4682.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4682.JPG",
                 date: "2025-01-20",
                 likes: 425,
                 views: 2134,
@@ -1123,8 +1140,7 @@
                 category: "abstract",
                 tags: ["Mosaic Art", "Architectural Design", "Color Theory"],
                 description: "アントニ・ガウディの建築美学とモザイクアートの精神を現代のAI技術で再現した、圧倒的な色彩美の作品。バルセロナのパルク・グエルを彷彿とさせる色鮮やかなタイル装飾と、有機的なサラマンダーのフォルムが織りなす芸術的調和。青を基調とした豊かな色彩と幾何学的パターンが、見る者を地中海の陽光あふれる空間へと誘う、建築とアートの融合作品です。",
-                image: "images/IMG_4671.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4671.JPG",
                 date: "2025-01-22",
                 likes: 356,
                 views: 1789,
@@ -1137,8 +1153,7 @@
                 category: "branding",
                 tags: ["UI/UX Design", "Brand Identity", "Data Visualization"],
                 description: "バイオテクノロジー企業のための包括的ブランドアイデンティティとUI/UXダッシュボードデザイン。DNA螺旋構造をモチーフにした洗練されたビジュアル言語と、最先端データ可視化技術が融合。サイバーパンク美学とサイエンティフィックな精密性を両立した、未来の生命科学企業のための完全なデザインシステムです。32K高解像度対応と360度ブランド展開を実現。",
-                image: "images/IMG_4683.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4683.JPG",
                 date: "2025-01-24",
                 likes: 489,
                 views: 2456,
@@ -1151,8 +1166,7 @@
                 category: "architecture",
                 tags: ["Food Photography", "Luxury Dining", "Molecular Gastronomy"],
                 description: "ミシュラン三つ星レストランの芸術的料理を表現した、ガストロノミー（美食学）の頂点作品。分子ガストロノミーの革新的技法による鮭料理を、食べられる花（エディブルフラワー）とマイクログリーンで装飾。完璧なプレゼンテーション、色彩バランス、質感表現により、料理を単なる食べ物から芸術作品へと昇華させた、現代フランス料理の美学を体現する作品です。",
-                image: "images/IMG_4690.JPG",
-                actualImage: true,
+                image: GITHUB_BASE_URL + "IMG_4690.JPG",
                 date: "2025-01-26",
                 likes: 534,
                 views: 2789,
@@ -1313,29 +1327,61 @@
             portfolioGrid.innerHTML = itemsHTML;
             
             addPortfolioItemListeners();
+            setupImageHandling();
             animateItems();
         }
         
-        // ポートフォリオアイテムのHTML生成
-        function createPortfolioItemHTML(item) {
-            const imageHTML = item.actualImage ? 
-                `<img src="${item.image}" alt="${item.title}" loading="lazy" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">` :
-                '';
-                
-            const placeholderHTML = item.actualImage ? 
-                `<div class="portfolio-placeholder" style="display: none;">
-                    <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
-                </div>` :
-                `<div class="portfolio-placeholder">
-                    <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
-                </div>`;
+        // 画像処理の設定（修正版）
+        function setupImageHandling() {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
             
+            portfolioItems.forEach(item => {
+                const img = item.querySelector('.portfolio-image img');
+                const placeholder = item.querySelector('.portfolio-placeholder');
+                
+                if (img && placeholder) {
+                    // 画像読み込み成功時
+                    img.onload = function() {
+                        console.log(`画像読み込み成功: ${this.src}`);
+                        placeholder.style.display = 'none';
+                        this.style.display = 'block';
+                    };
+                    
+                    // 画像読み込み失敗時
+                    img.onerror = function() {
+                        console.log(`画像読み込み失敗: ${this.src}`);
+                        this.style.display = 'none';
+                        placeholder.style.display = 'flex';
+                    };
+                    
+                    // 初期状態では画像を隠してプレースホルダーを表示
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                    
+                    // 画像の読み込みを開始
+                    if (!img.complete) {
+                        img.src = img.src;
+                    } else if (img.naturalWidth === 0) {
+                        // 画像が存在しない場合
+                        img.onerror();
+                    } else {
+                        // 画像が既に読み込まれている場合
+                        img.onload();
+                    }
+                }
+            });
+        }
+        
+        // ポートフォリオアイテムのHTML生成（修正版）
+        function createPortfolioItemHTML(item) {
             return `
                 <div class="portfolio-item fade-in" data-id="${item.id}">
                     <div class="portfolio-image">
-                        ${imageHTML}
-                        ${placeholderHTML}
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="portfolio-placeholder">
+                            <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
+                            <div class="placeholder-title">${item.title}</div>
+                        </div>
                         <div class="image-overlay">
                             <span>👁️ 詳細を見る</span>
                         </div>
@@ -1382,24 +1428,29 @@
             portfolioGrid.className = `portfolio-grid ${currentView}-view`;
         }
         
-        // モーダルを開く
+        // モーダルを開く（修正版）
         function openModal(itemId) {
             const item = portfolioData.find(p => p.id === itemId);
             if (!item) return;
             
             modalTitle.textContent = item.title;
-            modalBody.innerHTML = `
+            
+            // モーダル用の画像処理
+            const imageHTML = `
                 <div class="modal-image-container">
-                    ${item.actualImage ? 
-                        `<img src="${item.image}" alt="${item.title}" class="modal-image" 
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                         <div class="modal-placeholder-image" style="display: none;">` :
-                        `<div class="modal-placeholder-image">`
-                    }
+                    <img src="${item.image}" alt="${item.title}" class="modal-image" 
+                         onload="this.style.display='block'; this.nextElementSibling.style.display='none';"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         style="display: none;">
+                    <div class="modal-placeholder-image">
                         <div class="placeholder-icon">${getIconForCategory(item.category)}</div>
                         <div class="placeholder-text">${item.title}</div>
                     </div>
                 </div>
+            `;
+            
+            modalBody.innerHTML = `
+                ${imageHTML}
                 <div class="portfolio-meta" style="margin-bottom: 1rem;">
                     <span>📅 ${formatDate(item.date)}</span>
                     <span>👁️ ${item.views}</span>
@@ -1553,9 +1604,10 @@
         
         // ページ読み込み完了時の処理
         window.addEventListener('load', () => {
-            console.log('Portfolio page with IMG_4448.JPG loaded successfully');
+            console.log('修正版Portfolio page loaded successfully');
+            console.log('画像読み込み機能が改善されました');
             
-            // 画像の遅延読み込み設定
+            // 遅延読み込み用のIntersection Observer
             const imageObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1568,8 +1620,11 @@
                 });
             });
             
+            // 画像の遅延読み込み設定
             document.querySelectorAll('.portfolio-image img').forEach(img => {
-                imageObserver.observe(img);
+                if (img.dataset.src) {
+                    imageObserver.observe(img);
+                }
             });
         });
     </script>
