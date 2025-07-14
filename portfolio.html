@@ -930,19 +930,19 @@
             <p>最先端AI技術による数百点のデジタルアート作品</p>
             <div class="portfolio-stats">
                 <div class="stat-item">
-                    <span class="stat-number" id="totalWorks">150+</span>
+                    <span class="stat-number" id="totalWorks">9</span>
                     <span class="stat-label">総作品数</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" id="categories">12</span>
+                    <span class="stat-number" id="categories">8</span>
                     <span class="stat-label">カテゴリ</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" id="techniques">8</span>
+                    <span class="stat-number" id="techniques">27</span>
                     <span class="stat-label">AI技術</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" id="projects">50+</span>
+                    <span class="stat-number" id="projects">9</span>
                     <span class="stat-label">プロジェクト</span>
                 </div>
             </div>
@@ -957,9 +957,13 @@
                         <button class="filter-btn active" data-filter="all">すべて</button>
                         <button class="filter-btn" data-filter="portrait">ポートレート</button>
                         <button class="filter-btn" data-filter="fantasy">ファンタジー</button>
+                        <button class="filter-btn" data-filter="fantasy">ファンタジー</button>
                         <button class="filter-btn" data-filter="cyberpunk">サイバーパンク</button>
-                        <button class="filter-btn" data-filter="nature">自然</button>
+                        <button class="filter-btn" data-filter="fashion">ファッション</button>
                         <button class="filter-btn" data-filter="character">キャラクター</button>
+                        <button class="filter-btn" data-filter="abstract">抽象・アート</button>
+                        <button class="filter-btn" data-filter="lifestyle">ライフスタイル</button>
+                        <button class="filter-btn" data-filter="branding">ブランディング</button>
                         <button class="filter-btn" data-filter="architecture">建築</button>
                         <button class="filter-btn" data-filter="abstract">抽象</button>
                         <button class="filter-btn" data-filter="branding">ブランディング</button>
@@ -1027,7 +1031,7 @@
     </footer>
     
     <script>
-        // ポートフォリオデータ（IMG_4448.JPGを含む実際の画像統合版）
+        // ポートフォリオデータ（9作品統合版）
         const portfolioData = [
             {
                 id: 1,
@@ -1035,7 +1039,7 @@
                 category: "cyberpunk",
                 tags: ["Stable Diffusion", "Photoshop", "Digital Art"],
                 description: "未来的なドラゴンポートレート。ネオンと機械の融合による新世代のファンタジー表現。高度なAI技術と伝統的なデジタルアート技法を組み合わせて制作された代表作品です。",
-                image: "IMG_4448.JPG",
+                image: "images/IMG_4448.JPG",
                 actualImage: true,
                 date: "2025-01-10",
                 likes: 245,
@@ -1045,101 +1049,115 @@
             },
             {
                 id: 2,
-                title: "Ethereal Forest Goddess",
-                category: "fantasy",
-                tags: ["Midjourney", "Nature", "Portrait"],
-                description: "森の女神をテーマにした幻想的なポートレート。光と影の繊細な表現と自然の神秘性を融合させた美しい作品。",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2025-01-08",
+                title: "Golden Hour Elegance",
+                category: "portrait",
+                tags: ["AI Portrait", "Light Mastery", "Fashion Photography"],
+                description: "黄金の秋光に包まれた洗練されたポートレート。自然光とファッションの調和が生み出す、温かみと上品さを併せ持つ現代的なライフスタイル表現。AI技術による光の演出と質感の再現が際立つ作品です。",
+                image: "images/IMG_4694.JPG",
+                actualImage: true,
+                date: "2025-01-12",
                 likes: 189,
-                views: 934,
-                techniques: "Midjourney v6を使用したプロンプト設計と、複数回の生成による最適解の選定。自然光の表現に特にこだわりました。",
-                mood: "神聖で穏やかな森の精霊。自然との調和と生命力あふれる美しさを表現しています。"
+                views: 1034,
+                techniques: "最新のAIポートレート生成技術とライティング解析により制作。秋の黄金光線を活かした自然なボケ効果と、被写体の表情・ポーズの細やかな調整に特にこだわりました。後処理では色温度の微調整と肌質の自然な質感向上を実施。",
+                mood: "穏やかな秋の午後、都市の喧騒を離れた静寂な並木道での一瞬。知的で上品な女性の内面的な美しさと、季節の移ろいが織りなす詩的な情景。見る者に安らぎと憧憬を同時に感じさせる、時代を超えた普遍的な美の表現です。"
             },
             {
                 id: 3,
-                title: "Neon City Skyline",
-                category: "cyberpunk",
-                tags: ["DALL-E", "Architecture", "Urban"],
-                description: "サイバーパンク風の未来都市。ネオンライトが織りなす美しい夜景と先進技術の調和を表現した都市景観作品。",
-                image: "https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2025-01-05",
-                likes: 312,
-                views: 1876,
-                techniques: "DALL-E 3による建築ビジュアライゼーション。細部のネオン効果は後処理で強化しています。",
-                mood: "近未来都市の活気と美しさ。テクノロジーと人間性の共存を表現した希望に満ちた未来像です。"
+                title: "Cafe Moments - Berry Dress Chronicles",
+                category: "lifestyle",
+                tags: ["Lifestyle Photography", "Interior Aesthetics", "Color Harmony"],
+                description: "洗練されたカフェ空間で過ごすひととき。ベリー色のワンピースが織りなす暖かな雰囲気と、コーヒーの香りが漂う午後のシーン。AI技術により再現された自然な日常の美しさと、インテリアとファッションの完璧な調和を表現した作品です。",
+                image: "images/IMG_4660.JPG",
+                actualImage: true,
+                date: "2025-01-14",
+                likes: 167,
+                views: 892,
+                techniques: "室内環境光の精密な解析とAI補正技術により、カフェの温かな雰囲気を忠実に再現。ベリー色のファブリック質感、かごバッグの編み目、アイスコーヒーの透明感など、素材ごとの質感表現に特化したレンダリング技術を使用。環境光とオブジェクトの相互作用を計算し、自然な陰影と色彩バランスを実現。",
+                mood: "都市の喧騒を忘れさせる、静謐で居心地の良いカフェタイム。ベリー色のドレスが醸し出すフェミニンで上品な魅力と、コーヒーを楽しむ穏やかな時間の流れ。日常の中にある特別な瞬間を切り取った、心温まるライフスタイルの一コマ。観る者に「こんな時間を過ごしたい」という憧れを抱かせる、現代女性の理想的な午後のひとときです。"
             },
             {
                 id: 4,
-                title: "Corporate Brand Identity",
-                category: "branding",
-                tags: ["Figma", "Branding", "Logo Design"],
-                description: "モダンテック企業のブランドアイデンティティデザイン。シンプルで印象的なビジュアルアイデンティティシステム。",
-                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2025-01-03",
-                likes: 156,
-                views: 742,
-                techniques: "AI生成ツールとFigmaを組み合わせたデザインワークフロー。ブランド戦略から実装まで一貫して制作。",
-                mood: "革新的でありながら信頼感のある企業イメージ。未来志向と安定感のバランスを重視しました。"
+                title: "Pastel Dreams - Cherry Blossom Fantasy",
+                category: "character",
+                tags: ["Character Design", "Kawaii Culture", "Pastel Aesthetics"],
+                description: "春の桜と共に咲き誇るパステルカラーの世界。可愛らしさの極致を表現したキャラクターデザインで、日本のカワイイ文化とファンタジー要素を融合。ピンクとミントグリーンの絶妙な配色と、繊細なレースとリボンのディテールが織りなす、夢見るような美しさを表現した作品です。",
+                image: "images/IMG_4681.JPG",
+                actualImage: true,
+                date: "2025-01-16",
+                likes: 312,
+                views: 1456,
+                techniques: "AI Character Generation技術とKawaii Aesthetics特化モデルを使用。パステルカラーの微細な階調表現、ツインテールの髪の質感、レースとリボンの立体感、そして桜の花びらの透明感など、日本のポップカルチャー特有の美的要素を高精度で再現。特にグラデーションヘアカラーとアクセサリーの細部表現に最新のディテール強化技術を適用。",
+                mood: "永遠の春に包まれた夢の世界。純粋無垢な少女の心と、桜舞い散る季節の美しさが織りなすファンタジックな情景。見る者を童心に返らせ、優しい気持ちと癒しを与える魔法のような作品。日本独特の「カワイイ」文化の本質を捉えた、国際的にも魅力的なキャラクター表現です。甘美で幻想的な世界観は、アニメ・マンガ文化の美的価値を現代的にアップデートした傑作と言えます。"
             },
             {
                 id: 5,
-                title: "Anime Character Design",
-                category: "character",
-                tags: ["NovelAI", "Anime", "Character"],
-                description: "オリジナルアニメキャラクターのデザイン。表情豊かで個性的な魅力を表現したキャラクター作品。",
-                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2025-01-01",
-                likes: 498,
-                views: 2341,
-                techniques: "NovelAI Diffusionを使用したアニメ調イラスト生成。細部の調整は手描きツールで行いました。",
-                mood: "親しみやすく魅力的なキャラクター。観る人に愛着を感じさせる温かみのある表現を心がけました。"
+                title: "Vintage Noir - Autumn Sophistication",
+                category: "fashion",
+                tags: ["Vintage Fashion", "Studio Photography", "Classic Elegance"],
+                description: "1950年代のクラシックな美意識を現代のAI技術で蘇らせた、究極のヴィンテージファッションポートレート。ブラウンレザージャケットとプリーツスカートの完璧なバランス、そして小物使いまで計算し尽くされたスタイリング。ノワール映画を彷彿とさせる深いブルーの背景が、時代を超えた女性の強さと美しさを際立たせる珠玉の作品です。",
+                image: "images/IMG_4650.JPG",
+                actualImage: true,
+                date: "2025-01-18",
+                likes: 278,
+                views: 1203,
+                techniques: "Vintage Fashion特化AIモデルとクラシックポートレート技法を融合。レザーの質感表現、プリーツスカートの立体的なフォルム、サングラスの反射処理、そして1950年代特有のポーズと表情を精密に再現。スタジオライティングシミュレーションにより、ノワール映画のような陰影と深みのある色調を実現。特にブラウンとベージュの微細な色彩グラデーションに高度な色彩理論を適用。",
+                mood: "時代を超越した女性の強さと洗練。1950年代ハリウッドの黄金期を思わせる、クラシックで力強い美しさ。モダンでありながらタイムレスな魅力を持つ、自立した女性像の表現。ヴィンテージファッションの持つ品格と、現代女性の内面的な強さが調和した、知的で魅力的なポートレート。見る者に憧れと尊敬の念を抱かせる、永遠に色褪せることのない美の象徴です。"
             },
             {
                 id: 6,
-                title: "Abstract Ocean Waves",
-                category: "abstract",
-                tags: ["AI Generated", "Abstract", "Blue"],
-                description: "海の波を抽象化したアート作品。色彩の流れと動きを表現した流動的なデジタルアート。",
-                image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2024-12-28",
-                likes: 134,
-                views: 687,
-                techniques: "生成AIによる抽象表現の探求。色彩理論に基づいた調和のとれた配色設計。",
-                mood: "海の持つ無限の力と美しさ。自然の躍動感と平安を同時に表現した瞑想的な作品です。"
+                title: "Neo-Kawaii Cyborg - Digital Goddess",
+                category: "fantasy",
+                tags: ["Cyberpunk Kawaii", "Holographic Art", "Future Fashion"],
+                description: "サイバーパンクとカワイイ文化の革命的融合。透明なサイバーボディとパステルパープルヘアが織りなす、未来の美少女サイボーグ像。ホログラフィックインターフェースと虹色エフェクトに囲まれた彼女は、デジタル世界の女神として、技術と美の完璧な調和を体現している。日本のポップカルチャーが描く理想的な未来像を、最先端AI技術で実現した革新的作品です。",
+                image: "images/IMG_4682.JPG",
+                actualImage: true,
+                date: "2025-01-20",
+                likes: 425,
+                views: 2134,
+                techniques: "最新のCyberpunk-Kawaii Fusion技術とホログラフィック・レンダリング・エンジンを使用。透明マテリアルの光学計算、パープルヘアのグラデーション処理、UI/UXホログラムの3D表示、虹色スペクトラム効果の物理演算など、複数の先端技術を統合。特にサイバーボディの半透明質感と、浮遊するデジタルオブジェクトの空間配置に革新的なAI画像合成技術を適用。リアルタイム光線追跡シミュレーションによる完璧な反射・屈折表現を実現。",
+                mood: "デジタルネイティブ世代の究極の理想像。テクノロジーと人間性が美しく融合した、希望に満ちた未来ビジョン。彼女の瞳に映る星は、無限の可能性と創造性を象徴。カワイイ文化の持つ純粋さと、サイバーパンクの革新性が調和した、新時代の美意識。観る者を魅了し、テクノロジーへの恐れではなく憧れを抱かせる、ポジティブな未来像の提示。日本発のデジタルアート表現として、世界に誇れる文化的価値を持つ傑作です。"
             },
             {
                 id: 7,
-                title: "Futuristic Architecture",
-                category: "architecture",
-                tags: ["Blender", "3D", "Architecture"],
-                description: "未来建築の3Dビジュアライゼーション。有機的なフォルムと先進技術の融合による革新的な建築デザイン。",
-                image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2024-12-25",
-                likes: 267,
-                views: 1203,
-                techniques: "AI生成による初期デザインをBlenderで3Dモデル化。リアルなマテリアルとライティングで仕上げ。",
-                mood: "持続可能な未来建築。環境との調和と機能美を両立した理想的な建築空間を表現しています。"
+                title: "Gaudí Dreams - Mosaic Salamander",
+                category: "abstract",
+                tags: ["Mosaic Art", "Architectural Design", "Color Theory"],
+                description: "アントニ・ガウディの建築美学とモザイクアートの精神を現代のAI技術で再現した、圧倒的な色彩美の作品。バルセロナのパルク・グエルを彷彿とさせる色鮮やかなタイル装飾と、有機的なサラマンダーのフォルムが織りなす芸術的調和。青を基調とした豊かな色彩と幾何学的パターンが、見る者を地中海の陽光あふれる空間へと誘う、建築とアートの融合作品です。",
+                image: "images/IMG_4671.JPG",
+                actualImage: true,
+                date: "2025-01-22",
+                likes: 356,
+                views: 1789,
+                techniques: "Architectural Mosaic AI技術とガウディ様式特化レンダリングエンジンを開発使用。数千枚のモザイクタイルの個別質感計算、色彩理論に基づく調和的配色設計、有機的曲線と幾何学模様の複合パターン生成を実現。特にセラミックタイルの光沢表現、目地の深度感、そして自然光による色彩変化を物理ベースレンダリングで精密再現。ガウディ建築の特徴である「自然からのインスピレーション」を現代のパラメトリックデザイン手法で表現。",
+                mood: "地中海の豊かな陽光と芸術的創造性が融合した、喜びと驚きに満ちた空間体験。ガウディが愛した自然界の有機的美しさと、職人の手によるモザイク技法の温かみが調和した、時代を超越した芸術性。見る者の心を躍らせ、創造への情熱を呼び覚ます、生命力あふれる色彩の祭典。建築史に残る巨匠の美意識を現代技術で蘇らせた、文化的価値の高い作品です。"
             },
             {
                 id: 8,
-                title: "Mystical Portrait",
-                category: "portrait",
-                tags: ["Portrait", "Fantasy", "Magic"],
-                description: "神秘的な人物ポートレート。魔法的な雰囲気と美しい光の演出による幻想的な肖像画作品。",
-                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
-                actualImage: false,
-                date: "2024-12-22",
-                likes: 378,
-                views: 1654,
-                techniques: "高解像度ポートレート生成と光学効果の後処理。魔法的な要素の追加により神秘性を演出。",
-                mood: "内なる力と美しさの表現。見る者を魔法の世界へと誘う神秘的で力強い存在感を表現しました。"
+                title: "Genesis Protocol - Biotech Dashboard",
+                category: "branding",
+                tags: ["UI/UX Design", "Brand Identity", "Data Visualization"],
+                description: "バイオテクノロジー企業のための包括的ブランドアイデンティティとUI/UXダッシュボードデザイン。DNA螺旋構造をモチーフにした洗練されたビジュアル言語と、最先端データ可視化技術が融合。サイバーパンク美学とサイエンティフィックな精密性を両立した、未来の生命科学企業のための完全なデザインシステムです。32K高解像度対応と360度ブランド展開を実現。",
+                image: "images/IMG_4683.JPG",
+                actualImage: true,
+                date: "2025-01-24",
+                likes: 489,
+                views: 2456,
+                techniques: "Enterprise Brand Identity AI技術とAdvanced Data Visualization Engineを統合開発。DNA構造の3Dモデリング、インタラクティブUI/UXプロトタイピング、リアルタイムデータビジュアライゼーション、レスポンシブブランドシステム設計を包括的に実装。特に32K高解像度レンダリング、マルチプラットフォーム対応、アクセシビリティ準拠のデザインシステム構築に最新のエンタープライズ級AI技術を適用。カラーパレット、タイポグラフィ、アイコンシステムまで一貫したブランド体験を創造。",
+                mood: "科学的探究心と革新的創造力が融合した、知的興奮に満ちたブランド体験。生命の神秘とテクノロジーの力が調和した、希望に満ちた未来ビジョン。データの美しさと機能性を両立した、プロフェッショナルでありながら人間味のあるデザイン言語。見る者に科学技術への信頼と期待を抱かせる、次世代バイオテック企業にふさわしい品格と革新性を体現した総合ブランドデザインです。"
+            },
+            {
+                id: 9,
+                title: "Michelin Dreams - Molecular Gastronomy",
+                category: "architecture",
+                tags: ["Food Photography", "Luxury Dining", "Molecular Gastronomy"],
+                description: "ミシュラン三つ星レストランの芸術的料理を表現した、ガストロノミー（美食学）の頂点作品。分子ガストロノミーの革新的技法による鮭料理を、食べられる花（エディブルフラワー）とマイクログリーンで装飾。完璧なプレゼンテーション、色彩バランス、質感表現により、料理を単なる食べ物から芸術作品へと昇華させた、現代フランス料理の美学を体現する作品です。",
+                image: "images/IMG_4690.JPG",
+                actualImage: true,
+                date: "2025-01-26",
+                likes: 534,
+                views: 2789,
+                techniques: "Culinary Art Photography AI技術とMolecular Gastronomy Visualization Engineを使用。食材の質感表現（鮭の脂身、キャビアの粒感、マイクログリーンの繊細さ）、エディブルフラワーの透明感、ソースの流動性など、食材固有の物理特性を精密に再現。スタジオライティングによる食材の立体感と艶感、白い磁器の反射特性、背景のソフトフォーカス効果まで、高級レストランの完璧なフードプレゼンテーションを総合的に表現。特に色彩調和理論を適用した視覚的食欲喚起効果を重視。",
+                mood: "至高の美食体験への憧憬と期待感。芸術と料理が融合した、五感を刺激する贅沢な時間の予感。職人の技術と創造性が結晶化した、一期一会の特別な瞬間。見る者に「いつかこんな料理を味わいたい」という夢を抱かせる、ラグジュアリーダイニングの極致。食文化の頂点を表現した、国際的にも評価される美食芸術の傑作です。"
             }
         ];
         
@@ -1428,9 +1446,10 @@
                 portrait: 'ポートレート',
                 fantasy: 'ファンタジー',
                 cyberpunk: 'サイバーパンク', 
-                nature: '自然・ライフスタイル',
+                lifestyle: 'ライフスタイル',
                 character: 'キャラクター',
-                architecture: '建築・空間',
+                fashion: 'ファッション',
+                architecture: 'ガストロノミー',
                 abstract: '抽象・アート',
                 branding: 'ブランディング'
             };
@@ -1443,9 +1462,10 @@
                 portrait: '👤',
                 fantasy: '🔮',
                 cyberpunk: '🤖',
-                nature: '🌿',
+                lifestyle: '☕',
                 character: '🎭',
-                architecture: '🏗️',
+                fashion: '👗',
+                architecture: '🍽️',
                 abstract: '🎨',
                 branding: '🏢'
             };
