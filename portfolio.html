@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品ポートフォリオ | AI Art Studio</title>
+    <meta name="description" content="AI Art Studioの全作品ポートフォリオ。最先端AI技術による数百点のデジタルアート作品をご覧ください。">
+    <meta name="keywords" content="AI画像生成,ポートフォリオ,デジタルアート,作品集,Stable Diffusion,Midjourney">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Art Studio - 作品ポートフォリオ">
+    <meta property="og:description" content="最先端AI技術による美しいデジタルアート作品集">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://aistudio.netlify.app/portfolio-og.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(45deg, #667eea, #764ba2);
+            --accent-gradient: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            --cyber-cyan: #00ffff;
+            --cyber-magenta: #ff00ff;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-dark: rgba(0, 0, 0, 0.9);
+            --bg-light: #f8f9fa;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            overflow-x: hidden;
+        }
+        
+        /* ヘッダー（既存と同じ） */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 255, 255, 0.05) 25%, 
+                rgba(255, 0, 255, 0.05) 75%, 
+                transparent 100%);
+            animation: fantasy-flow 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes fantasy-flow {
+            0%, 100% { transform: translateX(-50px); opacity: 0.5; }
+            50% { transform: translateX(50px); opacity: 1; }
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+            text-decoration: none;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '✨';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+        
+        .logo::after {
+            content: '🔮';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            animation: sparkle 2s ease-in-out infinite 1s;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4ecdc4;
+            text-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 80%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* メインコンテンツ */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+        
+        /* ポートフォリオヘッダー */
+        .portfolio-header {
+            background: var(--primary-gradient);
+            color: var(--text-light);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: cyber-grid 8s linear infinite;
+        }
+        
+        @keyframes cyber-grid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .portfolio-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .portfolio-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* フィルターセクション */
+        .filter-section {
+            background: white;
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+        
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .filter-label {
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 300px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .view-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e9ecef;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .view-btn:hover,
+        .view-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* ポートフォリオグリッド */
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            gap: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        /* グリッドビュー */
+        .portfolio-grid.grid-view {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        /* マソンリーレイアウト */
+        .portfolio-grid.masonry-view {
+            columns: 4;
+            column-gap: 2rem;
+        }
+        
+        .portfolio-grid.masonry-view .portfolio-item {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+        }
+        
+        /* リストビュー */
+        .portfolio-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+        
+        .portfolio-grid.list-view .portfolio-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .portfolio-grid.list-view .portfolio-image {
+            width: 200px;
+            height: 150px;
+            flex-shrink: 0;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .portfolio-item.loading {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-gradient);
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(102, 126, 234, 0.8),
+                rgba(255, 107, 107, 0.8)
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .portfolio-item:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-title-item {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .portfolio-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .portfolio-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn-portfolio {
+            background: var(--accent-gradient);
+            color: white;
+        }
+        
+        .like-btn {
+            background: #f8f9fa;
+            color: #666;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 読み込み・無限スクロール */
+        .loading-indicator {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-gradient);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* モーダル */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* フッター */
+        .footer {
+            background: #333;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .portfolio-stats {
+                gap: 1.5rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .portfolio-grid.masonry-view {
+                columns: 2;
+            }
+            
+            .portfolio-grid.list-view .portfolio-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .portfolio-grid.list-view .portfolio-image {
+                width: 100%;
+                height: 200px;
+            }
+            
+            .modal-content {
+                max-width: 95vw;
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .portfolio-grid.masonry-view {
+                columns: 1;
+            }
+            
+            .portfolio-container {
+                padding: 1rem;
+            }
+        }
+        
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-gradient);
+        }
+        
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* 検索結果なし */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+        
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .no-results h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎨 AI Art Studio</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#about">プロフィール</a></li>
+                <li><a href="portfolio.html" class="active">作品集</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <!-- ポートフォリオヘッダー -->
+        <section class="portfolio-header">
+            <h1 class="portfolio-title">🎨 作品ポートフォリオ</h1>
+            <p>最先端AI技術による数百点のデジタルアート作品</p>
+            <div class="portfolio-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalWorks">150+</span>
+                    <span class="stat-label">総作品数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="categories">12</span>
+                    <span class="stat-label">カテゴリ</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="techniques">8</span>
+                    <span class="stat-label">AI技術</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="projects">50+</span>
+                    <span class="stat-label">プロジェクト</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- フィルターセクション -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <span class="filter-label">カテゴリ:</span>
+                    <div class="filter-buttons" id="categoryFilters">
+                        <button class="filter-btn active" data-filter="all">すべて</button>
+                        <button class="filter-btn" data-filter="portrait">ポートレート</button>
+                        <button class="filter-btn" data-filter="fantasy">ファンタジー</button>
+                        <button class="filter-btn" data-filter="cyberpunk">サイバーパンク</button>
+                        <button class="filter-btn" data-filter="nature">自然</button>
+                        <button class="filter-btn" data-filter="character">キャラクター</button>
+                        <button class="filter-btn" data-filter="architecture">建築</button>
+                        <button class="filter-btn" data-filter="abstract">抽象</button>
+                        <button class="filter-btn" data-filter="branding">ブランディング</button>
+                    </div>
+                </div>
+                
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="作品を検索..." id="searchInput">
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">表示:</span>
+                    <div class="view-toggle" id="viewToggle">
+                        <button class="view-btn active" data-view="grid">🔳</button>
+                        <button class="view-btn" data-view="masonry">⚏</button>
+                        <button class="view-btn" data-view="list">☰</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ポートフォリオコンテナ -->
+        <section class="portfolio-container">
+            <div class="portfolio-grid grid-view" id="portfolioGrid">
+                <!-- 作品アイテムがここに動的に追加される -->
+            </div>
+            
+            <!-- 読み込みインジケーター -->
+            <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>作品を読み込み中...</p>
+            </div>
+            
+            <!-- 検索結果なし -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>検索結果が見つかりません</h3>
+                <p>別のキーワードで検索してみてください</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- モーダル -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">作品詳細</h3>
+                <button class="modal-close" id="modalClose">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- モーダルコンテンツが動的に追加される -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
+            <a href="index.html" style="color: #999; text-decoration: none;">ホーム</a> | 
+            <a href="index.html#about" style="color: #999; text-decoration: none;">プロフィール</a> | 
+            <a href="index.html#contact" style="color: #999; text-decoration: none;">お問い合わせ</a>
+        </p>
+    </footer>
+    
+    <script>
+        // ポートフォリオデータ（実際には外部APIから取得）
+        const portfolioData = [
+            {
+                id: 1,
+                title: "Cyber Dragon Portrait",
+                category: "cyberpunk",
+                tags: ["Stable Diffusion", "Photoshop", "Digital Art"],
+                description: "未来的なドラゴンポートレート。ネオンと機械の融合による新世代のファンタジー表現。",
+                image: "https://images.unsplash.com/photo-1614036634955-ae5e90f9b9eb?w=400&h=300&fit=crop",
+                date: "2025-01-10",
+                likes: 245,
+                views: 1520
+            },
+            {
+                id: 2,
+                title: "Ethereal Forest Goddess",
+                category: "fantasy",
+                tags: ["Midjourney", "Nature", "Portrait"],
+                description: "森の女神をテーマにした幻想的なポートレート。光と影の繊細な表現が特徴。",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+                date: "2025-01-08",
+                likes: 189,
+                views: 934
+            },
+            {
+                id: 3,
+                title: "Neon City Skyline",
+                category: "cyberpunk",
+                tags: ["DALL-E", "Architecture", "Urban"],
+                description: "サイバーパンク風の未来都市。ネオンライトが織りなす美しい夜景。",
+                image: "https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?w=400&h=300&fit=crop",
+                date: "2025-01-05",
+                likes: 312,
+                views: 1876
+            },
+            {
+                id: 4,
+                title: "Corporate Brand Identity",
+                category: "branding",
+                tags: ["Figma", "Branding", "Logo Design"],
+                description: "モダンテック企業のブランドアイデンティティデザイン。シンプルで印象的なビジュアル。",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop",
+                date: "2025-01-03",
+                likes: 156,
+                views: 742
+            },
+            {
+                id: 5,
+                title: "Anime Character Design",
+                category: "character",
+                tags: ["NovelAI", "Anime", "Character"],
+                description: "オリジナルアニメキャラクターのデザイン。表情豊かで個性的な魅力を表現。",
+                image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+                date: "2025-01-01",
+                likes: 498,
+                views: 2341
+            },
+            {
+                id: 6,
+                title: "Abstract Ocean Waves",
+                category: "abstract",
+                tags: ["AI Generated", "Abstract", "Blue"],
+                description: "海の波を抽象化したアート作品。色彩の流れと動きを表現。",
+                image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=400&h=300&fit=crop",
+                date: "2024-12-28",
+                likes: 134,
+                views: 687
+            },
+            {
+                id: 7,
+                title: "Futuristic Architecture",
+                category: "architecture",
+                tags: ["Blender", "3D", "Architecture"],
+                description: "未来建築の3Dビジュアライゼーション。有機的なフォルムと先進技術の融合。",
+                image: "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=400&h=300&fit=crop",
+                date: "2024-12-25",
+                likes: 267,
+                views: 1203
+            },
+            {
+                id: 8,
+                title: "Mystical Portrait",
+                category: "portrait",
+                tags: ["Portrait", "Fantasy", "Magic"],
+                description: "神秘的な人物ポートレート。魔法的な雰囲気と美しい光の演出。",
+                image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=300&fit=crop",
+                date: "2024-12-22",
+                likes: 378,
+                views: 1654
+            }
+        ];
+        
+        // グローバル変数
+        let currentView = 'grid';
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let displayedItems = [];
+        let isLoading = false;
+        
+        // DOM要素の取得
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const categoryFilters = document.getElementById('categoryFilters');
+        const searchInput = document.getElementById('searchInput');
+        const viewToggle = document.getElementById('viewToggle');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const noResults = document.getElementById('noResults');
+        const modal = document.getElementById('portfolioModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalClose = document.getElementById('modalClose');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePortfolio();
+            setupEventListeners();
+            loadPortfolioItems();
+        });
+        
+        // イベントリスナーの設定
+        function setupEventListeners() {
+            // ハンバーガーメニュー
+            hamburger?.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // カテゴリフィルター
+            categoryFilters.addEventListener('click', (e) => {
+                if (e.target.classList.contains('filter-btn')) {
+                    // アクティブ状態の更新
+                    categoryFilters.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    
+                    currentFilter = e.target.dataset.filter;
+                    filterAndDisplayItems();
+                }
+            });
+            
+            // 検索
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                filterAndDisplayItems();
+            });
+            
+            // ビュー切り替え
+            viewToggle.addEventListener('click', (e) => {
+                if (e.target.classList.contains('view-btn')) {
+                    // アクティブ状態の更新
+                    viewToggle.querySelectorAll('.view-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    
+                    currentView = e.target.dataset.view;
+                    updateGridView();
+                }
+            });
+            
+            // モーダル関連
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            
+            // キーボードショートカット
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    navLinks.classList.remove('active');
+                }
+            });
+            
+            // 無限スクロール
+            window.addEventListener('scroll', handleScroll);
+        }
+        
+        // ポートフォリオの初期化
+        function initializePortfolio() {
+            updateStats();
+        }
+        
+        // 統計情報の更新
+        function updateStats() {
+            const categories = new Set(portfolioData.map(item => item.category));
+            const techniques = new Set(portfolioData.flatMap(item => item.tags));
+            
+            document.getElementById('totalWorks').textContent = portfolioData.length + '+';
+            document.getElementById('categories').textContent = categories.size;
+            document.getElementById('techniques').textContent = techniques.size;
+            document.getElementById('projects').textContent = Math.floor(portfolioData.length * 0.7) + '+';
+        }
+        
+        // ポートフォリオアイテムの読み込み
+        function loadPortfolioItems() {
+            showLoading();
+            
+            // 実際のAPIコールをシミュレート
+            setTimeout(() => {
+                displayedItems = [...portfolioData];
+                filterAndDisplayItems();
+                hideLoading();
+            }, 500);
+        }
+        
+        // フィルタリングと表示
+        function filterAndDisplayItems() {
+            let filteredItems = [...portfolioData];
+            
+            // カテゴリフィルター
+            if (currentFilter !== 'all') {
+                filteredItems = filteredItems.filter(item => item.category === currentFilter);
+            }
+            
+            // 検索フィルター
+            if (currentSearch) {
+                filteredItems = filteredItems.filter(item => 
+                    item.title.toLowerCase().includes(currentSearch) ||
+                    item.description.toLowerCase().includes(currentSearch) ||
+                    item.tags.some(tag => tag.toLowerCase().includes(currentSearch))
+                );
+            }
+            
+            displayedItems = filteredItems;
+            renderPortfolioItems();
+        }
+        
+        // ポートフォリオアイテムの描画
+        function renderPortfolioItems() {
+            if (displayedItems.length === 0) {
+                portfolioGrid.innerHTML = '';
+                showNoResults();
+                return;
+            }
+            
+            hideNoResults();
+            
+            const itemsHTML = displayedItems.map(item => createPortfolioItemHTML(item)).join('');
+            portfolioGrid.innerHTML = itemsHTML;
+            
+            // イベントリスナーの追加
+            addPortfolioItemListeners();
+            
+            // アニメーション
+            animateItems();
+        }
+        
+        // ポートフォリオアイテムのHTML生成
+        function createPortfolioItemHTML(item) {
+            return `
+                <div class="portfolio-item fade-in" data-id="${item.id}">
+                    <div class="portfolio-image">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="image-overlay">
+                            <span>👁️ 詳細を見る</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title-item">${item.title}</h3>
+                        <p class="portfolio-description">${item.description}</p>
+                        <div class="portfolio-meta">
+                            <span>📅 ${formatDate(item.date)}</span>
+                            <span>👁️ ${item.views}</span>
+                            <span>❤️ ${item.likes}</span>
+                        </div>
+                        <div class="tech-tags">
+                            ${item.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="portfolio-actions">
+                            <button class="action-btn view-btn-portfolio" onclick="openModal(${item.id})">
+                                詳細を見る
+                            </button>
+                            <button class="action-btn like-btn" onclick="toggleLike(${item.id})">
+                                ❤️ ${item.likes}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // ポートフォリオアイテムのイベントリスナー追加
+        function addPortfolioItemListeners() {
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    // ボタンクリック以外の場合のみモーダルを開く
+                    if (!e.target.closest('.portfolio-actions')) {
+                        const itemId = parseInt(item.dataset.id);
+                        openModal(itemId);
+                    }
+                });
+            });
+        }
+        
+        // ビューの更新
+        function updateGridView() {
+            portfolioGrid.className = `portfolio-grid ${currentView}-view`;
+        }
+        
+        // モーダルを開く
+        function openModal(itemId) {
+            const item = portfolioData.find(p => p.id === itemId);
+            if (!item) return;
+            
+            modalTitle.textContent = item.title;
+            modalBody.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" class="modal-image">
+                <div class="portfolio-meta" style="margin-bottom: 1rem;">
+                    <span>📅 ${formatDate(item.date)}</span>
+                    <span>👁️ ${item.views}</span>
+                    <span>❤️ ${item.likes}</span>
+                    <span>🏷️ ${item.category}</span>
+                </div>
+                <p style="margin-bottom: 1.5rem; line-height: 1.8;">${item.description}</p>
+                <div class="tech-tags" style="margin-bottom: 1.5rem;">
+                    ${item.tags.map(tag => `<span class="tech-tag">${tag}</span>`).join('')}
+                </div>
+                <div style="text-align: center;">
+                    <button class="action-btn view-btn-portfolio" style="margin-right: 1rem;">
+                        🔗 プロジェクト詳細
+                    </button>
+                    <button class="action-btn like-btn" onclick="toggleLike(${item.id})">
+                        ❤️ いいね (${item.likes})
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // モーダルを閉じる
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // いいね機能
+        function toggleLike(itemId) {
+            const item = portfolioData.find(p => p.id === itemId);
+            if (item) {
+                item.likes += 1;
+                // 表示を更新
+                filterAndDisplayItems();
+                // モーダルが開いている場合は更新
+                if (modal.classList.contains('active')) {
+                    openModal(itemId);
+                }
+            }
+        }
+        
+        // 日付フォーマット
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+        
+        // ローディング表示
+        function showLoading() {
+            loadingIndicator.style.display = 'block';
+            isLoading = true;
+        }
+        
+        function hideLoading() {
+            loadingIndicator.style.display = 'none';
+            isLoading = false;
+        }
+        
+        // 検索結果なし表示
+        function showNoResults() {
+            noResults.style.display = 'block';
+        }
+        
+        function hideNoResults() {
+            noResults.style.display = 'none';
+        }
+        
+        // アニメーション
+        function animateItems() {
+            const items = document.querySelectorAll('.portfolio-item');
+            items.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+        
+        // スクロール処理（無限スクロール用）
+        function handleScroll() {
+            if (isLoading) return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // ページ下部に近づいたら追加読み込み（実際の実装では必要に応じて）
+            if (scrollTop + windowHeight >= documentHeight - 1000) {
+                // loadMoreItems(); // 追加アイテムの読み込み
+            }
+        }
+        
+        // パフォーマンス最適化
+        function optimizeImages() {
+            const images = document.querySelectorAll('.portfolio-image img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                
+                img.addEventListener('error', function() {
+                    this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23ddd" width="400" height="300"/><text x="50%" y="50%" text-anchor="middle" fill="%23999">画像読み込みエラー</text></svg>';
+                });
+            });
+        }
+        
+        // 検索のデバウンス
+        let searchTimeout;
+        searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                currentSearch = e.target.value.toLowerCase();
+                filterAndDisplayItems();
+            }, 300);
+        });
+        
+        // パフォーマンス監視
+        window.addEventListener('load', () => {
+            console.log('Portfolio page loaded successfully');
+            optimizeImages();
+            
+            // Intersection Observer for lazy loading
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.portfolio-image img').forEach(img => {
+                imageObserver.observe(img);
+            });
+        });
+    </script>
+</body>
+</html>
