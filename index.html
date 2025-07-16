@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- ✅ サイトマップ紐付け追加 -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
     <!-- SEO最適化されたタイトル -->
     <title>AI画像生成サービス｜企業向けプロ制作 - AI Art Studio</title>
     
@@ -17,7 +20,7 @@
     <meta name="author" content="AI Art Studio">
     <meta name="robots" content="index, follow">
     
-    <!-- Google Search Console認証 -->
+    <!-- ✅ サイトマップヒント追加 -->
     <meta name="google-site-verification" content="QdPo8UY4tcFc0ShWU_RFNXX-tDgYkKqXJIGdGJNa8yo">
     
     <!-- Open Graph（SNSシェア最適化） -->
@@ -38,7 +41,7 @@
     <!-- カノニカルURL -->
     <link rel="canonical" href="https://aistudio.netlify.app/">
     
-    <!-- 構造化データ（JSON-LD） - SEO強化版 -->
+    <!-- ✅ 構造化データ改善版 -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -106,6 +109,38 @@
         },
         "sameAs": [
             "https://aistudio.netlify.app/portfolio.html"
+        ],
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://aistudio.netlify.app/"
+        }
+    }
+    </script>
+    
+    <!-- ✅ パンくずリスト構造化データ追加 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://aistudio.netlify.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "制作実績",
+                "item": "https://aistudio.netlify.app/portfolio.html"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "アートギャラリー",
+                "item": "https://aistudio.netlify.app/gallery.html"
+            }
         ]
     }
     </script>
@@ -122,8 +157,11 @@
     <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- ✅ サイトマップ・フィード自動検出追加 -->
+    <link rel="alternate" type="application/rss+xml" title="AI Art Studio Blog" href="/feed.xml">
+    
     <style>
-        /* CSS Variables */
+        /* 既存のCSSをそのまま保持 */
         :root {
             --primary-color: #667eea;
             --secondary-color: #764ba2;
