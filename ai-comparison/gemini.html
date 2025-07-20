@@ -1,0 +1,470 @@
+<!-- end list -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>売上管理ダッシュボード</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .input-form, .summary, .filters, .data-table, .charts {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .input-form div, .filters div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #eef;
+            font-weight: bold;
+            color: #444;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .summary-items {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+        .summary-item {
+            flex: 1;
+            min-width: 150px;
+            margin: 10px;
+            padding: 15px;
+            background-color: #e0f2f7;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .summary-item h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .summary-item p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .chart-wrapper {
+            width: 48%;
+            min-width: 300px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        @media (max-width: 768px) {
+            .chart-wrapper {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>売上管理ダッシュボード</h1>
+
+        <div class="input-form">
+            <h2>売上データ入力</h2>
+            <div>
+                <label for="productName">商品名:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div>
+                <label for="amount">金額:</label>
+                <input type="number" id="amount" required>
+            </div>
+            <div>
+                <label for="date">日付:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div>
+                <label for="category">カテゴリ:</label>
+                <select id="category" required>
+                    <option value="食品">食品</option>
+                    <option value="衣料品">衣料品</option>
+                    <option value="電化製品">電化製品</option>
+                    <option value="書籍">書籍</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+            <button onclick="addSalesData()">売上を追加</button>
+        </div>
+
+        <div class="summary">
+            <h2>サマリー</h2>
+            <div class="summary-items">
+                <div class="summary-item">
+                    <h3>合計売上</h3>
+                    <p id="totalSales">0円</p>
+                </div>
+                <div class="summary-item">
+                    <h3>平均売上</h3>
+                    <p id="averageSales">0円</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters">
+            <h2>データ検索・フィルタリング</h2>
+            <div>
+                <label for="searchProduct">商品名で検索:</label>
+                <input type="text" id="searchProduct" onkeyup="filterTable()">
+            </div>
+            <div>
+                <label for="filterCategory">カテゴリでフィルタ:</label>
+                <select id="filterCategory" onchange="filterTable()">
+                    <option value="">全て</option>
+                    <option value="食品">食品</option>
+                    <option value="衣料品">衣料品</option>
+                    <option value="電化製品">電化製品</option>
+                    <option value="書籍">書籍</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+            <div>
+                <label for="filterDateFrom">日付 (From):</label>
+                <input type="date" id="filterDateFrom" onchange="filterTable()">
+            </div>
+            <div>
+                <label for="filterDateTo">日付 (To):</label>
+                <input type="date" id="filterDateTo" onchange="filterTable()">
+            </div>
+        </div>
+
+        <div class="data-table">
+            <h2>売上データ一覧</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>商品名</th>
+                        <th>金額</th>
+                        <th>日付</th>
+                        <th>カテゴリ</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="charts">
+            <h2>グラフ表示</h2>
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <h3>月別売上</h3>
+                    <canvas id="monthlySalesChart"></canvas>
+                </div>
+                <div class="chart-wrapper">
+                    <h3>カテゴリ別売上</h3>
+                    <canvas id="categorySalesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let salesData = [];
+        let monthlySalesChart;
+        let categorySalesChart;
+
+        // 初期データとローカルストレージからの読み込み
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSalesData();
+            if (salesData.length === 0) {
+                addSampleData(); // データがない場合はサンプルデータを追加
+            }
+            renderTable();
+            updateSummary();
+            renderCharts();
+        });
+
+        function saveSalesData() {
+            localStorage.setItem('salesData', JSON.stringify(salesData));
+        }
+
+        function loadSalesData() {
+            const storedData = localStorage.getItem('salesData');
+            if (storedData) {
+                salesData = JSON.parse(storedData);
+            }
+        }
+
+        function addSampleData() {
+            const today = new Date();
+            salesData.push({ productName: 'リンゴ', amount: 500, date: formatDate(today), category: '食品' });
+            salesData.push({ productName: 'Tシャツ', amount: 2500, date: formatDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 5)), category: '衣料品' });
+            salesData.push({ productName: 'コーヒーメーカー', amount: 8000, date: formatDate(new Date(today.getFullYear(), today.getMonth() - 1, 15)), category: '電化製品' });
+            salesData.push({ productName: '小説', amount: 1200, date: formatDate(new Date(today.getFullYear(), today.getMonth(), today.getDate() - 10)), category: '書籍' });
+            salesData.push({ productName: 'ミネラルウォーター', amount: 100, date: formatDate(today), category: '食品' });
+            salesData.push({ productName: 'スニーカー', amount: 7000, date: formatDate(new Date(today.getFullYear(), today.getMonth() - 2, 20)), category: '衣料品' });
+            salesData.push({ productName: 'キーボード', amount: 6000, date: formatDate(new Date(today.getFullYear(), today.getMonth() - 1, 5)), category: '電化製品' });
+            saveSalesData();
+        }
+
+        function formatDate(date) {
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function addSalesData() {
+            const productName = document.getElementById('productName').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const date = document.getElementById('date').value;
+            const category = document.getElementById('category').value;
+
+            if (productName && amount > 0 && date && category) {
+                salesData.push({ productName, amount, date, category });
+                saveSalesData();
+                renderTable();
+                updateSummary();
+                renderCharts();
+                // フォームをクリア
+                document.getElementById('productName').value = '';
+                document.getElementById('amount').value = '';
+                document.getElementById('date').value = ''; // 日付はクリアしないほうが便利かも
+                document.getElementById('category').value = '食品';
+            } else {
+                alert('すべての項目を正しく入力してください。');
+            }
+        }
+
+        function deleteSalesData(index) {
+            if (confirm('このデータを削除してもよろしいですか？')) {
+                salesData.splice(index, 1);
+                saveSalesData();
+                renderTable();
+                updateSummary();
+                renderCharts();
+            }
+        }
+
+        function renderTable() {
+            const tableBody = document.getElementById('salesTableBody');
+            tableBody.innerHTML = ''; // テーブルをクリア
+
+            const filteredData = getFilteredData();
+
+            filteredData.forEach((data, index) => {
+                const row = tableBody.insertRow();
+                row.insertCell().textContent = data.productName;
+                row.insertCell().textContent = `${data.amount.toLocaleString()}円`;
+                row.insertCell().textContent = data.date;
+                row.insertCell().textContent = data.category;
+                const actionCell = row.insertCell();
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '削除';
+                deleteButton.onclick = () => deleteSalesData(salesData.indexOf(data)); // 元のsalesData内でのインデックスを使用
+                actionCell.appendChild(deleteButton);
+            });
+        }
+
+        function getFilteredData() {
+            const searchProduct = document.getElementById('searchProduct').value.toLowerCase();
+            const filterCategory = document.getElementById('filterCategory').value;
+            const filterDateFrom = document.getElementById('filterDateFrom').value;
+            const filterDateTo = document.getElementById('filterDateTo').value;
+
+            return salesData.filter(data => {
+                const matchesProduct = data.productName.toLowerCase().includes(searchProduct);
+                const matchesCategory = filterCategory === '' || data.category === filterCategory;
+                const matchesDateFrom = filterDateFrom === '' || data.date >= filterDateFrom;
+                const matchesDateTo = filterDateTo === '' || data.date <= filterDateTo;
+                return matchesProduct && matchesCategory && matchesDateFrom && matchesDateTo;
+            });
+        }
+
+        function filterTable() {
+            renderTable(); // フィルタリングされたデータを再描画
+        }
+
+        function updateSummary() {
+            const totalSales = salesData.reduce((sum, data) => sum + data.amount, 0);
+            const averageSales = salesData.length > 0 ? totalSales / salesData.length : 0;
+
+            document.getElementById('totalSales').textContent = `${totalSales.toLocaleString()}円`;
+            document.getElementById('averageSales').textContent = `${averageSales.toLocaleString(undefined, { maximumFractionDigits: 2 })}円`;
+        }
+
+        function renderCharts() {
+            // 月別売上データの集計
+            const monthlySales = {};
+            salesData.forEach(item => {
+                const month = item.date.substring(0, 7); // YYYY-MM形式
+                if (!monthlySales[month]) {
+                    monthlySales[month] = 0;
+                }
+                monthlySales[month] += item.amount;
+            });
+            const sortedMonths = Object.keys(monthlySales).sort();
+            const monthlyAmounts = sortedMonths.map(month => monthlySales[month]);
+
+            // カテゴリ別売上データの集計
+            const categorySales = {};
+            salesData.forEach(item => {
+                if (!categorySales[item.category]) {
+                    categorySales[item.category] = 0;
+                }
+                categorySales[item.category] += item.amount;
+            });
+            const categories = Object.keys(categorySales);
+            const categoryAmounts = categories.map(category => categorySales[category]);
+
+            // 月別売上グラフ (棒グラフ)
+            const monthlyCtx = document.getElementById('monthlySalesChart').getContext('2d');
+            if (monthlySalesChart) {
+                monthlySalesChart.destroy(); // 既存のグラフを破棄
+            }
+            monthlySalesChart = new Chart(monthlyCtx, {
+                type: 'bar',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: '月別売上',
+                        data: monthlyAmounts,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '金額 (円)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '月'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // カテゴリ別売上グラフ (円グラフ)
+            const categoryCtx = document.getElementById('categorySalesChart').getContext('2d');
+            if (categorySalesChart) {
+                categorySalesChart.destroy(); // 既存のグラフを破棄
+            }
+            categorySalesChart = new Chart(categoryCtx, {
+                type: 'pie',
+                data: {
+                    labels: categories,
+                    datasets: [{
+                        data: categoryAmounts,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)'
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
