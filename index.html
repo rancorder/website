@@ -586,6 +586,12 @@
             border-color: var(--general-accent);
         }
 
+        .portfolio-item a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
         .portfolio-item img {
             width: 100%;
             height: 250px;
@@ -608,6 +614,85 @@
             color: var(--text-medium);
             margin: 0 1.5rem 1.5rem;
             line-height: 1.6;
+        }
+
+        /* ブログセクション */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--general-accent);
+        }
+
+        .blog-card a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card h4 {
+            font-size: 1.3rem;
+            color: var(--general-accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .blog-tag {
+            background: rgba(138, 255, 0, 0.1);
+            color: var(--general-accent);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(138, 255, 0, 0.3);
         }
 
         /* サービス */
@@ -747,8 +832,13 @@
                 grid-template-columns: 1fr;
             }
 
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
             nav ul {
                 gap: 1rem;
+                flex-wrap: wrap;
             }
 
             .cta-container {
@@ -818,6 +908,7 @@
             <li><a href="#about">私達の強み</a></li>
             <li><a href="#services">サービス</a></li>
             <li><a href="#portfolio">制作実績</a></li>
+            <li><a href="#blog">ブログ</a></li>
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
@@ -947,6 +1038,116 @@
                         <p>光と影が織りなす無限の空間を表現した、魅惑的なビジュアル体験。</p>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="container">
+            <div class="section-header">
+                <h2 class="section-title">ブログ</h2>
+                <p class="section-subtitle">
+                    AI技術の最新トレンドや開発事例、技術的な洞察をお届けします
+                </p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card hover-glow">
+                    <a href="blog/ai-generation-basics.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="AI画像生成の基礎">
+                        <div class="blog-card-content">
+                            <h4>AI画像生成の基礎：初心者からプロまでのガイド</h4>
+                            <p>AI画像生成技術の基本概念から実践的な応用まで、包括的に解説する決定版ガイドです。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">AI基礎</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/ai-trends-2025.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="2025年AIトレンド">
+                        <div class="blog-card-content">
+                            <h4>2025年AI技術トレンド：業界を変革する最新動向</h4>
+                            <p>2025年に注目すべきAI技術の進歩と、ビジネスに与える影響について専門的な視点で分析します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">トレンド</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/business-benefits.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="AIビジネス活用">
+                        <div class="blog-card-content">
+                            <h4>AI導入で実現するビジネス変革：成功事例と実践ガイド</h4>
+                            <p>企業におけるAI活用の具体的なメリットと、効果的な導入戦略について詳しく解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">ビジネス</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/cyberpunk-city-process.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="サイバーパンク都市制作">
+                        <div class="blog-card-content">
+                            <h4>サイバーパンク都市の制作プロセス：AIアートの舞台裏</h4>
+                            <p>未来的な都市景観をAIで生成する際の技術的なプロセスと創作のノウハウを公開します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">制作プロセス</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/midjourney-new-features.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="Midjourney新機能">
+                        <div class="blog-card-content">
+                            <h4>Midjourney最新機能解説：クリエイティブワークフローの進化</h4>
+                            <p>Midjourneyの最新アップデートで追加された機能と、実践的な活用方法について詳しく解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">Midjourney</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/prompt-techniques.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="プロンプトテクニック">
+                        <div class="blog-card-content">
+                            <h4>効果的なプロンプト作成テクニック：理想の画像を生成する方法</h4>
+                            <p>AI画像生成で高品質な結果を得るためのプロンプト設計の秘訣とベストプラクティスを紹介します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">プロンプト</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="blog/stable-diffusion-3-guide.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="Stable Diffusion 3">
+                        <div class="blog-card-content">
+                            <h4>Stable Diffusion 3完全ガイド：新世代AI画像生成の全て</h4>
+                            <p>Stable Diffusion 3の革新的な機能と使用方法、従来版との違いについて徹底的に解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">Stable Diffusion</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
             </div>
         </section>
 
