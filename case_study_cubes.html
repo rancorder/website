@@ -3,250 +3,837 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ケーススタディ：超現実の世界を創造するAIアート - 浮遊する幾何学</title>
-    <link rel="stylesheet" href="style.css"> <style>
+    <title>ケーススタディ：幻想的な幾何学の世界 - AI生成クリスタルキューブアート | AI Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #4ecdc4;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --text-light: #ffffff;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-dark: rgba(0, 0, 0, 0.9);
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-accent: linear-gradient(135deg, #ff6b6b, var(--accent-color));
-            --border-radius: 8px;
+            --dark-bg: #020210;
+            --section-bg: #050518;
+            --card-bg: #080825;
+            --ai-accent: #00f0ff;
+            --python-accent: #ff0080;
+            --java-accent: #00ff40;
+            --general-accent: #8aff00;
+            --secondary-accent: #ff4000;
+            --tertiary-accent: #4000ff;
+            --text-light: #e0faff;
+            --text-medium: #a0c0ff;
+            --text-dim: #6080a0;
+            --border-glow: rgba(138, 255, 0, 0.8);
+            --shadow-light: rgba(0, 0, 0, 0.7);
+            --shadow-heavy: rgba(0, 0, 0, 0.95);
+            --glass-bg: rgba(8, 8, 37, 0.6);
+            --glass-border: rgba(138, 255, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-secondary);
-            overflow-x: hidden; /* 横スクロールを防ぐ */
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: var(--bg-primary);
-            padding: 15px 0;
-            box-shadow: var(--shadow-light);
-            text-align: center;
-        }
-
-        header .logo a {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; /* スマホ対応 */
-        }
-
-        nav ul li {
-            margin: 5px 15px;
-        }
-
-        nav ul li a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 400px; /* ヘッダー画像の高さを固定 */
-            background-color: #333; /* 画像がない場合の背景色 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
             color: var(--text-light);
-            overflow: hidden; /* 画像がはみ出さないように */
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            cursor: none;
         }
 
-        .hero-image { /* ヘッダー画像のスタイルじゃ！ */
+        /* カスタムカーソル */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--general-accent), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor.active {
+            transform: scale(2);
+            background: radial-gradient(circle, var(--tertiary-accent), transparent);
+        }
+
+        /* 背景エフェクト */
+        .cyber-background {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 画像をはみ出さずに表示、アスペクト比を維持 */
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at top, rgba(64, 0, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            animation: bgFloat 20s ease-in-out infinite, gridScan 8s linear infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gridScan {
+            0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 0, 0 -30px, -30px 0; }
+        }
+
+        /* 浮遊する幾何学エフェクト */
+        .floating-cubes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .floating-cube {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, var(--tertiary-accent), var(--ai-accent));
+            border: 1px solid var(--general-accent);
+            opacity: 0.1;
+            animation: float 15s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* スキャンライン */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(64, 0, 255, 0.02) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanline 0.1s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--general-accent);
+            text-decoration: none;
+            text-shadow: 0 0 15px var(--general-accent);
+            animation: logoGlow 3s infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 15px var(--general-accent); }
+            100% { text-shadow: 0 0 25px var(--general-accent), 0 0 35px rgba(138, 255, 0, 0.8); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(64, 0, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(64, 0, 255, 0.1);
+            color: var(--tertiary-accent);
+            box-shadow: 0 0 20px rgba(64, 0, 255, 0.3);
+            text-shadow: 0 0 10px var(--tertiary-accent);
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem;
+        }
+
+        /* ヒーローセクション */
+        .article-hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .hero-image-container {
+            position: relative;
+            margin-bottom: 3rem;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--glass-border);
+        }
+
+        .hero-image-container::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 1;
-        }
-
-        .hero-section h1, .hero-section .article-meta {
-            position: relative; /* 画像の上に重ねる */
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(64, 0, 255, 0.1) 50%,
+                transparent 100%
+            );
             z-index: 2;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* 文字の視認性アップ */
-            margin: 0;
-            padding: 0 20px;
+            pointer-events: none;
         }
 
-        .hero-section h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        .article-hero img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .article-hero h1 {
             font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--tertiary-accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(64, 0, 255, 0.6);
+            animation: titleGlow 3s infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(64, 0, 255, 0.6); }
+            100% { text-shadow: 0 0 30px var(--tertiary-accent), 0 0 40px rgba(64, 0, 255, 0.8); }
         }
 
         .article-meta {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            display: inline-block;
         }
 
+        /* コンテンツセクション */
         .article-content {
-            background-color: var(--bg-primary);
-            padding: 40px;
-            margin-top: -80px; /* ヘッダー画像とコンテンツを重ねる */
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 4rem;
+            margin-bottom: 3rem;
             position: relative;
-            z-index: 10;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+        }
+
+        .article-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(64, 0, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to right, rgba(64, 0, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(64, 0, 255, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px, 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .article-content > * {
+            position: relative;
+            z-index: 1;
         }
 
         .article-content h2 {
-            color: var(--primary-color);
-            font-size: 2em;
-            margin-top: 30px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--tertiary-accent);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--tertiary-accent);
+            text-shadow: 0 0 15px rgba(64, 0, 255, 0.5);
+            position: relative;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--general-accent);
+            box-shadow: 0 0 15px var(--general-accent);
         }
 
         .article-content p {
-            font-size: 1.1em;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            color: var(--text-medium);
         }
 
+        .article-content ul {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            color: var(--text-medium);
+        }
+
+        /* 概念設計ボックス */
+        .concept-specs {
+            background: rgba(64, 0, 255, 0.05);
+            border: 2px solid var(--tertiary-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-specs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--tertiary-accent), var(--ai-accent), var(--general-accent));
+        }
+
+        .concept-specs h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--tertiary-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(64, 0, 255, 0.5);
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .concept-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--tertiary-accent);
+        }
+
+        .concept-label {
+            font-weight: 700;
+            color: var(--tertiary-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-value {
+            color: var(--text-medium);
+        }
+
+        /* 幾何学理論セクション */
+        .geometry-section {
+            background: rgba(0, 240, 255, 0.05);
+            border: 2px solid var(--ai-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .geometry-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--ai-accent), var(--general-accent));
+        }
+
+        .geometry-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--ai-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* 戻るボタン */
         .back-button {
             display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--text-light);
-            padding: 12px 25px;
-            border-radius: 50px;
+            margin-top: 3rem;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--tertiary-accent), var(--ai-accent));
+            color: white;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            border: 2px solid transparent;
+            box-shadow: 0 0 30px rgba(64, 0, 255, 0.5);
+            position: relative;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--tertiary-accent), var(--ai-accent), var(--java-accent));
+            z-index: -1;
+            border-radius: 50px;
+            animation: borderPulse 3s infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
 
         .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-light);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(64, 0, 255, 0.7);
+            border-color: var(--general-accent);
         }
 
-        footer {
-            background-color: var(--bg-dark);
-            color: var(--text-medium);
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        /* フッター */
+        .footer {
+            background: linear-gradient(135deg, #010108, #020210);
+            padding: 3rem 0 2rem;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9em;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 5rem;
         }
 
-        footer p {
-            margin: 0;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        /* レスポンシブ対応 */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--general-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
+            .nav-links {
+                display: none;
             }
-            nav ul li {
-                margin: 5px 0;
+
+            .nav {
+                justify-content: center;
             }
-            .hero-section {
-                height: 300px; /* スマホでは少し高さを抑える */
+
+            .container {
+                padding: 100px 1rem 2rem;
             }
-            .hero-section h1 {
-                font-size: 2em;
-            }
+
             .article-content {
-                padding: 20px;
-                margin-top: -50px; /* スマホでの重ね具合を調整 */
+                padding: 2rem;
             }
-            .article-content h2 {
-                font-size: 1.5em;
+
+            .concept-grid {
+                grid-template-columns: 1fr;
             }
-            .article-content p {
-                font-size: 1em;
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ホバーエフェクト */
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(64, 0, 255, 0.6);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">AI & Python & Java Studio</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="portfolio.html">制作実績</a></li>
-                    <li><a href="blog.html">ブログ</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                </ul>
-            </nav>
-        </div>
+    <!-- カスタムカーソル -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- 背景エフェクト -->
+    <div class="cyber-background"></div>
+    <div class="floating-cubes" id="floatingCubes"></div>
+    <div class="scanlines"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎨 AI Studio</a>
+            <ul class="nav-links">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#about">私達の強み</a></li>
+                <li><a href="portfolio.html">制作実績</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <img src="images/cubes.png" alt="幻想的な宝石と構造物のAIアート" class="hero-image">
-            <h1>超現実の世界を創造するAIアート - 浮遊する幾何学</h1>
-            <p class="article-meta">公開日: 2025年7月21日 | カテゴリ: コンセプトアート</p>
+    <div class="container">
+        <!-- ヒーローセクション -->
+        <section class="article-hero fade-in">
+            <div class="hero-image-container hover-glow">
+                <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="幻想的なクリスタルキューブのAIアート - 超現実的な幾何学世界">
+            </div>
+            <h1>幻想的な幾何学の世界<br>AI生成クリスタルキューブアート</h1>
+            <div class="article-meta">
+                🔮 公開日: 2025年7月21日 | 🎨 カテゴリ: コンセプト＆幻想アート | ⚡ 技術: Advanced Generative AI
+            </div>
         </section>
 
-        <section class="article-content container">
+        <!-- コンテンツセクション -->
+        <section class="article-content fade-in">
             <p>
-                この作品は、AIの無限の創造性を最大限に引き出し、現実には存在しない幻想的な世界を構築する試みです。浮遊するクリスタル、複雑な幾何学構造、そして神秘的な光の表現は、見る者の想像力を刺激し、新たな物語を紡ぎ出す力を秘めています。これは、AIがアートの可能性をどこまで広げられるかを示す好例です。
+                この作品は、AIの無限の創造性を最大限に引き出し、現実には存在しない幻想的な世界を構築する
+                革新的な試みです。浮遊するクリスタル、複雑な幾何学構造、そして神秘的な光の表現は、
+                見る者の想像力を刺激し、新たな物語を紡ぎ出す力を秘めています。
+                これは、AIがアートの可能性をどこまで広げられるかを示す画期的な好例となっています。
             </p>
-            <h2>ビジュアルコンセプト</h2>
-            <p>
-                SF映画やファンタジー小説からインスピレーションを得て、AIに「未知の文明」や「魔法の世界」といった抽象的な概念を与え、具体的なビジュアルとして具現化させました。AIは、光の屈折、素材の質感、空間の奥行きなどを緻密に計算し、説得力のある超現実的な景観を生成しています。
-            </p>
-            <h2>用途と可能性</h2>
-            <p>
-                このようなAIアートは、ゲーム開発のコンセプトアート、映画やアニメーションの背景デザイン、企業のプロモーションにおける未来的なビジュアル表現など、多岐にわたる分野で活用できます。AI Art Studioは、お客様のどのような抽象的なアイデアでも、AIの力で具現化し、ビジネスに新たな価値をもたらします。
-            </p>
-            <a href="portfolio.html" class="back-button">ポートフォリオに戻る</a>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
-            <a href="#">プライバシーポリシー</a>
+            <div class="concept-specs">
+                <h3>🎯 コンセプト設計</h3>
+                <div class="concept-grid">
+                    <div class="concept-item">
+                        <div class="concept-label">AI モデル</div>
+                        <div class="concept-value">DALL-E 3 Advanced</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-label">芸術様式</div>
+                        <div class="concept-value">超現実主義</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-label">主要テーマ</div>
+                        <div class="concept-value">幾何学＋光学</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-label">色彩理論</div>
+                        <div class="concept-value">クールトーン</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-label">空間設計</div>
+                        <div class="concept-value">3D浮遊構造</div>
+                    </div>
+                    <div class="concept-item">
+                        <div class="concept-label">制作期間</div>
+                        <div class="concept-value">2週間</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🌌 ビジュアルコンセプトの探求</h2>
+            <p>
+                SF映画、ファンタジー小説、そして数学的美学からインスピレーションを得て、
+                AIに「未知の文明」「魔法の世界」「量子物理学的現象」といった抽象的かつ
+                高度な概念を与え、具体的なビジュアルとして具現化させました。
+                AIは、光の屈折、素材の質感、空間の奥行き、そして物理法則を超えた現象を
+                緻密に計算し、説得力のある超現実的な景観を生成しています。
+            </p>
+            <p>
+                特に注目すべきは、クリスタルの内部構造と光の相互作用です。
+                AIは複雑な光学現象を理解し、プリズム効果、屈折、反射を駆使して、
+                まるで宝石の内部を覗き込んでいるような錯覚を創り出しています。
+            </p>
+
+            <div class="geometry-section">
+                <h3>📐 幾何学理論の応用</h3>
+                <p>
+                    この作品では、フラクタル幾何学、黄金比、そして結晶学の原理を
+                    AIが学習・応用しています。自然界に存在する美しい比例関係と、
+                    人工的な幾何学構造が絶妙に融合し、視覚的に調和の取れた
+                    空間を創造しています。
+                </p>
+            </div>
+
+            <h2>🚀 多様な用途と無限の可能性</h2>
+            <p>
+                このようなAI生成アートは、現代のクリエイティブ産業において
+                革命的な変化をもたらしています。従来の制作手法では実現困難な
+                表現を可能にし、新たなビジュアル言語を創造しています。
+            </p>
+            <p>
+                ゲーム開発のコンセプトアート、映画やアニメーションの背景デザイン、
+                企業のプロモーションにおける未来的なビジュアル表現など、
+                多岐にわたる分野で革新的な活用が可能です。AI Art Studioは、
+                お客様のどのような抽象的なアイデアでも、AIの力で具現化し、
+                ビジネスに新たな価値と競争優位性をもたらします。
+            </p>
+
+            <h2>🎮 実用的ビジネス応用</h2>
+            <p>
+                この技術とクリエイティブアプローチは、様々な商業分野で活用できます：
+            </p>
+            <ul>
+                <li><strong>ゲーム・エンターテインメント</strong>：ファンタジー世界の背景、アイテムデザイン、UI要素</li>
+                <li><strong>映像制作</strong>：SF映画のコンセプトアート、アニメーション背景、VFX素材</li>
+                <li><strong>ブランディング</strong>：未来的で印象的な企業ロゴ、プロダクトビジュアル</li>
+                <li><strong>デジタルメディア</strong>：ウェブサイトヘッダー、SNS投稿素材、プレゼンテーション</li>
+                <li><strong>出版・メディア</strong>：書籍カバー、雑誌挿絵、デジタルコンテンツ</li>
+                <li><strong>展示・イベント</strong>：美術展示、商業施設のデジタルサイネージ</li>
+                <li><strong>NFTアート</strong>：デジタルコレクション、仮想ギャラリー展示</li>
+            </ul>
+
+            <a href="portfolio.html" class="back-button">← ポートフォリオに戻る</a>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">ホーム</a>
+                <a href="index.html#about">私達の強み</a>
+                <a href="portfolio.html">制作実績</a>
+                <a href="index.html#services">サービス</a>
+                <a href="index.html#contact">お問い合わせ</a>
+            </div>
+            <p class="footer-text">&copy; 2025 AI Studio. All Rights Reserved.</p>
+            <p class="footer-text">
+                革新的なAI技術でビジネスの未来を創造 | プライバシーポリシー | 利用規約
+            </p>
         </div>
     </footer>
+
+    <script>
+        // カスタムカーソル
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        const updateCursor = () => {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            requestAnimationFrame(updateCursor);
+        };
+
+        updateCursor();
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        // 浮遊するキューブ
+        function createFloatingCubes() {
+            const container = document.getElementById('floatingCubes');
+            const numCubes = 15;
+            
+            for (let i = 0; i < numCubes; i++) {
+                const cube = document.createElement('div');
+                cube.className = 'floating-cube';
+                cube.style.left = Math.random() * 100 + '%';
+                cube.style.animationDelay = Math.random() * 15 + 's';
+                cube.style.animationDuration = (10 + Math.random() * 10) + 's';
+                
+                // ランダムな大きさ
+                const size = Math.random() * 15 + 10;
+                cube.style.width = size + 'px';
+                cube.style.height = size + 'px';
+                
+                container.appendChild(cube);
+            }
+        }
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingCubes();
+        });
+    </script>
 </body>
 </html>
