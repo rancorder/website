@@ -20,199 +20,213 @@
             --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
             --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             --gradient-accent: linear-gradient(135deg, #ff6b6b, var(--accent-color));
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 8px;
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.8;
+            font-family: 'Segoe UI', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+            line-height: 1.6;
             color: var(--text-primary);
-            background: var(--bg-primary);
-            margin-top: 80px; /* ヘッダーの高さ分 */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-secondary);
+            overflow-x: hidden; /* 横スクロールを防ぐ */
         }
-        
+
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-        
-        .article-hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .article-hero img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-            margin-bottom: 2rem;
-        }
-        
-        .article-hero h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        
-        .article-meta {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        .article-content h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--primary-color);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .article-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-content ul {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-        
-        .article-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .back-button {
-            display: inline-block;
-            margin-top: 3rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--gradient-primary);
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-        /* Header and Footer styles from portfolio.html for consistency */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--bg-dark);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav {
-            max-width: 1200px;
+            max-width: 960px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            padding: 20px;
         }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent-color);
-            background: rgba(78, 205, 196, 0.1);
-        }
-        
-        .footer {
-            background: #1a1a1a;
-            color: var(--text-light);
+
+        header {
+            background: var(--bg-primary);
+            padding: 15px 0;
+            box-shadow: var(--shadow-light);
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
         }
-        
-        .footer-links {
+
+        header .logo a {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* スマホ対応 */
         }
-        
-        .footer-links a {
-            color: #ccc;
+
+        nav ul li {
+            margin: 5px 15px;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: var(--transition);
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
-        
-        .footer-links a:hover {
-            color: var(--accent-color);
+
+        nav ul li a:hover {
+            color: var(--primary-color);
         }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 400px; /* ヘッダー画像の高さを固定 */
+            background-color: #333; /* 画像がない場合の背景色 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden; /* 画像がはみ出さないように */
+        }
+
+        .hero-image { /* ヘッダー画像のスタイルじゃ！ */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 画像をはみ出さずに表示、アスペクト比を維持 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .hero-section h1, .hero-section .article-meta {
+            position: relative; /* 画像の上に重ねる */
+            z-index: 2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* 文字の視認性アップ */
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .article-meta {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            background-color: var(--bg-primary);
+            padding: 40px;
+            margin-top: -80px; /* ヘッダー画像とコンテンツを重ねる */
+            position: relative;
+            z-index: 10;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .article-content h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-top: 30px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .article-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-light);
+        }
+
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-medium);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* シンプルにするためモバイルでは非表示 */
+            nav ul {
+                flex-direction: column;
             }
-            .nav {
-                justify-content: center;
+            nav ul li {
+                margin: 5px 0;
             }
-            .container {
-                padding: 0 1rem;
+            .hero-section {
+                height: 300px; /* スマホでは少し高さを抑える */
+            }
+            .hero-section h1 {
+                font-size: 2em;
+            }
+            .article-content {
+                padding: 20px;
+                margin-top: -50px; /* スマホでの重ね具合を調整 */
+            }
+            .article-content h2 {
+                font-size: 1.5em;
+            }
+            .article-content p {
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="logo">🎨 AI Art Studio</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">ホーム</a></li>
-                <li><a href="index.html#about">会社概要</a></li>
-                <li><a href="portfolio.html">制作実績</a></li>
-                <li><a href="index.html#services">サービス</a></li>
-                <li><a href="index.html#contact">お問い合わせ</a></li>
-            </ul>
-        </nav>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">AI & Python & Java Studio</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="portfolio.html">制作実績</a></li>
+                    <li><a href="blog.html">ブログ</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <section class="article-hero">
-            <img src="00b6c3cc-25e1-4719-8bca-d36fd3019151-u2.MP4" alt="カラフルなカメレオンのAIアート">
+    <main>
+        <section class="hero-section">
+            <img src="images/chameleon.png" alt="カラフルなカメレオンのAIアート" class="hero-image">
             <h1>AIが描く生命の多様性 - カラフルなカメレオン</h1>
             <p class="article-meta">公開日: 2025年7月21日 | カテゴリ: デジタルアート</p>
         </section>
 
-        <section class="article-content">
+        <section class="article-content container">
             <p>
                 この作品は、AIが生命の多様性と色彩の豊かさをどのように解釈し、表現できるかを探求するために制作されました。AIは、カメレオンの皮膚の質感、鮮やかな色彩のグラデーション、そして周囲の環境との調和を見事に再現しています。細部まで描き込まれた鱗や、生命力あふれる瞳は、AIの無限の創造性を示しています。
             </p>
@@ -226,20 +240,13 @@
             </p>
             <a href="portfolio.html" class="back-button">ポートフォリオに戻る</a>
         </section>
-    </div>
+    </main>
 
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="index.html">ホーム</a>
-            <a href="index.html#about">会社概要</a>
-            <a href="portfolio.html">制作実績</a>
-            <a href="index.html#services">サービス</a>
-            <a href="index.html#contact">お問い合わせ</a>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
+            <a href="#">プライバシーポリシー</a>
         </div>
-        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
-            企業向けAI画像生成サービス | プライバシーポリシー | 利用規約
-        </p>
     </footer>
 </body>
 </html>
