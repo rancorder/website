@@ -872,6 +872,253 @@
         .mb-3 { margin-bottom: 3rem; }
         .mt-3 { margin-top: 3rem; }
         .hover-glow:hover { box-shadow: 0 0 30px rgba(138, 255, 0, 0.6); }
+
+        /* Image Slider Styles */
+        .image-slider-section {
+            padding: 2rem 0;
+            background: var(--section-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 3rem 2rem 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .slide.active .slide-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-overlay h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--general-accent);
+            text-shadow: 0 0 20px rgba(138, 255, 0, 0.8);
+        }
+
+        .slide-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Navigation Arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(138, 255, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--general-accent);
+            color: var(--general-accent);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-arrow:hover {
+            background: var(--general-accent);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(138, 255, 0, 0.8);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
+        /* Navigation Dots */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            background: var(--dark-bg);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(138, 255, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background: var(--general-accent);
+            box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
+            transform: scale(1.2);
+        }
+
+        .dot::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            transition: border-color 0.3s ease;
+        }
+
+        .dot.active::before,
+        .dot:hover::before {
+            border-color: rgba(138, 255, 0, 0.5);
+        }
+
+        /* Slider Animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .slide.slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .slide.slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        /* Progress Bar */
+        .slider-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--general-accent);
+            box-shadow: 0 0 10px rgba(138, 255, 0, 0.8);
+            transition: width 0.1s ease;
+            z-index: 5;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .slide {
+                height: 300px;
+            }
+
+            .slide-overlay {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+
+            .slide-overlay h3 {
+                font-size: 1.5rem;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-arrow.prev {
+                left: 10px;
+            }
+
+            .slider-arrow.next {
+                right: 10px;
+            }
+
+            .slider-dots {
+                gap: 0.8rem;
+                padding: 1.5rem 0;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                height: 250px;
+            }
+
+            .slide-overlay h3 {
+                font-size: 1.3rem;
+            }
+
+            .slide-overlay p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -917,6 +1164,102 @@
     </nav>
 
     <main>
+        <!-- Image Slider Section -->
+        <section class="image-slider-section">
+            <div class="slider-container">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="Cyberpunk City" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>サイバーパンク都市</h3>
+                            <p>未来都市の創造</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="Chameleon Art" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>カラフルカメレオン</h3>
+                            <p>鮮やかな色彩の世界</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="Blue Lizard Statue" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>青いトカゲの彫像</h3>
+                            <p>古代と現代の融合</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="Crystal Cubes" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>クリスタルキューブ</h3>
+                            <p>幾何学的美学</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/fire_tuber.JPG" alt="Fire Tuber" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>ファイアチューバー</h3>
+                            <p>炎の芸術作品</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/宇宙建築都市.JPG" alt="Space Architecture City" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>宇宙建築都市</h3>
+                            <p>未来の都市建築</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/愛されキャラvtuber.JPG" alt="Beloved Vtuber Character" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>愛されキャラVtuber</h3>
+                            <p>キャラクターデザイン</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/花火少女.JPG" alt="Fireworks Girl" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>花火少女</h3>
+                            <p>幻想的な夜の世界</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=400&fit=crop" alt="Python Development" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>Python開発</h3>
+                            <p>効率的なソリューション</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop" alt="Java Enterprise" loading="lazy">
+                        <div class="slide-overlay">
+                            <h3>Java開発</h3>
+                            <p>エンタープライズシステム</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Dots -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                    <span class="dot" onclick="currentSlide(6)"></span>
+                    <span class="dot" onclick="currentSlide(7)"></span>
+                    <span class="dot" onclick="currentSlide(8)"></span>
+                    <span class="dot" onclick="currentSlide(9)"></span>
+                    <span class="dot" onclick="currentSlide(10)"></span>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="slider-arrow prev" onclick="plusSlide(-1)">❮</button>
+                <button class="slider-arrow next" onclick="plusSlide(1)">❯</button>
+            </div>
+        </section>
+
         <!-- About Section -->
         <section id="about" class="container">
             <div class="section-header">
@@ -1104,6 +1447,20 @@
                             <p>未来的な都市景観をAIで生成する際の技術的なプロセスと創作のノウハウを公開します。</p>
                             <div class="blog-meta">
                                 <span class="blog-tag">制作プロセス</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="blog-card hover-glow">
+                    <a href="ai-comparison.html">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=220&fit=crop&crop=center" alt="AI開発比較実験">
+                        <div class="blog-card-content">
+                            <h4>AI開発比較実験：ChatGPT vs Claude vs Gemini</h4>
+                            <p>同じプロンプトで見えた3つのAIの個性差を実際のコードで比較。売上管理ダッシュボード制作実験の結果。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">AI比較</span>
                                 <span>2025年1月</span>
                             </div>
                         </div>
@@ -1431,7 +1788,120 @@
         // アプリケーション初期化
         document.addEventListener('DOMContentLoaded', () => {
             new CyberStudio();
+            initImageSlider();
         });
+
+        // Image Slider JavaScript
+        let currentSlideIndex = 0;
+        const totalSlides = 10;
+        let isAutoPlaying = true;
+        let autoSlideInterval;
+
+        function initImageSlider() {
+            showSlide(currentSlideIndex);
+            startAutoSlide();
+            
+            // スライダーにマウスが入ったら自動再生を停止
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+            sliderContainer.addEventListener('mouseleave', startAutoSlide);
+        }
+
+        function showSlide(index) {
+            const track = document.getElementById('sliderTrack');
+            const dots = document.querySelectorAll('.dot');
+            const slides = document.querySelectorAll('.slide');
+            
+            // インデックスの範囲チェック
+            if (index >= totalSlides) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = totalSlides - 1;
+            
+            // スライド移動
+            const translateX = -currentSlideIndex * 100;
+            track.style.transform = `translateX(${translateX}%)`;
+            
+            // アクティブスライドの設定
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === currentSlideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            // ドットの更新
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentSlideIndex) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function plusSlide(direction) {
+            currentSlideIndex += direction;
+            showSlide(currentSlideIndex);
+            restartAutoSlide();
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+            restartAutoSlide();
+        }
+
+        function startAutoSlide() {
+            if (!isAutoPlaying) return;
+            autoSlideInterval = setInterval(() => {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }, 4000); // 4秒ごとに自動スライド
+        }
+
+        function stopAutoSlide() {
+            isAutoPlaying = false;
+            clearInterval(autoSlideInterval);
+        }
+
+        function restartAutoSlide() {
+            stopAutoSlide();
+            isAutoPlaying = true;
+            startAutoSlide();
+        }
+
+        // キーボード操作のサポート
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                plusSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                plusSlide(1);
+            }
+        });
+
+        // タッチスワイプのサポート
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchStartX - touchEndX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    plusSlide(1); // 左スワイプ = 次のスライド
+                } else {
+                    plusSlide(-1); // 右スワイプ = 前のスライド
+                }
+            }
+        }
     </script>
 </body>
 </html>
