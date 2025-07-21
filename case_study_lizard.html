@@ -3,250 +3,768 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ケーススタディ：AIと建築の融合 - 魅惑のトカゲ像</title>
-    <link rel="stylesheet" href="style.css"> <style>
+    <title>ケーススタディ：古代の神秘と現代の融合 - 青いトカゲの彫像 | AI Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #4ecdc4;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --text-light: #ffffff;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-dark: rgba(0, 0, 0, 0.9);
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-accent: linear-gradient(135deg, #ff6b6b, var(--accent-color));
-            --border-radius: 8px;
+            --dark-bg: #020210;
+            --section-bg: #050518;
+            --card-bg: #080825;
+            --ai-accent: #00f0ff;
+            --python-accent: #ff0080;
+            --java-accent: #00ff40;
+            --general-accent: #8aff00;
+            --secondary-accent: #ff4000;
+            --tertiary-accent: #4000ff;
+            --text-light: #e0faff;
+            --text-medium: #a0c0ff;
+            --text-dim: #6080a0;
+            --border-glow: rgba(138, 255, 0, 0.8);
+            --shadow-light: rgba(0, 0, 0, 0.7);
+            --shadow-heavy: rgba(0, 0, 0, 0.95);
+            --glass-bg: rgba(8, 8, 37, 0.6);
+            --glass-border: rgba(138, 255, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', 'BIZ UDPGothic', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-secondary);
-            overflow-x: hidden; /* 横スクロールを防ぐ */
-        }
-
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: var(--bg-primary);
-            padding: 15px 0;
-            box-shadow: var(--shadow-light);
-            text-align: center;
-        }
-
-        header .logo a {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 28px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap; /* スマホ対応 */
-        }
-
-        nav ul li {
-            margin: 5px 15px;
-        }
-
-        nav ul li a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 400px; /* ヘッダー画像の高さを固定 */
-            background-color: #333; /* 画像がない場合の背景色 */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
             color: var(--text-light);
-            overflow: hidden; /* 画像がはみ出さないように */
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            cursor: none;
         }
 
-        .hero-image { /* ヘッダー画像のスタイルじゃ！ */
+        /* カスタムカーソル */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--general-accent), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor.active {
+            transform: scale(2);
+            background: radial-gradient(circle, var(--python-accent), transparent);
+        }
+
+        /* 背景エフェクト */
+        .cyber-background {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 画像をはみ出さずに表示、アスペクト比を維持 */
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at top, rgba(255, 0, 128, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 240, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            animation: bgFloat 20s ease-in-out infinite, gridScan 8s linear infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gridScan {
+            0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 0, 0 -30px, -30px 0; }
+        }
+
+        /* スキャンライン */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(255, 0, 128, 0.02) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanline 0.1s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--general-accent);
+            text-decoration: none;
+            text-shadow: 0 0 15px var(--general-accent);
+            animation: logoGlow 3s infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 15px var(--general-accent); }
+            100% { text-shadow: 0 0 25px var(--general-accent), 0 0 35px rgba(138, 255, 0, 0.8); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 0, 128, 0.1);
+            color: var(--python-accent);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+            text-shadow: 0 0 10px var(--python-accent);
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 120px 2rem 2rem;
+        }
+
+        /* ヒーローセクション */
+        .article-hero {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .hero-image-container {
+            position: relative;
+            margin-bottom: 3rem;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--glass-border);
+        }
+
+        .hero-image-container::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 1;
-        }
-
-        .hero-section h1, .hero-section .article-meta {
-            position: relative; /* 画像の上に重ねる */
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255, 0, 128, 0.1) 50%,
+                transparent 100%
+            );
             z-index: 2;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* 文字の視認性アップ */
-            margin: 0;
-            padding: 0 20px;
+            pointer-events: none;
         }
 
-        .hero-section h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        .article-hero img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .article-hero h1 {
             font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--python-accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+            animation: titleGlow 3s infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 0, 128, 0.6); }
+            100% { text-shadow: 0 0 30px var(--python-accent), 0 0 40px rgba(255, 0, 128, 0.8); }
         }
 
         .article-meta {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            display: inline-block;
         }
 
+        /* コンテンツセクション */
         .article-content {
-            background-color: var(--bg-primary);
-            padding: 40px;
-            margin-top: -80px; /* ヘッダー画像とコンテンツを重ねる */
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 4rem;
+            margin-bottom: 3rem;
             position: relative;
-            z-index: 10;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+        }
+
+        .article-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255, 0, 128, 0.05) 1px, transparent 1px),
+                linear-gradient(to right, rgba(255, 0, 128, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 128, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px, 40px 40px, 40px 40px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .article-content > * {
+            position: relative;
+            z-index: 1;
         }
 
         .article-content h2 {
-            color: var(--primary-color);
-            font-size: 2em;
-            margin-top: 30px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--python-accent);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--python-accent);
+            text-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+            position: relative;
+        }
+
+        .article-content h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .article-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--general-accent);
+            box-shadow: 0 0 15px var(--general-accent);
         }
 
         .article-content p {
-            font-size: 1.1em;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            margin-bottom: 20px;
+            color: var(--text-medium);
         }
 
+        .article-content ul {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            color: var(--text-medium);
+        }
+
+        /* アーキテクチャ仕様ボックス */
+        .architecture-specs {
+            background: rgba(255, 0, 128, 0.05);
+            border: 2px solid var(--python-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .architecture-specs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--python-accent), var(--ai-accent), var(--java-accent));
+        }
+
+        .architecture-specs h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--python-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+        }
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .architecture-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--python-accent);
+        }
+
+        .architecture-label {
+            font-weight: 700;
+            color: var(--python-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .architecture-value {
+            color: var(--text-medium);
+        }
+
+        /* インスピレーションセクション */
+        .inspiration-section {
+            background: rgba(0, 240, 255, 0.05);
+            border: 2px solid var(--ai-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .inspiration-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--ai-accent), var(--general-accent));
+        }
+
+        .inspiration-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--ai-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* 戻るボタン */
         .back-button {
             display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--text-light);
-            padding: 12px 25px;
-            border-radius: 50px;
+            margin-top: 3rem;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--python-accent), var(--ai-accent));
+            color: white;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            border: 2px solid transparent;
+            box-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+            position: relative;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .back-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--python-accent), var(--ai-accent), var(--java-accent));
+            z-index: -1;
+            border-radius: 50px;
+            animation: borderPulse 3s infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
 
         .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-light);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 0, 128, 0.7);
+            border-color: var(--general-accent);
         }
 
-        footer {
-            background-color: var(--bg-dark);
-            color: var(--text-medium);
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        /* フッター */
+        .footer {
+            background: linear-gradient(135deg, #010108, #020210);
+            padding: 3rem 0 2rem;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9em;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 5rem;
         }
 
-        footer p {
-            margin: 0;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        /* レスポンシブ対応 */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--general-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
+            .nav-links {
+                display: none;
             }
-            nav ul li {
-                margin: 5px 0;
+
+            .nav {
+                justify-content: center;
             }
-            .hero-section {
-                height: 300px; /* スマホでは少し高さを抑える */
+
+            .container {
+                padding: 100px 1rem 2rem;
             }
-            .hero-section h1 {
-                font-size: 2em;
-            }
+
             .article-content {
-                padding: 20px;
-                margin-top: -50px; /* スマホでの重ね具合を調整 */
+                padding: 2rem;
             }
-            .article-content h2 {
-                font-size: 1.5em;
+
+            .architecture-grid {
+                grid-template-columns: 1fr;
             }
-            .article-content p {
-                font-size: 1em;
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
+        }
+
+        /* アニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ホバーエフェクト */
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 128, 0.6);
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">AI & Python & Java Studio</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="portfolio.html">制作実績</a></li>
-                    <li><a href="blog.html">ブログ</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
-                </ul>
-            </nav>
-        </div>
+    <!-- カスタムカーソル -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- 背景エフェクト -->
+    <div class="cyber-background"></div>
+    <div class="scanlines"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎨 AI Studio</a>
+            <ul class="nav-links">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#about">私達の強み</a></li>
+                <li><a href="portfolio.html">制作実績</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <img src="images/lizard.png" alt="青いトカゲのAIアート" class="hero-image">
-            <h1>AIと伝統が織りなすアート：都市空間の守護者</h1>
-            <p class="article-meta">公開日: 2025年7月21日 | カテゴリ: 公共アート</p>
+    <div class="container">
+        <!-- ヒーローセクション -->
+        <section class="article-hero fade-in">
+            <div class="hero-image-container hover-glow">
+                <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの像のAIアート - 古代建築とモダンアートの融合">
+            </div>
+            <h1>古代の神秘と現代の融合<br>青いトカゲの彫像プロジェクト</h1>
+            <div class="article-meta">
+                🏛️ 公開日: 2025年7月21日 | 🎨 カテゴリ: 建築×AI融合アート | ⚡ 技術: Midjourney + Architecture Analysis
+            </div>
         </section>
 
-        <section class="article-content container">
+        <!-- コンテンツセクション -->
+        <section class="article-content fade-in">
             <p>
-                この作品は、AI生成技術と伝統的なモザイクアートの融合を試みたものです。青いトカゲの像は、スペインの建築家アントニ・ガウディの作品群からインスピレーションを得て、AIがその特徴的なスタイルと色彩を学習し、再構築しました。デジタルとアナログが融合することで、都市空間に新たな息吹を吹き込むことを目指しました。
+                この作品は、AI生成技術と伝統的なモザイクアートの革新的な融合を実現したプロジェクトです。
+                青いトカゲの像は、スペインの偉大な建築家アントニ・ガウディの作品群からインスピレーションを得て、
+                AIがその特徴的なスタイルと色彩理論を深層学習し、現代的な解釈で再構築しました。
+                デジタルとアナログの境界を超越し、都市空間に新たな生命力と芸術的価値を注入することを目指しています。
             </p>
-            <h2>デザインプロセス</h2>
-            <p>
-                AIは、ガウディの建築様式や色彩パターンを分析し、数多くのデザイン案を生成しました。その中から最も魅力的なトカゲのフォルムと、周囲のモザイクタイルとの調和が取れたデザインを選定。最終的には、実際の素材感を表現するために、AIによるテクスチャ生成と、手作業による細部の調整を組み合わせて完成させました。
-            </p>
-            <h2>都市景観への影響</h2>
-            <p>
-                このトカゲ像は、公共の場所に設置されることを想定しており、訪れる人々に喜びと驚きを与えることを目的としています。AIアートが、単なるデジタルデータとしてだけでなく、物理的な空間において人々とインタラクションする新たな可能性を示唆しています。歴史的な建造物と現代のAI技術が共存することで、街の魅力がさらに高まるでしょう。
-            </p>
-            <a href="portfolio.html" class="back-button">ポートフォリオに戻る</a>
-        </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
-            <a href="#">プライバシーポリシー</a>
+            <div class="architecture-specs">
+                <h3>🏗️ 建築技術仕様</h3>
+                <div class="architecture-grid">
+                    <div class="architecture-item">
+                        <div class="architecture-label">AI モデル</div>
+                        <div class="architecture-value">Midjourney v6</div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="architecture-label">建築様式</div>
+                        <div class="architecture-value">ガウディ風モダニズム</div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="architecture-label">主要素材</div>
+                        <div class="architecture-value">モザイクタイル</div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="architecture-label">色彩理論</div>
+                        <div class="architecture-value">補色配置法</div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="architecture-label">設計期間</div>
+                        <div class="architecture-value">3週間</div>
+                    </div>
+                    <div class="architecture-item">
+                        <div class="architecture-label">想定規模</div>
+                        <div class="architecture-value">高さ2.5m</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>🎯 革新的デザインプロセス</h2>
+            <p>
+                AIシステムは、ガウディの建築様式や独特な色彩パターンを詳細に分析し、
+                数千のデザインバリエーションを生成しました。その中から最も魅力的なトカゲのフォルムと、
+                周囲のモザイクタイルとの調和が完璧に取れたデザインを選定。
+                最終段階では、実際の素材感とテクスチャを表現するために、
+                AIによる高精度テクスチャ生成と、専門アーティストによる細部の手作業調整を組み合わせて完成させました。
+            </p>
+            <p>
+                特に注目すべきは、AIが学習したガウディの「自然からのインスピレーション」という哲学を、
+                現代的なデジタル表現に昇華させた点です。有機的な曲線美と幾何学的なモザイクパターンが
+                絶妙なバランスで融合し、見る者に深い感動を与える作品となりました。
+            </p>
+
+            <div class="inspiration-section">
+                <h3>🌟 ガウディからのインスピレーション</h3>
+                <p>
+                    この作品では、ガウディの代表作「パルク・グエル」の有名なトカゲ像（通称：ガウディ・ドラゴン）を
+                    AI技術で現代的に再解釈しました。原作の持つ生命力と色彩の豊かさを保ちながら、
+                    21世紀のデジタルアートとしての新しい価値を創造しています。
+                </p>
+            </div>
+
+            <h2>🏙️ 都市景観への革新的影響</h2>
+            <p>
+                このトカゲ像は、公共空間に設置されることを前提として設計されており、
+                訪れる人々に驚きと喜び、そして新たな発見をもたらすことを目的としています。
+                AIアートが単なるデジタルデータとしてではなく、物理的な空間において
+                人々と真のインタラクションを創出する、革新的な可能性を実証しています。
+            </p>
+            <p>
+                歴史的な建造物と最先端のAI技術が共存することで、都市の文化的価値と
+                現代性が調和し、街全体の魅力が飛躍的に向上することを実現します。
+                この作品は、未来の都市デザインにおけるAIアートの役割を示す
+                重要なマイルストーンとなるでしょう。
+            </p>
+
+            <h2>🎨 ビジネス活用の可能性</h2>
+            <p>
+                この技術とアプローチは、様々な商業・公共プロジェクトに応用可能です：
+            </p>
+            <ul>
+                <li><strong>企業本社ビル</strong>：ブランドアイデンティティを体現するアート作品の設計</li>
+                <li><strong>ショッピングモール</strong>：来場者の注目を集める印象的なランドマーク制作</li>
+                <li><strong>公共施設</strong>：地域の歴史と現代性を融合させた文化的シンボル</li>
+                <li><strong>住宅開発</strong>：高付加価値を生み出すアーティスティックな外観デザイン</li>
+                <li><strong>観光地開発</strong>：SNS映えする新たな撮影スポットの創造</li>
+                <li><strong>イベント空間</strong>：期間限定でインパクトのある空間演出</li>
+            </ul>
+
+            <a href="portfolio.html" class="back-button">← ポートフォリオに戻る</a>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">ホーム</a>
+                <a href="index.html#about">私達の強み</a>
+                <a href="portfolio.html">制作実績</a>
+                <a href="index.html#services">サービス</a>
+                <a href="index.html#contact">お問い合わせ</a>
+            </div>
+            <p class="footer-text">&copy; 2025 AI Studio. All Rights Reserved.</p>
+            <p class="footer-text">
+                革新的なAI技術でビジネスの未来を創造 | プライバシーポリシー | 利用規約
+            </p>
         </div>
     </footer>
+
+    <script>
+        // カスタムカーソル
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        const updateCursor = () => {
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            requestAnimationFrame(updateCursor);
+        };
+
+        updateCursor();
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        // スクロールアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
