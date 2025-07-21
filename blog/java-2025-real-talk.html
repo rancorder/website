@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話 - AI Art Studio</title>
+    <meta name="description" content="広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実とは？">
+    <meta name="keywords" content="Java,プログラミング,2025年,現代,開発,広島弁,レイナ">
+    <meta name="author" content="AI Art Studio">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話">
+    <meta property="og:description" content="広島出身のレイナが語る、Javaの現在と未来">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=1200&h=630&fit=crop">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #020210;
+            --section-bg: #050518;
+            --card-bg: #080825;
+            --java-accent: #f89820;
+            --java-secondary: #5382a1;
+            --general-accent: #8aff00;
+            --ai-accent: #00f0ff;
+            --hiroshima-accent: #ff1493;
+            --text-light: #e0faff;
+            --text-medium: #a0c0ff;
+            --text-dim: #6080a0;
+            --glass-bg: rgba(8, 8, 37, 0.6);
+            --glass-border: rgba(138, 255, 0, 0.2);
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --border-radius: 15px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* カスタムカーソル */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, var(--java-accent), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor.active {
+            transform: scale(2);
+            background: radial-gradient(circle, var(--general-accent), transparent);
+        }
+
+        /* 背景エフェクト */
+        .cyber-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at top, rgba(248, 152, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(138, 255, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            animation: bgFloat 20s ease-in-out infinite, gridScan 8s linear infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gridScan {
+            0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 0, 0 -30px, -30px 0; }
+        }
+
+        /* パーティクル */
+        .particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        /* スキャンライン */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                transparent 0%,
+                rgba(248, 152, 32, 0.03) 50%,
+                transparent 100%
+            );
+            background-size: 100% 4px;
+            animation: scanline 0.1s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+        
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 0 0 20px var(--java-accent);
+        }
+        
+        .logo::before {
+            content: '☕';
+            font-size: 1.5rem;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px var(--java-accent); }
+            100% { text-shadow: 0 0 20px var(--java-accent), 0 0 30px rgba(248, 152, 32, 0.8); }
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            border-radius: 25px;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(248, 152, 32, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--java-accent);
+            text-shadow: 0 0 15px rgba(248, 152, 32, 0.7);
+            background: rgba(248, 152, 32, 0.1);
+            box-shadow: 0 0 20px rgba(248, 152, 32, 0.3);
+        }
+
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+        
+        /* 記事メインコンテンツ */
+        .article-container {
+            max-width: 900px;
+            margin: 120px auto 0;
+            padding: 0 2rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* パンくずリスト */
+        .breadcrumb {
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .breadcrumb a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--java-accent);
+            text-shadow: 0 0 10px var(--java-accent);
+        }
+        
+        .breadcrumb span {
+            color: var(--text-dim);
+            margin: 0 0.5rem;
+        }
+        
+        /* 記事ヘッダー */
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--java-accent), var(--general-accent));
+            border-radius: 25px 25px 0 0;
+        }
+        
+        .article-category {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--java-accent), var(--java-secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(248, 152, 32, 0.5);
+        }
+        
+        .article-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(248, 152, 32, 0.6);
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(248, 152, 32, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(248, 152, 32, 0.3);
+        }
+        
+        .article-excerpt {
+            font-size: 1.2rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* 記事本文 */
+        .article-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            margin-bottom: 3rem;
+            position: relative;
+            border: 2px solid var(--glass-border);
+        }
+        
+        .article-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .author-intro {
+            background: linear-gradient(135deg, rgba(248, 152, 32, 0.1), rgba(255, 20, 147, 0.1));
+            border: 2px solid var(--hiroshima-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .author-intro::before {
+            content: '🌸';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--dark-bg);
+            padding: 0 10px;
+            font-size: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .author-intro h3 {
+            color: var(--hiroshima-accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.6);
+        }
+        
+        .article-content h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--java-accent);
+            font-weight: 700;
+            position: relative;
+            padding-left: 1rem;
+            text-shadow: 0 0 15px rgba(248, 152, 32, 0.5);
+        }
+        
+        .article-content h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(248, 152, 32, 0.6);
+        }
+        
+        .article-content h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--general-accent);
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(138, 255, 0, 0.4);
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-medium);
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-medium);
+        }
+        
+        .article-content strong {
+            color: var(--java-accent);
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(248, 152, 32, 0.3);
+        }
+        
+        .hiroshima-style {
+            background: rgba(255, 20, 147, 0.1);
+            border: 2px solid var(--hiroshima-accent);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            font-style: italic;
+            border-left: 4px solid var(--hiroshima-accent);
+        }
+
+        .hiroshima-style::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--hiroshima-accent), transparent, var(--hiroshima-accent));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .java-highlight {
+            background: rgba(248, 152, 32, 0.1);
+            border: 2px solid var(--java-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .java-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--java-accent), var(--general-accent));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .java-highlight h4 {
+            color: var(--java-accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(248, 152, 32, 0.5);
+        }
+        
+        /* 画像スタイル */
+        .article-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: var(--border-radius);
+            display: block;
+            margin: 2rem auto;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+            transition: transform 0.3s ease;
+        }
+
+        .article-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(248, 152, 32, 0.4);
+        }
+        
+        /* タグセクション */
+        .article-tags {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            margin-bottom: 3rem;
+            border: 2px solid var(--glass-border);
+        }
+        
+        .article-tags h3 {
+            margin-bottom: 1rem;
+            color: var(--general-accent);
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(138, 255, 0, 0.5);
+        }
+        
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .tag {
+            background: rgba(248, 152, 32, 0.1);
+            color: var(--java-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid rgba(248, 152, 32, 0.3);
+        }
+        
+        .tag:hover {
+            background: var(--java-accent);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(248, 152, 32, 0.6);
+        }
+        
+        /* シェアボタン */
+        .share-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            text-align: center;
+            margin-bottom: 3rem;
+            border: 2px solid var(--glass-border);
+        }
+        
+        .share-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--general-accent);
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(138, 255, 0, 0.5);
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .share-btn.twitter { 
+            background: linear-gradient(45deg, #1da1f2, #0d7bc9);
+        }
+        .share-btn.facebook { 
+            background: linear-gradient(45deg, #1877f2, #166fe5);
+        }
+        .share-btn.linkedin { 
+            background: linear-gradient(45deg, #0077b5, #005885);
+        }
+        .share-btn.copy { 
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* フッター */
+        .footer {
+            background: linear-gradient(135deg, #010108, #020210);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 0 1rem 4rem;
+            }
+            
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .article-header {
+                padding: 2rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .share-buttons {
+                gap: 0.8rem;
+            }
+            
+            .author-intro {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .article-content h2 {
+                font-size: 1.5rem;
+                padding-left: 0.8rem;
+            }
+            
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* アクセシビリティ */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- カスタムカーソル -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- 背景エフェクト -->
+    <div class="cyber-background"></div>
+    <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+    <div class="scanlines"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="logo">Java Art Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#about">私達の強み</a></li>
+                <li><a href="../index.html#portfolio">制作実績</a></li>
+                <li><a href="../index.html#services">サービス</a></li>
+                <li><a href="../index.html#blog" class="active">ブログ</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="article-container">
+        <!-- パンくずリスト -->
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a>
+            <span>/</span>
+            <a href="../index.html#blog">ブログ</a>
+            <span>/</span>
+            <span>Javaのぶっちゃけ話</span>
+        </nav>
+
+        <!-- 記事ヘッダー -->
+        <header class="article-header">
+            <div class="article-category">プログラミング</div>
+            <h1 class="article-title">え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h1>
+            <div class="article-meta">
+                <span>📅 2025年1月21日</span>
+                <span>👤 レイナ</span>
+                <span>⏱️ 読了時間: 8分</span>
+                <span>👁️ 1,582 views</span>
+            </div>
+            <p class="article-excerpt">
+                広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実とは？
+                親しみやすい広島弁で、Javaの本当の魅力をぶっちゃけます！
+            </p>
+        </header>
+
+        <!-- 記事本文 -->
+        <article class="article-content">
+            <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop" 
+                 alt="Java Programming" 
+                 class="article-image">
+
+            <div class="author-intro">
+                <h3>🌸 レイナの自己紹介</h3>
+                <p>
+                    みんな、こんにちは！ 広島が生んだ天才プログラマー、レイナよ。<br>
+                    「Javaってなんか古そう…」とか、「Web系ならPythonとかJavaScriptでしょ？」って思ってない？ 
+                    ぶっちゃけ、そういう声、よう聞くわ。でもね、それは大きな勘違いじゃけぇ！<br>
+                    実は2025年の今も、Javaはとんでもなくアツいんよ。今日は、あんたたちが知らんJavaの「今どき」を、正直ベースで教えてやるけんね。
+                </p>
+            </div>
+
+            <h2>昔のJavaは「重い」「複雑」？ そんなの昔の話じゃけぇ！</h2>
+            <p>
+                確かに、昔のJavaはちょっとゴツゴツしてて、動きが重かったり、設定が複雑だったりすることもあったわね。でも、それはもう遠い昔の話じゃ！
+            </p>
+            <p>
+                Javaはね、数年前から新しいバージョンが半年ごとにリリースされるようになったんよ。これで何が変わったかって？
+            </p>
+
+            <div class="java-highlight">
+                <h4>☕ 2025年のJavaはこんなに進化しとる！</h4>
+                <ul>
+                    <li><strong>どんどん速くなっとる！</strong>: 最新のJavaは、昔と比べて処理速度がめっちゃ上がっとるんよ。もう「重い」なんて言わせんわ！</li>
+                    <li><strong>書きやすくなっとる！</strong>: コードもシンプルに書ける機能が増えて、昔よりずっと「え、こんなに簡単でええん？」って思うくらい、書きやすくなっとるんよ。</li>
+                    <li><strong>開発が爆速に！</strong>: 「Spring Boot（スプリング・ブート）」みたいな便利なツールが出てきて、Webアプリとかの作るスピードがめっちゃ速くなっとるんじゃ。これを使えば、あっという間に動くものが作れるけんね。</li>
+                </ul>
+            </div>
+
+            <h2>Javaは「安定の強さ」で、今も社会を支えとるんよ！</h2>
+            <p>
+                Javaが今も選ばれとるのには、ちゃんと理由があるんじゃけぇね。
+            </p>
+
+            <h3>大規模システムはやっぱりJava！</h3>
+            <p>
+                銀行のシステムとか、みんなが毎日使うような巨大なWebサービスって、実はJavaで作られとることが多いんよ。なんでかって？ それはね、何があっても<strong>安定して動き続ける信頼性</strong>がハンパないけん！ 不具合が少なくて、ガッチリしとるんよ。
+            </p>
+
+            <div class="hiroshima-style">
+                💪 <strong>レイナのワンポイント</strong>：大手企業の基幹システムって、絶対に止まったらいけんのよ。そういう「絶対に安心」が必要な場面で、Javaは頼りになる相棒なんじゃ！
+            </div>
+
+            <h3>Androidアプリ開発はJavaが中心！</h3>
+            <p>
+                あんたのスマホに入っとるAndroidアプリ、そのほとんどがJavaかKotlin（Javaと仲良しな言語ね）で作られとるんよ。Androidがある限り、Javaの需要は尽きんわ！
+            </p>
+
+            <h3>クラウド時代にも強い！</h3>
+            <p>
+                最近流行りの「クラウド」（ネット上にあるコンピューターを使うやつね）でも、Javaはめっちゃ強いんよ。効率よく動くように進化しとるけん、これからの時代にもバッチリ合うんじゃ。
+            </p>
+
+            <div class="java-highlight">
+                <h4>🚀 2025年のJavaが活躍している分野</h4>
+                <ul>
+                    <li><strong>金融システム</strong>: 銀行、証券、保険などの重要なシステム</li>
+                    <li><strong>ECサイト</strong>: 大手通販サイトのバックエンド</li>
+                    <li><strong>ゲーム開発</strong>: Minecraft も Java で作られとるんよ！</li>
+                    <li><strong>IoT・組み込み</strong>: 家電製品や自動車のシステム</li>
+                    <li><strong>ビッグデータ</strong>: Apache Kafka、Apache Spark など</li>
+                </ul>
+            </div>
+
+            <h2>2025年、Javaを学ぶってどうなん？ レイナのぶっちゃけアドバイス！</h2>
+            <p>
+                もしあんたが今からプログラミングを始めるなら、Javaは全然「アリ」じゃけぇね！
+            </p>
+            <p>
+                「求人が多い」とか、そういう現実的な話もあるけど、何よりJavaを覚えると、<strong>「どうやって大きなシステムを作るんか」っていう、プログラミングの基礎中の基礎がしっかり身につく</strong>んよ。
+            </p>
+
+            <div class="hiroshima-style">
+                🎯 <strong>レイナの本音</strong>：流行りの言語を追いかけるのもええけど、Javaみたいな「どっしり構えたベテラン」的な言語をしっかり身につけとけば、どんな新しい技術が出てきても、怖くないんじゃけぇ！
+            </div>
+
+            <h3>Java学習のメリット（2025年版）</h3>
+            <ul>
+                <li><strong>就職・転職に有利</strong>: 企業の求人数がとにかく多い</li>
+                <li><strong>高収入が期待できる</strong>: 経験を積めば年収800万円以上も現実的</li>
+                <li><strong>安定性抜群</strong>: 一度覚えれば長期間使えるスキル</li>
+                <li><strong>コミュニティが活発</strong>: 困った時の情報が豊富</li>
+                <li><strong>他言語への応用が利く</strong>: C#、Kotlin、Scalaなども覚えやすくなる</li>
+            </ul>
+
+            <h2>「でも、やっぱり学習コストが…」って思うあんたへ</h2>
+            <p>
+                確かにJavaは、最初はちょっと覚えることが多いかもしれんわ。でもね、それは「しっかりした基礎」を身につけとるってことなんよ。
+            </p>
+            <p>
+                最近は学習環境もめっちゃ良くなっとて、無料のオンラインコースとか、YouTubeの解説動画とか、いくらでも勉強する方法があるけんね。
+            </p>
+
+            <div class="java-highlight">
+                <h4>🎓 レイナおすすめの学習ステップ</h4>
+                <ol>
+                    <li><strong>基本構文をマスター</strong>: 変数、条件分岐、繰り返し処理</li>
+                    <li><strong>オブジェクト指向を理解</strong>: クラス、継承、ポリモーフィズム</li>
+                    <li><strong>Spring Bootに挑戦</strong>: 実際にWebアプリを作ってみる</li>
+                    <li><strong>データベース連携</strong>: MySQL、PostgreSQLとの連携</li>
+                    <li><strong>実践プロジェクト</strong>: ポートフォリオ作成</li>
+                </ol>
+            </div>
+
+            <h2>まとめ：Javaは「古い」どころか、めっちゃ「今どき」じゃけぇ！</h2>
+            <p>
+                どうじゃった？ Javaに対するイメージ、ちょっと変わったかね？
+            </p>
+            <p>
+                確かに新しい言語もどんどん出てきとるけど、Javaはその中でも「安定感抜群の実力派」って感じなんよ。流行に惑わされることなく、着実にスキルアップしたいなら、Javaは間違いない選択じゃ！
+            </p>
+
+            <div class="hiroshima-style">
+                ☕ <strong>レイナからの最後のメッセージ</strong>：「古い」とか「新しい」とかじゃなくて、「役に立つかどうか」で考えてみて。Javaはこれからも、ずっと社会を支える大切な技術であり続けるけんね。あんたも一緒に、Javaでものづくりしてみんか？
+            </div>
+
+            <p style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(248, 152, 32, 0.1); border: 2px solid var(--java-accent); border-radius: 15px;">
+                <strong>🎯 Javaを学んでみたい？</strong><br>
+                AI Art Studio では、Java開発のコンサルティングや学習サポートも行っとるけんね。<br>
+                気になることがあったら、お気軽にお問い合わせしてみて！
+            </p>
+        </article>
+
+        <!-- タグセクション -->
+        <section class="article-tags">
+            <h3>関連タグ</h3>
+            <div class="tags-list">
+                <a href="#" class="tag">Java</a>
+                <a href="#" class="tag">プログラミング</a>
+                <a href="#" class="tag">2025年</a>
+                <a href="#" class="tag">広島弁</a>
+                <a href="#" class="tag">レイナ</a>
+                <a href="#" class="tag">Spring Boot</a>
+                <a href="#" class="tag">Android</a>
+                <a href="#" class="tag">エンタープライズ</a>
+            </div>
+        </section>
+
+        <!-- シェアセクション -->
+        <section class="share-section">
+            <h3>この記事をシェア</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn twitter" title="Twitterでシェア">🐦</a>
+                <a href="#" class="share-btn facebook" title="Facebookでシェア">📘</a>
+                <a href="#" class="share-btn linkedin" title="LinkedInでシェア">💼</a>
+                <a href="#" class="share-btn copy" title="リンクをコピー">🔗</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
+            <a href="../index.html#contact" style="color: #999; text-decoration: none;">お問い合わせ</a> | 
+            <a href="/privacy.html" style="color: #999; text-decoration: none;">プライバシーポリシー</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // カスタムカーソル
+            const cursor = document.getElementById('cursor');
+            let mouseX = 0, mouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            const updateCursor = () => {
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+                requestAnimationFrame(updateCursor);
+            };
+
+            updateCursor();
+
+            document.addEventListener('mousedown', () => cursor.classList.add('active'));
+            document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+            // パーティクル背景
+            const canvas = document.getElementById('particlesCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const particleCount = 30;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 2 + 1;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.color = this.getRandomColor();
+                }
+
+                getRandomColor() {
+                    const colors = [
+                        'rgba(248, 152, 32, ',
+                        'rgba(138, 255, 0, ',
+                        'rgba(0, 240, 255, ',
+                        'rgba(255, 20, 147, '
+                    ];
+                    return colors[Math.floor(Math.random() * colors.length)];
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+                    this.opacity -= 0.001;
+                    if (this.opacity <= 0) {
+                        this.opacity = Math.random() * 0.8 + 0.2;
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                    }
+                }
+
+                draw() {
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fillStyle = this.color + this.opacity + ')';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            const animate = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                requestAnimationFrame(animate);
+            };
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+
+            // シェアボタンの機能
+            const shareButtons = document.querySelectorAll('.share-btn');
+            const currentUrl = window.location.href;
+            const title = document.querySelector('.article-title').textContent;
+            
+            shareButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const platform = this.classList[1];
+                    let shareUrl = '';
+                    
+                    switch(platform) {
+                        case 'twitter':
+                            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentUrl)}&hashtags=Java,プログラミング,広島弁`;
+                            break;
+                        case 'facebook':
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                            break;
+                        case 'linkedin':
+                            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+                            break;
+                        case 'copy':
+                            navigator.clipboard.writeText(currentUrl).then(() => {
+                                const originalText = this.innerHTML;
+                                this.innerHTML = '✓';
+                                this.style.background = '#4caf50';
+                                setTimeout(() => {
+                                    this.innerHTML = originalText;
+                                    this.style.background = '';
+                                }, 2000);
+                            });
+                            return;
+                    }
+                    
+                    if (shareUrl) {
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                });
+            });
+            
+            console.log('ページビュー記録: Javaぶっちゃけ話記事（サイバーパンク版）');
+        });
+    </script>
+</body>
+</html>
