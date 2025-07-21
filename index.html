@@ -339,11 +339,12 @@
             transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 1.2s ease-out; /* ふわっと跳ねるような、よりドラマチックなアニメーション */
             backdrop-filter: blur(8px); /* セクション自体も少しぼかす */
         }
+
         section.is-visible {
             transform: translateY(0);
             opacity: 1;
         }
-        
+
         /* セクションの背景に近未来的なグリッドパターンと光る粒子！ */
         section::before {
             content: '';
@@ -352,452 +353,280 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(138, 255, 0, 0.2) 1px, transparent 1px), linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(138, 255, 0, 0.2) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
             background-size: 25px 25px, 50px 50px, 50px 50px;
             opacity: 0.8;
             z-index: 0;
             animation: sectionGridPulse 4s infinite alternate;
         }
+
         @keyframes sectionGridPulse {
             0% { opacity: 0.7; transform: scale(1); }
             100% { opacity: 0.9; transform: scale(1.01); }
         }
-        h1, h2, h3 {
+
+        h2 {
             font-family: 'Orbitron', sans-serif;
-            color: var(--general-accent);
+            font-size: 3.5em; /* 迫力満点 */
+            color: var(--ai-accent); /* AIの色で輝かせる */
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
+            text-shadow: 0 0 25px var(--ai-accent), 0 0 40px rgba(0, 224, 255, 0.7);
             position: relative;
             z-index: 1;
-            text-shadow: 0 0 20px rgba(138, 255, 0, 0.9), 0 0 35px rgba(138, 255, 0, 0.6); /* 強烈な光り */
-        }
-        h2 span {
-            display: inline-block;
-            padding: 0 25px;
-            position: relative;
-        }
-        h2 span:nth-child(1) {
-            color: var(--ai-accent);
-        }
-        h2 span:nth-child(2) {
-            color: var(--python-accent);
-        }
-        h2 span:nth-child(3) {
-            color: var(--java-accent);
-        }
-        /* セクションタイトルに未来的な光る区切り線とアニメーション */
-        h2::after {
-            content: '';
-            display: block;
-            width: 120px; /* もっと長く */
-            height: 5px; /* 太く */
-            background: linear-gradient(90deg, var(--ai-accent), var(--python-accent), var(--java-accent), var(--general-accent));
-            margin: 25px auto 0;
-            border-radius: 4px;
-            box-shadow: 0 0 25px var(--general-accent), 0 0 40px rgba(138, 255, 0, 0.8);
-            animation: dividerGlow 3s infinite alternate;
-        }
-        @keyframes dividerGlow {
-            0% { transform: scaleX(0.8); box-shadow: 0 0 15px var(--general-accent); }
-            100% { transform: scaleX(1.1); box-shadow: 0 0 30px var(--general-accent); }
+            animation: headingGlow 3s infinite alternate;
         }
 
-        p {
-            color: var(--text-light);
-            font-size: 1.1em;
-            text-align: center;
-            margin-bottom: 25px;
-            line-height: 1.8;
+        @keyframes headingGlow {
+            0% { text-shadow: 0 0 20px var(--ai-accent); }
+            100% { text-shadow: 0 0 35px var(--ai-accent), 0 0 60px rgba(0, 224, 255, 0.8); }
         }
 
-        .grid-container {
+        .services-grid, .portfolio-grid, .testimonials-grid, .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* カードサイズに合わせて自動調整 */
-            gap: 40px; /* 広い間隔 */
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 広めに調整 */
+            gap: 60px; /* 広げる */
+            position: relative;
+            z-index: 1;
         }
 
-        .card {
+        .service-card, .portfolio-item, .testimonial-card, .blog-post {
             background-color: var(--card-bg);
-            border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 15px 35px var(--shadow-light);
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 2px solid var(--border-glow); /* カードにも光る枠 */
-            position: relative;
-            overflow: hidden;
-            transform: scale(1); /* 初期スケール */
-        }
-        .card::before { /* カードの背景に光るパターン */
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(0, 224, 255, 0.1) 0%, transparent 70%);
-            animation: cardPatternFlow 15s linear infinite;
-            z-index: 0;
-            opacity: 0.5;
-        }
-        @keyframes cardPatternFlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .card:hover {
-            transform: translateY(-15px) scale(1.05); /* ぐっと浮き上がり、拡大 */
-            box-shadow: 0 25px 60px var(--shadow-heavy);
-            border-color: var(--ai-accent); /* ホバーで色が変わる */
-        }
-        .card h3 {
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            color: var(--ai-accent); /* 個性的な色に */
-            text-shadow: 0 0 15px var(--ai-accent);
-            position: relative;
-            z-index: 1;
-        }
-        .card p {
-            font-size: 1em;
-            color: var(--text-medium);
-            position: relative;
-            z-index: 1;
-        }
-
-        .icon-container {
-            font-size: 4em;
-            margin-bottom: 20px;
-            color: var(--python-accent); /* 個性的な色に */
-            text-shadow: 0 0 20px var(--python-accent);
-            position: relative;
-            z-index: 1;
-            animation: iconPulse 2s infinite alternate; /* アイコンも脈動 */
-        }
-        @keyframes iconPulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
-        }
-
-        /* ポートフォリオセクション */
-        #portfolio .grid-container {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-item {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-light);
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 2px solid rgba(0, 224, 255, 0.6); /* 薄いサイバーブルーの枠 */
-            position: relative;
-        }
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease-out;
-        }
-        .portfolio-item:hover img {
-            transform: scale(1.08); /* 拡大 */
-        }
-        .portfolio-info {
-            padding: 25px;
-            text-align: left;
-            position: relative;
-            z-index: 1;
-        }
-        .portfolio-info h3 {
-            font-size: 1.4em;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--ai-accent);
-            text-shadow: none; /* ここでは光らせない */
-            text-align: left;
-        }
-        .portfolio-info p {
-            font-size: 0.95em;
-            color: var(--text-medium);
-            text-align: left;
-            margin-bottom: 15px;
-        }
-        .portfolio-link {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--ai-accent), var(--java-accent));
-            color: var(--dark-bg);
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: all 0.4s ease-out;
-            box-shadow: 0 0 15px var(--ai-accent);
-        }
-        .portfolio-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px var(--ai-accent);
-            background: linear-gradient(45deg, var(--java-accent), var(--ai-accent));
-        }
-
-        /* お客様の声セクション */
-        #testimonials .carousel-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            margin: 50px auto;
             border-radius: 20px;
             box-shadow: 0 15px 40px var(--shadow-heavy);
-            border: 3px solid var(--border-glow);
-        }
-        #testimonials .testimonial-carousel {
-            display: flex;
-            transition: transform 0.8s ease-in-out;
-        }
-        #testimonials .testimonial-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-            padding: 60px;
             text-align: center;
-            background-color: var(--card-bg);
-            border-radius: 20px;
-        }
-        #testimonials .testimonial-text {
-            font-style: italic;
-            font-size: 1.2em;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-        #testimonials .testimonial-author {
-            font-weight: bold;
-            color: var(--general-accent);
-            font-size: 1.1em;
-            text-shadow: 0 0 10px var(--general-accent);
-        }
-        #testimonials .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        #testimonials .carousel-controls button {
-            background-color: rgba(0, 224, 255, 0.6);
-            border: none;
-            color: var(--dark-bg);
-            padding: 15px 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5em;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 15px rgba(0, 224, 255, 0.8);
-        }
-        #testimonials .carousel-controls button:hover {
-            background-color: rgba(0, 224, 255, 0.9);
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(0, 224, 255, 1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid var(--general-accent); /* 枠を強調 */
+            position: relative;
+            overflow: hidden;
         }
 
-        /* フォームセクション */
-        #contact .contact-form {
+        .service-card::before, .portfolio-item::before, .testimonial-card::before, .blog-post::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(138, 255, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+            pointer-events: none;
+        }
+
+        .service-card:hover, .portfolio-item:hover, .testimonial-card:hover, .blog-post:hover {
+            transform: translateY(-15px) scale(1.03); /* 浮き上がり、拡大 */
+            box-shadow: 0 25px 60px var(--shadow-heavy), 0 0 60px var(--general-accent); /* 強烈な影と光 */
+            border-color: var(--general-accent);
+            background: linear-gradient(145deg, var(--card-bg), rgba(16,16,43, 0.8)); /* ホバーでグラデーション */
+        }
+        .service-card:hover::before, .portfolio-item:hover::before, .testimonial-card:hover::before, .blog-post:hover::before {
+            opacity: 1;
+        }
+
+        .service-card h3, .portfolio-item h3, .testimonial-card h3, .blog-post h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.8em;
+            color: var(--python-accent); /* Pythonの色で */
+            margin-top: 20px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--python-accent);
+        }
+
+        .service-card p, .portfolio-item p, .testimonial-card p, .blog-post p {
+            color: var(--text-medium);
+            font-size: 1.1em;
+        }
+
+        .icon {
+            font-size: 4em;
+            color: var(--java-accent); /* Javaの色でアイコンを輝かせる */
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px var(--java-accent);
+        }
+
+        .portfolio-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 224, 255, 0.5); /* 画像も光らせる */
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card .author {
+            font-weight: bold;
+            color: var(--text-light);
+            font-size: 1.2em;
+        }
+
+        .contact-form {
             background-color: var(--card-bg);
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 15px 40px var(--shadow-heavy);
-            border: 3px solid var(--border-glow);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             max-width: 800px;
             margin: 0 auto;
-        }
-        #contact .contact-form label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: var(--general-accent);
-            text-shadow: 0 0 5px var(--general-accent);
-        }
-        #contact .contact-form input[type="text"],
-        #contact .contact-form input[type="email"],
-        #contact .contact-form textarea {
-            width: calc(100% - 20px);
-            padding: 15px;
-            margin-top: 8px;
-            margin-bottom: 25px;
-            border: 2px solid rgba(138, 255, 0, 0.5);
-            border-radius: 10px;
-            background-color: rgba(16, 16, 43, 0.8);
-            color: var(--text-light);
-            font-size: 1em;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: inset 0 0 10px rgba(138, 255, 0, 0.3);
-        }
-        #contact .contact-form input[type="text"]:focus,
-        #contact .contact-form input[type="email"]:focus,
-        #contact .contact-form textarea:focus {
-            border-color: var(--general-accent);
-            box-shadow: 0 0 15px var(--general-accent), inset 0 0 15px var(--general-accent);
-            outline: none;
-        }
-        #contact .contact-form textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-        #contact .contact-form button {
-            display: block;
-            width: 100%;
-            padding: 20px 0;
-            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 40px;
-            font-size: 1.4em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 0 25px var(--java-accent);
+            border: 2px solid var(--general-accent);
             position: relative;
-            overflow: hidden;
-        }
-        #contact .contact-form button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -120%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-            transition: left 0.6s ease-out;
-        }
-        #contact .contact-form button:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 0 40px var(--java-accent), 0 0 60px var(--general-accent);
-        }
-        #contact .contact-form button:hover::before {
-            left: 120%;
+            z-index: 1;
         }
 
-        /* フッター */
+        .contact-form label {
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 15px;
+            border: 2px solid var(--general-accent);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: var(--text-light);
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: inset 0 0 8px rgba(138, 255, 0, 0.3);
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--ai-accent);
+            box-shadow: inset 0 0 15px var(--ai-accent), 0 0 20px var(--ai-accent);
+        }
+
+        .contact-form button {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            color: var(--dark-bg);
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 25px var(--ai-accent);
+            border: 2px solid rgba(0, 224, 255, 0.7);
+        }
+
+        .contact-form button:hover {
+            background: linear-gradient(45deg, var(--python-accent), var(--ai-accent));
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px var(--ai-accent), 0 0 60px var(--python-accent);
+        }
+
         footer {
-            background-color: #050518;
+            background-color: #0d0d2a;
             color: var(--text-medium);
             text-align: center;
-            padding: 60px 0;
-            border-top: 3px solid var(--general-accent);
-            box-shadow: 0 -8px 30px var(--shadow-heavy);
+            padding: 50px 0;
+            margin-top: 100px;
+            border-top: 4px solid var(--general-accent);
+            box-shadow: 0 -6px 25px var(--shadow-heavy);
             position: relative;
             overflow: hidden;
         }
-        footer::before { /* フッターにも光るグリッド */
+
+        footer::before { /* フッターの光る線 */
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.1;
-            z-index: 0;
-            animation: gridFlow 10s linear infinite;
-        }
-        @keyframes gridFlow {
-            0% { background-position: 0 0; }
-            100% { background-position: 100px 100px; }
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--general-accent), transparent);
+            animation: footerLineFlow 4s infinite linear;
         }
 
-        footer p {
-            font-size: 1em;
-            margin: 0;
-            position: relative;
-            z-index: 1;
+        @keyframes footerLineFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-        footer .social-links {
-            margin-top: 25px;
-            position: relative;
-            z-index: 1;
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
         }
-        footer .social-links a {
-            color: var(--general-accent);
-            font-size: 2em;
-            margin: 0 18px;
-            transition: all 0.4s ease;
-            text-shadow: 0 0 10px var(--general-accent);
-        }
-        footer .social-links a:hover {
+
+        .footer-links li a {
             color: var(--text-light);
-            transform: translateY(-5px) scale(1.2);
-            text-shadow: 0 0 20px var(--general-accent), 0 0 30px var(--general-accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            text-shadow: 0 0 5px rgba(255,255,255,0.3);
         }
 
-        /* レスポンシブデザイン！スマホでもタブレットでもバッチリ表示させるで！ */
+        .footer-links li a:hover {
+            color: var(--general-accent);
+            text-shadow: 0 0 15px var(--general-accent);
+        }
+
+        /* レスポンシブデザイン！スマホでもバッチリ見せるで！ */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 30px;
             }
-            header h1 {
-                font-size: 5em;
-            }
-            header p {
-                font-size: 1.5em;
-            }
-            nav ul li {
-                margin: 0 25px;
-            }
-            section {
-                padding: 80px;
-            }
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 100px 0 60px;
-            }
             header h1 {
-                font-size: 3.5em;
-                margin-bottom: 20px;
+                font-size: 3.5em; /* スマホでは小さめに */
             }
+
             header p {
-                font-size: 1.2em;
+                font-size: 1.4em;
             }
+
             .view-works-button {
                 padding: 18px 40px;
                 font-size: 1.2em;
-                margin-top: 40px;
             }
+
             nav ul {
                 flex-direction: column;
+                gap: 15px;
             }
+
             nav ul li {
-                margin: 10px 0;
+                margin: 0;
             }
+
             section {
                 padding: 60px 30px;
-                margin-bottom: 60px;
             }
+
             h2 {
-                font-size: 2em;
-                margin-bottom: 30px;
+                font-size: 2.5em;
+                margin-bottom: 40px;
             }
-            .grid-container {
+
+            .services-grid, .portfolio-grid, .testimonials-grid, .blog-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
-            .card {
-                padding: 30px;
-            }
-            #testimonials .testimonial-slide {
-                padding: 40px 20px;
-            }
-            #testimonials .testimonial-text {
-                font-size: 1em;
-            }
-            #contact .contact-form {
+
+            .contact-form {
                 padding: 30px;
             }
         }
@@ -806,281 +635,214 @@
             header h1 {
                 font-size: 2.5em;
             }
+
             header p {
-                font-size: 1em;
+                font-size: 1.1em;
             }
+
             .view-works-button {
                 padding: 15px 30px;
                 font-size: 1em;
             }
-            nav ul li a {
-                font-size: 1em;
-            }
+
             section {
                 padding: 40px 20px;
+                margin-bottom: 60px;
             }
+
             h2 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
-            .portfolio-info h3 {
-                font-size: 1.2em;
-            }
-            footer {
-                padding: 40px 0;
-            }
-            footer .social-links a {
-                font-size: 1.5em;
-                margin: 0 10px;
+            
+            .footer-links {
+                gap: 15px;
             }
         }
-
-        /* スライダーのCSS */
-        #hero-slider {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0; /* セクションのデフォルトパディングを無効化 */
-            margin: 0; /* セクションのデフォルトマージンを無効化 */
-            background: transparent; /* 背景を透明に */
-            box-shadow: none; /* 影をなくす */
-            border: none; /* 枠線をなくす */
-            transform: none; /* アニメーションを無効化 */
-            opacity: 1; /* 透明度を無効化 */
-            transition: none; /* トランジションを無効化 */
-            height: 80vh; /* 画面の高さの80% */
-            max-height: 800px; /* 最大高さを設定 */
-        }
-
-        #hero-slider.is-visible { /* セクション表示アニメーションを上書き */
-            transform: none;
-            opacity: 1;
-        }
-
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 25px;
-            box-shadow: 0 0 50px rgba(0, 224, 255, 0.7); /* 強烈なネオングロー */
-            border: 4px solid var(--ai-accent); /* サイバーブルーの枠線 */
-            background-color: rgba(16, 16, 43, 0.8); /* 半透明の背景 */
-        }
-
-        .slider {
-            display: flex;
-            height: 100%;
-            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* より滑らかに、跳ねるような */
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7) contrast(1.1); /* 少し暗く、コントラストを上げてSF感を出す */
-            transition: filter 0.5s ease-out;
-        }
-
-        .slide:hover img {
-            filter: brightness(1) contrast(1); /* ホバーで明るく、鮮明に */
-        }
-
-        .slide-caption {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translate(-50%, 30px); /* 最初は少し下に隠す */
-            opacity: 0; /* 最初は透明 */
-            color: var(--text-light);
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 40px;
-            border-radius: 15px;
-            max-width: 80%;
-            box-shadow: 0 0 30px rgba(0, 224, 255, 0.5); /* キャプションにも光 */
-            border: 2px solid var(--ai-accent);
-            animation: captionFadeIn 1s forwards 0.4s; /* アニメーションを追加 */
-            backdrop-filter: blur(5px); /* 背景をぼかす */
-        }
-
-        @keyframes captionFadeIn {
-            0% { transform: translate(-50%, 30px); opacity: 0; }
-            100% { transform: translate(-50%, 0); opacity: 1; }
-        }
-
-        .slide-caption h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5em;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--general-accent);
-            text-shadow: 0 0 20px var(--general-accent);
-        }
-
-        .slide-caption p {
-            font-size: 1.2em;
-            margin: 0;
-            color: var(--text-medium);
-        }
-
-        .slider-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            z-index: 10;
-            padding: 0 30px;
-            box-sizing: border-box;
-        }
-
-        .slider-controls button {
-            background-color: rgba(0, 224, 255, 0.7);
-            border: none;
-            color: var(--dark-bg);
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.8em;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(0, 224, 255, 0.8);
-            backdrop-filter: blur(8px);
-        }
-
-        .slider-controls button:hover {
-            background-color: rgba(0, 224, 255, 1);
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0, 224, 255, 1), 0 0 50px rgba(0, 224, 255, 0.6);
-        }
-
-        .slide-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 10;
-        }
-
-        .slide-indicator {
-            width: 15px;
-            height: 15px;
-            background-color: rgba(138, 255, 0, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border: 2px solid rgba(138, 255, 0, 0.8);
-            box-shadow: 0 0 10px rgba(138, 255, 0, 0.6);
-        }
-
-        .slide-indicator.active {
-            background-color: var(--general-accent);
-            transform: scale(1.2);
-            box-shadow: 0 0 20px var(--general-accent), 0 0 30px var(--general-accent);
-        }
-
-        /* スライダーのメディアクエリ */
-        @media (max-width: 768px) {
-            #hero-slider {
-                height: 60vh;
-            }
-            .slide-caption {
-                padding: 15px 20px;
-                bottom: 5%;
-            }
-            .slide-caption h3 {
-                font-size: 1.8em;
-            }
-            .slide-caption p {
-                font-size: 1em;
-            }
-            .slider-controls button {
-                padding: 10px;
-                font-size: 1.5em;
-            }
-            .slide-indicators {
-                bottom: 20px;
-                gap: 10px;
-            }
-            .slide-indicator {
-                width: 12px;
-                height: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #hero-slider {
-                height: 50vh;
-            }
-            .slide-caption {
-                padding: 10px 15px;
-            }
-            .slide-caption h3 {
-                font-size: 1.5em;
-            }
-            .slide-caption p {
-                font-size: 0.9em;
-            }
-            .slider-controls button {
-                padding: 8px;
-                font-size: 1.2em;
-            }
-            .slide-indicators {
-                bottom: 15px;
-                gap: 8px;
-            }
-        }
-
     </style>
 </head>
 <body>
     <div class="background-effect"></div>
     <div class="particles"></div>
+
+    <header>
+        <div class="hero-background-overlay"></div>
+        <h1>顧客の未来を創るスタジオ</h1>
+        <p>AI、Python、Javaの力で、あなたのビジネスを次の次元へ</p>
+        <a href="#portfolio" class="view-works-button">作品を見る</a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">私たちについて</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#portfolio">制作実績</a></li>
+            <li><a href="#testimonials">お客様の声</a></li>
+            <li><a href="#blog">ブログ</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about" class="container">
+            <h2>私たちについて</h2>
+            <p>
+                AI & Python & Java Studioは、最先端の技術を駆使して、お客様のビジネス課題を解決し、新たな価値を創造するプロフェッショナル集団です。私たちは、人工知能、Pythonプログラミング、Java開発の専門知識を融合させ、革新的なソリューションを提供します。お客様のビジョンを実現するため、常に最高の品質と創造性を追求します。
+            </p>
+            <p>
+                私たちのミッションは、技術の力で未来をデザインし、お客様のビジネスの成長を加速させることです。データ分析からカスタムソフトウェア開発、AIモデルの構築まで、幅広いニーズに対応し、お客様の期待を超える結果をお届けします。
+            </p>
+        </section>
+
+        <section id="services" class="container">
+            <h2>サービス</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">🤖</div>
+                    <h3>AIソリューション開発</h3>
+                    <p>最先端のAI技術を活用し、ビジネスプロセスの自動化、データ分析、予測モデリングなど、カスタムAIソリューションを開発します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🐍</div>
+                    <h3>Python開発</h3>
+                    <p>ウェブアプリケーション、データサイエンス、自動化スクリプトなど、Pythonを用いた効率的で堅牢なシステムを構築します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">☕</div>
+                    <h3>Javaシステム開発</h3>
+                    <p>大規模なエンタープライズシステム、Androidアプリ、高性能なバックエンドサービスなど、Javaによる安定したシステムを提供します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">✨</div>
+                    <h3>データ分析・可視化</h3>
+                    <p>お客様のデータを深く分析し、ビジネスインサイトを提供。分かりやすいダッシュボードやレポートで意思決定をサポートします。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🌐</div>
+                    <h3>クラウドインテグレーション</h3>
+                    <p>AWS, Azure, GCPなどのクラウドプラットフォームを活用し、スケーラブルでセキュアなシステム構築・移行を支援します。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🚀</div>
+                    <h3>DevOps支援</h3>
+                    <p>開発から運用までの一連のプロセスを自動化し、ソフトウェア開発のスピードと品質を向上させるDevOpsプラクティスを導入します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2>制作実績</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="placeholder_ai_art1.jpg" alt="AI生成アートワーク">
+                    <h3>AIアートジェネレーター</h3>
+                    <p>独自のAIアルゴリズムで、お客様のイメージを瞬時にアート作品に変換するツールを開発。</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="placeholder_web_app.jpg" alt="Pythonウェブアプリケーション">
+                    <h3>不動産データ分析ウェブアプリ</h3>
+                    <p>PythonとDjangoを用いた、不動産市場のトレンドを分析・可視化するウェブプラットフォーム。</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="placeholder_enterprise_system.jpg" alt="Javaエンタープライズシステム">
+                    <h3>大規模顧客管理システム</h3>
+                    <p>Spring BootとMicroservicesアーキテクチャで構築された、高性能でスケーラブルなJavaベースのCRMシステム。</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="placeholder_data_dash.jpg" alt="データダッシュボード">
+                    <h3>製造業向け生産性ダッシュボード</h3>
+                    <p>リアルタイムデータを統合し、生産ラインの効率を向上させるインタラクティブなダッシュボードを構築。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2>お客様の声</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"AI & Python & Java Studioのおかげで、私たちのビジネスは劇的に変わりました。彼らのAIソリューションは、想像以上の成果をもたらしています。"</p>
+                    <div class="author">- 株式会社X CEO</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Python開発のスピードと品質に驚きました。私たちの要求を正確に理解し、期待を超えるシステムを構築してくれました。"</p>
+                    <div class="author">- スタートアップY CTO</div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Javaシステムの安定性と堅牢性は素晴らしいです。長期的なパートナーとして、今後も信頼して依頼できます。"</p>
+                    <div class="author">- 大手企業Z IT部長</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="container">
+            <h2>最新情報</h2>
+            <div class="blog-grid">
+                <div class="blog-post">
+                    <h3>AI最新トレンド：生成AIがもたらすビジネス変革</h3>
+                    <p>2025年7月1日</p>
+                    <p>生成AIの進化がビジネスにもたらす影響について深掘りします。</p>
+                </div>
+                <div class="blog-post">
+                    <h3>Pythonによるデータパイプライン構築のベストプラクティス</h3>
+                    <p>2025年6月20日</p>
+                    <p>効率的でスケーラブルなデータパイプラインを構築するための実践的なガイド。</p>
+                </div>
+                <div class="blog-post">
+                    <h3>Java 22の新機能とエンタープライズ開発への影響</h3>
+                    <p>2025年6月10日</p>
+                    <p>最新のJavaバージョンが、大規模システム開発にどのようなメリットをもたらすか。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>お問い合わせ</h2>
+            <p style="text-align: center; font-size: 1.2em; color: var(--text-medium); margin-bottom: 40px;">
+                プロジェクトのご相談、ご質問など、お気軽にお問い合わせください。
+            </p>
+            <form class="contact-form">
+                <label for="name">お名前:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">メールアドレス:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">メッセージ:</label>
+                <textarea id="message" name="message" rows="8" required></textarea>
+
+                <button type="submit">送信</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
+        <ul class="footer-links">
+            <li><a href="#about">私たちについて</a></li>
+            <li><a href="#services">サービス</a></li>
+            <li><a href="#portfolio">制作実績</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </footer>
+
     <script>
+        // ここから稲妻エフェクトのJavaScriptコード
         document.addEventListener('DOMContentLoaded', () => {
-            // パーティクル生成スクリプト
-            const particlesContainer = document.querySelector('.particles');
-            const numParticles = 80; // パーティクル数を増やす
-
-            for (let i = 0; i < numParticles; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                const size = Math.random() * 4 + 2; // サイズを調整
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.setProperty('--x', `${Math.random() * 100}vw`);
-                particle.style.setProperty('--y', `${Math.random() * 100}vh`);
-                particle.style.setProperty('--s', `${Math.random() * 1.5 + 0.5}`); // スケール変化
-                particle.style.animationDelay = `${Math.random() * 5}s`; // アニメーション開始をずらす
-                particlesContainer.appendChild(particle);
-            }
-
-            // 稲妻エフェクトのスクリプトじゃ！
             const body = document.body;
-            function createLightning() {
+            const createLightning = (event) => {
                 const lightning = document.createElement('div');
                 lightning.classList.add('lightning');
                 body.appendChild(lightning);
 
-                const startX = Math.random() * window.innerWidth;
-                const startY = Math.random() * window.innerHeight;
+                const startX = event.clientX;
+                const startY = event.clientY;
                 const endX = Math.random() * window.innerWidth;
                 const endY = Math.random() * window.innerHeight;
 
-                const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
-                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                const deltaX = endX - startX;
+                const deltaY = endY - startY;
+                const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
 
                 lightning.style.left = `${startX}px`;
                 lightning.style.top = `${startY}px`;
@@ -1104,105 +866,106 @@
                 lightning.addEventListener('animationend', () => {
                     lightning.remove();
                 });
-            }
+            };
 
             // 稲妻を定期的に発生させる（例: 0.5秒から3秒の間隔でランダム）
             setInterval(() => {
-                createLightning();
-            }, Math.random() * 2500 + 500); // 0.5秒から3秒
+                const randomX = Math.random() * window.innerWidth;
+                const randomY = Math.random() * window.innerHeight;
+                createLightning({ clientX: randomX, clientY: randomY });
+            }, Math.random() * 2500 + 500); // 0.5秒から3秒の間隔
 
-            // Intersection Observer APIでセクションの表示アニメーションを制御
+            // 背景パーティクルの生成
+            const particlesContainer = document.querySelector('.particles');
+            const numParticles = 100;
+
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 4 + 1; // 1px to 5px
+                const x = Math.random() * 100 + 'vw';
+                const y = Math.random() * 100 + 'vh';
+                const delay = Math.random() * 5; // 0s to 5s delay
+                const duration = Math.random() * 5 + 5; // 5s to 10s duration
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.setProperty('--x', x);
+                particle.style.setProperty('--y', y);
+                particle.style.setProperty('--s', Math.random() * 1.5 + 0.5); // scale
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationIterationCount = 'infinite';
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // スクロール時のセクション表示アニメーション
             const sections = document.querySelectorAll('section');
             const observerOptions = {
-                root: null, // ビューポートをルートとする
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.2 // 要素の20%が見えたら発火
+                threshold: 0.1
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); // 一度表示されたら監視をやめる
+                    } else {
+                        // オプション：スクロールで非表示になったらアニメーションをリセットしたい場合
+                        // entry.target.classList.remove('is-visible');
                     }
                 });
             }, observerOptions);
 
             sections.forEach(section => {
-                observer.observe(section);
+                sectionObserver.observe(section);
             });
-
-            // スライダースクリプト
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            const slideIndicatorsContainer = document.querySelector('.slide-indicators');
-
-            let currentIndex = 0;
-            let slideInterval; // 自動スライドのインターバルID
-
-            // インジケーターの生成
-            if (slideIndicatorsContainer) {
-                slides.forEach((_, index) => {
-                    const indicator = document.createElement('div');
-                    indicator.classList.add('slide-indicator');
-                    if (index === 0) {
-                        indicator.classList.add('active');
-                    }
-                    indicator.addEventListener('click', () => {
-                        currentIndex = index;
-                        updateSlider();
-                    });
-                    slideIndicatorsContainer.appendChild(indicator);
-                });
-            }
-
-            const indicators = document.querySelectorAll('.slide-indicator');
-
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-                
-                // インジケーターのアクティブ状態を更新
-                indicators.forEach((indicator, index) => {
-                    if (index === currentIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-                updateCaptionAnimation(); // キャプションアニメーションを更新
-                resetAutoSlide(); // スライドが手動で操作されたら自動スライドをリセット
-            }
-
-            function startAutoSlide() {
-                slideInterval = setInterval(() => {
-                    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
-                    updateSlider();
-                }, 5000); // 5秒ごとにスライド
-            }
-
-            function resetAutoSlide() {
-                clearInterval(slideInterval);
-                startAutoSlide();
-            }
-
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
-                updateSlider();
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
-                updateSlider();
-            });
-
-            // 初期表示
-            if (slides.length > 0) {
-                updateSlider();
-                startAutoSlide(); // ページ読み込み時に自動スライドを開始
-            }
         });
+
+        // ナビゲーションスクロールスムース＆アクティブハイライト
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelectorAll('nav ul li a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - document.querySelector('nav').offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // スクロールに応じてナビゲーションのアクティブ状態を更新
+        window.addEventListener('scroll', () => {
+            let currentActive = '';
+            const sections = document.querySelectorAll('section'); // ここで再取得
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - document.querySelector('nav').offsetHeight;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    currentActive = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav ul li a').forEach(anchor => {
+                anchor.classList.remove('active');
+                if (anchor.getAttribute('href').includes(currentActive)) {
+                    anchor.classList.add('active');
+                }
+            });
+        });
+
     </script>
 </body>
 </html>
