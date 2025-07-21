@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ケーススタディ：AIと建築の融合 - 魅惑のトカゲ像</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #4ecdc4;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-light: #ffffff;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-dark: rgba(0, 0, 0, 0.9);
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-accent: linear-gradient(135deg, #ff6b6b, var(--accent-color));
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            margin-top: 80px; /* ヘッダーの高さ分 */
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .article-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .article-hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 2rem;
+        }
+        
+        .article-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .article-content h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary-color);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-primary);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        /* Header and Footer styles from portfolio.html for consistency */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--bg-dark);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-color);
+            background: rgba(78, 205, 196, 0.1);
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* シンプルにするためモバイルでは非表示 */
+            }
+            .nav {
+                justify-content: center;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">🎨 AI Art Studio</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#about">会社概要</a></li>
+                <li><a href="portfolio.html">制作実績</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="article-hero">
+            <img src="IMG_4671.jpg" alt="青いトカゲの像のAIアート">
+            <h1>AIと伝統が織りなすアート：都市空間の守護者</h1>
+            <p class="article-meta">公開日: 2025年7月21日 | カテゴリ: 公共アート</p>
+        </section>
+
+        <section class="article-content">
+            <p>
+                この作品は、AI生成技術と伝統的なモザイクアートの融合を試みたものです。青いトカゲの像は、スペインの建築家アントニ・ガウディの作品群からインスピレーションを得て、AIがその特徴的なスタイルと色彩を学習し、再構築しました。デジタルとアナログが融合することで、都市空間に新たな息吹を吹き込むことを目指しました。
+            </p>
+            <h2>デザインプロセス</h2>
+            <p>
+                AIは、ガウディの建築様式や色彩パターンを分析し、数多くのデザイン案を生成しました。その中から最も魅力的なトカゲのフォルムと、周囲のモザイクタイルとの調和が取れたデザインを選定。最終的には、実際の素材感を表現するために、AIによるテクスチャ生成と、手作業による細部の調整を組み合わせて完成させました。
+            </p>
+            <h2>都市景観への影響</h2>
+            <p>
+                このトカゲ像は、公共の場所に設置されることを想定しており、訪れる人々に喜びと驚きを与えることを目的としています。AIアートが、単なるデジタルデータとしてだけでなく、物理的な空間において人々とインタラクションする新たな可能性を示唆しています。歴史的な建造物と現代のAI技術が共存することで、街の魅力がさらに高まるでしょう。
+            </p>
+            <a href="portfolio.html" class="back-button">ポートフォリオに戻る</a>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html">ホーム</a>
+            <a href="index.html#about">会社概要</a>
+            <a href="portfolio.html">制作実績</a>
+            <a href="index.html#services">サービス</a>
+            <a href="index.html#contact">お問い合わせ</a>
+        </div>
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
+            企業向けAI画像生成サービス | プライバシーポリシー | 利用規約
+        </p>
+    </footer>
+</body>
+</html>
