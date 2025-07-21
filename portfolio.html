@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO最適化 -->
     <title>制作実績｜AI画像生成サービス - AI Art Studio</title>
     <meta name="description" content="AI Art Studioの企業向けAI画像生成サービス制作実績。Stable Diffusion・Midjourneyを活用した企業ブランディング、広告クリエイティブ、ウェブサイト素材の制作事例をご紹介。">
     <meta name="keywords" content="AI画像生成,制作実績,ポートフォリオ,企業ブランディング,広告制作,デジタルクリエイティブ,Stable Diffusion,Midjourney">
     <meta name="author" content="AI Art Studio">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="制作実績｜AI画像生成サービス - AI Art Studio">
     <meta property="og:description" content="企業向けAI画像生成サービスの制作実績。高品質なブランディング素材、広告クリエイティブの制作事例をご紹介。">
     <meta property="og:url" content="https://aistudio.netlify.app/portfolio.html">
     <meta property="og:image" content="https://aistudio.netlify.app/portfolio-og.jpg">
     
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="制作実績｜AI画像生成サービス">
     <meta name="twitter:description" content="企業向けAI画像生成サービスの制作実績をご紹介">
     
-    <!-- カノニカルURL -->
     <link rel="canonical" href="https://aistudio.netlify.app/portfolio.html">
     
-    <!-- 構造化データ -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -59,27 +54,24 @@
     }
     </script>
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
         :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #4ecdc4;
-            --text-primary: #333333;
-            --text-secondary: #666666;
-            --text-light: #ffffff;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-dark: rgba(0, 0, 0, 0.9);
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
-            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --gradient-accent: linear-gradient(135deg, #ff6b6b, var(--accent-color));
-            --border-radius: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary-neon: #00f0ff; /* シアン */
+            --secondary-neon: #ff00c0; /* マゼンタ */
+            --accent-neon: #00ff88; /* エメラルド */
+            --dark-bg: #1a0a2c; /* 深い宇宙の紫 */
+            --darker-bg: #0d041a; /* さらに深い背景 */
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-glow: rgba(0, 240, 255, 0.4);
+            --shadow-glow: rgba(0, 240, 255, 0.2);
+            --transition-speed: 0.3s ease-in-out;
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
         
         * {
@@ -89,48 +81,62 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
+            color: var(--text-light);
+            background: var(--darker-bg);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at top right, var(--dark-bg) 0%, transparent 50%),
+                              radial-gradient(circle at bottom left, var(--dark-bg) 0%, transparent 50%);
+            background-repeat: no-repeat;
+            background-size: 80% 80%;
         }
         
+        /* Utility Classes */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         /* Header */
         .header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--bg-dark);
-            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.6); /* より暗く透明に */
+            backdrop-filter: blur(15px);
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(var(--primary-neon), 0.2); /* ネオンボーダー */
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.1);
         }
         
         .nav {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--text-light);
+            color: var(--primary-neon); /* ネオンカラー */
             text-decoration: none;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--primary-neon);
+            transition: var(--transition-speed);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 15px var(--primary-neon), 0 0 30px var(--primary-neon);
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem; /* 間隔を広げる */
             align-items: center;
         }
         
@@ -139,13 +145,33 @@
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
+            border-radius: 8px;
+            transition: var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .nav-links a:hover::before, .nav-links a.active::before {
+            transform: scaleX(1);
+            transform-origin: left;
         }
         
         .nav-links a:hover, .nav-links a.active {
-            color: var(--accent-color);
-            background: rgba(78, 205, 196, 0.1);
+            color: var(--primary-neon);
+            text-shadow: 0 0 8px var(--primary-neon);
         }
         
         .hamburger {
@@ -156,28 +182,31 @@
         }
         
         .hamburger span {
-            width: 25px;
+            width: 28px; /* 少し大きく */
             height: 3px;
-            background: var(--text-light);
-            margin: 3px 0;
-            transition: var(--transition);
+            background: var(--primary-neon); /* ネオンカラー */
+            margin: 4px 0; /* 間隔を広げる */
+            transition: var(--transition-speed);
             border-radius: 2px;
+            box-shadow: 0 0 5px var(--primary-neon);
         }
-        
+
         /* Main Content */
         .main {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
+            margin-top: 100px; /* ヘッダーの高さに合わせて調整 */
+            padding-bottom: 5rem;
         }
         
         /* Portfolio Hero */
         .portfolio-hero {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, rgba(0, 0, 0, 0.8) 100%);
             color: var(--text-light);
-            padding: 5rem 2rem;
+            padding: 8rem 2rem 5rem; /* 上下のパディングを調整 */
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 2px solid rgba(var(--secondary-neon), 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
         
         .portfolio-hero::before {
@@ -188,59 +217,89 @@
             width: 100%;
             height: 100%;
             background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&h=1080&fit=crop') center/cover;
-            opacity: 0.2;
+            opacity: 0.1; /* 透明度をさらに下げる */
             z-index: 1;
+            filter: blur(5px);
         }
         
         .portfolio-hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 900px; /* 幅を広げる */
             margin: 0 auto;
         }
         
         .portfolio-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5rem); /* より大きく */
             margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 15px var(--primary-neon), 0 0 30px var(--secondary-neon);
+            animation: text-glow 2s infinite alternate;
+        }
+
+        @keyframes text-glow {
+            from { text-shadow: 0 0 10px var(--primary-neon), 0 0 20px var(--secondary-neon); }
+            to { text-shadow: 0 0 20px var(--primary-neon), 0 0 40px var(--secondary-neon); }
         }
         
         .portfolio-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: clamp(1.2rem, 2.8vw, 1.6rem); /* 少し大きく */
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+            color: var(--text-light);
         }
         
         .portfolio-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 最小幅を広げる */
+            gap: 2.5rem; /* 間隔を広げる */
+            margin-top: 4rem;
+            background: rgba(0, 0, 0, 0.4); /* 背景を暗く */
+            border: 1px solid var(--border-glow);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 0 25px var(--shadow-glow);
         }
         
         .stat-item {
             text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(var(--primary-neon), 0.05);
+            transition: var(--transition-speed);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(var(--primary-neon), 0.1);
+            box-shadow: 0 0 15px var(--primary-neon);
         }
         
         .stat-number {
-            font-size: 2.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem; /* 大きく */
             font-weight: 700;
             display: block;
             margin-bottom: 0.5rem;
+            color: var(--accent-neon); /* アクセントネオンカラー */
+            text-shadow: 0 0 10px var(--accent-neon);
         }
         
         .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem; /* 少し大きく */
+            opacity: 0.7;
+            color: var(--text-muted);
         }
         
         /* Filter Navigation */
         .portfolio-nav {
-            background: var(--bg-secondary);
-            padding: 2rem 0;
+            background: var(--darker-bg); /* 背景をより暗く */
+            padding: 2.5rem 0; /* パディングを調整 */
             position: sticky;
             top: 80px;
             z-index: 100;
+            border-bottom: 1px solid rgba(var(--primary-neon), 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .filter-buttons {
@@ -248,73 +307,97 @@
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem; /* 間隔を広げる */
             flex-wrap: wrap;
             padding: 0 2rem;
         }
         
         .filter-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-primary);
-            border: 2px solid #e5e7eb;
+            padding: 0.8rem 1.8rem; /* パディングを調整 */
+            background: rgba(var(--primary-neon), 0.1);
+            border: 2px solid rgba(var(--primary-neon), 0.4);
             border-radius: 50px;
-            color: var(--text-secondary);
+            color: var(--text-light);
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition);
+            transition: var(--transition-speed);
             cursor: pointer;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background: var(--gradient-primary);
-            border-color: var(--primary-color);
-            color: var(--text-light);
-            transform: translateY(-2px);
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            border-color: var(--primary-neon);
+            color: var(--darker-bg); /* 文字色を濃くしてコントラスト */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 20px var(--primary-neon), 0 0 30px var(--secondary-neon);
         }
         
         /* Portfolio Grid */
         .portfolio-section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
+            padding: 5rem 2rem; /* パディングを調整 */
+            max-width: 1600px; /* 最大幅を広げる */
             margin: 0 auto;
         }
         
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* アイテムサイズを調整 */
+            gap: 3.5rem; /* 間隔を広げる */
             margin-bottom: 4rem;
         }
         
         .portfolio-item {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius);
+            background: var(--dark-bg); /* 背景を暗く */
+            border-radius: 15px; /* 角を丸く */
             overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+            transition: var(--transition-speed);
             opacity: 1;
             transform: scale(1);
+            border: 1px solid rgba(var(--primary-neon), 0.2);
+            position: relative;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            background: linear-gradient(45deg, rgba(var(--primary-neon), 0.05), transparent 50%, rgba(var(--secondary-neon), 0.05));
+            opacity: 0;
+            transition: opacity var(--transition-speed);
+            pointer-events: none;
+        }
+        
+        .portfolio-item:hover::before {
+            opacity: 1;
         }
         
         .portfolio-item.hidden {
             opacity: 0;
-            transform: scale(0.8);
+            transform: scale(0.9);
             pointer-events: none;
         }
         
         .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 0 30px var(--primary-neon), 0 0 50px var(--secondary-neon);
+            border-color: var(--primary-neon);
+            z-index: 10;
         }
         
         .portfolio-image {
-            height: 250px;
-            background: var(--gradient-primary);
+            height: 280px; /* 高さを調整 */
+            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-neon)); /* ネオングラデーション */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-light);
-            font-size: 4rem;
+            color: var(--darker-bg); /* 暗い背景色に合う文字色 */
+            font-size: 5rem; /* アイコンを大きく */
             position: relative;
             overflow: hidden;
         }
@@ -326,7 +409,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(255, 255, 255, 0.15) 100%);
             animation: shimmer 3s ease-in-out infinite;
         }
         
@@ -336,117 +419,134 @@
         }
         
         .portfolio-content {
-            padding: 2rem;
+            padding: 2.5rem; /* パディングを調整 */
         }
         
         .portfolio-category {
-            background: var(--gradient-accent);
-            color: var(--text-light);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            background: linear-gradient(45deg, var(--accent-neon), var(--secondary-neon)); /* ネオングラデーション */
+            color: var(--darker-bg); /* 暗い背景色 */
+            padding: 0.5rem 1.2rem; /* パディングを調整 */
+            border-radius: 25px;
+            font-size: 0.9rem;
             font-weight: 600;
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
         }
         
         .portfolio-title {
-            font-size: 1.3rem;
+            font-family: var(--font-display);
+            font-size: 1.6rem; /* 大きく */
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
+            margin-bottom: 0.8rem;
+            color: var(--primary-neon); /* ネオンカラー */
+            text-shadow: 0 0 5px var(--primary-neon);
         }
         
         .portfolio-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
         
         .portfolio-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.6rem; /* 間隔を調整 */
+            margin-bottom: 2rem;
         }
         
         .tech-tag {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            background: rgba(var(--accent-neon), 0.1);
+            color: var(--accent-neon);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(var(--accent-neon), 0.3);
+            text-shadow: 0 0 3px rgba(0, 255, 136, 0.2);
         }
         
         .portfolio-metrics {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 1.5rem; /* 間隔を広げる */
+            margin-bottom: 2rem;
         }
         
         .metric {
             text-align: center;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
+            padding: 1.2rem; /* パディングを調整 */
+            background: rgba(var(--primary-neon), 0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(var(--primary-neon), 0.2);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
         }
         
         .metric-value {
-            font-size: 1.2rem;
+            font-family: var(--font-display);
+            font-size: 1.4rem; /* 大きく */
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--accent-neon);
             display: block;
+            margin-bottom: 0.4rem;
+            text-shadow: 0 0 8px var(--accent-neon);
         }
         
         .metric-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
         
         .view-case-study {
-            background: var(--gradient-primary);
-            color: var(--text-light);
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
+            color: var(--darker-bg); /* 文字色を濃くしてコントラスト */
             text-decoration: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.9rem 2rem; /* パディングを調整 */
             border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
+            font-weight: 600;
+            transition: var(--transition-speed);
             display: inline-block;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
         }
         
         .view-case-study:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 0 30px var(--primary-neon), 0 0 40px var(--secondary-neon);
         }
         
         /* CTA Section */
         .cta-section {
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
             color: var(--text-light);
-            padding: 5rem 2rem;
+            padding: 6rem 2rem; /* パディングを調整 */
             text-align: center;
+            border-top: 2px solid rgba(var(--primary-neon), 0.3);
+            box-shadow: inset 0 10px 30px rgba(0, 0, 0, 0.4);
         }
         
         .cta-content {
-            max-width: 600px;
+            max-width: 700px; /* 幅を広げる */
             margin: 0 auto;
         }
         
         .cta-section h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem); /* 大きく */
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px var(--accent-neon), 0 0 30px var(--primary-neon);
         }
         
         .cta-section p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.2rem; /* 大きく */
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+            color: var(--text-muted);
         }
         
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem; /* 間隔を広げる */
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -454,57 +554,91 @@
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--text-light);
+            gap: 0.7rem; /* 間隔を広げる */
+            padding: 1.1rem 2.5rem; /* パディングを調整 */
+            background: rgba(var(--primary-neon), 0.15); /* 透明度を調整 */
+            color: var(--primary-neon); /* ネオンカラー */
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: var(--transition);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            transition: var(--transition-speed);
+            border: 2px solid var(--primary-neon); /* ネオンボーダー */
+            backdrop-filter: blur(8px);
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
         }
         
         .cta-button.primary {
-            background: var(--gradient-accent);
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon));
             border-color: transparent;
+            color: var(--darker-bg);
+            text-shadow: none;
+            box-shadow: 0 0 25px var(--primary-neon), 0 0 40px var(--secondary-neon);
         }
         
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-heavy);
-            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--primary-neon), 0 0 40px var(--secondary-neon);
+            background: rgba(var(--primary-neon), 0.25);
+            color: var(--primary-neon);
         }
         
         .cta-button.primary:hover {
-            background: var(--gradient-accent);
+            background: linear-gradient(45deg, var(--secondary-neon), var(--primary-neon));
+            box-shadow: 0 0 35px var(--primary-neon), 0 0 50px var(--secondary-neon);
+            color: var(--darker-bg);
         }
         
         /* Footer */
         .footer {
-            background: #1a1a1a;
-            color: var(--text-light);
+            background: var(--darker-bg); /* index.htmlと統一 */
+            color: var(--text-muted);
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 3.5rem 2rem; /* パディングを調整 */
+            border-top: 1px solid rgba(var(--primary-neon), 0.1);
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 2.5rem; /* 間隔を広げる */
+            margin-bottom: 2.5rem;
             flex-wrap: wrap;
         }
         
         .footer-links a {
-            color: #ccc;
+            color: var(--text-muted);
             text-decoration: none;
-            transition: var(--transition);
+            transition: var(--transition-speed);
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-neon);
+            transition: all var(--transition-speed);
+            transform: translateX(-50%);
         }
         
         .footer-links a:hover {
-            color: var(--accent-color);
+            color: var(--accent-neon);
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
         
         /* Responsive */
@@ -519,30 +653,44 @@
                 left: -100%;
                 width: 100%;
                 height: calc(100vh - 80px);
-                background: var(--bg-dark);
+                background: var(--darker-bg); /* 暗い背景 */
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-start;
-                padding-top: 2rem;
-                transition: var(--transition);
+                padding-top: 3rem;
+                transition: transform var(--transition-speed);
+                transform: translateX(0); /* 初期位置 */
+                z-index: 999;
+                border-top: 1px solid rgba(var(--primary-neon), 0.2);
             }
             
             .nav-links.active {
-                left: 0;
+                transform: translateX(100%); /* 表示位置 */
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
             }
             
             .portfolio-stats {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 1.5rem;
             }
             
             .portfolio-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 2.5rem;
             }
             
             .filter-buttons {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
+                gap: 1rem;
             }
             
             .cta-buttons {
@@ -552,12 +700,13 @@
             
             .portfolio-metrics {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
         
         @media (max-width: 480px) {
             .portfolio-hero {
-                padding: 3rem 1rem;
+                padding: 5rem 1rem 3rem;
             }
             
             .portfolio-section {
@@ -565,26 +714,31 @@
             }
             
             .cta-section {
-                padding: 3rem 1rem;
+                padding: 4rem 1rem;
             }
             
             .filter-buttons {
                 display: grid;
                 grid-template-columns: 1fr;
             }
+
+            .logo {
+                font-size: 1.5rem;
+            }
         }
         
         /* Loading Animation */
         .loading {
-            opacity: 0.5;
+            opacity: 0.4; /* 少し暗く */
             pointer-events: none;
+            transition: opacity 0.5s ease;
         }
         
         /* Fade in animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(40px); /* より大きく動く */
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* より滑らかに */
         }
         
         .fade-in.visible {
@@ -594,10 +748,9 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="logo">🎨 AI Art Studio</a>
+        <div class="container nav">
+            <a href="index.html" class="logo">🌌 AI Art Studio</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">ホーム</a></li>
                 <li><a href="index.html#about">会社概要</a></li>
@@ -610,301 +763,290 @@
                 <span></span>
                 <span></span>
             </div>
-        </nav>
+        </div>
     </header>
 
     <main class="main">
-        <!-- Portfolio Hero -->
         <section class="portfolio-hero">
             <div class="portfolio-hero-content">
                 <h1>制作実績</h1>
                 <p class="portfolio-subtitle">
-                    AI技術を活用した企業向けクリエイティブ制作の実績をご紹介いたします。<br>
-                    各プロジェクトで実現した成果と、お客様のビジネス成長への貢献をご確認ください。
+                    AI技術を駆使し、未来を創造するビジュアル体験を提供。<br>
+                    当社の革新的なクリエイティブが、お客様のビジネスに無限の可能性をもたらします。
                 </p>
                 <div class="portfolio-stats">
-                    <div class="stat-item">
+                    <div class="stat-item fade-in">
                         <span class="stat-number">50+</span>
-                        <span class="stat-label">企業クライアント</span>
+                        <span class="stat-label">革新的な企業</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">制作画像</span>
+                    <div class="stat-item fade-in" style="transition-delay: 0.1s;">
+                        <span class="stat-number">10000+</span>
+                        <span class="stat-label">高解像度イメージ</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
-                        <span class="stat-label">満足度</span>
+                    <div class="stat-item fade-in" style="transition-delay: 0.2s;">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">顧客満足度</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item fade-in" style="transition-delay: 0.3s;">
                         <span class="stat-number">24時間</span>
-                        <span class="stat-label">平均納期</span>
+                        <span class="stat-label">超高速デリバリー</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Filter Navigation -->
         <section class="portfolio-nav">
-            <div class="filter-buttons">
+            <div class="container filter-buttons">
                 <button class="filter-btn active" data-filter="all">すべて</button>
-                <button class="filter-btn" data-filter="branding">企業ブランディング</button>
-                <button class="filter-btn" data-filter="advertising">広告クリエイティブ</button>
-                <button class="filter-btn" data-filter="website">ウェブサイト素材</button>
-                <button class="filter-btn" data-filter="product">商品ビジュアル</button>
-                <button class="filter-btn" data-filter="marketing">マーケティング</button>
+                <button class="filter-btn" data-filter="branding">ブランド進化</button>
+                <button class="filter-btn" data-filter="advertising">未来広告</button>
+                <button class="filter-btn" data-filter="website">デジタル景観</button>
+                <button class="filter-btn" data-filter="product">製品視覚化</button>
+                <button class="filter-btn" data-filter="marketing">戦略的ビジュアル</button>
             </div>
         </section>
 
-        <!-- Portfolio Grid -->
         <section class="portfolio-section">
             <div class="portfolio-grid" id="portfolioGrid">
                 
-                <!-- 企業ブランディング事例 -->
-                <article class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">🏢</div>
+                <article class="portfolio-item fade-in" data-category="branding">
+                    <div class="portfolio-image">✨</div>
                     <div class="portfolio-content">
-                        <span class="portfolio-category">企業ブランディング</span>
-                        <h3 class="portfolio-title">テック企業のコーポレートアイデンティティ</h3>
+                        <span class="portfolio-category">ブランド進化</span>
+                        <h3 class="portfolio-title">次世代テック企業CI構築</h3>
                         <p class="portfolio-description">
-                            AIスタートアップ企業様のブランドアイデンティティを統一し、ロゴから企業パンフレットまで一貫したビジュアルデザインを制作。モダンで信頼性の高いイメージを確立。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Stable Diffusion</span>
-                            <span class="tech-tag">ブランドガイドライン</span>
-                            <span class="tech-tag">ロゴデザイン</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">15</span>
-                                <span class="metric-label">制作素材数</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">3日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <!-- 広告クリエイティブ事例 -->
-                <article class="portfolio-item" data-category="advertising">
-                    <div class="portfolio-image">📱</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">広告クリエイティブ</span>
-                        <h3 class="portfolio-title">SNS広告キャンペーン素材制作</h3>
-                        <p class="portfolio-description">
-                            eコマース企業様のSNS広告キャンペーン用に、Instagram・Facebook・Twitter向けの広告素材を制作。CVR向上に貢献した統一感のあるクリエイティブセット。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Midjourney</span>
-                            <span class="tech-tag">SNS最適化</span>
-                            <span class="tech-tag">A/Bテスト</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">25%</span>
-                                <span class="metric-label">CVR向上</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">2日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <!-- ウェブサイト素材事例 -->
-                <article class="portfolio-item" data-category="website">
-                    <div class="portfolio-image">🌐</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">ウェブサイト素材</span>
-                        <h3 class="portfolio-title">コーポレートサイトリニューアル素材</h3>
-                        <p class="portfolio-description">
-                            製造業企業様のコーポレートサイトリニューアルに伴い、ヘッダー画像、セクション背景、アイコンセットを制作。ブランドイメージと一致したプロフェッショナルなデザイン。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">DALL-E</span>
-                            <span class="tech-tag">レスポンシブ対応</span>
-                            <span class="tech-tag">UI/UX</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">30</span>
-                                <span class="metric-label">素材数</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">5日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <!-- 商品ビジュアル事例 -->
-                <article class="portfolio-item" data-category="product">
-                    <div class="portfolio-image">📦</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">商品ビジュアル</span>
-                        <h3 class="portfolio-title">新商品ローンチビジュアル制作</h3>
-                        <p class="portfolio-description">
-                            スマートデバイス企業様の新商品発表に向けて、商品イメージビジュアル、プレスリリース用画像、展示会用パネルデザインを制作。商品の魅力を最大限に表現。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Stable Diffusion</span>
-                            <span class="tech-tag">商品撮影風</span>
-                            <span class="tech-tag">ライティング</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">20</span>
-                                <span class="metric-label">バリエーション</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">4日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <!-- マーケティング素材事例 -->
-                <article class="portfolio-item" data-category="marketing">
-                    <div class="portfolio-image">📊</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">マーケティング</span>
-                        <h3 class="portfolio-title">セミナー・イベント用ビジュアル制作</h3>
-                        <p class="portfolio-description">
-                            BtoB企業様のオンラインセミナー用に、告知バナー、プレゼンテーション背景、配布資料用グラフィックを制作。参加者数向上に貢献。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">Midjourney</span>
-                            <span class="tech-tag">インフォグラフィック</span>
-                            <span class="tech-tag">プレゼン資料</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">40%</span>
-                                <span class="metric-label">参加者増</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">3日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <!-- 追加の事例 -->
-                <article class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image">🎨</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">企業ブランディング</span>
-                        <h3 class="portfolio-title">スタートアップ企業のビジュアルアイデンティティ</h3>
-                        <p class="portfolio-description">
-                            フィンテック企業様のビジュアルアイデンティティを一から構築。ロゴ、名刺、会社案内、オフィス装飾まで、トータルでブランドイメージを統一。
+                            最先端AI企業様のブランドイメージを、未来志向で統一されたビジュアルで再構築。ロゴからデジタルアセットまで、革新性を表現。
                         </p>
                         <div class="portfolio-tech">
                             <span class="tech-tag">Stable Diffusion</span>
                             <span class="tech-tag">ブランド戦略</span>
-                            <span class="tech-tag">印刷物デザイン</span>
+                            <span class="tech-tag">コンセプトアート</span>
                         </div>
                         <div class="portfolio-metrics">
                             <div class="metric">
-                                <span class="metric-value">50</span>
-                                <span class="metric-label">制作アイテム</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">7日</span>
-                                <span class="metric-label">納期</span>
-                            </div>
-                        </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
-                    </div>
-                </article>
-
-                <article class="portfolio-item" data-category="advertising">
-                    <div class="portfolio-image">🎯</div>
-                    <div class="portfolio-content">
-                        <span class="portfolio-category">広告クリエイティブ</span>
-                        <h3 class="portfolio-title">リスティング広告用ランディングページ素材</h3>
-                        <p class="portfolio-description">
-                            SaaS企業様のリスティング広告用ランディングページに使用する、ヒーロー画像、機能説明イラスト、顧客事例用ビジュアルを制作。コンバージョン率大幅改善。
-                        </p>
-                        <div class="portfolio-tech">
-                            <span class="tech-tag">DALL-E</span>
-                            <span class="tech-tag">LP最適化</span>
-                            <span class="tech-tag">コンバージョン改善</span>
-                        </div>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">35%</span>
-                                <span class="metric-label">CV率向上</span>
+                                <span class="metric-value">15+</span>
+                                <span class="metric-label">アセット数</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-value">3日</span>
-                                <span class="metric-label">納期</span>
+                                <span class="metric-label">プロジェクト日数</span>
                             </div>
                         </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
                     </div>
                 </article>
 
-                <article class="portfolio-item" data-category="website">
-                    <div class="portfolio-image">💻</div>
+                <article class="portfolio-item fade-in" data-category="advertising">
+                    <div class="portfolio-image">🚀</div>
                     <div class="portfolio-content">
-                        <span class="portfolio-category">ウェブサイト素材</span>
-                        <h3 class="portfolio-title">ECサイト商品ページ用ビジュアル</h3>
+                        <span class="portfolio-category">未来広告</span>
+                        <h3 class="portfolio-title">没入型SNSキャンペーン</h3>
                         <p class="portfolio-description">
-                            ファッションECサイト様の商品ページ用に、ライフスタイル画像、使用シーン画像、商品の魅力を伝えるビジュアルストーリーを制作。売上向上に大きく貢献。
+                            大手eコマースブランドのSNS向けに、視聴者の心を掴む没入感のある広告クリエイティブを生成。インタラクション率を飛躍的に向上。
                         </p>
                         <div class="portfolio-tech">
-                            <span class="tech-tag">Midjourney</span>
-                            <span class="tech-tag">ライフスタイル撮影</span>
-                            <span class="tech-tag">EC最適化</span>
+                            <span class="tech-tag">Midjourney V6</span>
+                            <span class="tech-tag">高解像度出力</span>
+                            <span class="tech-tag">エンゲージメント最適化</span>
                         </div>
                         <div class="portfolio-metrics">
                             <div class="metric">
-                                <span class="metric-value">60%</span>
-                                <span class="metric-label">売上向上</span>
+                                <span class="metric-value">30%</span>
+                                <span class="metric-label">CTR向上</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="website">
+                    <div class="portfolio-image">🌐</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">デジタル景観</span>
+                        <h3 class="portfolio-title">Web3プラットフォームのUI/UXビジュアル</h3>
+                        <p class="portfolio-description">
+                            次世代Web3プラットフォームのサイトリニューアルに際し、未来的なインターフェースデザインと背景ビジュアルを生成。ユーザー体験を革新。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">DALL-E 3</span>
+                            <span class="tech-tag">インタラクティブデザイン</span>
+                            <span class="tech-tag">ユーザーフロー</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">40+</span>
+                                <span class="metric-label">ビジュアル数</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="product">
+                    <div class="portfolio-image">💎</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">製品視覚化</span>
+                        <h3 class="portfolio-title">AIガジェットのプロモーションビジュアル</h3>
+                        <p class="portfolio-description">
+                            革新的なAIガジェットのローンチ向けに、製品の魅力を最大限に引き出す高精細なプロモーション画像を制作。市場の注目を集める。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Stable Diffusion XL</span>
+                            <span class="tech-tag">3Dレンダリング風</span>
+                            <span class="tech-tag">製品写真</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">20+</span>
+                                <span class="metric-label">アングル数</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-value">4日</span>
-                                <span class="metric-label">納期</span>
+                                <span class="metric-label">プロジェクト日数</span>
                             </div>
                         </div>
-                        <a href="#case-study" class="view-case-study">詳細を見る</a>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="marketing">
+                    <div class="portfolio-image">📈</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">戦略的ビジュアル</span>
+                        <h3 class="portfolio-title">未来型カンファレンス用キービジュアル</h3>
+                        <p class="portfolio-description">
+                            国際AIカンファレンスの告知用キービジュアルを制作。テクノロジーとアートが融合したデザインで、ターゲット層の期待感を高める。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Midjourney</span>
+                            <span class="tech-tag">イベントプロモーション</span>
+                            <span class="tech-tag">グラフィックデザイン</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50%</span>
+                                <span class="metric-label">参加者増</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="branding">
+                    <div class="portfolio-image">💡</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">ブランド進化</span>
+                        <h3 class="portfolio-title">イノベーション企業のコンセプトアート</h3>
+                        <p class="portfolio-description">
+                            新規事業立ち上げフェーズの企業向けに、事業の核となるコンセプトを視覚化したアートワークを制作。投資家向けプレゼン資料を強化。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">ControlNet</span>
+                            <span class="tech-tag">クリエイティブディレクション</span>
+                            <span class="tech-tag">ピッチデッキ</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">10+</span>
+                                <span class="metric-label">コンセプト数</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">7日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="advertising">
+                    <div class="portfolio-image">✨</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">未来広告</span>
+                        <h3 class="portfolio-title">デジタルキャンペーン用バナー群</h3>
+                        <p class="portfolio-description">
+                            オンラインサービス企業向けに、多様なプラットフォームに対応するデジタルバナー広告を大量生成。A/Bテストに最適なバリエーションを提供。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">StyleGAN</span>
+                            <span class="tech-tag">高速生成</span>
+                            <span class="tech-tag">データドリブン</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">バナー数</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
+                    </div>
+                </article>
+
+                <article class="portfolio-item fade-in" data-category="website">
+                    <div class="portfolio-image">👁️‍🗨️</div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-category">デジタル景観</span>
+                        <h3 class="portfolio-title">AIリサーチラボのビジュアルアイデンティティ</h3>
+                        <p class="portfolio-description">
+                            最先端AI研究機関のウェブサイト向けに、科学的厳密さと未来への展望を表現する複雑な背景とアイコンセットをデザイン。
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Text-to-Image</span>
+                            <span class="tech-tag">プロシージャル生成</span>
+                            <span class="tech-tag">科学的ビジュアル</span>
+                        </div>
+                        <div class="portfolio-metrics">
+                            <div class="metric">
+                                <span class="metric-value">30+</span>
+                                <span class="metric-label">グラフィック数</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5日</span>
+                                <span class="metric-label">プロジェクト日数</span>
+                            </div>
+                        </div>
+                        <a href="#case-study" class="view-case-study">詳細な洞察</a>
                     </div>
                 </article>
 
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section class="cta-section">
             <div class="cta-content">
-                <h2>あなたのプロジェクトも実現しませんか？</h2>
+                <h2>あなたのビジョンを、<br>AIアートで現実のものにしませんか？</h2>
                 <p>
-                    AI技術を活用した高品質なクリエイティブ制作で、<br>
-                    お客様のビジネス成長をサポートいたします。
+                    無限の創造性と最速のデリバリーで、<br>
+                    唯一無二のデジタル体験を創造し、ビジネスの未来を共に切り拓きます。
                 </p>
                 <div class="cta-buttons">
                     <a href="index.html#contact" class="cta-button primary">
-                        💬 無料相談を申し込む
+                        🚀 無料デモ・相談を申し込む
                     </a>
                     <a href="index.html#services" class="cta-button">
-                        📋 サービス詳細を見る
+                        ✨ サービスを詳しく見る
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
             <a href="index.html">ホーム</a>
@@ -913,9 +1055,11 @@
             <a href="index.html#services">サービス</a>
             <a href="index.html#contact">お問い合わせ</a>
         </div>
-        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">
-            企業向けAI画像生成サービス | プライバシーポリシー | 利用規約
+        <p>&copy; 2025 AI Art Studio. All Rights Reserved. 未来はAIとアートの融合から生まれる。</p>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: var(--text-muted);">
+            <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 0.5rem;">プライバシーポリシー</a> | 
+            <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 0.5rem;">利用規約</a> |
+            <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 0.5rem;">サイトマップ</a>
         </p>
     </footer>
 
@@ -931,11 +1075,23 @@
             // Mobile menu toggle
             hamburger?.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-                hamburger.classList.toggle('active');
+                hamburger.classList.toggle('active'); // ハンバーガーメニューのアニメーション用
             });
             
-            // Smooth scrolling for internal links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // Smooth scrolling for internal links (for header links to index.html sections)
+            document.querySelectorAll('.nav-links a[href^="index.html#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // Navigate to index.html first, then scroll to section
+                    const targetSection = this.getAttribute('href').split('#')[1];
+                    window.location.href = 'index.html#' + targetSection;
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for local anchor links (e.g., #case-study placeholder)
+            document.querySelectorAll('a[href^="#"]:not([href^="index.html#"])').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
@@ -946,6 +1102,7 @@
                         });
                     }
                     navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
                 });
             });
             
@@ -967,22 +1124,22 @@
                             const category = item.dataset.category;
                             
                             if (filter === 'all' || category === filter) {
-                                item.classList.remove('hidden');
-                                item.style.display = 'block';
+                                item.style.display = 'block'; // Ensure it's displayed
+                                setTimeout(() => item.classList.remove('hidden'), 50); // Small delay for re-display transition
                             } else {
                                 item.classList.add('hidden');
                                 setTimeout(() => {
-                                    if (item.classList.contains('hidden')) {
+                                    if (item.classList.contains('hidden')) { // Only hide display if still hidden
                                         item.style.display = 'none';
                                     }
-                                }, 300);
+                                }, 600); // Match CSS transition duration
                             }
                         });
                         
                         // Remove loading state
                         setTimeout(() => {
                             portfolioGrid.classList.remove('loading');
-                        }, 300);
+                        }, 600); // Match animation time for smooth transition
                     }, 100);
                 });
             });
@@ -997,6 +1154,9 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                    } else {
+                        // Optional: remove 'visible' class if element scrolls out of view
+                        // entry.target.classList.remove('visible'); 
                     }
                 });
             }, observerOptions);
@@ -1009,9 +1169,14 @@
             
             // Stats counter animation
             function animateStats() {
-                const statNumbers = document.querySelectorAll('.stat-number');
+                const statNumbers = document.querySelectorAll('.portfolio-stats .stat-number');
                 statNumbers.forEach(statNumber => {
-                    const text = statNumber.textContent;
+                    // Reset if already animated to allow re-trigger on scroll if needed
+                    statNumber.textContent = '0'; 
+
+                    const text = statNumber.dataset.original || statNumber.textContent; // Store original text in dataset
+                    statNumber.dataset.original = text; // Set original text for future resets
+
                     const hasPercent = text.includes('%');
                     const hasPlus = text.includes('+');
                     const hasTime = text.includes('時間');
@@ -1021,13 +1186,13 @@
                     
                     if (finalValue > 0) {
                         let currentValue = 0;
-                        const increment = finalValue / 30;
-                        const timer = setInterval(() => {
-                            currentValue += increment;
-                            if (currentValue >= finalValue) {
-                                currentValue = finalValue;
-                                clearInterval(timer);
-                            }
+                        const duration = 2000; // 2 seconds
+                        const startTime = performance.now();
+                        
+                        function updateCount(timestamp) {
+                            const elapsed = timestamp - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            currentValue = progress * finalValue;
                             
                             let displayValue = Math.floor(currentValue);
                             if (hasTime) {
@@ -1039,20 +1204,25 @@
                             }
                             
                             statNumber.textContent = displayValue;
-                        }, 50);
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCount);
+                            }
+                        }
+                        requestAnimationFrame(updateCount);
                     }
                 });
             }
             
-            // Observe stats section
+            // Observe stats section for animation trigger
             const statsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         animateStats();
-                        statsObserver.unobserve(entry.target);
+                        statsObserver.unobserve(entry.target); // Stop observing once animated
                     }
                 });
-            });
+            }, { threshold: 0.3 }); // Trigger when 30% of element is visible
             
             const statsSection = document.querySelector('.portfolio-stats');
             if (statsSection) {
@@ -1064,7 +1234,7 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     // Placeholder for case study modal
-                    alert('詳細なケーススタディページは現在準備中です。\nより詳しい情報については、お問い合わせページからご連絡ください。');
+                    alert('詳細なケーススタディページは現在準備中です。\nAI Art Studioの革新的な実績にご興味をお持ちいただき、ありがとうございます！\nより詳しい情報については、お問い合わせページからご連絡ください。');
                 });
             });
             
@@ -1072,9 +1242,10 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
                 }
                 
-                // Filter navigation with number keys
+                // Filter navigation with number keys (1-6)
                 if (e.key >= '1' && e.key <= '6') {
                     const index = parseInt(e.key) - 1;
                     if (filterButtons[index]) {
@@ -1094,15 +1265,12 @@
             }
             
             // Portfolio items hover effect enhancement
-            portfolioItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.zIndex = '10';
-                });
-                
-                item.addEventListener('mouseleave', () => {
-                    item.style.zIndex = '1';
-                });
-            });
+            // This is handled via CSS transform and box-shadow, no extra JS needed unless complex logic
+            
+            // Initialize fade-in for hero content
+            document.querySelector('.portfolio-hero-content h1').classList.add('fade-in');
+            document.querySelector('.portfolio-subtitle').classList.add('fade-in');
+            // Initial animation for stats is handled by animateStats() and IntersectionObserver
         });
     </script>
 </body>
