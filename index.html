@@ -873,6 +873,248 @@
         .mt-3 { margin-top: 3rem; }
         .hover-glow:hover { box-shadow: 0 0 30px rgba(138, 255, 0, 0.6); }
 
+        /* Premium Articles Styles */
+        .premium-container {
+            background: var(--section-bg);
+            border-radius: 25px;
+            padding: 3rem;
+            border: 2px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, var(--general-accent), var(--ai-accent));
+            border-radius: 25px 25px 0 0;
+        }
+
+        .premium-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .premium-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .premium-intro h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .premium-intro p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .premium-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: #ffd700;
+        }
+
+        .premium-card.coming-soon {
+            opacity: 0.7;
+            filter: grayscale(0.3);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .premium-lock {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            z-index: 2;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 215, 0, 0.8); }
+        }
+
+        .premium-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .premium-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .premium-content {
+            padding: 1.5rem;
+        }
+
+        .premium-content h4 {
+            font-size: 1.3rem;
+            color: var(--general-accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .premium-content p {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .premium-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .premium-tag {
+            background: rgba(138, 255, 0, 0.1);
+            color: var(--general-accent);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(138, 255, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .premium-access-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ffd700, var(--general-accent));
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .premium-access-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .premium-access-btn:disabled {
+            background: var(--text-dim);
+            color: var(--text-dark);
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .premium-notice {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .premium-notice h4 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .premium-notice p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .premium-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .premium-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--ai-accent), var(--general-accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .premium-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .premium-hint {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
         /* Image Slider Styles */
         .image-slider-section {
             padding: 2rem 0;
@@ -1180,6 +1422,7 @@
             <li><a href="#services">サービス</a></li>
             <li><a href="#portfolio">制作実績</a></li>
             <li><a href="#blog">ブログ</a></li>
+            <li><a href="#premium">🔒 限定記事</a></li>
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
@@ -1575,6 +1818,106 @@
                 <button type="submit" class="submit-button">送信する</button>
             </form>
         </section>
+
+        <!-- Premium Articles Section -->
+        <section id="premium" class="container">
+            <div class="section-header">
+                <h2 class="section-title">🔒 限定記事</h2>
+                <p class="section-subtitle">
+                    特別な読者限定のプレミアムコンテンツ。業界のプロだけが知る極秘テクニックや未公開情報を提供します。
+                </p>
+            </div>
+            
+            <div class="premium-container">
+                <div class="premium-intro">
+                    <div class="premium-icon">👑</div>
+                    <h3>プレミアム会員限定</h3>
+                    <p>深いレベルの技術解説、業界インサイダー情報、未公開の制作プロセスなど、一般には公開していない価値あるコンテンツをお届けします。</p>
+                </div>
+                
+                <div class="premium-grid">
+                    <article class="premium-card">
+                        <div class="premium-badge">🌟 EXCLUSIVE</div>
+                        <div class="premium-lock">🔒</div>
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=220&fit=crop&crop=center" alt="AI開発極秘テクニック">
+                        <div class="premium-content">
+                            <h4>AI開発の極秘テクニック</h4>
+                            <p>業界のプロだけが知るプロンプトエンジニアリングの高度な手法と、API活用の裏技を特別公開。</p>
+                            <div class="premium-meta">
+                                <span class="premium-tag">極秘</span>
+                                <span>2025年1月</span>
+                            </div>
+                            <button onclick="accessPremiumArticle('ai-secrets')" class="premium-access-btn">
+                                アクセス
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="premium-card">
+                        <div class="premium-badge">💎 PREMIUM</div>
+                        <div class="premium-lock">🔒</div>
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=220&fit=crop&crop=center" alt="未公開プロジェクト">
+                        <div class="premium-content">
+                            <h4>未公開プロジェクトの舞台裏</h4>
+                            <p>大手企業との秘密プロジェクトで学んだ、商用レベルのAI実装ノウハウと失敗談を赤裸々に公開。</p>
+                            <div class="premium-meta">
+                                <span class="premium-tag">未公開</span>
+                                <span>2025年1月</span>
+                            </div>
+                            <button onclick="accessPremiumArticle('secret-project')" class="premium-access-btn">
+                                アクセス
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="premium-card">
+                        <div class="premium-badge">🔥 HOT</div>
+                        <div class="premium-lock">🔒</div>
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="次世代AI予測">
+                        <div class="premium-content">
+                            <h4>2025年後半の次世代AI予測</h4>
+                            <p>業界関係者から得た内部情報を基に、2025年後半にリリース予定の革新的AI技術を先行解説。</p>
+                            <div class="premium-meta">
+                                <span class="premium-tag">予測</span>
+                                <span>2025年1月</span>
+                            </div>
+                            <button onclick="accessPremiumArticle('future-ai')" class="premium-access-btn">
+                                アクセス
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="premium-card coming-soon">
+                        <div class="premium-badge">🚀 COMING SOON</div>
+                        <div class="premium-lock">⏰</div>
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=220&fit=crop&crop=center" alt="準備中">
+                        <div class="premium-content">
+                            <h4>企業向けAI導入完全マニュアル</h4>
+                            <p>実際のコンサルティング経験を基にした、失敗しないAI導入の完全ロードマップ。近日公開予定。</p>
+                            <div class="premium-meta">
+                                <span class="premium-tag">準備中</span>
+                                <span>2025年2月予定</span>
+                            </div>
+                            <button class="premium-access-btn" disabled>
+                                準備中
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="premium-notice">
+                    <h4>🎯 限定記事へのアクセス方法</h4>
+                    <p>
+                        限定記事は特別な読者のみに提供される高品質なコンテンツです。アクセスには専用パスワードが必要です。<br>
+                        パスワードは<strong>ニュースレター購読者</strong>や<strong>プロジェクト参加者</strong>に配布しています。
+                    </p>
+                    <div class="premium-actions">
+                        <a href="#contact" class="premium-cta">パスワード取得について問い合わせ</a>
+                        <span class="premium-hint">💡 SNSでも不定期配布中</span>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- フッター -->
@@ -1811,6 +2154,22 @@
             new CyberStudio();
             initImageSlider();
         });
+
+        // Premium Articles Access Function
+        function accessPremiumArticle(articleId) {
+            const articleUrls = {
+                'ai-secrets': 'premium/ai-development-secrets.html',
+                'secret-project': 'premium/secret-project-insights.html',
+                'future-ai': 'premium/future-ai-predictions.html'
+            };
+            
+            const url = articleUrls[articleId];
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('記事が見つかりません。しばらくしてから再度お試しください。');
+            }
+        }
 
         // Image Slider JavaScript
         let currentSlideIndex = 0;
