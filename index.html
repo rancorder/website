@@ -352,10 +352,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle, rgba(138, 255, 0, 0.2) 1px, transparent 1px),
-                linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(138, 255, 0, 0.2) 1px, transparent 1px), linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
             background-size: 25px 25px, 50px 50px, 50px 50px;
             opacity: 0.8;
             z-index: 0;
@@ -365,8 +362,6 @@
             0% { opacity: 0.7; transform: scale(1); }
             100% { opacity: 0.9; transform: scale(1.01); }
         }
-
-
         h1, h2, h3 {
             font-family: 'Orbitron', sans-serif;
             color: var(--general-accent);
@@ -376,16 +371,20 @@
             z-index: 1;
             text-shadow: 0 0 20px rgba(138, 255, 0, 0.9), 0 0 35px rgba(138, 255, 0, 0.6); /* 強烈な光り */
         }
-
         h2 span {
             display: inline-block;
             padding: 0 25px;
             position: relative;
         }
-        h2 span:nth-child(1) { color: var(--ai-accent); }
-        h2 span:nth-child(2) { color: var(--python-accent); }
-        h2 span:nth-child(3) { color: var(--java-accent); }
-        
+        h2 span:nth-child(1) {
+            color: var(--ai-accent);
+        }
+        h2 span:nth-child(2) {
+            color: var(--python-accent);
+        }
+        h2 span:nth-child(3) {
+            color: var(--java-accent);
+        }
         /* セクションタイトルに未来的な光る区切り線とアニメーション */
         h2::after {
             content: '';
@@ -396,868 +395,692 @@
             margin: 25px auto 0;
             border-radius: 4px;
             box-shadow: 0 0 25px var(--general-accent), 0 0 40px rgba(138, 255, 0, 0.8);
-            animation: dividerGlow 3s infinite alternate; /* 光るアニメーション */
+            animation: dividerGlow 3s infinite alternate;
         }
-
         @keyframes dividerGlow {
-            0% { box-shadow: 0 0 20px var(--general-accent), 0 0 30px rgba(138, 255, 0, 0.6); }
-            100% { box-shadow: 0 0 35px var(--general-accent), 0 0 60px rgba(138, 255, 0, 1); }
+            0% { transform: scaleX(0.8); box-shadow: 0 0 15px var(--general-accent); }
+            100% { transform: scaleX(1.1); box-shadow: 0 0 30px var(--general-accent); }
         }
 
-
-        .pillar-intro {
-            display: flex;
-            justify-content: center;
-            gap: 60px; /* カード間の余白をさらに広げる */
-            flex-wrap: wrap;
-            margin-top: 70px;
-        }
-
-        .pillar-card {
-            background-color: var(--card-bg);
-            padding: 70px; /* 内側もさらに広げる */
-            border-radius: 20px;
-            flex: 1;
-            min-width: 400px; /* もっと大きく */
-            max-width: 48%;
+        p {
+            color: var(--text-light);
+            font-size: 1.1em;
             text-align: center;
-            border-left: 12px solid; /* 超太く、目立たせる */
-            box-shadow: 0 10px 25px var(--shadow-light);
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* カードサイズに合わせて自動調整 */
+            gap: 40px; /* 広い間隔 */
+            margin-top: 60px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px var(--shadow-light);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid var(--border-glow); /* カードにも光る枠 */
             position: relative;
             overflow: hidden;
+            transform: scale(1); /* 初期スケール */
+        }
+        .card::before { /* カードの背景に光るパターン */
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 224, 255, 0.1) 0%, transparent 70%);
+            animation: cardPatternFlow 15s linear infinite;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        @keyframes cardPatternFlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.05); /* ぐっと浮き上がり、拡大 */
+            box-shadow: 0 25px 60px var(--shadow-heavy);
+            border-color: var(--ai-accent); /* ホバーで色が変わる */
+        }
+        .card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: var(--ai-accent); /* 個性的な色に */
+            text-shadow: 0 0 15px var(--ai-accent);
+            position: relative;
             z-index: 1;
-            animation: cardEntrance 1.5s ease-out forwards; /* カード自体もフェードイン */
         }
-        .pillar-card.ai { border-color: var(--ai-accent); animation-delay: 0.1s; }
-        .pillar-card.python { border-color: var(--python-accent); animation-delay: 0.3s; }
-        .pillar-card.java { border-color: var(--java-accent); animation-delay: 0.5s; }
-
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); filter: blur(5px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-20px) scale(1.08); /* ぐっと浮き上がり、拡大 */
-            box-shadow: 0 25px 55px var(--shadow-heavy);
-            border-color: var(--general-accent);
-            animation: cardGlow 1.5s infinite alternate; /* ホバー時に常に光るアニメーション */
-        }
-
-        @keyframes cardGlow {
-            0% { box-shadow: 0 25px 55px var(--shadow-heavy), 0 0 20px rgba(138, 255, 0, 0.5); }
-            100% { box-shadow: 0 25px 55px var(--shadow-heavy), 0 0 40px var(--general-accent); }
-        }
-
-        .pillar-card h3 {
-            color: inherit;
-            margin-top: 0;
-            font-size: 2.5em; /* めっちゃでかく */
-            text-shadow: 0 0 20px currentColor, 0 0 35px rgba(255,255,255,0.4);
-        }
-        .pillar-card p {
-            font-size: 1.3em;
+        .card p {
+            font-size: 1em;
             color: var(--text-medium);
+            position: relative;
+            z-index: 1;
         }
-        .pillar-card a {
-            color: inherit;
+
+        .icon-container {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: var(--python-accent); /* 個性的な色に */
+            text-shadow: 0 0 20px var(--python-accent);
+            position: relative;
+            z-index: 1;
+            animation: iconPulse 2s infinite alternate; /* アイコンも脈動 */
+        }
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        /* ポートフォリオセクション */
+        #portfolio .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 2px solid rgba(0, 224, 255, 0.6); /* 薄いサイバーブルーの枠 */
+            position: relative;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease-out;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.08); /* 拡大 */
+        }
+        .portfolio-info {
+            padding: 25px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+        .portfolio-info h3 {
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--ai-accent);
+            text-shadow: none; /* ここでは光らせない */
+            text-align: left;
+        }
+        .portfolio-info p {
+            font-size: 0.95em;
+            color: var(--text-medium);
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .portfolio-link {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--ai-accent), var(--java-accent));
+            color: var(--dark-bg);
+            padding: 10px 20px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.4s ease;
-            text-shadow: 0 0 10px currentColor;
+            font-size: 0.9em;
+            transition: all 0.4s ease-out;
+            box-shadow: 0 0 15px var(--ai-accent);
         }
-        .pillar-card a:hover {
-            text-decoration: underline;
-            color: var(--text-light);
-            transform: scale(1.06);
+        .portfolio-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--ai-accent);
+            background: linear-gradient(45deg, var(--java-accent), var(--ai-accent));
         }
 
-
-        /* スライダーのスタイルじゃ！これも超近未来的にするんよ！ */
-        #slider-container {
+        /* お客様の声セクション */
+        #testimonials .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 1400px; /* コンテナの幅に合わせて、さらに広く */
-            margin: 80px auto 120px;
+            overflow: hidden;
+            margin: 50px auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--shadow-heavy);
+            border: 3px solid var(--border-glow);
+        }
+        #testimonials .testimonial-carousel {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+        }
+        #testimonials .testimonial-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 60px;
+            text-align: center;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+        }
+        #testimonials .testimonial-text {
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        #testimonials .testimonial-author {
+            font-weight: bold;
+            color: var(--general-accent);
+            font-size: 1.1em;
+            text-shadow: 0 0 10px var(--general-accent);
+        }
+        #testimonials .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #testimonials .carousel-controls button {
+            background-color: rgba(0, 224, 255, 0.6);
+            border: none;
+            color: var(--dark-bg);
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.8);
+        }
+        #testimonials .carousel-controls button:hover {
+            background-color: rgba(0, 224, 255, 0.9);
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 224, 255, 1);
+        }
+
+        /* フォームセクション */
+        #contact .contact-form {
+            background-color: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px var(--shadow-heavy);
+            border: 3px solid var(--border-glow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        #contact .contact-form label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: var(--general-accent);
+            text-shadow: 0 0 5px var(--general-accent);
+        }
+        #contact .contact-form input[type="text"],
+        #contact .contact-form input[type="email"],
+        #contact .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 15px;
+            margin-top: 8px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(138, 255, 0, 0.5);
+            border-radius: 10px;
+            background-color: rgba(16, 16, 43, 0.8);
+            color: var(--text-light);
+            font-size: 1em;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: inset 0 0 10px rgba(138, 255, 0, 0.3);
+        }
+        #contact .contact-form input[type="text"]:focus,
+        #contact .contact-form input[type="email"]:focus,
+        #contact .contact-form textarea:focus {
+            border-color: var(--general-accent);
+            box-shadow: 0 0 15px var(--general-accent), inset 0 0 15px var(--general-accent);
+            outline: none;
+        }
+        #contact .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        #contact .contact-form button {
+            display: block;
+            width: 100%;
+            padding: 20px 0;
+            background: linear-gradient(45deg, var(--java-accent), var(--general-accent));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 40px;
+            font-size: 1.4em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 0 25px var(--java-accent);
+            position: relative;
+            overflow: hidden;
+        }
+        #contact .contact-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transition: left 0.6s ease-out;
+        }
+        #contact .contact-form button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 40px var(--java-accent), 0 0 60px var(--general-accent);
+        }
+        #contact .contact-form button:hover::before {
+            left: 120%;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #050518;
+            color: var(--text-medium);
+            text-align: center;
+            padding: 60px 0;
+            border-top: 3px solid var(--general-accent);
+            box-shadow: 0 -8px 30px var(--shadow-heavy);
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before { /* フッターにも光るグリッド */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(138, 255, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(138, 255, 0, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 0;
+            animation: gridFlow 10s linear infinite;
+        }
+        @keyframes gridFlow {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        footer p {
+            font-size: 1em;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        footer .social-links {
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        footer .social-links a {
+            color: var(--general-accent);
+            font-size: 2em;
+            margin: 0 18px;
+            transition: all 0.4s ease;
+            text-shadow: 0 0 10px var(--general-accent);
+        }
+        footer .social-links a:hover {
+            color: var(--text-light);
+            transform: translateY(-5px) scale(1.2);
+            text-shadow: 0 0 20px var(--general-accent), 0 0 30px var(--general-accent);
+        }
+
+        /* レスポンシブデザイン！スマホでもタブレットでもバッチリ表示させるで！ */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 30px;
+            }
+            header h1 {
+                font-size: 5em;
+            }
+            header p {
+                font-size: 1.5em;
+            }
+            nav ul li {
+                margin: 0 25px;
+            }
+            section {
+                padding: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 100px 0 60px;
+            }
+            header h1 {
+                font-size: 3.5em;
+                margin-bottom: 20px;
+            }
+            header p {
+                font-size: 1.2em;
+            }
+            .view-works-button {
+                padding: 18px 40px;
+                font-size: 1.2em;
+                margin-top: 40px;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            section {
+                padding: 60px 30px;
+                margin-bottom: 60px;
+            }
+            h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 30px;
+            }
+            #testimonials .testimonial-slide {
+                padding: 40px 20px;
+            }
+            #testimonials .testimonial-text {
+                font-size: 1em;
+            }
+            #contact .contact-form {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .view-works-button {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+            nav ul li a {
+                font-size: 1em;
+            }
+            section {
+                padding: 40px 20px;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .portfolio-info h3 {
+                font-size: 1.2em;
+            }
+            footer {
+                padding: 40px 0;
+            }
+            footer .social-links a {
+                font-size: 1.5em;
+                margin: 0 10px;
+            }
+        }
+
+        /* スライダーのCSS */
+        #hero-slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0; /* セクションのデフォルトパディングを無効化 */
+            margin: 0; /* セクションのデフォルトマージンを無効化 */
+            background: transparent; /* 背景を透明に */
+            box-shadow: none; /* 影をなくす */
+            border: none; /* 枠線をなくす */
+            transform: none; /* アニメーションを無効化 */
+            opacity: 1; /* 透明度を無効化 */
+            transition: none; /* トランジションを無効化 */
+            height: 80vh; /* 画面の高さの80% */
+            max-height: 800px; /* 最大高さを設定 */
+        }
+
+        #hero-slider.is-visible { /* セクション表示アニメーションを上書き */
+            transform: none;
+            opacity: 1;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             border-radius: 25px;
-            box-shadow: 0 15px 50px var(--shadow-heavy);
-            border: 4px solid var(--general-accent);
-            background-color: var(--section-bg);
-            backdrop-filter: blur(10px);
-            perspective: 1200px; /* 3D効果用 */
+            box-shadow: 0 0 50px rgba(0, 224, 255, 0.7); /* 強烈なネオングロー */
+            border: 4px solid var(--ai-accent); /* サイバーブルーの枠線 */
+            background-color: rgba(16, 16, 43, 0.8); /* 半透明の背景 */
         }
 
         .slider {
             display: flex;
-            transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* もっとドラマチックなアニメーション */
-            transform-style: preserve-3d; /* 3D空間 */
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* より滑らかに、跳ねるような */
         }
 
         .slide {
-            flex: 1 0 100%;
+            min-width: 100%;
+            height: 100%;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            border-radius: 20px; /* スライド内側も丸く */
-            transform-origin: center center;
-            animation: slideIn 1.2s ease-out forwards; /* スライド切り替え時にアニメーション */
-        }
-        @keyframes slideIn {
-            from { transform: translateX(100%) scale(0.8) rotateY(30deg); opacity: 0; }
-            to { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; }
         }
 
         .slide img {
             width: 100%;
-            height: 600px; /* 高さをさらに固定して統一感を出す */
+            height: 100%;
             object-fit: cover;
-            filter: brightness(0.5) grayscale(0.3); /* もっと暗く、ちょっとモノクロに */
-            transition: filter 0.6s ease, transform 0.6s ease;
+            filter: brightness(0.7) contrast(1.1); /* 少し暗く、コントラストを上げてSF感を出す */
+            transition: filter 0.5s ease-out;
         }
+
         .slide:hover img {
-            filter: brightness(0.8) grayscale(0); /* ホバーで鮮やかに */
-            transform: scale(1.05); /* ちょっと拡大 */
+            filter: brightness(1) contrast(1); /* ホバーで明るく、鮮明に */
         }
 
         .slide-caption {
             position: absolute;
-            bottom: 50px;
-            left: 50px;
-            right: 50px;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, 30px); /* 最初は少し下に隠す */
+            opacity: 0; /* 最初は透明 */
             color: var(--text-light);
-            padding: 30px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px 40px;
             border-radius: 15px;
-            border-left: 8px solid var(--general-accent);
-            z-index: 10;
-            transform: translateY(40px);
-            opacity: 0;
-            box-shadow: 0 0 30px rgba(138, 255, 0, 0.6);
-            backdrop-filter: blur(5px); /* キャプションもぼかす */
+            max-width: 80%;
+            box-shadow: 0 0 30px rgba(0, 224, 255, 0.5); /* キャプションにも光 */
+            border: 2px solid var(--ai-accent);
+            animation: captionFadeIn 1s forwards 0.4s; /* アニメーションを追加 */
+            backdrop-filter: blur(5px); /* 背景をぼかす */
         }
-        .slide-caption.active { /* JSで追加されるクラス */
-            transform: translateY(0);
-            opacity: 1;
-            transition: transform 1s ease-out 0.4s, opacity 1s ease-out 0.4s;
+
+        @keyframes captionFadeIn {
+            0% { transform: translate(-50%, 30px); opacity: 0; }
+            100% { transform: translate(-50%, 0); opacity: 1; }
         }
 
         .slide-caption h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8em;
-            margin-bottom: 15px;
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
             color: var(--general-accent);
-            text-shadow: 0 0 20px rgba(138, 255, 0, 0.9), 0 0 35px rgba(138, 255, 0, 0.6);
-            text-align: left;
+            text-shadow: 0 0 20px var(--general-accent);
         }
 
         .slide-caption p {
-            font-size: 1.4em;
-            margin-top: 0;
-            text-align: left;
+            font-size: 1.2em;
+            margin: 0;
             color: var(--text-medium);
         }
 
         .slider-controls {
             position: absolute;
             top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
+            width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 40px;
-            z-index: 100;
+            transform: translateY(-50%);
+            z-index: 10;
+            padding: 0 30px;
+            box-sizing: border-box;
         }
 
         .slider-controls button {
-            background: rgba(0, 0, 0, 0.8);
-            color: var(--text-light);
+            background-color: rgba(0, 224, 255, 0.7);
             border: none;
-            padding: 22px; /* もっと大きく */
+            color: var(--dark-bg);
+            padding: 15px;
             border-radius: 50%;
             cursor: pointer;
+            font-size: 1.8em;
             transition: all 0.4s ease;
-            box-shadow: 0 0 25px rgba(138, 255, 0, 0.9); /* 強烈な光り */
-            backdrop-filter: blur(10px); /* 背景をさらにぼかす */
-            animation: buttonGlow 2s infinite alternate; /* 常にじんわり光る */
+            box-shadow: 0 0 20px rgba(0, 224, 255, 0.8);
+            backdrop-filter: blur(8px);
         }
 
         .slider-controls button:hover {
-            background: rgba(0, 0, 0, 1);
-            transform: scale(1.25); /* もっと大きく */
-            box-shadow: 0 0 50px var(--general-accent), 0 0 80px rgba(138, 255, 0, 1);
-        }
-
-        @keyframes buttonGlow {
-            0% { box-shadow: 0 0 20px rgba(138, 255, 0, 0.7); }
-            100% { box-shadow: 0 0 40px rgba(138, 255, 0, 1); }
-        }
-
-        .slider-controls svg {
-            width: 36px; /* アイコンをさらに大きく */
-            height: 36px;
-            vertical-align: middle;
-            color: var(--general-accent);
+            background-color: rgba(0, 224, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 224, 255, 1), 0 0 50px rgba(0, 224, 255, 0.6);
         }
 
         .slide-indicators {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 15px;
-            z-index: 100;
+            z-index: 10;
         }
 
-        .slide-indicators button {
-            background-color: rgba(255, 255, 255, 0.3);
-            border: 3px solid rgba(138, 255, 0, 0.7);
-            width: 18px; /* もっと大きく */
-            height: 18px;
+        .slide-indicator {
+            width: 15px;
+            height: 15px;
+            background-color: rgba(138, 255, 0, 0.5);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.4s ease;
-            box-shadow: 0 0 10px rgba(138, 255, 0, 0.5);
+            border: 2px solid rgba(138, 255, 0, 0.8);
+            box-shadow: 0 0 10px rgba(138, 255, 0, 0.6);
         }
 
-        .slide-indicators button.active {
+        .slide-indicator.active {
             background-color: var(--general-accent);
-            transform: scale(1.4);
-            box-shadow: 0 0 25px var(--general-accent), 0 0 40px rgba(138, 255, 0, 0.9);
+            transform: scale(1.2);
+            box-shadow: 0 0 20px var(--general-accent), 0 0 30px var(--general-accent);
         }
 
-
-        .portfolio-grid, .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 50px; /* さらに広げる */
-            margin-top: 80px;
-        }
-
-        .item-card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px var(--shadow-light);
-            text-align: center;
-            padding-bottom: 40px;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease, border-color 0.6s ease;
-            border: 3px solid rgba(138, 255, 0, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-        .item-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 50px var(--shadow-heavy);
-            border-color: var(--general-accent);
-            animation: itemCardPulse 1.5s infinite alternate; /* カードが脈動 */
-        }
-        @keyframes itemCardPulse {
-            0% { box-shadow: 0 20px 45px var(--shadow-heavy), 0 0 20px rgba(138, 255, 0, 0.6); }
-            100% { box-shadow: 0 20px 45px var(--shadow-heavy), 0 0 35px rgba(138, 255, 0, 0.9); }
-        }
-
-        .item-card img {
-            width: 100%;
-            height: 320px; /* もっと高さを出す */
-            object-fit: cover;
-            border-bottom: 5px solid var(--general-accent);
-            transition: transform 0.5s ease, filter 0.5s ease;
-            filter: brightness(0.8);
-        }
-        .item-card:hover img {
-            transform: scale(1.1); /* ホバーで大胆に拡大 */
-            filter: brightness(1.1);
-        }
-        .item-card h4 {
-            margin: 35px 25px 15px;
-            color: var(--general-accent);
-            font-size: 2.2em;
-            text-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
-        }
-        .item-card p {
-            font-size: 1.2em;
-            color: var(--text-medium);
-            padding: 0 25px;
-        }
-
-        .code-snippet {
-            background-color: #0d1a2b;
-            color: #2bff00;
-            font-family: 'Roboto Mono', monospace;
-            padding: 35px;
-            border-radius: 15px;
-            margin: 40px auto 0;
-            text-align: left;
-            overflow-x: auto;
-            border: 4px solid var(--python-accent); /* より太く、光る枠 */
-            box-shadow: 0 0 25px rgba(0, 255, 128, 0.9), 0 0 40px rgba(0, 255, 128, 0.6); /* 強烈な光り */
-            line-height: 1.5;
-        }
-        .code-snippet code {
-            display: block;
-            white-space: pre-wrap;
-        }
-        .code-snippet span.comment { color: #888; }
-        .code-snippet span.keyword { color: #ff00ff; }
-        .code-snippet span.string { color: #ffd700; }
-        .code-snippet span.function { color: #00e0ff; }
-        .code-snippet span.variable { color: #9cf; }
-
-        section#services ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        section#services ul li {
-            background-color: var(--card-bg);
-            padding: 30px 35px;
-            border-radius: 15px;
-            border-left: 8px solid var(--general-accent);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 4px 15px var(--shadow-light);
-            font-size: 1.2em;
-            position: relative;
-            overflow: hidden;
-        }
-        section#services ul li::before { /* ホバー時の光るボーダー */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 2px solid transparent;
-            border-radius: 15px;
-            transition: border-color 0.4s ease;
-            pointer-events: none;
-        }
-        section#services ul li:hover {
-            transform: translateX(15px);
-            box-shadow: 0 10px 25px var(--shadow-heavy);
-            border-color: var(--ai-accent); /* 左ボーダーもホバーで変化 */
-        }
-        section#services ul li:hover::before {
-            border-color: var(--ai-accent); /* ホバー時に光る枠 */
-        }
-
-
-        section#blog div {
-            background-color: var(--card-bg);
-            padding: 35px;
-            border-radius: 15px;
-            margin-bottom: 35px;
-            border-left: 8px solid var(--general-accent);
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px var(--shadow-light);
-        }
-        section#blog div:hover {
-            background-color: #1a1a3a;
-            transform: translateY(-10px) scale(1.01);
-            box-shadow: 0 12px 30px var(--shadow-heavy);
-            border-color: var(--python-accent); /* ホバーで左ボーダー変化 */
-        }
-        section#blog h3 {
-            text-align: left;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 2em;
-        }
-        section#blog h3 a {
-            color: var(--general-accent);
-            text-decoration: none;
-            transition: color 0.4s ease;
-        }
-        section#blog h3 a:hover {
-            color: var(--text-light);
-            text-decoration: underline;
-        }
-        section#blog p {
-            font-size: 1.15em;
-            color: var(--text-medium);
-        }
-        form {
-            max-width: 800px; /* フォームもさらに広く */
-            margin: 0 auto;
-            padding: 60px;
-            background-color: var(--card-bg);
-            border-radius: 25px;
-            box-shadow: 0 10px 30px var(--shadow-heavy);
-            border: 4px solid var(--general-accent);
-            backdrop-filter: blur(6px);
-        }
-        form p {
-            margin-bottom: 35px;
-        }
-        form label {
-            display: block;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: var(--general-accent);
-            font-size: 1.3em;
-        }
-        form input[type="text"], form input[type="email"], form select, form textarea {
-            width: calc(100% - 32px); /* パディングとボーダー分を引く */
-            padding: 20px;
-            margin-top: 12px;
-            border-radius: 12px;
-            border: 3px solid #4a4a6b;
-            background-color: #1a1a3a;
-            color: var(--text-light);
-            font-size: 1.2em;
-            box-sizing: border-box;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-        form input:focus, form select:focus, form textarea:focus {
-            border-color: var(--general-accent);
-            box-shadow: 0 0 20px rgba(138, 255, 0, 0.9);
-            outline: none;
-        }
-        form textarea {
-            resize: vertical;
-            min-height: 180px;
-        }
-        form input::placeholder, form textarea::placeholder {
-            color: #b0b0d0;
-        }
-        form button[type="submit"] {
-            padding: 22px 50px;
-            background: linear-gradient(45deg, var(--general-accent), #00e0ff);
-            color: var(--dark-bg);
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1.4em;
-            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 0 30px var(--general-accent);
-            display: block;
-            margin: 60px auto 0;
-            overflow: hidden;
-            position: relative;
-            animation: buttonPulse 2.5s infinite alternate; /* 送信ボタンも脈動 */
-        }
-        form button[type="submit"]::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-            transition: 0.9s;
-        }
-        form button[type="submit"]:hover {
-            background: linear-gradient(45deg, #00e0ff, var(--general-accent));
-            transform: translateY(-10px) scale(1.07);
-            box-shadow: 0 0 50px var(--general-accent), 0 0 80px rgba(138, 255, 0, 1);
-        }
-        form button[type="submit"]:hover::before {
-            left: 150%;
-        }
-        footer {
-            background-color: #030310; /* 一番濃い色 */
-            text-align: center;
-            padding: 60px 0;
-            color: #a0c0ff;
-            margin-top: 120px;
-            font-size: 1.1em;
-            border-top: 5px solid var(--general-accent);
-            box-shadow: 0 -10px 25px var(--shadow-heavy);
-            backdrop-filter: blur(8px);
-        }
-        footer a {
-            color: var(--general-accent);
-            text-decoration: none;
-            transition: color 0.4s ease;
-            text-shadow: 0 0 10px rgba(138, 255, 0, 0.6);
-        }
-        footer a:hover {
-            color: var(--text-light);
-            text-decoration: underline;
-        }
-        /* レスポンシブデザインの調整じゃ！ */
-        @media (max-width: 1400px) {
-            header h1 { font-size: 5em; }
-            header p { font-size: 1.6em; }
-            nav ul li { margin: 0 30px; }
-            .container { padding: 0 40px; }
-            section { padding: 80px; margin-bottom: 80px; }
-            h2 { font-size: 3.2em; }
-            .pillar-card { min-width: 360px; padding: 60px; }
-            #slider-container { max-width: 95%; }
-            .slide img { height: 500px; }
-            .slide-caption h3 { font-size: 2.4em; }
-            .slide-caption p { font-size: 1.2em; }
-            .portfolio-grid, .solutions-grid { gap: 40px; }
-            .item-card { padding-bottom: 35px; }
-            .item-card img { height: 280px; }
-            .code-snippet { padding: 30px; }
-            form { padding: 50px; }
-        }
-        @media (max-width: 1200px) {
-            header h1 { font-size: 4em; }
-            header p { font-size: 1.4em; }
-            nav ul li { margin: 0 20px; }
-            .container { padding: 0 30px; }
-            section { padding: 60px; margin-bottom: 60px; }
-            h2 { font-size: 2.8em; }
-            .pillar-card { min-width: 320px; padding: 50px; }
-            #slider-container { max-width: 90%; }
-            .slide img { height: 400px; }
-            .slide-caption { bottom: 40px; left: 40px; right: 40px; padding: 25px; }
-            .slide-caption h3 { font-size: 2em; }
-            .slide-caption p { font-size: 1.1em; }
-            .slider-controls button { padding: 18px; }
-            .slider-controls svg { width: 32px; height: 32px; }
-            .portfolio-grid, .solutions-grid { gap: 30px; }
-            .item-card { padding-bottom: 30px; }
-            .item-card img { height: 250px; }
-            .code-snippet { padding: 25px; font-size: 0.95em; }
-            form { padding: 40px; }
-            form button[type="submit"] { padding: 20px 45px; font-size: 1.3em; }
-        }
-        @media (max-width: 992px) {
-            header { padding: 100px 0 60px; }
-            header h1 { font-size: 3.2em; }
-            header p { font-size: 1.2em; }
-            .view-works-button { padding: 18px 40px; font-size: 1.2em; margin-top: 40px; }
-            nav ul li { margin: 0 15px; font-size: 1.1em; }
-            nav ul li a::after { bottom: -10px; height: 4px; }
-            section { padding: 50px; margin-bottom: 50px; }
-            h2 { font-size: 2.4em; margin-bottom: 40px; }
-            h2 span { padding: 0 15px; }
-            h2::after { margin-top: 20px; width: 80px; }
-            .pillar-intro { flex-direction: column; align-items: center; gap: 40px; }
-            .pillar-card {
-                max-width: 100%;
-                min-width: unset;
-                padding: 40px;
-            }
-            #slider-container { margin: 60px auto 90px; }
-            .slide img { height: 320px; }
-            .slide-caption { bottom: 30px; left: 30px; right: 30px; padding: 20px; }
-            .slide-caption h3 { font-size: 1.8em; }
-            .slide-caption p { font-size: 1em; }
-            .slider-controls button { padding: 15px; }
-            .slider-controls svg { width: 28px; height: 28px; }
-            .slide-indicators { bottom: 30px; gap: 12px; }
-            .slide-indicators button { width: 15px; height: 15px; }
-            .portfolio-grid, .solutions-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 25px;
-            }
-            .item-card img { height: 220px; }
-            .item-card h4 { font-size: 1.8em; }
-            .code-snippet { padding: 20px; font-size: 0.9em; }
-            form { padding: 35px; }
-            form button[type="submit"] { padding: 18px 40px; font-size: 1.2em; }
-            footer { margin-top: 90px; padding: 50px 0; }
-        }
+        /* スライダーのメディアクエリ */
         @media (max-width: 768px) {
-            header { padding: 80px 0 40px; }
-            header h1 { font-size: 2.5em; }
-            header p { font-size: 1em; }
-            .view-works-button { padding: 15px 30px; font-size: 1em; margin-top: 30px; }
-            nav ul li { margin: 0 8px; font-size: 0.9em; }
-            nav ul li a::after { bottom: -6px; height: 3px; }
-            .container { padding: 0 20px; }
-            section { padding: 30px 20px; margin-bottom: 30px; }
-            h2 { font-size: 1.8em; margin-bottom: 25px; }
-            h2 span { padding: 0 10px; }
-            h2::after { margin-top: 15px; width: 80px; }
-            .pillar-card { padding: 30px; }
-            #slider-container { margin: 40px auto 60px; }
-            .slide img { height: 240px; }
-            .slide-caption { bottom: 15px; left: 15px; right: 15px; padding: 12px; }
-            .slide-caption h3 { font-size: 1.3em; margin-bottom: 8px; }
-            .slide-caption p { font-size: 0.85em; }
-            .slider-controls button { padding: 10px; }
-            .slider-controls svg { width: 20px; height: 20px; }
-            .slide-indicators { bottom: 15px; gap: 8px; }
-            .slide-indicators button { width: 10px; height: 10px; }
-            .portfolio-grid, .solutions-grid { grid-template-columns: 1fr; gap: 20px; }
-            .item-card img { height: 180px; }
-            .item-card h4 { font-size: 1.5em; }
-            .code-snippet { padding: 12px; font-size: 0.8em; }
-            form { padding: 25px; }
-            form button[type="submit"] { padding: 12px 25px; font-size: 0.9em; margin-top: 40px; }
-            footer { margin-top: 50px; padding: 30px 0; }
+            #hero-slider {
+                height: 60vh;
+            }
+            .slide-caption {
+                padding: 15px 20px;
+                bottom: 5%;
+            }
+            .slide-caption h3 {
+                font-size: 1.8em;
+            }
+            .slide-caption p {
+                font-size: 1em;
+            }
+            .slider-controls button {
+                padding: 10px;
+                font-size: 1.5em;
+            }
+            .slide-indicators {
+                bottom: 20px;
+                gap: 10px;
+            }
+            .slide-indicator {
+                width: 12px;
+                height: 12px;
+            }
         }
+
+        @media (max-width: 480px) {
+            #hero-slider {
+                height: 50vh;
+            }
+            .slide-caption {
+                padding: 10px 15px;
+            }
+            .slide-caption h3 {
+                font-size: 1.5em;
+            }
+            .slide-caption p {
+                font-size: 0.9em;
+            }
+            .slider-controls button {
+                padding: 8px;
+                font-size: 1.2em;
+            }
+            .slide-indicators {
+                bottom: 15px;
+                gap: 8px;
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="background-effect"></div>
-    <div class="particles" id="particles-container"></div> <div id="lightning-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -3;"></div> <header>
-        <div class="hero-background-overlay"></div>
-        <h1>AI & Python & Java</h1>
-        <p>AI画像生成、Web開発、システム開発で<br>あなたのビジネスに革新を。</p>
-        <a href="#portfolio" class="view-works-button">制作実績を見る</a>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">私達の強み</a></li>
-            <li><a href="#services">サービス</a></li>
-            <li><a href="#portfolio">制作実績</a></li>
-            <li><a href="#blog">ブログ</a></li>
-            <li><a href="#contact">お問い合わせ</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="about" class="container">
-            <h2>私達の <span>強み</span></h2>
-            <p>顧客の未来を創造するパートナーとして、当スタジオは以下の3つの柱でビジネスを強力にサポートします。</p>
-            <div class="pillar-intro">
-                <div class="pillar-card ai">
-                    <h3>AI 画像生成</h3>
-                    <p>Stable DiffusionやMidjourneyなどの最先端AI技術を駆使し、広告、ウェブサイト、ブランドイメージに合わせた高品質なビジュアルコンテンツを生成。時間とコストを削減し、無限のクリエイティブな可能性を提供します。</p>
-                    <a href="#portfolio">実績を見る</a>
-                </div>
-                <div class="pillar-card python">
-                    <h3>Python 開発</h3>
-                    <p>AIシステム、データ分析ツール、自動化スクリプトなど、Pythonの柔軟性と強力なライブラリを活用したカスタムソリューションを開発。業務効率化とビジネス成長を支援します。</p>
-                    <a href="#contact">相談する</a>
-                </div>
-                <div class="pillar-card java">
-                    <h3>Java 開発</h3>
-                    <p>堅牢性とスケーラビリティが求められる大規模システムやエンタープライズアプリケーションをJavaで開発。安定したパフォーマンスと高いセキュリティを実現し、ビジネスの基盤を強化します。</p>
-                    <a href="#contact">相談する</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="container">
-            <h2>私達の <span>サービス内容</span></h2>
-            <ul>
-                <li>AIアート・イラストレーション制作</li>
-                <li>商品イメージ・広告ビジュアル生成</li>
-                <li>ウェブサイト用画像・アイコン制作</li>
-                <li>Pythonによる自動化ツール開発</li>
-                <li>データ分析・機械学習モデル構築</li>
-                <li>業務システム・アプリケーション開発（Java）</li>
-                <li>既存システムの改善・保守</li>
-                <li>技術コンサルティング</li>
-            </ul>
-        </section>
-
-        <section id="portfolio" class="container">
-            <h2>制作実績 <span>AI Art Gallery</span></h2>
-            <p>AI Art Studioが手がけた選りすぐりのAIアート作品をご紹介します。各作品には、生成プロセスやインスピレーションに関する詳細な解説があります。</p>
-            <div class="portfolio-grid">
-                <div class="item-card">
-                    <a href="case_study_chameleon.html">
-                        <img src="images/chameleon.png" alt="カラフルなカメレオンのアート作品">
-                        <h4>AIによる進化：カラフルなカメレオンのアート作品制作事例</h4>
-                        <p>鮮やかな色彩と複雑なディテールで、革新的なAIアートの世界へ誘います。</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="case_study_lizard.html">
-                        <img src="images/lizard.png" alt="青いトカゲの彫像">
-                        <h4>古代の神秘と現代の融合：青いトカゲの彫像プロジェクト</h4>
-                        <p>AIが生成した、歴史と未来が交差する荘厳な彫像の物語。</p>
-                    </a>
-                </div>
-                <div class="item-card">
-                    <a href="case_study_cubes.html">
-                        <img src="images/cubes.png" alt="クリスタルキューブのアート">
-                        <h4>幻想的な幾何学の世界：AI生成によるクリスタルキューブのアート</h4>
-                        <p>光と影が織りなす無限の空間を表現した、魅惑的なビジュアル体験。</p>
-                    </a>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 50px;">
-                <a href="portfolio.html" class="view-all-works-button">全ての制作実績を見る</a>
-            </p>
-        </section>
-
-        <section id="blog" class="container">
-            <h2>ブログ <span>最新情報</span></h2>
-            <div class="blog-posts">
-                <div>
-                    <h3><a href="#">AIアートの未来：最新トレンドと活用法</a></h3>
-                    <p>AIアートの進化は止まらない！最新の技術トレンドとビジネスでの活用事例を紹介します。</p>
-                </div>
-                <div>
-                    <h3><a href="#">Pythonで業務を自動化する魔法</a></h3>
-                    <p>日々のルーティン作業をPythonで自動化！具体的なコード例と効果的な活用術を解説します。</p>
-                </div>
-                <div>
-                    <h3><a href="#">Javaの強みとエンタープライズ開発</a></h3>
-                    <p>大規模システム開発にJavaが選ばれる理由とは？その堅牢性とスケーラビリティの秘密に迫ります。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="container">
-            <h2>お問い合わせ <span>Contact Us</span></h2>
-            <p>ご質問、ご相談、お見積もり依頼など、お気軽にお問い合わせください。</p>
-            <form>
-                <p>
-                    <label for="name">お名前:</label>
-                    <input type="text" id="name" name="name" required>
-                </p>
-                <p>
-                    <label for="email">メールアドレス:</label>
-                    <input type="email" id="email" name="email" required>
-                </p>
-                <p>
-                    <label for="service">ご希望のサービス:</label>
-                    <select id="service" name="service">
-                        <option value="ai-art">AI画像生成</option>
-                        <option value="python-dev">Python開発</option>
-                        <option value="java-dev">Java開発</option>
-                        <option value="consulting">技術コンサルティング</option>
-                        <option value="other">その他</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="message">お問い合わせ内容:</label>
-                    <textarea id="message" name="message" rows="8" required></textarea>
-                </p>
-                <button type="submit">送信</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
-        <p>Powered by Advanced Digital Solutions</p>
-        <p><a href="#">プライバシーポリシー</a></p>
-    </footer>
-
+    <div class="particles"></div>
     <script>
-        // JSでセクションの表示アニメーションとパーティクル効果、稲妻を制御するんじゃ！
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const lightningContainer = document.getElementById('lightning-container');
+            // パーティクル生成スクリプト
+            const particlesContainer = document.querySelector('.particles');
+            const numParticles = 80; // パーティクル数を増やす
 
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-
-            // スライダーのJSじゃ！これも未来的な動きを演出するんよ！
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const prevButton = document.querySelector('.slider-controls button:first-child');
-            const nextButton = document.querySelector('.slider-controls button:last-child');
-            const slideIndicatorsContainer = document.querySelector('.slide-indicators');
-            let currentIndex = 0;
-
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-                updateIndicators();
-                updateCaptionAnimation();
-            }
-
-            function updateIndicators() {
-                slideIndicatorsContainer.innerHTML = ''; 
-                slides.forEach((_, index) => {
-                    const button = document.createElement('button');
-                    button.classList.add('slide-indicator');
-                    if (index === currentIndex) {
-                        button.classList.add('active');
-                    }
-                    button.addEventListener('click', () => {
-                        currentIndex = index;
-                        updateSlider();
-                    });
-                    slideIndicatorsContainer.appendChild(button);
-                });
-            }
-
-            function updateCaptionAnimation() {
-                slides.forEach((slide, index) => {
-                    const caption = slide.querySelector('.slide-caption');
-                    if (caption) {
-                        if (index === currentIndex) {
-                            caption.classList.add('active');
-                        } else {
-                            caption.classList.remove('active');
-                        }
-                    }
-                });
-            }
-
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
-                updateSlider();
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
-                updateSlider();
-            });
-
-            // 初期表示
-            if (slides.length > 0) {
-                updateSlider();
-            }
-
-            // マウス追従パーティクルエフェクト
-            const particlesContainer = document.getElementById('particles-container');
-
-            document.addEventListener('mousemove', (e) => {
+            for (let i = 0; i < numParticles; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                particlesContainer.appendChild(particle);
-
-                const size = Math.random() * 5 + 2; // 2pxから7px
+                const size = Math.random() * 4 + 2; // サイズを調整
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.left = `${e.clientX}px`;
-                particle.style.top = `${e.clientY}px`;
-                
-                // アニメーション用のカスタムプロパティ
-                particle.style.setProperty('--x', `${e.clientX + (Math.random() - 0.5) * 100}px`);
-                particle.style.setProperty('--y', `${e.clientY + (Math.random() - 0.5) * 100}px`);
-                particle.style.setProperty('--s', `${Math.random() * 1.5 + 0.5}`);
+                particle.style.setProperty('--x', `${Math.random() * 100}vw`);
+                particle.style.setProperty('--y', `${Math.random() * 100}vh`);
+                particle.style.setProperty('--s', `${Math.random() * 1.5 + 0.5}`); // スケール変化
+                particle.style.animationDelay = `${Math.random() * 5}s`; // アニメーション開始をずらす
+                particlesContainer.appendChild(particle);
+            }
 
-                particle.style.animation = `particleFade 2s ease-out forwards`;
-                particle.style.backgroundColor = `rgba(${Math.random() * 50 + 100}, ${Math.random() * 100 + 150}, ${Math.random() * 50 + 200}, 0.8)`; /* 青緑系のランダムな光 */
-
-
-                // 一定時間後に要素を削除してDOMをクリーンアップ
-                setTimeout(() => {
-                    particle.remove();
-                }, 2000); // 2秒後に削除
-            });
-
-            // 新規追加：稲妻エフェクトのJSじゃ！
+            // 稲妻エフェクトのスクリプトじゃ！
+            const body = document.body;
             function createLightning() {
                 const lightning = document.createElement('div');
                 lightning.classList.add('lightning');
-                lightningContainer.appendChild(lightning);
+                body.appendChild(lightning);
 
                 const startX = Math.random() * window.innerWidth;
                 const startY = Math.random() * window.innerHeight;
-                const endX = startX + (Math.random() - 0.5) * 400; // 稲妻の広がり
-                const endY = startY + (Math.random() - 0.5) * 400;
+                const endX = Math.random() * window.innerWidth;
+                const endY = Math.random() * window.innerHeight;
 
-                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
                 const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
 
                 lightning.style.left = `${startX}px`;
                 lightning.style.top = `${startY}px`;
@@ -1283,13 +1106,102 @@
                 });
             }
 
-            // 稲妻を定期的に発生させる（例: 0.5秒から3秒の間隔でランダムに）
+            // 稲妻を定期的に発生させる（例: 0.5秒から3秒の間隔でランダム）
             setInterval(() => {
-                if (Math.random() > 0.6) { // 発生確率を調整
-                    createLightning();
-                }
-            }, Math.random() * 2500 + 500); // 500msから3000msの間隔
+                createLightning();
+            }, Math.random() * 2500 + 500); // 0.5秒から3秒
 
+            // Intersection Observer APIでセクションの表示アニメーションを制御
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null, // ビューポートをルートとする
+                rootMargin: '0px',
+                threshold: 0.2 // 要素の20%が見えたら発火
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // 一度表示されたら監視をやめる
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // スライダースクリプト
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const slideIndicatorsContainer = document.querySelector('.slide-indicators');
+
+            let currentIndex = 0;
+            let slideInterval; // 自動スライドのインターバルID
+
+            // インジケーターの生成
+            if (slideIndicatorsContainer) {
+                slides.forEach((_, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('slide-indicator');
+                    if (index === 0) {
+                        indicator.classList.add('active');
+                    }
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateSlider();
+                    });
+                    slideIndicatorsContainer.appendChild(indicator);
+                });
+            }
+
+            const indicators = document.querySelectorAll('.slide-indicator');
+
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // インジケーターのアクティブ状態を更新
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                updateCaptionAnimation(); // キャプションアニメーションを更新
+                resetAutoSlide(); // スライドが手動で操作されたら自動スライドをリセット
+            }
+
+            function startAutoSlide() {
+                slideInterval = setInterval(() => {
+                    currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                    updateSlider();
+                }, 5000); // 5秒ごとにスライド
+            }
+
+            function resetAutoSlide() {
+                clearInterval(slideInterval);
+                startAutoSlide();
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+                updateSlider();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+                updateSlider();
+            });
+
+            // 初期表示
+            if (slides.length > 0) {
+                updateSlider();
+                startAutoSlide(); // ページ読み込み時に自動スライドを開始
+            }
         });
     </script>
 </body>
