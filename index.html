@@ -43,7 +43,7 @@
             cursor: none;
         }
 
-        /* カスタムカーソル強化 */
+        /* カスタムカーソル */
         .cursor {
             position: fixed;
             width: 20px;
@@ -56,20 +56,9 @@
             transition: transform 0.1s ease;
         }
 
-        .cursor-trail {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: var(--ai-accent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            opacity: 0.6;
-        }
-
         .cursor.active {
             transform: scale(2);
-            background: radial-gradient(circle, var(--python-accent), transparent);
+            background: radial-gradient(circle, var(--ai-accent), transparent);
         }
 
         /* ローディング画面 */
@@ -117,7 +106,7 @@
             text-shadow: 0 0 20px var(--general-accent);
         }
 
-        /* 背景エフェクト強化 */
+        /* 背景エフェクト */
         .cyber-background {
             position: fixed;
             top: 0;
@@ -145,7 +134,7 @@
             100% { background-position: 0 0, 0 0, 0 -30px, -30px 0; }
         }
 
-        /* パーティクル強化 */
+        /* パーティクル */
         .particles-canvas {
             position: fixed;
             top: 0;
@@ -180,7 +169,7 @@
             100% { background-position: 0 4px; }
         }
 
-        /* ヘッダー強化 */
+        /* ヘッダー */
         header {
             height: 100vh;
             background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
@@ -288,7 +277,7 @@
             100% { opacity: 0.95; transform: translateY(0); }
         }
 
-        /* CTA ボタン強化 */
+        /* CTA ボタン */
         .cta-container {
             display: flex;
             gap: 2rem;
@@ -358,7 +347,7 @@
             left: 100%;
         }
 
-        /* ナビゲーション強化 */
+        /* ナビゲーション */
         nav {
             position: fixed;
             top: 0;
@@ -486,15 +475,15 @@
             line-height: 1.8;
         }
 
-        /* カード強化 */
-        .pillar-intro {
+        /* 技術カード */
+        .tech-showcase {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 3rem;
             margin: 5rem 0;
         }
 
-        .pillar-card {
+        .tech-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 2px solid var(--glass-border);
@@ -506,7 +495,7 @@
             overflow: hidden;
         }
 
-        .pillar-card::before {
+        .tech-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -516,17 +505,32 @@
             border-radius: 25px 25px 0 0;
         }
 
-        .pillar-card.ai::before { background: var(--ai-accent); }
-        .pillar-card.python::before { background: var(--python-accent); }
-        .pillar-card.java::before { background: var(--java-accent); }
+        .tech-card.ai::before { background: var(--ai-accent); }
+        .tech-card.python::before { background: var(--python-accent); }
+        .tech-card.java::before { background: var(--java-accent); }
 
-        .pillar-card:hover {
+        .tech-card:hover {
             transform: translateY(-20px) scale(1.05);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             border-color: var(--general-accent);
         }
 
-        .pillar-card h3 {
+        .tech-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .tech-card.ai .tech-icon { color: var(--ai-accent); }
+        .tech-card.python .tech-icon { color: var(--python-accent); }
+        .tech-card.java .tech-icon { color: var(--java-accent); }
+
+        .tech-card h3 {
             font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
             margin-bottom: 1.5rem;
@@ -534,13 +538,13 @@
             text-shadow: 0 0 15px rgba(138, 255, 0, 0.5);
         }
 
-        .pillar-card p {
+        .tech-card p {
             color: var(--text-medium);
             line-height: 1.7;
             margin-bottom: 2rem;
         }
 
-        .pillar-card a {
+        .tech-card a {
             display: inline-block;
             padding: 12px 30px;
             background: rgba(138, 255, 0, 0.1);
@@ -552,13 +556,13 @@
             transition: all 0.3s ease;
         }
 
-        .pillar-card a:hover {
+        .tech-card a:hover {
             background: var(--general-accent);
             color: var(--dark-bg);
             box-shadow: 0 0 20px var(--general-accent);
         }
 
-        /* ポートフォリオグリッド */
+        /* ポートフォリオ */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -566,7 +570,7 @@
             margin: 3rem 0;
         }
 
-        .item-card {
+        .portfolio-item {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -576,37 +580,61 @@
             position: relative;
         }
 
-        .item-card:hover {
+        .portfolio-item:hover {
             transform: scale(1.05);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             border-color: var(--general-accent);
         }
 
-        .item-card img {
+        .portfolio-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .item-card:hover img {
+        .portfolio-item:hover img {
             transform: scale(1.1);
         }
 
-        .item-card h4 {
+        .portfolio-item h4 {
             font-size: 1.4rem;
             color: var(--general-accent);
             margin: 1.5rem;
             font-weight: 700;
         }
 
-        .item-card p {
+        .portfolio-item p {
             color: var(--text-medium);
             margin: 0 1.5rem 1.5rem;
             line-height: 1.6;
         }
 
-        /* フォーム強化 */
+        /* サービス */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--general-accent);
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .service-item:hover {
+            transform: translateX(10px);
+            background: rgba(138, 255, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* お問い合わせフォーム */
         .contact-form {
             max-width: 700px;
             margin: 0 auto;
@@ -708,9 +736,9 @@
             color: var(--text-light);
         }
 
-        /* レスポンシブデザイン */
+        /* レスポンシブ */
         @media (max-width: 768px) {
-            .pillar-intro {
+            .tech-showcase {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
@@ -746,15 +774,11 @@
             }
         }
 
-        /* ユーティリティクラス */
+        /* ユーティリティ */
         .text-center { text-align: center; }
         .mb-3 { margin-bottom: 3rem; }
         .mt-3 { margin-top: 3rem; }
-
-        /* ホバーエフェクト */
-        .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(138, 255, 0, 0.6);
-        }
+        .hover-glow:hover { box-shadow: 0 0 30px rgba(138, 255, 0, 0.6); }
     </style>
 </head>
 <body>
@@ -809,9 +833,10 @@
                 </p>
             </div>
             
-            <div class="pillar-intro">
-                <div class="pillar-card ai">
-                    <h3>🎨 AI 画像生成</h3>
+            <div class="tech-showcase">
+                <div class="tech-card ai">
+                    <div class="tech-icon">🎨</div>
+                    <h3>AI 画像生成</h3>
                     <p>
                         Stable Diffusion、Midjourney、DALL-Eなどの最先端AI技術を駆使し、
                         ブランドイメージに完全に合致した高品質なビジュアルコンテンツを生成。
@@ -820,8 +845,9 @@
                     <a href="#portfolio">実績を見る</a>
                 </div>
                 
-                <div class="pillar-card python">
-                    <h3>🐍 Python 開発</h3>
+                <div class="tech-card python">
+                    <div class="tech-icon">🐍</div>
+                    <h3>Python 開発</h3>
                     <p>
                         データ分析、機械学習、自動化システムなど、Pythonの豊富なエコシステムを活用した
                         カスタムソリューションを開発。業務プロセスの効率化とデータドリブンな意思決定を
@@ -830,8 +856,9 @@
                     <a href="#contact">相談する</a>
                 </div>
                 
-                <div class="pillar-card java">
-                    <h3>☕ Java 開発</h3>
+                <div class="tech-card java">
+                    <div class="tech-icon">☕</div>
+                    <h3>Java 開発</h3>
                     <p>
                         エンタープライズレベルの大規模システムやクリティカルなアプリケーションを
                         Javaで構築。高い堅牢性、スケーラビリティ、セキュリティを実現し、
@@ -851,35 +878,38 @@
                 </p>
             </div>
             
-            <div class="pillar-intro">
-                <div class="pillar-card ai">
-                    <h3>AI ビジュアル制作</h3>
-                    <p>
-                        • 商品・サービス用ビジュアル生成<br>
-                        • ブランドイメージ・ロゴデザイン<br>
-                        • Webサイト用画像・アイコン<br>
-                        • マーケティング素材制作
-                    </p>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h4>🎨 AIアート・イラストレーション制作</h4>
+                    <p>企業ロゴ、ブランディング画像、SNS用コンテンツなど、用途に応じたAI画像を生成します。</p>
                 </div>
-                
-                <div class="pillar-card python">
-                    <h3>Python ソリューション</h3>
-                    <p>
-                        • データ分析・可視化システム<br>
-                        • 機械学習モデル構築<br>
-                        • 業務自動化ツール開発<br>
-                        • API・Webアプリケーション
-                    </p>
+                <div class="service-item">
+                    <h4>📊 商品イメージ・広告ビジュアル生成</h4>
+                    <p>商品の魅力を最大限に引き出すビジュアルコンテンツを効率的に制作します。</p>
                 </div>
-                
-                <div class="pillar-card java">
-                    <h3>Java エンタープライズ</h3>
-                    <p>
-                        • 大規模業務システム開発<br>
-                        • マイクロサービス構築<br>
-                        • システム統合・移行<br>
-                        • 保守・運用サポート
-                    </p>
+                <div class="service-item">
+                    <h4>🌐 Webサイト用画像・アイコン制作</h4>
+                    <p>ブランドに統一されたWebサイト用のビジュアル要素を一括で制作します。</p>
+                </div>
+                <div class="service-item">
+                    <h4>🐍 Pythonによる自動化ツール開発</h4>
+                    <p>繰り返し作業を効率化するカスタム自動化ツールを開発します。</p>
+                </div>
+                <div class="service-item">
+                    <h4>📈 データ分析・機械学習モデル構築</h4>
+                    <p>ビジネスデータから価値ある洞察を抽出し、予測モデルを構築します。</p>
+                </div>
+                <div class="service-item">
+                    <h4>☕ 業務システム・アプリケーション開発（Java）</h4>
+                    <p>大規模で堅牢なエンタープライズシステムを設計・開発します。</p>
+                </div>
+                <div class="service-item">
+                    <h4>🔧 既存システムの改善・保守</h4>
+                    <p>既存システムの最適化、バグ修正、機能追加を行います。</p>
+                </div>
+                <div class="service-item">
+                    <h4>💡 技術コンサルティング</h4>
+                    <p>AI・Python・Java関連の技術的な課題解決をサポートします。</p>
                 </div>
             </div>
         </section>
@@ -894,40 +924,28 @@
             </div>
             
             <div class="portfolio-grid">
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/8aff00/000000?text=AI+Art+Project" alt="AIアート作品">
-                    <h4>AI生成アートコレクション</h4>
-                    <p>最先端のAI技術を使用して制作した、色彩豊かで創造性にあふれるデジタルアート作品群。各作品は独自のアルゴリズムによって生成されています。</p>
+                <div class="portfolio-item hover-glow">
+                    <a href="case_study_chameleon.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="カラフルなカメレオンのAIアート作品">
+                        <h4>AIによる進化：カラフルなカメレオンのアート作品制作事例</h4>
+                        <p>鮮やかな色彩と複雑なディテールで、革新的なAIアートの世界へ誘います。</p>
+                    </a>
                 </div>
                 
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/00f0ff/000000?text=Python+Analytics" alt="データ分析システム">
-                    <h4>リアルタイム分析システム</h4>
-                    <p>Pythonとモダンなフレームワークを使用して構築した、リアルタイムデータ処理・可視化システム。直感的なダッシュボードで複雑なデータを理解しやすく表示。</p>
+                <div class="portfolio-item hover-glow">
+                    <a href="case_study_lizard.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの彫像">
+                        <h4>古代の神秘と現代の融合：青いトカゲの彫像プロジェクト</h4>
+                        <p>AIが生成した、歴史と未来が交差する荘厳な彫像の物語。</p>
+                    </a>
                 </div>
                 
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/ff0080/000000?text=Java+Enterprise" alt="エンタープライズシステム">
-                    <h4>エンタープライズ基盤システム</h4>
-                    <p>Javaベースの大規模分散システム。高可用性とスケーラビリティを実現し、数万ユーザーの同時アクセスにも対応する堅牢なアーキテクチャを構築。</p>
-                </div>
-                
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/00ff40/000000?text=Automation+Tool" alt="自動化ツール">
-                    <h4>業務自動化プラットフォーム</h4>
-                    <p>繰り返し作業を効率化するPython製自動化ツール。複雑なワークフローを簡単な設定で自動実行し、生産性を大幅に向上させます。</p>
-                </div>
-                
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/4000ff/ffffff?text=ML+Model" alt="機械学習モデル">
-                    <h4>予測分析MLモデル</h4>
-                    <p>ビジネスデータから未来のトレンドを予測する機械学習モデル。高精度な予測により、戦略的な意思決定をサポートします。</p>
-                </div>
-                
-                <div class="item-card hover-glow">
-                    <img src="https://via.placeholder.com/400x250/ff4000/ffffff?text=Integration+System" alt="システム統合">
-                    <h4>レガシーシステム統合</h4>
-                    <p>既存システムを最新技術と統合し、データの一元管理とワークフローの最適化を実現。段階的な移行により、業務への影響を最小限に抑制。</p>
+                <div class="portfolio-item hover-glow">
+                    <a href="case_study_cubes.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="クリスタルキューブのアート">
+                        <h4>幻想的な幾何学の世界：AI生成によるクリスタルキューブのアート</h4>
+                        <p>光と影が織りなす無限の空間を表現した、魅惑的なビジュアル体験。</p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1016,20 +1034,6 @@
 
             setupCursor() {
                 const cursor = document.getElementById('cursor');
-                const trails = [];
-                
-                // カーソルトレイル生成
-                for (let i = 0; i < 8; i++) {
-                    const trail = document.createElement('div');
-                    trail.className = 'cursor-trail';
-                    document.body.appendChild(trail);
-                    trails.push({
-                        element: trail,
-                        x: 0,
-                        y: 0
-                    });
-                }
-
                 let mouseX = 0, mouseY = 0;
 
                 document.addEventListener('mousemove', (e) => {
@@ -1037,28 +1041,14 @@
                     mouseY = e.clientY;
                 });
 
-                // スムーズなカーソル追従
                 const updateCursor = () => {
                     cursor.style.left = mouseX + 'px';
                     cursor.style.top = mouseY + 'px';
-
-                    // トレイル更新
-                    trails.forEach((trail, index) => {
-                        const delay = index * 0.1;
-                        trail.x += (mouseX - trail.x) * (0.3 - delay * 0.03);
-                        trail.y += (mouseY - trail.y) * (0.3 - delay * 0.03);
-                        
-                        trail.element.style.left = trail.x + 'px';
-                        trail.element.style.top = trail.y + 'px';
-                        trail.element.style.opacity = (1 - index * 0.1);
-                    });
-
                     requestAnimationFrame(updateCursor);
                 };
 
                 updateCursor();
 
-                // クリック効果
                 document.addEventListener('mousedown', () => cursor.classList.add('active'));
                 document.addEventListener('mouseup', () => cursor.classList.remove('active'));
             }
@@ -1072,14 +1062,12 @@
                     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                     const scrollPercent = (scrollY / docHeight) * 100;
 
-                    // ナビゲーション表示
                     if (scrollY > 100) {
                         navbar.classList.add('visible');
                     } else {
                         navbar.classList.remove('visible');
                     }
 
-                    // スクロール進行バー
                     scrollProgress.style.width = scrollPercent + '%';
                 });
             }
@@ -1139,7 +1127,6 @@
                     }
                 }
 
-                // パーティクル初期化
                 for (let i = 0; i < particleCount; i++) {
                     particles.push(new Particle());
                 }
@@ -1157,7 +1144,6 @@
 
                 animate();
 
-                // リサイズ対応
                 window.addEventListener('resize', () => {
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
