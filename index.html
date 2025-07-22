@@ -11,7 +11,7 @@
     <meta property="og:title" content="AI Art Studio - あなたの未来を創るスタジオ">
     <meta property="og:description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="image/reina_1.png">
+    <meta property="og:image" content="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png">
     <meta property="og:url" content="https://aistudio.netlify.app/">
     <meta property="og:site_name" content="AI Art Studio">
     
@@ -19,9 +19,9 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Art Studio - 顧客の未来を創るスタジオ">
     <meta name="twitter:description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します">
-    <meta name="twitter:image" content="image/reina_1.png">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png">
     
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/rancorder/website/main/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -509,7 +509,7 @@
         section {
             padding: 6rem 0;
             position: relative;
-            margin-bottom: 2rem; /* marginを削減 */
+            margin-bottom: 2rem;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
@@ -956,6 +956,202 @@
             line-height: 1.6;
         }
 
+        /* Webサイトポートフォリオ */
+        .website-portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .website-portfolio-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .website-portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            border-color: var(--general-accent);
+        }
+
+        .sample-site-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portfolio-preview {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .portfolio-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .website-portfolio-item:hover .portfolio-preview img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg, 
+                rgba(138, 255, 0, 0.9) 0%, 
+                rgba(0, 240, 255, 0.9) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .website-portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .portfolio-tech-stack .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .portfolio-view-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-bg);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-view-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .portfolio-info {
+            padding: 2rem;
+        }
+
+        .portfolio-info h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--general-accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .portfolio-info h5 {
+            font-size: 1.1rem;
+            color: var(--ai-accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .portfolio-info p {
+            color: var(--text-medium);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .portfolio-category {
+            background: rgba(138, 255, 0, 0.1);
+            color: var(--general-accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 255, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .portfolio-duration {
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        /* Coming Soon スタイル */
+        .coming-soon {
+            opacity: 0.7;
+        }
+
+        .coming-soon-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(135deg, var(--section-bg), var(--card-bg));
+            text-align: center;
+        }
+
+        .coming-soon-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .coming-soon-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--general-accent);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon-content p {
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        .coming-soon .portfolio-overlay {
+            background: linear-gradient(
+                135deg, 
+                rgba(138, 255, 0, 0.6) 0%, 
+                rgba(64, 0, 255, 0.6) 100%
+            );
+        }
+
         /* ブログセクション - アップグレード版 */
         .blog-controls {
             display: flex;
@@ -1025,11 +1221,15 @@
             box-shadow: 0 0 15px rgba(138, 255, 0, 0.3);
         }
 
+        #blog {
+            padding: 6rem 0 2rem 0;
+        }
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            margin: 3rem 0;
+            margin: 3rem 0 1rem 0;
             min-height: auto;
         }
 
@@ -1116,7 +1316,7 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: 3rem;
+            margin: 2rem 0 1rem 0;
         }
 
         .pagination-btn {
@@ -1148,7 +1348,13 @@
             color: var(--text-dim);
             font-size: 1.2rem;
             margin: 3rem 0;
-            grid-column: 1 / -1;
+            grid-column: 1 / span 3;
+        }
+
+        /* Contact Section - ブログとの間隔調整 */
+        #contact {
+            padding: 4rem 0 6rem 0;
+            margin-top: 1rem;
         }
 
         /* お問い合わせフォーム */
@@ -1446,27 +1652,27 @@
                         <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=400&fit=crop" alt="Python Development" loading="lazy">
                     </div>
                     <div class="slide">
-                        <img src="image/reina_1.png" alt="Java Development" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="Java Development" loading="lazy">
                     </div>
                 </div>
                 
                 <!-- Navigation Dots -->
                 <div class="slider-dots">
-                    <span class="dot active" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                    <span class="dot" onclick="currentSlide(4)"></span>
-                    <span class="dot" onclick="currentSlide(5)"></span>
-                    <span class="dot" onclick="currentSlide(6)"></span>
-                    <span class="dot" onclick="currentSlide(7)"></span>
-                    <span class="dot" onclick="currentSlide(8)"></span>
-                    <span class="dot" onclick="currentSlide(9)"></span>
-                    <span class="dot" onclick="currentSlide(10)"></span>
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
+                    <span class="dot" data-slide="4"></span>
+                    <span class="dot" data-slide="5"></span>
+                    <span class="dot" data-slide="6"></span>
+                    <span class="dot" data-slide="7"></span>
+                    <span class="dot" data-slide="8"></span>
+                    <span class="dot" data-slide="9"></span>
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button class="slider-arrow prev" onclick="plusSlide(-1)">❮</button>
-                <button class="slider-arrow next" onclick="plusSlide(1)">❯</button>
+                <button class="slider-arrow prev" onclick="slideDirection(-1)">❮</button>
+                <button class="slider-arrow next" onclick="slideDirection(1)">❯</button>
             </div>
         </section>
 
@@ -1483,7 +1689,7 @@
                 <!-- レイナの紹介カード -->
                 <div class="reina-intro-card">
                     <div class="reina-profile">
-                        <img src="image/reina_1.png" alt="レイナ - AI技術コンサルタント" class="reina-profile-image">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ - AI技術コンサルタント" class="reina-profile-image">
                         <div class="reina-badge">
                             <span class="badge-text">AI Expert</span>
                         </div>
@@ -1536,7 +1742,7 @@
                         </p>
                         <a href="#contact">相談する</a>
                     </div>
-                    
+                   
                     <div class="tech-card web">
                         <div class="tech-icon">🌐</div>
                         <h3>Webサイト作成</h3>
@@ -1559,7 +1765,7 @@
                     お客様の多様なニーズにお応えする、包括的な技術サービスをご提供いたします
                 </p>
             </div>
-            
+           
             <div class="services-grid">
                 <div class="service-item">
                     <h4>🎨 AIアート・イラストレーション制作</h4>
@@ -1604,7 +1810,8 @@
                     AI技術とプログラミングスキルを駆使して手がけた、革新的なプロジェクトの数々をご紹介します
                 </p>
             </div>
-            
+           
+            <!-- AI Art Portfolio -->
             <div class="portfolio-grid">
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_chameleon.html">
@@ -1613,7 +1820,7 @@
                         <p>鮮やかな色彩と複雑なディテールで、革新的なAIアートの世界へ誘います。</p>
                     </a>
                 </div>
-                
+               
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_lizard.html">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの彫像">
@@ -1621,7 +1828,7 @@
                         <p>AIが生成した、歴史と未来が交差する荘厳な彫像の物語。</p>
                     </a>
                 </div>
-                
+               
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_cubes.html">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="クリスタルキューブのアート">
@@ -1630,9 +1837,123 @@
                     </a>
                 </div>
             </div>
+
+            <!-- Webサイト制作実績セクション -->
+            <div class="section-header" style="margin-top: 8rem;">
+                <h2 class="section-title">Webサイト制作実績</h2>
+                <p class="section-subtitle">
+                    多様な業界のクライアント様に向けて制作した、プロフェッショナルなWebサイトをご覧ください
+                </p>
+            </div>
+
+            <div class="website-portfolio-grid">
+                <div class="website-portfolio-item hover-glow">
+                    <a href="beauty-salon.html" class="sample-site-link" target="_blank">
+                        <div class="portfolio-preview">
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=250&fit=crop&crop=center" alt="美容院サイト - ELÉGANCE">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-tech-stack">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">レスポンシブ</span>
+                                </div>
+                                <div class="portfolio-view-btn">サイトを見る →</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>美容院・サロン向けサイト</h4>
+                            <h5>ELÉGANCE - 上質な美とくつろぎの空間</h5>
+                            <p>エレガントで上品なデザインの美容院向けWebサイト。予約システム、ギャラリー、スタッフ紹介など、サロン運営に必要な機能を全て搭載。</p>
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">🌸 Beauty & Salon</span>
+                                <span class="portfolio-duration">制作期間: 2週間</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="website-portfolio-item hover-glow">
+                    <a href="bakery.html" class="sample-site-link" target="_blank">
+                        <div class="portfolio-preview">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=250&fit=crop&crop=center" alt="パン屋サイト - Boulangerie MIEL">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-tech-stack">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">地域密着</span>
+                                </div>
+                                <div class="portfolio-view-btn">サイトを見る →</div>
+                            </div>
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>飲食店・ベーカリー向けサイト</h4>
+                            <h5>Boulangerie MIEL - 毎日焼きたて、心温まるパン屋</h5>
+                            <p>温かみのある親しみやすいデザインのパン屋向けWebサイト。メニュー表示、営業時間、アクセス情報など地域密着型ビジネスに最適。</p>
+                            <div class="portfolio-meta">
+                                <span class="portfolio-category">🍞 Food & Bakery</span>
+                                <span class="portfolio-duration">制作期間: 10日間</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="website-portfolio-item hover-glow coming-soon">
+                    <div class="portfolio-preview">
+                        <div class="coming-soon-content">
+                            <div class="coming-soon-icon">🏢</div>
+                            <h3>コーポレートサイト</h3>
+                            <p>Coming Soon...</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tech-stack">
+                                <span class="tech-tag">高級感</span>
+                                <span class="tech-tag">信頼性</span>
+                                <span class="tech-tag">プロフェッショナル</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>大手企業・法人向けサイト</h4>
+                        <h5>プロフェッショナルコーポレートサイト</h5>
+                        <p>信頼感と権威性を重視した、大手企業向けの高級感あふれるコーポレートサイト。近日公開予定です。</p>
+                        <div class="portfolio-meta">
+                            <span class="portfolio-category">🏢 Corporate</span>
+                            <span class="portfolio-duration">準備中</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="website-portfolio-item hover-glow coming-soon">
+                    <div class="portfolio-preview">
+                        <div class="coming-soon-content">
+                            <div class="coming-soon-icon">🚀</div>
+                            <h3>スタートアップサイト</h3>
+                            <p>Coming Soon...</p>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-tech-stack">
+                                <span class="tech-tag">モダン</span>
+                                <span class="tech-tag">革新的</span>
+                                <span class="tech-tag">グラデーション</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>スタートアップ・IT企業向けサイト</h4>
+                        <h5>革新的モダンWebサイト</h5>
+                        <p>最新のデザイントレンドを取り入れた、テック系スタートアップ向けの先進的なWebサイト。近日公開予定です。</p>
+                        <div class="portfolio-meta">
+                            <span class="portfolio-category">🚀 Startup & Tech</span>
+                            <span class="portfolio-duration">準備中</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Blog Section - アップグレード版 -->
+        <!-- Blog Section -->
         <section id="blog" class="container">
             <div class="section-header">
                 <h2 class="section-title">ブログ</h2>
@@ -1640,7 +1961,7 @@
                     AI技術の最新トレンドや開発事例、技術的な洞察をお届けします
                 </p>
             </div>
-            
+           
             <!-- ブログコントロール -->
             <div class="blog-controls">
                 <div class="blog-search">
@@ -1655,12 +1976,12 @@
                     <button class="filter-btn" data-category="business">ビジネス</button>
                 </div>
             </div>
-            
+           
             <div class="blog-grid" id="blogGrid">
                 <!-- AI美女生成記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="AI美女生成の極意 魂を宿すプロンプトの魔法" data-content="上品なレイナが教える AI美女生成の真の極意 単なる美しさではなく 感情と魂を宿すプロンプト技術の秘密を優雅に伝授">
                     <a href="blog/ai-beauty-prompt-mastery.html">
-                        <img src="image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
                         <div class="blog-card-content">
                             <h4>【レイナが伝授】AI美女生成の極意：魂を宿すプロンプトの魔法</h4>
                             <p>上品なレイナが教える、AI美女生成の真の極意。単なる美しさではなく、感情と魂を宿すプロンプト技術の秘密を優雅に伝授します。</p>
@@ -1690,7 +2011,7 @@
                 <!-- Java記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="え まだJavaって古いの 2025年 今どきのJavaのぶっちゃけ話" data-content="広島出身のレイナが語る Javaの現在と未来 古いなんて言わせない 2025年のJavaの真実を親しみやすい広島弁でぶっちゃけ">
                     <a href="blog/java-2025-real-talk.html">
-                        <img src="image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
                         <div class="blog-card-content">
                             <h4>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h4>
                             <p>広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実を親しみやすい広島弁でぶっちゃけます！</p>
@@ -1705,7 +2026,7 @@
                 <!-- 恋愛プログラミング論記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="衝撃 プログラミングと恋愛 天才レイナが暴く ひでとの関係に隠されたヤバい共通点" data-content="広島の天才プログラマー レイナが プログラミングと恋愛の驚くべき共通点を大暴露 ひでとの関係性から見える コードと心の奥深い関係">
                     <a href="blog/reina-hide-programming-love.html">
-                        <img src="image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
                         <div class="blog-card-content">
                             <h4>【衝撃】プログラミングと恋愛？！天才レイナが暴く、ひでとの関係に隠されたヤバい共通点！</h4>
                             <p>広島の天才プログラマー・レイナが、プログラミングと恋愛の驚くべき共通点を大暴露！ひでとの関係性から見える、コードと心の奥深い関係とは？</p>
@@ -1840,18 +2161,18 @@
                     専門スタッフが最適なソリューションをご提案いたします。
                 </p>
             </div>
-            
+           
             <form class="contact-form" onsubmit="handleSubmit(event)">
                 <div class="form-group">
                     <label for="name" class="form-label">お名前</label>
                     <input type="text" id="name" name="name" class="form-input" required placeholder="山田太郎">
                 </div>
-                
+               
                 <div class="form-group">
                     <label for="email" class="form-label">メールアドレス</label>
                     <input type="email" id="email" name="email" class="form-input" required placeholder="example@company.com">
                 </div>
-                
+               
                 <div class="form-group">
                     <label for="service" class="form-label">ご希望のサービス</label>
                     <select id="service" name="service" class="form-input" required>
@@ -1864,13 +2185,13 @@
                         <option value="other">その他</option>
                     </select>
                 </div>
-                
+               
                 <div class="form-group">
                     <label for="message" class="form-label">お問い合わせ内容</label>
                     <textarea id="message" name="message" class="form-input form-textarea" required 
                               placeholder="プロジェクトの詳細、ご要望、技術的な課題など、お気軽にお聞かせください。"></textarea>
                 </div>
-                
+               
                 <button type="submit" class="submit-button">送信する</button>
             </form>
         </section>
@@ -1956,7 +2277,7 @@
             setupParticles() {
                 const canvas = document.getElementById('particlesCanvas');
                 const ctx = canvas.getContext('2d');
-                
+               
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
 
@@ -2014,7 +2335,7 @@
 
                 const animate = () => {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    
+                   
                     particles.forEach(particle => {
                         particle.update();
                         particle.draw();
@@ -2042,13 +2363,13 @@
                     column.style.left = i * 20 + 'px';
                     column.style.animationDelay = Math.random() * 15 + 's';
                     column.style.animationDuration = (10 + Math.random() * 10) + 's';
-                    
+                   
                     let text = '';
                     for (let j = 0; j < 50; j++) {
                         text += chars[Math.floor(Math.random() * chars.length)] + '\n';
                     }
                     column.textContent = text;
-                    
+                   
                     matrixContainer.appendChild(column);
                 }
             }
@@ -2153,7 +2474,7 @@
 
             filterArticles() {
                 let visibleCount = 0;
-                
+               
                 this.articles.forEach(article => {
                     const categories = article.dataset.category.split(' ');
                     const shouldShow = this.currentCategory === 'all' || 
@@ -2174,11 +2495,11 @@
                 const visibleCount = this.filterArticles();
                 this.paginateArticles();
                 this.updatePagination();
-                
+               
                 // 検索結果なしの表示
                 const noResults = document.querySelector('.no-results');
                 if (noResults) noResults.remove();
-                
+               
                 if (visibleCount === 0) {
                     const blogGrid = document.getElementById('blogGrid');
                     const noResultsDiv = document.createElement('div');
@@ -2228,39 +2549,7 @@
             }
         }
 
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // フォーム送信処理
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const submitBtn = event.target.querySelector('.submit-button');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = '送信中...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert('お問い合わせありがとうございます！48時間以内にご返信いたします。');
-                event.target.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
-        }
-
-        // Image Slider JavaScript
+        // Image Slider JavaScript - 修正版
         let currentSlideIndex = 0;
         const totalSlides = 10;
         let isAutoPlaying = true;
@@ -2269,25 +2558,35 @@
         function initImageSlider() {
             showSlide(currentSlideIndex);
             startAutoSlide();
-            
+           
             // スライダーにマウスが入ったら自動再生を停止
             const sliderContainer = document.querySelector('.slider-container');
             sliderContainer.addEventListener('mouseenter', stopAutoSlide);
             sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+            // ドットのクリックイベントを設定
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlideIndex = index;
+                    showSlide(currentSlideIndex);
+                    restartAutoSlide();
+                });
+            });
         }
 
         function showSlide(index) {
             const track = document.getElementById('sliderTrack');
             const dots = document.querySelectorAll('.dot');
-            
+           
             // インデックスの範囲チェック
             if (index >= totalSlides) currentSlideIndex = 0;
             if (index < 0) currentSlideIndex = totalSlides - 1;
-            
+           
             // スライド移動
             const translateX = -currentSlideIndex * 100;
             track.style.transform = `translateX(${translateX}%)`;
-            
+           
             // ドットの更新
             dots.forEach((dot, i) => {
                 dot.classList.remove('active');
@@ -2297,14 +2596,8 @@
             });
         }
 
-        function plusSlide(direction) {
+        function slideDirection(direction) {
             currentSlideIndex += direction;
-            showSlide(currentSlideIndex);
-            restartAutoSlide();
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index - 1;
             showSlide(currentSlideIndex);
             restartAutoSlide();
         }
@@ -2328,12 +2621,44 @@
             startAutoSlide();
         }
 
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // フォーム送信処理
+        function handleSubmit(event) {
+            event.preventDefault();
+           
+            const submitBtn = event.target.querySelector('.submit-button');
+            const originalText = submitBtn.textContent;
+           
+            submitBtn.textContent = '送信中...';
+            submitBtn.disabled = true;
+           
+            setTimeout(() => {
+                alert('お問い合わせありがとうございます！48時間以内にご返信いたします。');
+                event.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
         // キーボード操作のサポート
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
-                plusSlide(-1);
+                slideDirection(-1);
             } else if (e.key === 'ArrowRight') {
-                plusSlide(1);
+                slideDirection(1);
             }
         });
 
@@ -2353,12 +2678,12 @@
         function handleSwipe() {
             const swipeThreshold = 50;
             const swipeDistance = touchStartX - touchEndX;
-            
+           
             if (Math.abs(swipeDistance) > swipeThreshold) {
                 if (swipeDistance > 0) {
-                    plusSlide(1);
+                    slideDirection(1);
                 } else {
-                    plusSlide(-1);
+                    slideDirection(-1);
                 }
             }
         }
