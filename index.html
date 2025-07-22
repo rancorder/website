@@ -956,12 +956,81 @@
             line-height: 1.6;
         }
 
-        /* ブログセクション */
+        /* ブログセクション - アップグレード版 */
+        .blog-controls {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-search {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            background: var(--glass-bg);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--general-accent);
+            box-shadow: 0 0 20px rgba(138, 255, 0, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        .blog-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--text-medium);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--general-accent);
+            color: var(--general-accent);
+            background: rgba(138, 255, 0, 0.1);
+            box-shadow: 0 0 15px rgba(138, 255, 0, 0.3);
+        }
+
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
+            min-height: 400px;
         }
 
         .blog-card {
@@ -972,6 +1041,14 @@
             overflow: hidden;
             transition: all 0.4s ease;
             position: relative;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .blog-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
         }
 
         .blog-card:hover {
@@ -1033,6 +1110,45 @@
             border-radius: 15px;
             font-size: 0.8rem;
             border: 1px solid rgba(138, 255, 0, 0.3);
+        }
+
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .pagination-btn {
+            padding: 12px 20px;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--text-medium);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .pagination-btn:hover,
+        .pagination-btn.active {
+            border-color: var(--general-accent);
+            color: var(--general-accent);
+            background: rgba(138, 255, 0, 0.1);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            margin: 3rem 0;
+            grid-column: 1 / -1;
         }
 
         /* お問い合わせフォーム */
@@ -1152,6 +1268,15 @@
                 grid-template-columns: 1fr;
             }
 
+            .blog-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .blog-search {
+                max-width: 100%;
+            }
+
             nav ul {
                 gap: 1rem;
                 flex-wrap: wrap;
@@ -1207,6 +1332,15 @@
         @media (max-width: 480px) {
             .slide {
                 height: 200px;
+            }
+
+            .blog-filters {
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1498,7 +1632,7 @@
             </div>
         </section>
 
-        <!-- Blog Section -->
+        <!-- Blog Section - アップグレード版 -->
         <section id="blog" class="container">
             <div class="section-header">
                 <h2 class="section-title">ブログ</h2>
@@ -1507,9 +1641,24 @@
                 </p>
             </div>
             
-            <div class="blog-grid">
+            <!-- ブログコントロール -->
+            <div class="blog-controls">
+                <div class="blog-search">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" id="blogSearch" placeholder="記事を検索...">
+                </div>
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-category="all">すべて</button>
+                    <button class="filter-btn" data-category="reina">レイナの記事</button>
+                    <button class="filter-btn" data-category="ai">AI技術</button>
+                    <button class="filter-btn" data-category="programming">プログラミング</button>
+                    <button class="filter-btn" data-category="business">ビジネス</button>
+                </div>
+            </div>
+            
+            <div class="blog-grid" id="blogGrid">
                 <!-- AI美女生成記事 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="reina ai" data-title="AI美女生成の極意 魂を宿すプロンプトの魔法" data-content="上品なレイナが教える AI美女生成の真の極意 単なる美しさではなく 感情と魂を宿すプロンプト技術の秘密を優雅に伝授">
                     <a href="blog/ai-beauty-prompt-mastery.html">
                         <img src="image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
                         <div class="blog-card-content">
@@ -1523,8 +1672,8 @@
                     </a>
                 </article>
 
-            <!-- AI比較記事 -->
-                <article class="blog-card hover-glow">
+                <!-- AI比較記事 -->
+                <article class="blog-card hover-glow" data-category="ai programming" data-title="AI開発比較実験 ChatGPT vs Claude vs Gemini" data-content="AI別HTLMコード作成の徹底比較 あなたに最適なツールがわかる決定版ガイド">
                     <a href="blog/ai-comparison.html">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成ツール比較">
                         <div class="blog-card-content">
@@ -1539,7 +1688,7 @@
                 </article>
 
                 <!-- Java記事 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="reina programming" data-title="え まだJavaって古いの 2025年 今どきのJavaのぶっちゃけ話" data-content="広島出身のレイナが語る Javaの現在と未来 古いなんて言わせない 2025年のJavaの真実を親しみやすい広島弁でぶっちゃけ">
                     <a href="blog/java-2025-real-talk.html">
                         <img src="image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
                         <div class="blog-card-content">
@@ -1554,7 +1703,7 @@
                 </article>
 
                 <!-- 恋愛プログラミング論記事 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="reina programming" data-title="衝撃 プログラミングと恋愛 天才レイナが暴く ひでとの関係に隠されたヤバい共通点" data-content="広島の天才プログラマー レイナが プログラミングと恋愛の驚くべき共通点を大暴露 ひでとの関係性から見える コードと心の奥深い関係">
                     <a href="blog/reina-hide-programming-love.html">
                         <img src="image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
                         <div class="blog-card-content">
@@ -1569,7 +1718,7 @@
                 </article>
 
                 <!-- AI画像生成の基礎 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="ai" data-title="AI画像生成の基礎 初心者からプロまでのガイド" data-content="AI画像生成技術の基本概念から実践的な応用まで 包括的に解説する決定版ガイド">
                     <a href="blog/ai-generation-basics.html">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎">
                         <div class="blog-card-content">
@@ -1584,7 +1733,7 @@
                 </article>
 
                 <!-- 2025年AIトレンド -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="ai business" data-title="2025年AIトレンド予測 次世代技術の展望" data-content="最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説">
                     <a href="blog/ai-trends-2025.html">
                         <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド">
                         <div class="blog-card-content">
@@ -1599,7 +1748,7 @@
                 </article>
 
                 <!-- ビジネス変革 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="ai business" data-title="AI技術がもたらすビジネス変革の可能性" data-content="企業におけるAI導入の実践的なアプローチと ビジネス価値創出の戦略について解説">
                     <a href="blog/business-benefits.html">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&crop=center" alt="ビジネス変革">
                         <div class="blog-card-content">
@@ -1614,7 +1763,7 @@
                 </article>
 
                 <!-- Midjourney新機能 -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="ai" data-title="Midjourney最新機能ガイド クリエイターのための完全マニュアル" data-content="Midjourneyの新機能と効果的な活用方法を 実例と共に詳しく紹介">
                     <a href="blog/midjourney-new-features.html">
                         <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=220&fit=crop&crop=center" alt="Midjourney新機能">
                         <div class="blog-card-content">
@@ -1629,7 +1778,7 @@
                 </article>
 
                 <!-- プロンプトテクニック -->
-                <article class="blog-card hover-glow">
+                <article class="blog-card hover-glow" data-category="ai" data-title="効果的なプロンプト技術 AI画像生成の極意" data-content="高品質なAI画像を生成するためのプロンプト作成テクニックと実践的なノウハウを公開">
                     <a href="blog/prompt-techniques.html">
                         <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=220&fit=crop&crop=center" alt="プロンプトテクニック">
                         <div class="blog-card-content">
@@ -1642,6 +1791,43 @@
                         </div>
                     </a>
                 </article>
+
+                <!-- Stable Diffusion 3 ガイド -->
+                <article class="blog-card hover-glow" data-category="ai" data-title="Stable Diffusion 3 完全攻略ガイド" data-content="Stable Diffusion 3の新機能と活用法を徹底解説 商用利用のポイントも">
+                    <a href="blog/stable-diffusion-3-guide.html">
+                        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=220&fit=crop&crop=center" alt="Stable Diffusion 3">
+                        <div class="blog-card-content">
+                            <h4>Stable Diffusion 3：完全攻略ガイド</h4>
+                            <p>Stable Diffusion 3の新機能と活用法を徹底解説。商用利用のポイントも詳しく紹介します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">SD3</span>
+                                <span>2025年7月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- サイバーパンク制作プロセス -->
+                <article class="blog-card hover-glow" data-category="ai" data-title="サイバーパンク都市の制作プロセス大公開" data-content="AI Artで話題のサイバーパンク都市画像の制作秘話 プロンプトから仕上げまで">
+                    <a href="blog/cyberpunk-city-process.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="サイバーパンク都市制作">
+                        <div class="blog-card-content">
+                            <h4>サイバーパンク都市の制作プロセス大公開</h4>
+                            <p>AI Artで話題のサイバーパンク都市画像の制作秘話。プロンプトから仕上げまで完全解説。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">制作秘話</span>
+                                <span>2025年7月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+
+            <!-- ページネーション -->
+            <div class="blog-pagination" id="blogPagination">
+                <button class="pagination-btn" id="prevBtn" disabled>前へ</button>
+                <span class="pagination-info" id="pageInfo">1 / 1</span>
+                <button class="pagination-btn" id="nextBtn" disabled>次へ</button>
             </div>
         </section>
 
@@ -1887,6 +2073,157 @@
             }
         }
 
+        // アップグレード版ブログシステム
+        class BlogManager {
+            constructor() {
+                this.articles = document.querySelectorAll('.blog-card');
+                this.searchInput = document.getElementById('blogSearch');
+                this.filterButtons = document.querySelectorAll('.filter-btn');
+                this.currentCategory = 'all';
+                this.currentPage = 1;
+                this.articlesPerPage = 6;
+                this.init();
+            }
+
+            init() {
+                this.setupSearch();
+                this.setupFilters();
+                this.setupPagination();
+                this.updateDisplay();
+            }
+
+            setupSearch() {
+                let searchTimeout;
+                this.searchInput.addEventListener('input', (e) => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        this.performSearch(e.target.value);
+                    }, 300);
+                });
+            }
+
+            setupFilters() {
+                this.filterButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        this.filterButtons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentCategory = btn.dataset.category;
+                        this.currentPage = 1;
+                        this.updateDisplay();
+                    });
+                });
+            }
+
+            setupPagination() {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                prevBtn.addEventListener('click', () => {
+                    if (this.currentPage > 1) {
+                        this.currentPage--;
+                        this.updateDisplay();
+                    }
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    const maxPages = this.getMaxPages();
+                    if (this.currentPage < maxPages) {
+                        this.currentPage++;
+                        this.updateDisplay();
+                    }
+                });
+            }
+
+            performSearch(query) {
+                this.articles.forEach(article => {
+                    const title = article.dataset.title.toLowerCase();
+                    const content = article.dataset.content.toLowerCase();
+                    const searchQuery = query.toLowerCase();
+
+                    if (title.includes(searchQuery) || content.includes(searchQuery)) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+
+                this.currentPage = 1;
+                this.updatePagination();
+            }
+
+            filterArticles() {
+                let visibleCount = 0;
+                
+                this.articles.forEach(article => {
+                    const categories = article.dataset.category.split(' ');
+                    const shouldShow = this.currentCategory === 'all' || 
+                                     categories.includes(this.currentCategory);
+
+                    if (shouldShow) {
+                        article.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+
+                return visibleCount;
+            }
+
+            updateDisplay() {
+                const visibleCount = this.filterArticles();
+                this.paginateArticles();
+                this.updatePagination();
+                
+                // 検索結果なしの表示
+                const noResults = document.querySelector('.no-results');
+                if (noResults) noResults.remove();
+                
+                if (visibleCount === 0) {
+                    const blogGrid = document.getElementById('blogGrid');
+                    const noResultsDiv = document.createElement('div');
+                    noResultsDiv.className = 'no-results';
+                    noResultsDiv.textContent = '該当する記事が見つかりませんでした。';
+                    blogGrid.appendChild(noResultsDiv);
+                }
+            }
+
+            paginateArticles() {
+                const visibleArticles = Array.from(this.articles).filter(article => 
+                    article.style.display !== 'none'
+                );
+
+                const startIndex = (this.currentPage - 1) * this.articlesPerPage;
+                const endIndex = startIndex + this.articlesPerPage;
+
+                visibleArticles.forEach((article, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        article.classList.remove('hidden');
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+            }
+
+            getMaxPages() {
+                const visibleArticles = Array.from(this.articles).filter(article => 
+                    article.style.display !== 'none'
+                );
+                return Math.ceil(visibleArticles.length / this.articlesPerPage);
+            }
+
+            updatePagination() {
+                const maxPages = this.getMaxPages();
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const pageInfo = document.getElementById('pageInfo');
+
+                prevBtn.disabled = this.currentPage === 1;
+                nextBtn.disabled = this.currentPage === maxPages || maxPages === 0;
+                pageInfo.textContent = `${this.currentPage} / ${maxPages || 1}`;
+            }
+        }
+
         // スムーススクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2025,6 +2362,7 @@
         // アプリケーション初期化
         document.addEventListener('DOMContentLoaded', () => {
             new CyberStudio();
+            new BlogManager();
             initImageSlider();
         });
     </script>
