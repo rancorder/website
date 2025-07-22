@@ -688,7 +688,7 @@
         /* 技術カード */
         .tech-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin: 5rem 0;
         }
@@ -718,6 +718,7 @@
         .tech-card.ai::before { background: var(--ai-accent); }
         .tech-card.python::before { background: var(--python-accent); }
         .tech-card.java::before { background: var(--java-accent); }
+        .tech-card.web::before { background: var(--secondary-accent); }
 
         .tech-card:hover {
             transform: translateY(-20px) scale(1.05);
@@ -739,6 +740,7 @@
         .tech-card.ai .tech-icon { color: var(--ai-accent); }
         .tech-card.python .tech-icon { color: var(--python-accent); }
         .tech-card.java .tech-icon { color: var(--java-accent); }
+        .tech-card.web .tech-icon { color: var(--secondary-accent); }
 
         .tech-card h3 {
             font-family: 'Orbitron', sans-serif;
@@ -1397,6 +1399,17 @@
                             エンタープライズレベルの大規模システムやクリティカルなアプリケーションを
                             Javaで構築。高い堅牢性、スケーラビリティ、セキュリティを実現し、
                             長期的な運用に耐えうるビジネス基盤を提供します。
+                        </p>
+                        <a href="#contact">相談する</a>
+                    </div>
+                    
+                    <div class="tech-card web">
+                        <div class="tech-icon">🌐</div>
+                        <h3>Webサイト作成</h3>
+                        <p>
+                            モダンな技術スタックを活用して、レスポンシブで高性能なWebサイトを制作。
+                            UI/UXデザインから実装まで、ユーザー体験を重視した
+                            美しく機能的なWebサイトを提供します。
                         </p>
                         <a href="#contact">相談する</a>
                     </div>
