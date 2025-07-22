@@ -1030,7 +1030,7 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
-            min-height: 400px;
+            min-height: auto;
         }
 
         .blog-card {
@@ -1046,9 +1046,7 @@
         }
 
         .blog-card.hidden {
-            opacity: 0;
-            transform: scale(0.8);
-            pointer-events: none;
+            display: none;
         }
 
         .blog-card:hover {
@@ -2183,7 +2181,7 @@
                     const blogGrid = document.getElementById('blogGrid');
                     const noResultsDiv = document.createElement('div');
                     noResultsDiv.className = 'no-results';
-                    noResultsDiv.textContent = '該当する記事が見つかりませんでした。';
+                    noResultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-dim); font-size: 1.2rem; margin: 2rem 0; grid-column: 1 / -1;">該当する記事が見つかりませんでした。</p>';
                     blogGrid.appendChild(noResultsDiv);
                 }
             }
@@ -2196,11 +2194,15 @@
                 const startIndex = (this.currentPage - 1) * this.articlesPerPage;
                 const endIndex = startIndex + this.articlesPerPage;
 
+                // すべての記事を一旦非表示
+                this.articles.forEach(article => {
+                    article.classList.add('hidden');
+                });
+
+                // 現在のページの記事のみ表示
                 visibleArticles.forEach((article, index) => {
                     if (index >= startIndex && index < endIndex) {
                         article.classList.remove('hidden');
-                    } else {
-                        article.classList.add('hidden');
                     }
                 });
             }
