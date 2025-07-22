@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>顧客の未来を創るスタジオ - AI & Python & Java</title>
+    <meta name="description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します。AI画像生成、Python開発、Java開発の専門スタジオ">
+    <meta name="keywords" content="AI,Python,Java,画像生成,開発,プログラミング,レイナ,ひで,広島">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Art Studio - 顧客の未来を創るスタジオ">
+    <meta property="og:description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="image/reina_1.png">
+    <meta property="og:url" content="https://aistudio.netlify.app/">
+    <meta property="og:site_name" content="AI Art Studio">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Art Studio - 顧客の未来を創るスタジオ">
+    <meta name="twitter:description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します">
+    <meta name="twitter:image" content="image/reina_1.png">
+    
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --dark-bg: #020210;
@@ -170,13 +188,12 @@
         }
 
         /* ヘッダー */
-        header {
+        .hero {
             height: 100vh;
             background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -208,24 +225,23 @@
         }
 
         .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
             z-index: 2;
-            animation: heroEntrance 2s ease-out;
         }
 
-        @keyframes heroEntrance {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-                filter: blur(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
         }
 
-        header h1 {
+        .hero-title {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(3rem, 8vw, 7rem);
             font-weight: 900;
@@ -238,6 +254,17 @@
             margin-bottom: 2rem;
             animation: titleGlow 3s infinite alternate, glitchEffect 0.8s infinite;
             line-height: 1.1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent), var(--java-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-text {
+            color: var(--general-accent);
         }
 
         @keyframes titleGlow {
@@ -262,15 +289,11 @@
             80% { transform: translate(1px, -1px); }
         }
 
-        header p {
+        .hero-subtitle {
             font-size: clamp(1.2rem, 3vw, 2rem);
             color: var(--text-medium);
             margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
             opacity: 0.95;
-            text-align: center;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             animation: subtitleFade 2s ease-out 0.5s both;
         }
@@ -280,26 +303,57 @@
             100% { opacity: 0.95; transform: translateY(0); }
         }
 
-        /* CTA ボタン */
-        .cta-container {
+        .hero-tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .ai-tag {
+            background: rgba(0, 240, 255, 0.2);
+            color: var(--ai-accent);
+            border-color: var(--ai-accent);
+        }
+
+        .python-tag {
+            background: rgba(255, 0, 128, 0.2);
+            color: var(--python-accent);
+            border-color: var(--python-accent);
+        }
+
+        .java-tag {
+            background: rgba(0, 255, 64, 0.2);
+            color: var(--java-accent);
+            border-color: var(--java-accent);
+        }
+
+        .tech-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
-            justify-content: center;
-            animation: ctaFade 2s ease-out 1s both;
         }
 
-        @keyframes ctaFade {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .cta-button {
+        .btn-primary,
+        .btn-secondary {
             position: relative;
             padding: 18px 40px;
-            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
-            color: white;
-            text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.2rem;
@@ -308,46 +362,133 @@
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             overflow: hidden;
             border: 2px solid transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            color: white;
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
         }
 
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent), var(--java-accent));
-            z-index: -1;
-            border-radius: 50px;
-            animation: borderPulse 3s infinite;
-        }
-
-        @keyframes borderPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.7);
+        .btn-secondary {
+            background: rgba(138, 255, 0, 0.1);
+            color: var(--general-accent);
             border-color: var(--general-accent);
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.7);
+        }
+
+        /* レイナ画像エリア */
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reina-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reina-image {
+            width: 300px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 3;
+            filter: drop-shadow(0 0 20px rgba(138, 255, 0, 0.4));
+        }
+
+        .reina-image:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.4);
+            filter: drop-shadow(0 0 30px rgba(138, 255, 0, 0.6));
+        }
+
+        .reina-effect {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, 
+                rgba(138, 255, 0, 0.2) 0%, 
+                rgba(0, 240, 255, 0.2) 50%, 
+                rgba(255, 0, 128, 0.2) 100%);
+            border-radius: 25px;
+            filter: blur(15px);
+            animation: reina-glow 3s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -60px;
+            right: -80px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            border: 2px solid rgba(138, 255, 0, 0.3);
+            border-radius: 20px 20px 5px 20px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 200px;
+            animation: speech-float 2s ease-in-out infinite alternate;
+            z-index: 4;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid #ffffff;
+        }
+
+        .speech-bubble p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        @keyframes reina-glow {
+            0% {
+                opacity: 0.6;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes speech-float {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-8px);
+            }
         }
 
         /* ナビゲーション */
@@ -478,6 +619,135 @@
             line-height: 1.8;
         }
 
+        /* Aboutセクション - レイナ紹介 */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .reina-intro-card {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(138, 255, 0, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .reina-intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(138, 255, 0, 0.1) 0%, 
+                rgba(0, 240, 255, 0.1) 50%, 
+                rgba(255, 0, 128, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .reina-profile {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .reina-profile-image {
+            width: 200px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 0 15px rgba(138, 255, 0, 0.4));
+        }
+
+        .reina-profile-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            filter: drop-shadow(0 0 25px rgba(138, 255, 0, 0.6));
+        }
+
+        .reina-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(45deg, #8aff00, #00f0ff);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #020210;
+            box-shadow: 0 5px 15px rgba(138, 255, 0, 0.4);
+            animation: badge-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .reina-info {
+            flex: 1;
+            color: var(--text-light);
+        }
+
+        .reina-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #8aff00, #00f0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .reina-title {
+            font-size: 1.3rem;
+            color: var(--ai-accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .reina-description p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-medium);
+        }
+
+        .reina-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .specialty-tag {
+            background: rgba(138, 255, 0, 0.2);
+            border: 1px solid rgba(138, 255, 0, 0.3);
+            color: var(--general-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-tag:hover {
+            background: rgba(138, 255, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 255, 0, 0.3);
+        }
+
+        @keyframes badge-pulse {
+            0% {
+                box-shadow: 0 5px 15px rgba(138, 255, 0, 0.4);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(138, 255, 0, 0.6);
+            }
+        }
+
         /* 技術カード */
         .tech-showcase {
             display: grid;
@@ -563,6 +833,134 @@
             background: var(--general-accent);
             color: var(--dark-bg);
             box-shadow: 0 0 20px var(--general-accent);
+        }
+
+        /* Image Slider */
+        .image-slider-section {
+            padding: 2rem 0;
+            background: var(--section-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.8s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.02);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(138, 255, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--general-accent);
+            color: var(--general-accent);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-arrow:hover {
+            background: var(--general-accent);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(138, 255, 0, 0.8);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            background: var(--dark-bg);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(138, 255, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background: var(--general-accent);
+            box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* サービス */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--general-accent);
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .service-item:hover {
+            transform: translateX(10px);
+            background: rgba(138, 255, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* ポートフォリオ */
@@ -698,30 +1096,6 @@
             border: 1px solid rgba(138, 255, 0, 0.3);
         }
 
-        /* サービス */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .service-item {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--general-accent);
-            transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
-        }
-
-        .service-item:hover {
-            transform: translateX(10px);
-            background: rgba(138, 255, 0, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
         /* お問い合わせフォーム */
         .contact-form {
             max-width: 700px;
@@ -825,6 +1199,36 @@
         }
 
         /* レスポンシブ */
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-text {
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+            }
+            
+            .reina-image {
+                width: 250px;
+            }
+            
+            .speech-bubble {
+                position: static;
+                margin-top: 1rem;
+                max-width: 250px;
+            }
+            
+            .speech-bubble::before {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .tech-showcase {
                 grid-template-columns: 1fr;
@@ -844,7 +1248,7 @@
                 flex-wrap: wrap;
             }
 
-            .cta-container {
+            .hero-buttons {
                 flex-direction: column;
                 align-items: center;
             }
@@ -855,6 +1259,58 @@
 
             .contact-form {
                 padding: 2rem;
+            }
+
+            .reina-intro-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 2rem;
+            }
+            
+            .reina-profile-image {
+                width: 150px;
+            }
+            
+            .reina-name {
+                font-size: 2rem;
+            }
+
+            .slide {
+                height: 250px;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-arrow.prev {
+                left: 10px;
+            }
+
+            .slider-arrow.next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reina-image {
+                width: 200px;
+            }
+            
+            .speech-bubble {
+                max-width: 200px;
+                padding: 0.8rem 1rem;
+            }
+            
+            .speech-bubble p {
+                font-size: 0.8rem;
+            }
+
+            .slide {
+                height: 200px;
             }
         }
 
@@ -872,516 +1328,6 @@
         .mb-3 { margin-bottom: 3rem; }
         .mt-3 { margin-top: 3rem; }
         .hover-glow:hover { box-shadow: 0 0 30px rgba(138, 255, 0, 0.6); }
-
-        /* Premium Articles Styles */
-        .premium-container {
-            background: var(--section-bg);
-            border-radius: 25px;
-            padding: 3rem;
-            border: 2px solid var(--glass-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .premium-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #ffd700, var(--general-accent), var(--ai-accent));
-            border-radius: 25px 25px 0 0;
-        }
-
-        .premium-intro {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-        }
-
-        .premium-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .premium-intro h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            color: #ffd700;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-        }
-
-        .premium-intro p {
-            color: var(--text-medium);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .premium-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .premium-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        .premium-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            border-color: #ffd700;
-        }
-
-        .premium-card.coming-soon {
-            opacity: 0.7;
-            filter: grayscale(0.3);
-        }
-
-        .premium-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #000;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 2;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-        }
-
-        .premium-lock {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 1.5rem;
-            z-index: 2;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
-            100% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 215, 0, 0.8); }
-        }
-
-        .premium-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .premium-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .premium-content {
-            padding: 1.5rem;
-        }
-
-        .premium-content h4 {
-            font-size: 1.3rem;
-            color: var(--general-accent);
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .premium-content p {
-            color: var(--text-medium);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .premium-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--text-dim);
-        }
-
-        .premium-tag {
-            background: rgba(138, 255, 0, 0.1);
-            color: var(--general-accent);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(138, 255, 0, 0.3);
-            font-weight: 600;
-        }
-
-        .premium-access-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, #ffd700, var(--general-accent));
-            color: #000;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .premium-access-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-        }
-
-        .premium-access-btn:disabled {
-            background: var(--text-dim);
-            color: var(--text-dark);
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .premium-notice {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .premium-notice h4 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .premium-notice p {
-            color: var(--text-medium);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .premium-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .premium-cta {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--ai-accent), var(--general-accent));
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .premium-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .premium-hint {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            font-style: italic;
-        }
-
-        /* Image Slider Styles */
-        .image-slider-section {
-            padding: 2rem 0;
-            background: var(--section-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .slider-track {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-            will-change: transform;
-        }
-
-        .slide {
-            min-width: 100%;
-            position: relative;
-            height: 450px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            transition: transform 0.8s ease;
-            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
-        }
-
-        .slide:hover img {
-            transform: scale(1.02);
-        }
-
-        .slide-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 3rem 2rem 2rem;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.6s ease;
-        }
-
-        .slide.active .slide-overlay {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .slide-overlay h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--general-accent);
-            text-shadow: 0 0 20px rgba(138, 255, 0, 0.8);
-        }
-
-        .slide-overlay p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        /* Navigation Arrows */
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(138, 255, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--general-accent);
-            color: var(--general-accent);
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-arrow:hover {
-            background: var(--general-accent);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px rgba(138, 255, 0, 0.8);
-        }
-
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
-        }
-
-        /* Navigation Dots */
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 2rem 0;
-            background: var(--dark-bg);
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(138, 255, 0, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .dot.active,
-        .dot:hover {
-            background: var(--general-accent);
-            box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
-            transform: scale(1.2);
-        }
-
-        .dot::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border: 1px solid transparent;
-            border-radius: 50%;
-            transition: border-color 0.3s ease;
-        }
-
-        .dot.active::before,
-        .dot:hover::before {
-            border-color: rgba(138, 255, 0, 0.5);
-        }
-
-        /* Slider Animations */
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .slide.slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        .slide.slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        /* Progress Bar */
-        .slider-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: var(--general-accent);
-            box-shadow: 0 0 10px rgba(138, 255, 0, 0.8);
-            transition: width 0.1s ease;
-            z-index: 5;
-        }
-
-        /* レスポンシブ対応 */
-        @media (max-width: 768px) {
-            .slide {
-                height: 250px;
-            }
-
-            .slide img {
-                object-fit: contain;
-            }
-
-            .slide-overlay {
-                padding: 2rem 1.5rem 1.5rem;
-            }
-
-            .slide-overlay h3 {
-                font-size: 1.5rem;
-            }
-
-            .slider-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .slider-arrow.prev {
-                left: 10px;
-            }
-
-            .slider-arrow.next {
-                right: 10px;
-            }
-
-            .slider-dots {
-                gap: 0.8rem;
-                padding: 1.5rem 0;
-            }
-
-            .dot {
-                width: 10px;
-                height: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide {
-                height: 200px;
-            }
-
-            .slide img {
-                object-fit: contain;
-            }
-
-            .slide-overlay h3 {
-                font-size: 1.3rem;
-            }
-
-            .slide-overlay p {
-                font-size: 1rem;
-            }
-        }
-
-        /* 高解像度ディスプレイ対応 */
-        @media (min-width: 1400px) {
-            .slide {
-                height: 500px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1403,17 +1349,47 @@
     <div class="scanlines"></div>
 
     <!-- ヘッダー -->
-    <header>
+    <section class="hero">
         <div class="matrix-code" id="matrixCode"></div>
         <div class="hero-content">
-            <h1>AI & Python & Java</h1>
-            <p>革新的なAI技術とプログラミングで<br>あなたのビジネスの未来を創造します</p>
-            <div class="cta-container">
-                <a href="#portfolio" class="cta-button">制作実績を見る</a>
-                <a href="#contact" class="cta-button">相談を開始する</a>
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="gradient-text">顧客の未来を創る</span>
+                    <span class="highlight-text">スタジオ</span>
+                </h1>
+                <p class="hero-subtitle">
+                    革新的なAI技術とプログラミングで<br>
+                    あなたのビジネスの未来を創造します
+                </p>
+                <div class="hero-tags">
+                    <span class="tech-tag ai-tag">AI画像生成</span>
+                    <span class="tech-tag python-tag">Python開発</span>
+                    <span class="tech-tag java-tag">Java開発</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn-primary">
+                        <span>制作実績を見る</span>
+                        <i class="icon-arrow">→</i>
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        <span>相談を開始する</span>
+                        <i class="icon-eye">👁</i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- レイナの画像を追加 -->
+            <div class="hero-image">
+                <div class="reina-container">
+                    <img src="image/reina_1.png" alt="レイナ - AI Art Studio の案内役" class="reina-image">
+                    <div class="reina-effect"></div>
+                    <div class="speech-bubble">
+                        <p>こんにちは！レイナです✨<br>AI技術の未来へご案内します</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
     <!-- ナビゲーション -->
     <nav id="navbar">
@@ -1422,7 +1398,6 @@
             <li><a href="#services">サービス</a></li>
             <li><a href="#portfolio">制作実績</a></li>
             <li><a href="#blog">ブログ</a></li>
-            <li><a href="#premium">🔒 限定記事</a></li>
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
@@ -1434,87 +1409,33 @@
                 <div class="slider-track" id="sliderTrack">
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="Cyberpunk City" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>サイバーパンク都市</h3>
-                            <p>未来都市の創造</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="Chameleon Art" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>カラフルカメレオン</h3>
-                            <p>鮮やかな色彩の世界</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="Blue Lizard Statue" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>青いトカゲの彫像</h3>
-                            <p>古代と現代の融合</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="Crystal Cubes" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>クリスタルキューブ</h3>
-                            <p>幾何学的美学</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/fire_tuber.JPG" alt="Fire Tuber" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>ファイアチューバー</h3>
-                            <p>炎の芸術作品</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/宇宙建築都市.JPG" alt="Space Architecture City" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>宇宙建築都市</h3>
-                            <p>未来の都市建築</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/愛されキャラvtuber.JPG" alt="Beloved Vtuber Character" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>愛されキャラVtuber</h3>
-                            <p>キャラクターデザイン</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/花火少女.JPG" alt="Fireworks Girl" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>花火少女</h3>
-                            <p>幻想的な夜の世界</p>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/多光色art.png" alt="Multi-Color Art" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>多光色アート</h3>
-                            <p>光と色彩の祭典</p>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/digital_city.jpg" alt="Digital City" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>デジタルシティ</h3>
-                            <p>仮想空間の都市美</p>
-                        </div>
                     </div>
                     <div class="slide">
                         <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=400&fit=crop" alt="Python Development" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>Python開発</h3>
-                            <p>効率的なソリューション</p>
-                        </div>
                     </div>
                     <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop" alt="Java Enterprise" loading="lazy">
-                        <div class="slide-overlay">
-                            <h3>Java開発</h3>
-                            <p>エンタープライズシステム</p>
-                        </div>
+                        <img src="image/reina_1.png" alt="Java Development" loading="lazy">
                     </div>
                 </div>
                 
@@ -1530,8 +1451,6 @@
                     <span class="dot" onclick="currentSlide(8)"></span>
                     <span class="dot" onclick="currentSlide(9)"></span>
                     <span class="dot" onclick="currentSlide(10)"></span>
-                    <span class="dot" onclick="currentSlide(11)"></span>
-                    <span class="dot" onclick="currentSlide(12)"></span>
                 </div>
                 
                 <!-- Navigation Arrows -->
@@ -1543,47 +1462,69 @@
         <!-- About Section -->
         <section id="about" class="container">
             <div class="section-header">
-                <h2 class="section-title">私達の強み</h2>
+                <h2 class="section-title">私たちの強み</h2>
                 <p class="section-subtitle">
-                    最先端のAI技術と確かなプログラミングスキルで、お客様のビジネスに革新をもたらします。
-                    3つの核となる技術領域で、包括的なソリューションを提供いたします。
-                    レイナ（プログラマー）・ひで（プロデューサー）が広島から情報をお届けします。
-                    広島弁のノリを堪能してください。
+                    AI技術とプログラミングの力で、お客様のビジョンを現実に変える
                 </p>
             </div>
             
-            <div class="tech-showcase">
-                <div class="tech-card ai">
-                    <div class="tech-icon">🎨</div>
-                    <h3>AI 画像生成</h3>
-                    <p>
-                        Stable Diffusion、Midjourney、DALL-Eなどの最先端AI技術を駆使し、
-                        ブランドイメージに完全に合致した高品質なビジュアルコンテンツを生成。
-                        従来の制作時間とコストを大幅に削減しながら、無限のクリエイティブな可能性を実現します。
-                    </p>
-                    <a href="#portfolio">実績を見る</a>
+            <div class="about-content">
+                <!-- レイナの紹介カード -->
+                <div class="reina-intro-card">
+                    <div class="reina-profile">
+                        <img src="image/reina_1.png" alt="レイナ - AI技術コンサルタント" class="reina-profile-image">
+                        <div class="reina-badge">
+                            <span class="badge-text">AI Expert</span>
+                        </div>
+                    </div>
+                    <div class="reina-info">
+                        <h3 class="reina-name">レイナ</h3>
+                        <p class="reina-title">AI技術コンサルタント</p>
+                        <div class="reina-description">
+                            <p>最新のAI技術と豊富な開発経験を活かし、お客様の課題解決をサポートします。特にAI画像生成とプロンプト技術において、高度な専門知識を持っています。</p>
+                            <div class="reina-specialties">
+                                <span class="specialty-tag">AI画像生成</span>
+                                <span class="specialty-tag">プロンプト設計</span>
+                                <span class="specialty-tag">技術コンサルティング</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="tech-card python">
-                    <div class="tech-icon">🐍</div>
-                    <h3>Python 開発</h3>
-                    <p>
-                        データ分析、機械学習、自動化システムなど、Pythonの豊富なエコシステムを活用した
-                        カスタムソリューションを開発。業務プロセスの効率化とデータドリブンな意思決定を
-                        強力にサポートし、ビジネスの成長を加速させます。
-                    </p>
-                    <a href="#contact">相談する</a>
-                </div>
-                
-                <div class="tech-card java">
-                    <div class="tech-icon">☕</div>
-                    <h3>Java 開発</h3>
-                    <p>
-                        エンタープライズレベルの大規模システムやクリティカルなアプリケーションを
-                        Javaで構築。高い堅牢性、スケーラビリティ、セキュリティを実現し、
-                        長期的な運用に耐えうるビジネス基盤を提供します。
-                    </p>
-                    <a href="#contact">相談する</a>
+
+                <!-- 技術カード -->
+                <div class="tech-showcase">
+                    <div class="tech-card ai">
+                        <div class="tech-icon">🎨</div>
+                        <h3>AI 画像生成</h3>
+                        <p>
+                            Stable Diffusion、Midjourney、DALL-Eなどの最先端AI技術を駆使し、
+                            ブランドイメージに完全に合致した高品質なビジュアルコンテンツを生成。
+                            従来の制作時間とコストを大幅に削減しながら、無限のクリエイティブな可能性を実現します。
+                        </p>
+                        <a href="#portfolio">実績を見る</a>
+                    </div>
+                    
+                    <div class="tech-card python">
+                        <div class="tech-icon">🐍</div>
+                        <h3>Python 開発</h3>
+                        <p>
+                            データ分析、機械学習、自動化システムなど、Pythonの豊富なエコシステムを活用した
+                            カスタムソリューションを開発。業務プロセスの効率化とデータドリブンな意思決定を
+                            強力にサポートし、ビジネスの成長を加速させます。
+                        </p>
+                        <a href="#contact">相談する</a>
+                    </div>
+                    
+                    <div class="tech-card java">
+                        <div class="tech-icon">☕</div>
+                        <h3>Java 開発</h3>
+                        <p>
+                            エンタープライズレベルの大規模システムやクリティカルなアプリケーションを
+                            Javaで構築。高い堅牢性、スケーラビリティ、セキュリティを実現し、
+                            長期的な運用に耐えうるビジネス基盤を提供します。
+                        </p>
+                        <a href="#contact">相談する</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1670,8 +1611,6 @@
         </section>
 
         <!-- Blog Section -->
-
-        
         <section id="blog" class="container">
             <div class="section-header">
                 <h2 class="section-title">ブログ</h2>
@@ -1679,137 +1618,122 @@
                     AI技術の最新トレンドや開発事例、技術的な洞察をお届けします
                 </p>
             </div>
-
-<div class="blog-grid">
-            <!-- AI美女生成記事 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/ai-beauty-prompt-mastery.html">
-                    <img src="image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
-                    <div class="blog-card-content">
-                        <h4>【レイナが伝授】AI美女生成の極意：魂を宿すプロンプトの魔法</h4>
-                        <p>上品なレイナが教える、AI美女生成の真の極意。単なる美しさではなく、感情と魂を宿すプロンプト技術の秘密を優雅に伝授します。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">AI美女生成</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- Java記事 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/java-2025-real-talk.html">
-                    <img src="image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
-                    <div class="blog-card-content">
-                        <h4>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h4>
-                        <p>広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実を親しみやすい広島弁でぶっちゃけます！</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">Java開発</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- 恋愛プログラミング論記事 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/reina-hide-programming-love.html">
-                    <img src="image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
-                    <div class="blog-card-content">
-                        <h4>【衝撃】プログラミングと恋愛？！天才レイナが暴く、ひでとの関係に隠されたヤバい共通点！</h4>
-                        <p>広島の天才プログラマー・レイナが、プログラミングと恋愛の驚くべき共通点を大暴露！ひでとの関係性から見える、コードと心の奥深い関係とは？</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">恋愛×プログラミング</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- AI画像生成の基礎 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/ai-generation-basics.html">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎">
-                    <div class="blog-card-content">
-                        <h4>AI画像生成の基礎：初心者からプロまでのガイド</h4>
-                        <p>AI画像生成技術の基本概念から実践的な応用まで、包括的に解説する決定版ガイドです。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">AI基礎</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- 2025年AIトレンド -->
-            <article class="blog-card hover-glow">
-                <a href="blog/ai-trends-2025.html">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド">
-                    <div class="blog-card-content">
-                        <h4>2025年AIトレンド予測：次世代技術の展望</h4>
-                        <p>最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説します。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">AIトレンド</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- ビジネス変革 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/business-benefits.html">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&crop=center" alt="ビジネス変革">
-                    <div class="blog-card-content">
-                        <h4>AI技術がもたらすビジネス変革の可能性</h4>
-                        <p>企業におけるAI導入の実践的なアプローチと、ビジネス価値創出の戦略について解説します。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">ビジネス</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- Midjourney新機能 -->
-            <article class="blog-card hover-glow">
-                <a href="blog/midjourney-new-features.html">
-                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=220&fit=crop&crop=center" alt="Midjourney新機能">
-                    <div class="blog-card-content">
-                        <h4>Midjourney最新機能ガイド：クリエイターのための完全マニュアル</h4>
-                        <p>Midjourneyの新機能と効果的な活用方法を、実例と共に詳しく紹介します。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">Midjourney</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-
-            <!-- プロンプトテクニック -->
-            <article class="blog-card hover-glow">
-                <a href="blog/prompt-techniques.html">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=220&fit=crop&crop=center" alt="プロンプトテクニック">
-                    <div class="blog-card-content">
-                        <h4>効果的なプロンプト技術：AI画像生成の極意</h4>
-                        <p>高品質なAI画像を生成するためのプロンプト作成テクニックと実践的なノウハウを公開します。</p>
-                        <div class="blog-meta">
-                            <span class="blog-tag">プロンプト</span>
-                            <span>2025年1月</span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-        </div>
-                
+            
+            <div class="blog-grid">
+                <!-- AI美女生成記事 -->
                 <article class="blog-card hover-glow">
-                    <a href="blog/stable-diffusion-3-guide.html">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=220&fit=crop&crop=center" alt="Stable Diffusion 3">
+                    <a href="blog/ai-beauty-prompt-mastery.html">
+                        <img src="image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
                         <div class="blog-card-content">
-                            <h4>Stable Diffusion 3完全ガイド：新世代AI画像生成の全て</h4>
-                            <p>Stable Diffusion 3の革新的な機能と使用方法、従来版との違いについて徹底的に解説します。</p>
+                            <h4>【レイナが伝授】AI美女生成の極意：魂を宿すプロンプトの魔法</h4>
+                            <p>上品なレイナが教える、AI美女生成の真の極意。単なる美しさではなく、感情と魂を宿すプロンプト技術の秘密を優雅に伝授します。</p>
                             <div class="blog-meta">
-                                <span class="blog-tag">Stable Diffusion</span>
+                                <span class="blog-tag">AI美女生成</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Java記事 -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/java-2025-real-talk.html">
+                        <img src="image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
+                        <div class="blog-card-content">
+                            <h4>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h4>
+                            <p>広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実を親しみやすい広島弁でぶっちゃけます！</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">Java開発</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 恋愛プログラミング論記事 -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/reina-hide-programming-love.html">
+                        <img src="image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
+                        <div class="blog-card-content">
+                            <h4>【衝撃】プログラミングと恋愛？！天才レイナが暴く、ひでとの関係に隠されたヤバい共通点！</h4>
+                            <p>広島の天才プログラマー・レイナが、プログラミングと恋愛の驚くべき共通点を大暴露！ひでとの関係性から見える、コードと心の奥深い関係とは？</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">恋愛×プログラミング</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- AI画像生成の基礎 -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/ai-generation-basics.html">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎">
+                        <div class="blog-card-content">
+                            <h4>AI画像生成の基礎：初心者からプロまでのガイド</h4>
+                            <p>AI画像生成技術の基本概念から実践的な応用まで、包括的に解説する決定版ガイドです。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">AI基礎</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 2025年AIトレンド -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/ai-trends-2025.html">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド">
+                        <div class="blog-card-content">
+                            <h4>2025年AIトレンド予測：次世代技術の展望</h4>
+                            <p>最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">AIトレンド</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- ビジネス変革 -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/business-benefits.html">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&crop=center" alt="ビジネス変革">
+                        <div class="blog-card-content">
+                            <h4>AI技術がもたらすビジネス変革の可能性</h4>
+                            <p>企業におけるAI導入の実践的なアプローチと、ビジネス価値創出の戦略について解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">ビジネス</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Midjourney新機能 -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/midjourney-new-features.html">
+                        <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=220&fit=crop&crop=center" alt="Midjourney新機能">
+                        <div class="blog-card-content">
+                            <h4>Midjourney最新機能ガイド：クリエイターのための完全マニュアル</h4>
+                            <p>Midjourneyの新機能と効果的な活用方法を、実例と共に詳しく紹介します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">Midjourney</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- プロンプトテクニック -->
+                <article class="blog-card hover-glow">
+                    <a href="blog/prompt-techniques.html">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=220&fit=crop&crop=center" alt="プロンプトテクニック">
+                        <div class="blog-card-content">
+                            <h4>効果的なプロンプト技術：AI画像生成の極意</h4>
+                            <p>高品質なAI画像を生成するためのプロンプト作成テクニックと実践的なノウハウを公開します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">プロンプト</span>
                                 <span>2025年1月</span>
                             </div>
                         </div>
@@ -1861,112 +1785,12 @@
                 <button type="submit" class="submit-button">送信する</button>
             </form>
         </section>
-
-        <!-- Premium Articles Section -->
-        <section id="premium" class="container">
-            <div class="section-header">
-                <h2 class="section-title">🔒 限定記事</h2>
-                <p class="section-subtitle">
-                    特別な読者限定のプレミアムコンテンツ。業界のプロだけが知る極秘テクニックや未公開情報を提供します。
-                </p>
-            </div>
-            
-            <div class="premium-container">
-                <div class="premium-intro">
-                    <div class="premium-icon">👑</div>
-                    <h3>プレミアム会員限定</h3>
-                    <p>深いレベルの技術解説、業界インサイダー情報、未公開の制作プロセスなど、一般には公開していない価値あるコンテンツをお届けします。</p>
-                </div>
-                
-                <div class="premium-grid">
-                    <article class="premium-card">
-                        <div class="premium-badge">🌟 EXCLUSIVE</div>
-                        <div class="premium-lock">🔒</div>
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=220&fit=crop&crop=center" alt="AI開発極秘テクニック">
-                        <div class="premium-content">
-                            <h4>AI開発の極秘テクニック</h4>
-                            <p>業界のプロだけが知るプロンプトエンジニアリングの高度な手法と、API活用の裏技を特別公開。</p>
-                            <div class="premium-meta">
-                                <span class="premium-tag">極秘</span>
-                                <span>2025年1月</span>
-                            </div>
-                            <button onclick="accessPremiumArticle('ai-secrets')" class="premium-access-btn">
-                                アクセス
-                            </button>
-                        </div>
-                    </article>
-                    
-                    <article class="premium-card">
-                        <div class="premium-badge">💎 PREMIUM</div>
-                        <div class="premium-lock">🔒</div>
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=220&fit=crop&crop=center" alt="未公開プロジェクト">
-                        <div class="premium-content">
-                            <h4>未公開プロジェクトの舞台裏</h4>
-                            <p>大手企業との秘密プロジェクトで学んだ、商用レベルのAI実装ノウハウと失敗談を赤裸々に公開。</p>
-                            <div class="premium-meta">
-                                <span class="premium-tag">未公開</span>
-                                <span>2025年1月</span>
-                            </div>
-                            <button onclick="accessPremiumArticle('secret-project')" class="premium-access-btn">
-                                アクセス
-                            </button>
-                        </div>
-                    </article>
-                    
-                    <article class="premium-card">
-                        <div class="premium-badge">🔥 HOT</div>
-                        <div class="premium-lock">🔒</div>
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="次世代AI予測">
-                        <div class="premium-content">
-                            <h4>2025年後半の次世代AI予測</h4>
-                            <p>業界関係者から得た内部情報を基に、2025年後半にリリース予定の革新的AI技術を先行解説。</p>
-                            <div class="premium-meta">
-                                <span class="premium-tag">予測</span>
-                                <span>2025年1月</span>
-                            </div>
-                            <button onclick="accessPremiumArticle('future-ai')" class="premium-access-btn">
-                                アクセス
-                            </button>
-                        </div>
-                    </article>
-                    
-                    <article class="premium-card coming-soon">
-                        <div class="premium-badge">🚀 COMING SOON</div>
-                        <div class="premium-lock">⏰</div>
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=220&fit=crop&crop=center" alt="準備中">
-                        <div class="premium-content">
-                            <h4>企業向けAI導入完全マニュアル</h4>
-                            <p>実際のコンサルティング経験を基にした、失敗しないAI導入の完全ロードマップ。近日公開予定。</p>
-                            <div class="premium-meta">
-                                <span class="premium-tag">準備中</span>
-                                <span>2025年2月予定</span>
-                            </div>
-                            <button class="premium-access-btn" disabled>
-                                準備中
-                            </button>
-                        </div>
-                    </article>
-                </div>
-                
-                <div class="premium-notice">
-                    <h4>🎯 限定記事へのアクセス方法</h4>
-                    <p>
-                        限定記事は特別な読者のみに提供される高品質なコンテンツです。アクセスには専用パスワードが必要です。<br>
-                        パスワードは<strong>ニュースレター購読者</strong>や<strong>プロジェクト参加者</strong>に配布しています。
-                    </p>
-                    <div class="premium-actions">
-                        <a href="#contact" class="premium-cta">パスワード取得について問い合わせ</a>
-                        <span class="premium-hint">💡 SNSでも不定期配布中</span>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- フッター -->
     <footer>
         <div class="footer-content">
-            <p class="footer-text">&copy; 2025 AI & Python & Java Studio. All Rights Reserved.</p>
+            <p class="footer-text">&copy; 2025 AI Art Studio. All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#">プライバシーポリシー</a>
                 <a href="#">利用規約</a>
@@ -2192,31 +2016,9 @@
             }, 2000);
         }
 
-        // アプリケーション初期化
-        document.addEventListener('DOMContentLoaded', () => {
-            new CyberStudio();
-            initImageSlider();
-        });
-
-        // Premium Articles Access Function
-        function accessPremiumArticle(articleId) {
-            const articleUrls = {
-                'ai-secrets': 'premium/ai-development-secrets.html',
-                'secret-project': 'premium/secret-project-insights.html',
-                'future-ai': 'premium/future-ai-predictions.html'
-            };
-            
-            const url = articleUrls[articleId];
-            if (url) {
-                window.open(url, '_blank');
-            } else {
-                alert('記事が見つかりません。しばらくしてから再度お試しください。');
-            }
-        }
-
         // Image Slider JavaScript
         let currentSlideIndex = 0;
-        const totalSlides = 12; // 10枚から12枚に更新
+        const totalSlides = 10;
         let isAutoPlaying = true;
         let autoSlideInterval;
 
@@ -2233,7 +2035,6 @@
         function showSlide(index) {
             const track = document.getElementById('sliderTrack');
             const dots = document.querySelectorAll('.dot');
-            const slides = document.querySelectorAll('.slide');
             
             // インデックスの範囲チェック
             if (index >= totalSlides) currentSlideIndex = 0;
@@ -2242,14 +2043,6 @@
             // スライド移動
             const translateX = -currentSlideIndex * 100;
             track.style.transform = `translateX(${translateX}%)`;
-            
-            // アクティブスライドの設定
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === currentSlideIndex) {
-                    slide.classList.add('active');
-                }
-            });
             
             // ドットの更新
             dots.forEach((dot, i) => {
@@ -2277,7 +2070,7 @@
             autoSlideInterval = setInterval(() => {
                 currentSlideIndex++;
                 showSlide(currentSlideIndex);
-            }, 4000); // 4秒ごとに自動スライド
+            }, 4000);
         }
 
         function stopAutoSlide() {
@@ -2319,12 +2112,18 @@
             
             if (Math.abs(swipeDistance) > swipeThreshold) {
                 if (swipeDistance > 0) {
-                    plusSlide(1); // 左スワイプ = 次のスライド
+                    plusSlide(1);
                 } else {
-                    plusSlide(-1); // 右スワイプ = 前のスライド
+                    plusSlide(-1);
                 }
             }
         }
+
+        // アプリケーション初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            new CyberStudio();
+            initImageSlider();
+        });
     </script>
 </body>
 </html>
