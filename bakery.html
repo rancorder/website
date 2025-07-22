@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boulangerie MIEL - 毎日焼きたて、心温まるパン屋</title>
+    <meta name="description" content="町の小さなパン屋「Boulangerie MIEL」。毎日焼きたての美味しいパンと温かいおもてなしでお待ちしています。">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Courgette&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --warm-brown: #8b4513;
+            --light-cream: #faf0e6;
+            --golden-yellow: #ffd700;
+            --soft-orange: #ff8c42;
+            --sage-green: #9caf88;
+            --dark-chocolate: #3e2723;
+            --wheat-beige: #f5deb3;
+            --warm-white: #fffef7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-chocolate);
+            background-color: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 254, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid var(--golden-yellow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--warm-brown);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '🍞';
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-chocolate);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: var(--light-cream);
+            color: var(--warm-brown);
+            transform: translateY(-2px);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--light-cream) 0%, var(--wheat-beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--warm-brown);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--dark-chocolate);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--warm-brown), var(--soft-orange));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.4);
+        }
+
+        /* 装飾要素 */
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .wheat-1 {
+            top: 20%;
+            left: 10%;
+            font-size: 3rem;
+            animation-delay: 0s;
+        }
+
+        .wheat-2 {
+            top: 60%;
+            right: 15%;
+            font-size: 2.5rem;
+            animation-delay: 2s;
+        }
+
+        .croissant {
+            bottom: 20%;
+            left: 20%;
+            font-size: 2rem;
+            animation-delay: 4s;
+        }
+
+        /* About */
+        .about {
+            padding: 8rem 0;
+            background: var(--warm-white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--warm-brown);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🌾';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 5rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-chocolate);
+        }
+
+        .about-text h3 {
+            font-family: 'Courgette', cursive;
+            font-size: 2rem;
+            color: var(--warm-brown);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text .highlight {
+            background: linear-gradient(120deg, var(--golden-yellow) 0%, var(--golden-yellow) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 30%;
+            background-position: 0 85%;
+            padding: 0.2rem 0;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* メニュー */
+        .menu {
+            padding: 8rem 0;
+            background: var(--light-cream);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .menu-card {
+            background: var(--warm-white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            border-color: var(--golden-yellow);
+        }
+
+        .menu-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: breadBounce 2s ease-in-out infinite;
+        }
+
+        .menu-card h3 {
+            font-family: 'Courgette', cursive;
+            font-size: 1.5rem;
+            color: var(--warm-brown);
+            margin-bottom: 1rem;
+        }
+
+        .menu-card p {
+            color: var(--dark-chocolate);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .menu-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--soft-orange);
+        }
+
+        /* 特徴セクション */
+        .features {
+            padding: 8rem 0;
+            background: var(--warm-white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--golden-yellow), var(--soft-orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .feature-item h3 {
+            font-family: 'Courgette', cursive;
+            font-size: 1.3rem;
+            color: var(--warm-brown);
+            margin-bottom: 1rem;
+        }
+
+        /* フッター */
+        footer {
+            background: var(--dark-chocolate);
+            color: var(--light-cream);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--golden-yellow);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo::before {
+            content: '🍞';
+        }
+
+        /* アニメーション */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes breadBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .menu-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* 戻るボタン */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--warm-brown);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .back-button:hover {
+            background: var(--soft-orange);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 戻るボタン -->
+    <a href="index.html" class="back-button">← メインサイトに戻る</a>
+
+    <!-- ヘッダー -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Boulangerie MIEL</a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">私たちについて</a></li>
+                <li><a href="#menu">メニュー</a></li>
+                <li><a href="#features">こだわり</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヒーロー -->
+    <section id="home" class="hero">
+        <div class="floating-element wheat-1">🌾</div>
+        <div class="floating-element wheat-2">🌾</div>
+        <div class="floating-element croissant">🥐</div>
+        <div class="hero-content">
+            <h1 class="hero-title">Boulangerie MIEL</h1>
+            <p class="hero-subtitle">毎日焼きたて、心温まるパンで<br>あなたの一日を特別に</p>
+            <a href="#menu" class="cta-button">本日のパンを見る</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">私たちについて</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>手作りの温もりを届けたい</h3>
+                    <p>町の小さなパン屋「Boulangerie MIEL」は、<span class="highlight">毎朝4時から心を込めて</span>焼き上げる、焼きたてのパンをお届けしています。</p>
+                    <p>フランスで修行を積んだパン職人が、厳選した材料と伝統的な製法で、一つひとつ丁寧に作り上げています。地域の皆様に愛され続けて15年、変わらぬ美味しさをお約束いたします。</p>
+                    <p>お客様の笑顔が私たちの一番の喜びです。今日も美味しいパンでお待ちしています。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&h=400&fit=crop&crop=center" alt="パン作りの様子">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- メニュー -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">本日のおすすめ</h2>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <span class="menu-icon">🥖</span>
+                    <h3>バゲット</h3>
+                    <p>外はカリッと、中はもちもちの本格フランスパン。毎朝焼きたてをご用意しています。</p>
+                    <div class="menu-price">¥280</div>
+                </div>
+                <div class="menu-card">
+                    <span class="menu-icon">🥐</span>
+                    <h3>クロワッサン</h3>
+                    <p>バター香る、層の美しいクロワッサン。サクサクの食感をお楽しみください。</p>
+                    <div class="menu-price">¥220</div>
+                </div>
+                <div class="menu-card">
+                    <span class="menu-icon">🍞</span>
+                    <h3>食パン</h3>
+                    <p>ふわふわで優しい甘さの食パン。毎日の朝食におすすめです。</p>
+                    <div class="menu-price">¥320</div>
+                </div>
+                <div class="menu-card">
+                    <span class="menu-icon">🥯</span>
+                    <h3>ベーグル</h3>
+                    <p>もちもち食感のベーグル。プレーン、ごま、ブルーベリーなど種類豊富。</p>
+                    <div class="menu-price">¥180</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特徴 -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">こだわり</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🌾</div>
+                    <h3>厳選素材</h3>
+                    <p>国産小麦と天然酵母を使用し、添加物は最小限に抑えています。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍🍳</div>
+                    <h3>職人の技</h3>
+                    <p>フランスで修行を積んだパン職人が、伝統的な製法で丁寧に作り上げます。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🕐</div>
+                    <h3>毎日焼きたて</h3>
+                    <p>毎朝4時から焼き始め、常に焼きたてをご提供しています。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">❤️</div>
+                    <h3>地域密着</h3>
+                    <p>15年間地域の皆様に愛され続け、温かいコミュニティの一部です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Boulangerie MIEL</div>
+            <p>&copy; 2025 Boulangerie MIEL. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.8;">毎日、心を込めて焼いています ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ヘッダーのスクロール効果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 254, 247, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 254, 247, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
