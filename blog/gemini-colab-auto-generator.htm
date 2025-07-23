@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【無料配布】GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツールと活用ガイド【レイナ工房】</title>
+    <meta name="description" content="AI Art Studioのレイナが開発したGoogle Colab対応のプロンプト自動生成ツールを無料配布！たった1秒で1000個の高品質プロンプトを生成し、Geminiで理想のAI美女を創造しよう。">
+    <meta name="keywords" content="AI美女生成,Gemini,Google Colab,プロンプト,無料ツール,AI Art Studio,レイナ">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="【無料配布】GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツール">
+    <meta property="og:description" content="レイナ工房特製のColab自動生成ツールで、1秒で1000個のプロ級プロンプトを生成！">
+    <meta property="og:image" content="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png">
+    <meta property="og:url" content="https://aistudio.netlify.app/blog/gemini-colab-auto-generator.html">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #020210;
+            --section-bg: #050518;
+            --card-bg: #080825;
+            --ai-accent: #00f0ff;
+            --python-accent: #ff0080;
+            --java-accent: #00ff40;
+            --general-accent: #8aff00;
+            --secondary-accent: #ff4000;
+            --text-light: #e0faff;
+            --text-medium: #a0c0ff;
+            --text-dim: #6080a0;
+            --glass-bg: rgba(8, 8, 37, 0.6);
+            --glass-border: rgba(138, 255, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
+            color: var(--text-light);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* 背景エフェクト */
+        .cyber-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at top, rgba(138, 255, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 240, 255, 0.1) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ヘッダー */
+        .blog-header {
+            background: linear-gradient(135deg, rgba(138, 255, 0, 0.2), rgba(0, 240, 255, 0.2));
+            backdrop-filter: blur(20px);
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 2px solid var(--general-accent);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .blog-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: var(--general-accent);
+            text-shadow: 0 0 20px rgba(138, 255, 0, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: var(--ai-accent);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--general-accent);
+            box-shadow: 0 0 20px rgba(138, 255, 0, 0.5);
+        }
+
+        .author-details h3 {
+            color: var(--general-accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-details p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        /* メインコンテンツ */
+        .blog-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* セクション */
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(138, 255, 0, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--general-accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(138, 255, 0, 0.5);
+        }
+
+        /* テキストスタイル */
+        .highlight {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .emphasis {
+            color: var(--general-accent);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(138, 255, 0, 0.3);
+        }
+
+        .reina-speak {
+            color: var(--ai-accent);
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* ステップガイド */
+        .step-guide {
+            background: rgba(0, 240, 255, 0.1);
+            border: 2px solid var(--ai-accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--ai-accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--ai-accent);
+            color: var(--dark-bg);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* コラボリンク */
+        .colab-link {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+        }
+
+        .colab-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.5);
+        }
+
+        /* 画像ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(138, 255, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--general-accent);
+            box-shadow: 0 10px 30px rgba(138, 255, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+        }
+
+        .gallery-caption h4 {
+            color: var(--general-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt-text {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            margin: 0.5rem 0;
+            border-left: 3px solid var(--ai-accent);
+        }
+
+        /* 特徴リスト */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: rgba(138, 255, 0, 0.1);
+            border: 1px solid rgba(138, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 警告ボックス */
+        .warning-box {
+            background: rgba(255, 64, 0, 0.1);
+            border: 2px solid var(--secondary-accent);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-title {
+            color: var(--secondary-accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA セクション */
+        .cta-section {
+            background: linear-gradient(45deg, rgba(138, 255, 0, 0.2), rgba(0, 240, 255, 0.2));
+            border: 2px solid var(--general-accent);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--general-accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
+        }
+
+        /* ナビゲーション */
+        .back-to-site {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .back-link {
+            background: rgba(138, 255, 0, 0.1);
+            color: var(--general-accent);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            border: 2px solid var(--general-accent);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--general-accent);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(138, 255, 0, 0.5);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .blog-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-background"></div>
+
+    <!-- ヘッダー -->
+    <header class="blog-header">
+        <div class="blog-title">
+            【無料配布】GeminiでAIセクシー美女を無限生成！<br>
+            Colabプロンプト自動生成ツールと活用ガイド【レイナ工房】
+        </div>
+        <div class="blog-subtitle">
+            AIアートの常識を破壊する！なぜ高額ツールは不要なのか？
+        </div>
+        <div class="author-info">
+            <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ" class="author-avatar">
+            <div class="author-details">
+                <h3>レイナ</h3>
+                <p>AI技術コンサルタント・AI Art Studio</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <div class="blog-container">
+        <article class="blog-content">
+            
+            <!-- イントロダクション -->
+            <section class="section">
+                <p>AIアートの世界へようこそ！理想のAI美女を生成したいのに、</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem; color: var(--text-medium);">
+                    <li>「プロンプトが難しすぎる…」</li>
+                    <li>「有料ツールは高額で手が出せない…」</li>
+                </ul>
+                <p>そんな悩みを抱えていませんか？</p>
+                
+                <p style="margin-top: 2rem;"><span class="reina-speak">AI Art Studioのレイナが断言したるわ。もう、高額なAIツールも、複雑なプロンプトの知識も必要ないんよ。なぜなら、ウチには<span class="emphasis">「圧倒的なAIを操る技術」</span>があるけぇね。</span></p>
+                
+                <p>私たちは、Google Colabを活用し、無料で誰でもプロ級のAIアートを生成できる方法を確立しました。そして今回、その集大成として、<span class="highlight">Google Gemini対応のColabプロンプト自動生成ツール</span>を、あなたの手に届けることにしたわ！</p>
+            </section>
+
+            <!-- 驚愕の事実 -->
+            <section class="section">
+                <h2 class="section-title">【驚愕の事実】プロンプト1000個が、たった1秒で手に入る！？</h2>
+                
+                <p><span class="reina-speak">信じられんじゃろ？ じゃけど、これは事実なんよ。ウチらが提供するこのColabツールは、<span class="emphasis">わずか1秒で1000個もの高品質なプロンプトを自動で量産する</span>んじゃ。もうプロンプトを一つ一つ考える手間も、時間も、いらんけぇね！このスピードと量、まさに「圧倒的」じゃろ？</span></p>
+                
+                <p>このツールで生成されるプロンプトは、単なる単語の羅列じゃないけぇね。ウチがこれまで培ってきた「AIを操る技術」を詰め込み、以下の要素を絶妙なバランスで組み合わせるように設計しとるんじゃ。</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">👤</div>
+                        <div>性格・形容詞</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👗</div>
+                        <div>服装</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💃</div>
+                        <div>ポーズ</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏞️</div>
+                        <div>シチュエーション</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💡</div>
+                        <div>照明・ムード</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <div>アクセサリー・小道具</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💄</div>
+                        <div>髪型・メイクアップ</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">😊</div>
+                        <div>表情・天候</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <div>年齢層・体型・民族</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📸</div>
+                        <div>カメラアングル・画風</div>
+                    </div>
+                </div>
+                
+                <p>さらに、ウチが独自に設けた<span class="emphasis">「禁止ルール」</span>により、不適切な組み合わせも排除しとるけぇ、安心して利用できるんじゃ。</p>
+            </section>
+
+            <!-- 使い方ガイド -->
+            <section class="section">
+                <h2 class="section-title">Colabプロンプト自動生成ツールの使い方</h2>
+                
+                <p><span class="reina-speak">プログラミング知識がないあなたでも、ご心配なく！ このツールは直感的に使えるよう設計しとるけぇね。</span></p>
+                
+                <div class="step-guide">
+                    <h3 class="step-title">【ステップ１：Colabノートブックへアクセスするんじゃ！】</h3>
+                    <p>まずは、以下のリンクからウチらの特製Colabノートブックにアクセスしんさい！</p>
+                    <a href="https://colab.research.google.com/drive/10xIJLmuJ11drNeb7k457DS7zZL7hQ_Yk?usp=sharing" class="colab-link" target="_blank">
+                        🚀 Google Colabノートブックにアクセス
+                    </a>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">※重要じゃけぇね！</div>
+                        <p>このノートブックは閲覧専用じゃけぇね。使うには、まず<strong>『ファイル』メニューから『ドライブにコピーを保存』を選んで、自分のGoogleドライブにコピーするんじゃ！</strong></p>
+                        <p>自分のドライブにコピーしたら、あとは自由にパラメータを調整して、実行ボタンを押すだけじゃけぇね！</p>
+                        <p><strong>※本ツールの利用は自己責任じゃ。ウチらは一切の責任を負わんけぇね！</strong></p>
+                    </div>
+                </div>
+
+                <div class="step-guide">
+                    <h3 class="step-title">【ステップ２：パラメータを調整するんじゃ！】</h3>
+                    <p>コピーしたノートブックを開いたら、「レイナのパラメータ設定じゃけぇ！」と書かれたセルがあるじゃろ。ここで、生成したいAI美女の様々な要素（服装、ポーズなど）のリストを調整できるんじゃ。初期設定だけでも十分高品質なプロンプトが生成できるけど、あんたの好みに合わせて自由にカスタマイズしてみんさい。</p>
+                </div>
+
+                <div class="step-guide">
+                    <h3 class="step-title">【ステップ３：実行ボタンを押すだけじゃけぇね！】</h3>
+                    <p>パラメータの調整が終わったら、「メイン生成処理」のセルにある実行ボタン（▶）をクリックするだけじゃ！ たったこれだけで、あんたの指定した数のプロンプトが瞬時に生成されるんじゃ。</p>
+                </div>
+
+                <div class="step-guide">
+                    <h3 class="step-title">【ステップ４：生成されたプロンプトを確認するんじゃ！】</h3>
+                    <p>生成されたプロンプトは、CSVファイルとHTMLファイルとして出力されるけぇね。ダウンロードして内容を確認するんじゃ。特にHTMLファイルは、ブラウザで開けば、プロンプトや説明文、タグが綺麗に一覧表示されるじゃろ？</p>
+                </div>
+            </section>
+
+            <!-- 実践例 -->
+            <section class="section">
+                <h2 class="section-title">AI美女生成実践例：これがあんたの理想じゃ！</h2>
+                
+                <p><span class="reina-speak">実際にこのツールで生成したプロンプトをGoogle Geminiに入力したら、どんなAI美女が生まれるのか？ いくつか作例を見せてやるけぇね！</span></p>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=250&fit=crop" alt="サイバーパンクな巫女さん" loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>【作例１：サイバーパンクな巫女さん】</h4>
+                            <div class="prompt-text">
+                                A anime style photo of 22yo East Asian woman, with a athletic body, fierce, wearing kimono, dancing, with straight long hair, wearing smokey eyes, holding katana, wearing sci-fi headset, in a neon-lit alley, with spotlight, intense, expression intense stare, under stormy weather, dynamic angle, detailed skin, cinematic look, ultra realistic, high quality, 8k
+                            </div>
+                            <p><strong>解説:</strong> 「巫女さん」と「サイバーパンク」という異色の組み合わせを、Geminiは見事に表現してくれたわ。刀とSFヘッドセットの組み合わせが、ウチらの世界観そのものじゃね。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616c96551e8?w=400&h=250&fit=crop" alt="ゴシックドールな歌姫" loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>【作例２：ゴシックドールな歌姫】</h4>
+                            <div class="prompt-text">
+                                A photorealistic photo of 25yo Japanese woman, with a slim body, shy, wearing gothic lolita dress, kneeling gracefully, with bob cut, wearing natural makeup, holding microphone, wearing choker, in an abandoned factory, with soft light, dreamy, expression smiling softly, under cloudy weather, close-up shot, detailed skin, cinematic look, ultra realistic, high quality, 8k
+                            </div>
+                            <p><strong>解説:</strong> ゴシックロリータの服装と廃墟のコントラスト、そしてマイクで、どこか物憂げな歌姫の雰囲気を表現しました。表情や光の加減もプロンプトの指示通りじゃろ？</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="妖艶なる未来の巫女" loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>【作例３：妖艶なる未来の巫女】</h4>
+                            <div class="prompt-text">
+                                A dominant 22yo Japanese girl with a petite body, wearing japanese shrine maiden outfit, kneeling gracefully, with braids, wearing k-beauty makeup, holding smartphone, expressing a sleepy expression expression, lit by neon light, expressing a dreamy mood in a luxury yacht under foggy weather. (photorealistic)
+                            </div>
+                            <p><strong>解説:</strong> 「和」と「サイバー」が融合した、まさにレイナ工房らしい一枚じゃ。巫女の服装にスマホ、そして豪華ヨットという組み合わせが、幻想的な未来感を演出しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <section class="cta-section">
+                <h2 class="cta-title">今すぐ、あんたもAIアートを極めんかい！</h2>
+                
+                <p><span class="reina-speak">どうじゃった？ ウチの「AIを操る技術」と、この「Colabプロンプト自動生成ツール」の威力が分かったじゃろ？</span></p>
+                
+                <p>もう、高額なツールに頼る必要も、プロンプトの沼で溺れる必要もないんよ。ウチらが提供するColabツールは、あんたに無限の創造性と、圧倒的な時間短縮をもたらすじゃろ。</p>
+                
+                <p style="font-size: 1.2rem; margin: 2rem 0;"><span class="emphasis">さあ、このチャンスを逃すんじゃねぇぞ！</span></p>
+                
+                <div style="text-align: center; margin: 2rem 0;">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;">▼【無料配布中！】レイナ工房特製Colabツールはこちらから！▼</p>
+                    <a href="https://colab.research.google.com/drive/10xIJLmuJ11drNeb7k457DS7zZL7hQ_Yk?usp=sharing" class="colab-link" target="_blank">
+                        🎨 今すぐColabツールを使う
+                    </a>
+                </div>
+                
+                <p style="text-align: center; margin-top: 2rem;"><span class="reina-speak">AI Art Studioは、あなたの未来を創るスタジオ。<br>
+                無料のAI技術とプログラミングで、あなたのビジネスを創造し、加速させるヒントを、今後も発信していくけぇね！</span></p>
+            </section>
+            
+        </article>
+    </div>
+
+    <!-- ナビゲーション -->
+    <div class="back-to-site">
+        <a href="https://aistudio.netlify.app/" class="back-link">
+            ← AI Art Studioに戻る
+        </a>
+    </div>
+
+</body>
+</html>
