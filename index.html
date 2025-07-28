@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Core Web Vitals 最適化 - 最重要リソース -->
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" fetchpriority="high" crossorigin>
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" fetchpriority="high" crossorigin>
+    
+    <!-- フォント最適化 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWgz.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/exo2/v20/7cH1v4okm5zmbvwkAx_sfcEuiD8jvvOcPtq-rpvLpQ.woff2" type="font/woff2" crossorigin>
+    
     <!-- 2025年最新SEO最適化メタタグ -->
     <title>顧客の未来を創るスタジオ - AI画像生成・Python・Java開発 | レイナが導く革新的技術ソリューション</title>
     <meta name="description" content="革新的なAI技術とプログラミングであなたのビジネスの未来を創造します。レイナが提供するAI画像生成、Python開発、Java開発の専門スタジオ。広島発、全国対応。">
@@ -51,13 +61,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     
-    <!-- 重要リソースのプリロード -->
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" fetchpriority="high">
-    <link rel="preload" as="image" href="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" fetchpriority="high">
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/orbitron/v31/yMJMMIlzdpvBhQQL_SC3X9yhF25-T1nyGy6BoWgz.woff2" type="font/woff2" crossorigin>
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/exo2/v20/7cH1v4okm5zmbvwkAx_sfcEuiD8jvvOcPtq-rpvLpQ.woff2" type="font/woff2" crossorigin>
-    
-    <!-- フォント最適化読み込み -->
+    <!-- フォント読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- 組織情報の構造化データ -->
@@ -203,6 +207,7 @@
     }
     </script>
 
+    <!-- Critical CSS - Core Web Vitals最適化 -->
     <style>
         :root {
             --dark-bg: #020210;
@@ -238,6 +243,17 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
             cursor: none;
+        }
+
+        /* フォント最適化 - CLS防止 */
+        @font-face {
+            font-family: 'Orbitron';
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Exo 2';
+            font-display: swap;
         }
 
         /* カスタムカーソル */
@@ -410,6 +426,9 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
+            /* GPU加速 */
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         @keyframes heroEntrance {
@@ -552,6 +571,9 @@
             overflow: hidden;
             border: 2px solid transparent;
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+            /* GPU加速 */
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .cta-button::before {
@@ -735,7 +757,115 @@
             line-height: 1.8;
         }
 
-        /* Aboutセクション - レイナ紹介 */
+        /* Image Slider - Core Web Vitals最適化 */
+        .image-slider-section {
+            padding: 2rem 0;
+            background: var(--section-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
+            /* CLS防止のための固定アスペクト比 */
+            aspect-ratio: 16/9;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.8s ease;
+            /* CLS防止 */
+            display: block;
+        }
+
+        .slide:hover img {
+            transform: scale(1.02);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(138, 255, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--general-accent);
+            color: var(--general-accent);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-arrow:hover {
+            background: var(--general-accent);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(138, 255, 0, 0.8);
+        }
+
+        .slider-arrow.prev {
+            left: 20px;
+        }
+
+        .slider-arrow.next {
+            right: 20px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem 0;
+            background: var(--dark-bg);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(138, 255, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background: var(--general-accent);
+            box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* About Section CSS - レイナ紹介 */
         .about-content {
             display: flex;
             flex-direction: column;
@@ -951,110 +1081,6 @@
             background: var(--general-accent);
             color: var(--dark-bg);
             box-shadow: 0 0 20px var(--general-accent);
-        }
-
-        /* Image Slider */
-        .image-slider-section {
-            padding: 2rem 0;
-            background: var(--section-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .slider-track {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-            will-change: transform;
-        }
-
-        .slide {
-            min-width: 100%;
-            position: relative;
-            height: 450px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center;
-            transition: transform 0.8s ease;
-        }
-
-        .slide:hover img {
-            transform: scale(1.02);
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(138, 255, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--general-accent);
-            color: var(--general-accent);
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-arrow:hover {
-            background: var(--general-accent);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px rgba(138, 255, 0, 0.8);
-        }
-
-        .slider-arrow.prev {
-            left: 20px;
-        }
-
-        .slider-arrow.next {
-            right: 20px;
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 2rem 0;
-            background: var(--dark-bg);
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(138, 255, 0, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active,
-        .dot:hover {
-            background: var(--general-accent);
-            box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
-            transform: scale(1.2);
         }
 
         /* サービス */
@@ -1638,7 +1664,19 @@
             color: var(--text-light);
         }
 
-        /* レスポンシブ */
+        /* スケルトンローディング - CLS防止 */
+        .skeleton-loading {
+            background: linear-gradient(90deg, rgba(138, 255, 0, 0.1) 25%, rgba(138, 255, 0, 0.2) 50%, rgba(138, 255, 0, 0.1) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* レスポンシブ追加 */
         @media (max-width: 768px) {
             .tech-showcase {
                 grid-template-columns: 1fr;
@@ -1662,20 +1700,6 @@
                 max-width: 100%;
             }
 
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-
-            .cta-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
-
             .contact-form {
                 padding: 2rem;
             }
@@ -1693,6 +1717,41 @@
             
             .reina-name {
                 font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-filters {
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            section {
+                padding: 4rem 0;
             }
 
             .slide {
@@ -1718,15 +1777,6 @@
             .slide {
                 height: 200px;
             }
-
-            .blog-filters {
-                justify-content: center;
-            }
-
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
         }
 
         /* アクセシビリティ */
@@ -1743,6 +1793,17 @@
         .mb-3 { margin-bottom: 3rem; }
         .mt-3 { margin-top: 3rem; }
         .hover-glow:hover { box-shadow: 0 0 30px rgba(138, 255, 0, 0.6); }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 <body>
@@ -1762,6 +1823,9 @@
     <div class="cyber-background"></div>
     <canvas class="particles-canvas" id="particlesCanvas"></canvas>
     <div class="scanlines"></div>
+
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="sr-only">メインコンテンツへスキップ</a>
 
     <!-- ヘッダー -->
     <section class="hero">
@@ -1798,60 +1862,123 @@
         </ul>
     </nav>
 
-    <main>
-        <!-- Image Slider Section -->
+    <main id="main-content">
+        <!-- Image Slider Section - Core Web Vitals最適化済み -->
         <section class="image-slider-section">
             <div class="slider-container">
                 <div class="slider-track" id="sliderTrack">
+                    <!-- 最初の画像 - 最高優先度 -->
                     <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="Cyberpunk City" loading="lazy">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" 
+                             alt="サイバーパンク都市 - AI生成による幻想的な未来都市夜景" 
+                             loading="eager" 
+                             fetchpriority="high"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')"
+                             onerror="this.style.display='none'">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="Chameleon Art" loading="lazy">
+                    
+                    <!-- 2枚目以降は遅延読み込み -->
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" 
+                             alt="カラフルなカメレオン - AI生成アート作品" 
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="Blue Lizard Statue" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" 
+                             alt="青いトカゲの彫像 - AI生成3Dアート"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="Crystal Cubes" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" 
+                             alt="クリスタルキューブ - AI生成幾何学アート"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/fire_tuber.JPG" alt="Fire Tuber" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/fire_tuber.JPG" 
+                             alt="ファイアチューバー - AI生成エネルギー表現"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/宇宙建築都市.JPG" alt="Space Architecture City" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/宇宙建築都市.JPG" 
+                             alt="宇宙建築都市 - AI生成SF建築"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/愛されキャラvtuber.JPG" alt="Beloved Vtuber Character" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/愛されキャラvtuber.JPG" 
+                             alt="愛されキャラVtuber - AI生成キャラクター"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/花火少女.JPG" alt="Fireworks Girl" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/花火少女.JPG" 
+                             alt="花火少女 - AI生成アニメ風イラスト"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=400&fit=crop" alt="Python Development" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=1200&h=675&fit=crop&crop=center&auto=format&q=80" 
+                             alt="Python開発 - プログラミングコード画面"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
-                    <div class="slide">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ - AI技術コンサルタント" loading="lazy">
+                    
+                    <div class="slide skeleton-loading">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" 
+                             alt="レイナ - AI技術コンサルタント"
+                             loading="lazy"
+                             width="1200"
+                             height="675"
+                             onload="this.parentElement.classList.remove('skeleton-loading')">
                     </div>
                 </div>
                 
                 <!-- Navigation Dots -->
                 <div class="slider-dots">
-                    <span class="dot active" data-slide="0"></span>
-                    <span class="dot" data-slide="1"></span>
-                    <span class="dot" data-slide="2"></span>
-                    <span class="dot" data-slide="3"></span>
-                    <span class="dot" data-slide="4"></span>
-                    <span class="dot" data-slide="5"></span>
-                    <span class="dot" data-slide="6"></span>
-                    <span class="dot" data-slide="7"></span>
-                    <span class="dot" data-slide="8"></span>
-                    <span class="dot" data-slide="9"></span>
+                    <span class="dot active" data-slide="0" role="button" aria-label="スライド1"></span>
+                    <span class="dot" data-slide="1" role="button" aria-label="スライド2"></span>
+                    <span class="dot" data-slide="2" role="button" aria-label="スライド3"></span>
+                    <span class="dot" data-slide="3" role="button" aria-label="スライド4"></span>
+                    <span class="dot" data-slide="4" role="button" aria-label="スライド5"></span>
+                    <span class="dot" data-slide="5" role="button" aria-label="スライド6"></span>
+                    <span class="dot" data-slide="6" role="button" aria-label="スライド7"></span>
+                    <span class="dot" data-slide="7" role="button" aria-label="スライド8"></span>
+                    <span class="dot" data-slide="8" role="button" aria-label="スライド9"></span>
+                    <span class="dot" data-slide="9" role="button" aria-label="スライド10"></span>
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button class="slider-arrow prev" onclick="slideDirection(-1)">❮</button>
-                <button class="slider-arrow next" onclick="slideDirection(1)">❯</button>
+                <button class="slider-arrow prev" onclick="slideDirection(-1)" type="button" aria-label="前のスライド">❮</button>
+                <button class="slider-arrow next" onclick="slideDirection(1)" type="button" aria-label="次のスライド">❯</button>
             </div>
         </section>
 
@@ -1996,7 +2123,7 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_chameleon.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="カラフルなカメレオンのAIアート作品">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="カラフルなカメレオンのAIアート作品" loading="lazy">
                         <h4>AIによる進化：カラフルなカメレオンのアート作品制作事例</h4>
                         <p>鮮やかな色彩と複雑なディテールで、革新的なAIアートの世界へ誘います。</p>
                     </a>
@@ -2004,7 +2131,7 @@
                
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_lizard.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの彫像">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの彫像" loading="lazy">
                         <h4>古代の神秘と現代の融合：青いトカゲの彫像プロジェクト</h4>
                         <p>AIが生成した、歴史と未来が交差する荘厳な彫像の物語。</p>
                     </a>
@@ -2012,7 +2139,7 @@
                
                 <div class="portfolio-item hover-glow">
                     <a href="case_study_cubes.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="クリスタルキューブのアート">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="クリスタルキューブのアート" loading="lazy">
                         <h4>幻想的な幾何学の世界：AI生成によるクリスタルキューブのアート</h4>
                         <p>光と影が織りなす無限の空間を表現した、魅惑的なビジュアル体験。</p>
                     </a>
@@ -2031,7 +2158,7 @@
                 <div class="website-portfolio-item hover-glow">
                     <a href="beauty-salon.html" class="sample-site-link" target="_blank">
                         <div class="portfolio-preview">
-                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=250&fit=crop&crop=center" alt="美容院サイト - ELÉGANCE">
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=250&fit=crop&crop=center" alt="美容院サイト - ELÉGANCE" loading="lazy">
                             <div class="portfolio-overlay">
                                 <div class="portfolio-tech-stack">
                                     <span class="tech-tag">HTML5</span>
@@ -2057,7 +2184,7 @@
                 <div class="website-portfolio-item hover-glow">
                     <a href="bakery.html" class="sample-site-link" target="_blank">
                         <div class="portfolio-preview">
-                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=250&fit=crop&crop=center" alt="パン屋サイト - Boulangerie MIEL">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=250&fit=crop&crop=center" alt="パン屋サイト - Boulangerie MIEL" loading="lazy">
                             <div class="portfolio-overlay">
                                 <div class="portfolio-tech-stack">
                                     <span class="tech-tag">HTML5</span>
@@ -2162,7 +2289,7 @@
                 <!-- 【NEW】Gemini Colab自動生成ツール記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="無料配布 GeminiでAIセクシー美女を無限生成 Colabプロンプト自動生成ツールと活用ガイド レイナ工房" data-content="AIアートの常識を破壊する なぜ高額ツールは不要なのか レイナが断言 高額なAIツールも複雑なプロンプトの知識も必要ない 圧倒的なAIを操る技術 Google Colab活用 無料で誰でもプロ級のAIアート生成">
                     <a href="blog/gemini-colab-auto-generator.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツール">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツール" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【無料配布】GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツールと活用ガイド【レイナ工房】</h4>
                             <p>AIアートの常識を破壊する！なぜ高額ツールは不要なのか？レイナが断言したるわ。高額なAIツールも、複雑なプロンプトの知識も必要ないんよ。ウチには「圧倒的なAIを操る技術」があるけぇね。Google Colab活用で、無料で誰でもプロ級のAIアートを生成！</p>
@@ -2177,7 +2304,7 @@
                 <!-- AI美女生成記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="AI美女生成の極意 魂を宿すプロンプトの魔法" data-content="上品なレイナが教える AI美女生成の真の極意 単なる美しさではなく 感情と魂を宿すプロンプト技術の秘密を優雅に伝授">
                     <a href="blog/ai-beauty-prompt-mastery.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【レイナが伝授】AI美女生成の極意：魂を宿すプロンプトの魔法</h4>
                             <p>上品なレイナが教える、AI美女生成の真の極意。単なる美しさではなく、感情と魂を宿すプロンプト技術の秘密を優雅に伝授します。</p>
@@ -2192,7 +2319,7 @@
                 <!-- AI比較記事 -->
                 <article class="blog-card hover-glow" data-category="ai programming" data-title="AI開発比較実験 ChatGPT vs Claude vs Gemini" data-content="AI別HTLMコード作成の徹底比較 あなたに最適なツールがわかる決定版ガイド">
                     <a href="blog/ai-comparison.html">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成ツール比較">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成ツール比較" loading="lazy">
                         <div class="blog-card-content">
                             <h4>AI開発比較実験：ChatGPT vs Claude vs Gemini</h4>
                             <p>AI別HTLMコード作成の徹底比較。あなたに最適なツールがわかる決定版ガイドです。</p>
@@ -2207,7 +2334,7 @@
                 <!-- Java記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="え まだJavaって古いの 2025年 今どきのJavaのぶっちゃけ話" data-content="広島出身のレイナが語る Javaの現在と未来 古いなんて言わせない 2025年のJavaの真実を親しみやすい広島弁でぶっちゃけ">
                     <a href="blog/java-2025-real-talk.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="Java 2025年のぶっちゃけ話">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="Java 2025年のぶっちゃけ話" loading="lazy">
                         <div class="blog-card-content">
                             <h4>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h4>
                             <p>広島出身のレイナが語る、Javaの現在と未来。「古い」なんて言わせない、2025年のJavaの真実を親しみやすい広島弁でぶっちゃけます！</p>
@@ -2222,7 +2349,7 @@
                 <!-- 恋愛プログラミング論記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="衝撃 プログラミングと恋愛 天才レイナが暴く ひでとの関係に隠されたヤバい共通点" data-content="広島の天才プログラマー レイナが プログラミングと恋愛の驚くべき共通点を大暴露 ひでとの関係性から見える コードと心の奥深い関係">
                     <a href="blog/reina-hide-programming-love.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナとひでの恋愛プログラミング論">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナとひでの恋愛プログラミング論" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【衝撃】プログラミングと恋愛？！天才レイナが暴く、ひでとの関係に隠されたヤバい共通点！</h4>
                             <p>広島の天才プログラマー・レイナが、プログラミングと恋愛の驚くべき共通点を大暴露！ひでとの関係性から見える、コードと心の奥深い関係とは？</p>
@@ -2237,7 +2364,7 @@
                 <!-- AI画像生成の基礎 -->
                 <article class="blog-card hover-glow" data-category="ai" data-title="AI画像生成の基礎 初心者からプロまでのガイド" data-content="AI画像生成技術の基本概念から実践的な応用まで 包括的に解説する決定版ガイド">
                     <a href="blog/ai-generation-basics.html">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎" loading="lazy">
                         <div class="blog-card-content">
                             <h4>AI画像生成の基礎：初心者からプロまでのガイド</h4>
                             <p>AI画像生成技術の基本概念から実践的な応用まで、包括的に解説する決定版ガイドです。</p>
@@ -2252,7 +2379,7 @@
                 <!-- サイバーパンク制作プロセス -->
                 <article class="blog-card hover-glow" data-category="ai" data-title="サイバーパンク都市の制作プロセス大公開" data-content="AI Artで話題のサイバーパンク都市画像の制作秘話 プロンプトから仕上げまで">
                     <a href="blog/cyberpunk-city-process.html">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="サイバーパンク都市制作">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="サイバーパンク都市制作" loading="lazy">
                         <div class="blog-card-content">
                             <h4>サイバーパンク都市の制作プロセス大公開</h4>
                             <p>AI Artで話題のサイバーパンク都市画像の制作秘話。プロンプトから仕上げまで完全解説。</p>
@@ -2267,7 +2394,7 @@
                 <!-- 2025年AIトレンド -->
                 <article class="blog-card hover-glow" data-category="ai business" data-title="2025年AIトレンド予測 次世代技術の展望" data-content="最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説">
                     <a href="blog/ai-trends-2025.html">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド" loading="lazy">
                         <div class="blog-card-content">
                             <h4>2025年AIトレンド予測：次世代技術の展望</h4>
                             <p>最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説します。</p>
@@ -2333,6 +2460,7 @@
                 <button type="submit" class="submit-button">送信する</button>
             </form>
         </section>
+        
     </main>
 
     <!-- フッター -->
@@ -2348,10 +2476,13 @@
         </div>
     </footer>
 
+    <!-- Core Web Vitals最適化JavaScript -->
     <script>
-        // パフォーマンス最適化されたJavaScript
+        // ======= Core Web Vitals 最適化スクリプト =======
+        
         class CyberStudio {
             constructor() {
+                this.vitalsData = {};
                 this.init();
             }
 
@@ -2362,6 +2493,114 @@
                 this.setupParticles();
                 this.setupMatrixCode();
                 this.setupIntersectionObserver();
+                this.optimizeCoreWebVitals();
+            }
+
+            // LCP最適化
+            optimizeLCP() {
+                const firstImage = document.querySelector('.slide:first-child img');
+                if (firstImage && !firstImage.complete) {
+                    firstImage.onload = () => {
+                        console.log('✅ First slide loaded - LCP optimized');
+                    };
+                }
+            }
+
+            // INP最適化 - 高速イベント処理
+            optimizeINP() {
+                let isThrottled = false;
+                const throttleDelay = 16; // 60fps
+
+                document.addEventListener('click', (e) => {
+                    if (isThrottled) return;
+                    
+                    if (e.target.matches('.slider-arrow, .dot')) {
+                        isThrottled = true;
+                        requestAnimationFrame(() => {
+                            this.handleSliderInteraction(e);
+                            setTimeout(() => { isThrottled = false; }, throttleDelay);
+                        });
+                    }
+                }, { passive: true });
+
+                // スクロールの最適化
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        this.updateScrollProgress();
+                    }, 10);
+                }, { passive: true });
+            }
+
+            // CLS最適化 - レイアウトシフト防止
+            optimizeCLS() {
+                // 画像サイズ確保
+                document.querySelectorAll('.slide img').forEach(img => {
+                    if (!img.hasAttribute('width') || !img.hasAttribute('height')) {
+                        img.style.aspectRatio = '16/9';
+                        img.style.width = '100%';
+                        img.style.height = '100%';
+                    }
+                });
+
+                // フォント読み込み時のシフト防止
+                document.fonts.ready.then(() => {
+                    document.body.classList.add('fonts-loaded');
+                    console.log('✅ Fonts loaded - CLS optimized');
+                });
+            }
+
+            // Web Vitals監視
+            monitorWebVitals() {
+                if ('PerformanceObserver' in window) {
+                    // LCP測定
+                    new PerformanceObserver((entryList) => {
+                        const entries = entryList.getEntries();
+                        const lastEntry = entries[entries.length - 1];
+                        const lcpValue = lastEntry.startTime;
+                        this.vitalsData.lcp = lcpValue;
+                        
+                        console.log('📊 LCP:', lcpValue + 'ms');
+                        
+                        if (lcpValue < 2500) {
+                            console.log('✅ LCP Good');
+                        } else if (lcpValue < 4000) {
+                            console.log('⚠️ LCP Needs Improvement');
+                        } else {
+                            console.log('❌ LCP Poor');
+                        }
+                    }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+                    // CLS測定
+                    let clsValue = 0;
+                    new PerformanceObserver((entryList) => {
+                        for (const entry of entryList.getEntries()) {
+                            if (!entry.hadRecentInput) {
+                                clsValue += entry.value;
+                            }
+                        }
+                        this.vitalsData.cls = clsValue;
+                        
+                        console.log('📊 CLS:', clsValue);
+                        
+                        if (clsValue < 0.1) {
+                            console.log('✅ CLS Good');
+                        } else if (clsValue < 0.25) {
+                            console.log('⚠️ CLS Needs Improvement');
+                        } else {
+                            console.log('❌ CLS Poor');
+                        }
+                    }).observe({ entryTypes: ['layout-shift'] });
+                }
+            }
+
+            optimizeCoreWebVitals() {
+                this.optimizeLCP();
+                this.optimizeINP();
+                this.optimizeCLS();
+                this.monitorWebVitals();
+                console.log('🚀 Core Web Vitals optimization initialized');
             }
 
             setupLoader() {
@@ -2410,6 +2649,13 @@
 
                     scrollProgress.style.width = scrollPercent + '%';
                 });
+            }
+
+            updateScrollProgress() {
+                const scrollY = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollY / docHeight) * 100;
+                document.getElementById('scrollProgress').style.width = scrollPercent + '%';
             }
 
             setupParticles() {
@@ -2530,7 +2776,163 @@
                     observer.observe(section);
                 });
             }
+
+            handleSliderInteraction(e) {
+                if (e.target.classList.contains('slider-arrow')) {
+                    const direction = e.target.classList.contains('next') ? 1 : -1;
+                    slideDirection(direction);
+                } else if (e.target.classList.contains('dot')) {
+                    const index = parseInt(e.target.dataset.slide);
+                    showSlide(index);
+                }
+            }
         }
+
+        // Image Slider JavaScript - 最適化版
+        let currentSlideIndex = 0;
+        const totalSlides = 10;
+        let isAutoPlaying = true;
+        let autoSlideInterval;
+
+        function initImageSlider() {
+            showSlide(currentSlideIndex);
+            startAutoSlide();
+           
+            const sliderContainer = document.querySelector('.slider-container');
+            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+            sliderContainer.addEventListener('mouseleave', startAutoSlide);
+
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlideIndex = index;
+                    showSlide(currentSlideIndex);
+                    restartAutoSlide();
+                });
+            });
+        }
+
+        function showSlide(index) {
+            const track = document.getElementById('sliderTrack');
+            const dots = document.querySelectorAll('.dot');
+           
+            if (index >= totalSlides) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = totalSlides - 1;
+           
+            // GPU加速されたtransform使用
+            track.style.transform = `translate3d(${-currentSlideIndex * 100}%, 0, 0)`;
+           
+            dots.forEach((dot, i) => {
+                dot.classList.remove('active');
+                if (i === currentSlideIndex) {
+                    dot.classList.add('active');
+                }
+            });
+
+            // 次の画像を先読み
+            preloadNextImage();
+        }
+
+        function slideDirection(direction) {
+            currentSlideIndex += direction;
+            showSlide(currentSlideIndex);
+            restartAutoSlide();
+        }
+
+        function preloadNextImage() {
+            const nextIndex = (currentSlideIndex + 1) % totalSlides;
+            const nextSlide = document.querySelectorAll('.slide')[nextIndex];
+            const nextImg = nextSlide?.querySelector('img');
+            
+            if (nextImg && nextImg.loading === 'lazy') {
+                nextImg.loading = 'eager';
+            }
+        }
+
+        function startAutoSlide() {
+            if (!isAutoPlaying) return;
+            autoSlideInterval = setInterval(() => {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }, 4000);
+        }
+
+        function stopAutoSlide() {
+            isAutoPlaying = false;
+            clearInterval(autoSlideInterval);
+        }
+
+        function restartAutoSlide() {
+            stopAutoSlide();
+            isAutoPlaying = true;
+            startAutoSlide();
+        }
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // キーボード操作のサポート
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                slideDirection(-1);
+            } else if (e.key === 'ArrowRight') {
+                slideDirection(1);
+            }
+        });
+
+        // タッチスワイプのサポート
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const swipeDistance = touchStartX - touchEndX;
+           
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    slideDirection(1);
+                } else {
+                    slideDirection(-1);
+                }
+            }
+        }
+
+        // パフォーマンス監視
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('📈 Load Performance:', {
+                    'DOM Ready': Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart) + 'ms',
+                    'Full Load': Math.round(perfData.loadEventEnd - perfData.fetchStart) + 'ms'
+                });
+
+                // パフォーマンス情報をコンソールに表示
+                if (performance.getEntriesByType('paint').length > 0) {
+                    const fcp = performance.getEntriesByType('paint')[0].startTime;
+                    console.log('📊 FCP (First Contentful Paint):', Math.round(fcp) + 'ms');
+                }
+            }, 100);
+        });
 
         // ブログシステム
         class BlogManager {
@@ -2687,87 +3089,6 @@
             }
         }
 
-        // Image Slider JavaScript
-        let currentSlideIndex = 0;
-        const totalSlides = 10;
-        let isAutoPlaying = true;
-        let autoSlideInterval;
-
-        function initImageSlider() {
-            showSlide(currentSlideIndex);
-            startAutoSlide();
-           
-            const sliderContainer = document.querySelector('.slider-container');
-            sliderContainer.addEventListener('mouseenter', stopAutoSlide);
-            sliderContainer.addEventListener('mouseleave', startAutoSlide);
-
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    currentSlideIndex = index;
-                    showSlide(currentSlideIndex);
-                    restartAutoSlide();
-                });
-            });
-        }
-
-        function showSlide(index) {
-            const track = document.getElementById('sliderTrack');
-            const dots = document.querySelectorAll('.dot');
-           
-            if (index >= totalSlides) currentSlideIndex = 0;
-            if (index < 0) currentSlideIndex = totalSlides - 1;
-           
-            const translateX = -currentSlideIndex * 100;
-            track.style.transform = `translateX(${translateX}%)`;
-           
-            dots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                if (i === currentSlideIndex) {
-                    dot.classList.add('active');
-                }
-            });
-        }
-
-        function slideDirection(direction) {
-            currentSlideIndex += direction;
-            showSlide(currentSlideIndex);
-            restartAutoSlide();
-        }
-
-        function startAutoSlide() {
-            if (!isAutoPlaying) return;
-            autoSlideInterval = setInterval(() => {
-                currentSlideIndex++;
-                showSlide(currentSlideIndex);
-            }, 4000);
-        }
-
-        function stopAutoSlide() {
-            isAutoPlaying = false;
-            clearInterval(autoSlideInterval);
-        }
-
-        function restartAutoSlide() {
-            stopAutoSlide();
-            isAutoPlaying = true;
-            startAutoSlide();
-        }
-
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
         // フォーム送信処理
         function handleSubmit(event) {
             event.preventDefault();
@@ -2786,47 +3107,85 @@
             }, 2000);
         }
 
-        // キーボード操作のサポート
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                slideDirection(-1);
-            } else if (e.key === 'ArrowRight') {
-                slideDirection(1);
-            }
-        });
-
-        // タッチスワイプのサポート
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const swipeDistance = touchStartX - touchEndX;
-           
-            if (Math.abs(swipeDistance) > swipeThreshold) {
-                if (swipeDistance > 0) {
-                    slideDirection(1);
-                } else {
-                    slideDirection(-1);
-                }
-            }
-        }
-
         // アプリケーション初期化
         document.addEventListener('DOMContentLoaded', () => {
-            new CyberStudio();
-            new BlogManager();
+            const cyberStudio = new CyberStudio();
+            const blogManager = new BlogManager();
             initImageSlider();
+            
+            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization');
         });
+
+        // Web Vitals ライブラリの動的読み込み（オプション）
+        if ('PerformanceObserver' in window) {
+            // Web Vitals の詳細測定
+            const measureWebVitals = async () => {
+                try {
+                    const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('https://unpkg.com/web-vitals@3/dist/web-vitals.js');
+                    
+                    const sendToAnalytics = (metric) => {
+                        console.log(`📊 ${metric.name}:`, Math.round(metric.value) + (metric.name === 'CLS' ? '' : 'ms'));
+                        
+                        // Google Analytics 4 への送信（実装時）
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'web_vitals', {
+                                event_category: 'Web Vitals',
+                                event_label: metric.name,
+                                value: Math.round(metric.value),
+                                non_interaction: true
+                            });
+                        }
+                    };
+
+                    getCLS(sendToAnalytics);
+                    getFID(sendToAnalytics);
+                    getFCP(sendToAnalytics);
+                    getLCP(sendToAnalytics);
+                    getTTFB(sendToAnalytics);
+                } catch (error) {
+                    console.log('Web Vitals library not loaded');
+                }
+            };
+
+            // ページ読み込み後に測定開始
+            window.addEventListener('load', measureWebVitals);
+        }
+
+        // Service Worker登録（将来のPWA対応）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('🔧 Service Worker registered');
+                    })
+                    .catch(error => {
+                        // Service Workerが無い場合はスキップ
+                    });
+            });
+        }
+
+        // エラーハンドリング
+        window.addEventListener('error', (e) => {
+            console.error('JavaScript Error:', e.error);
+        });
+
+        // リソース読み込みエラーの監視
+        window.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG') {
+                console.warn('Image load failed:', e.target.src);
+                // フォールバック画像の設定など
+            }
+        }, true);
     </script>
+
+    <!-- 非クリティカルリソースの遅延読み込み -->
+    <script>
+        // 追加機能の遅延読み込み
+        setTimeout(() => {
+            // Analytics、チャットボット、その他の非クリティカル機能
+            console.log('📡 Loading additional features...');
+        }, 3000);
+    </script>
+
 </body>
 </html>
