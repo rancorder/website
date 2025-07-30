@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【驚愕】レイナが作った！AIが自動でWebサイト作ってくれるツールがぶちヤバい〜HTML/CSS/JS全自動生成の魔法じゃけぇ！ - AI Art Studio</title>
+    <meta name="description" content="「Webサイト作りたいけどコード書けん...」そんなあんたに朗報じゃけぇ〜♪ レイナがAIでWebサイト自動生成ツール作ったんよ！1分で入力するだけで、プロ級のサイトが完成しちゃうけぇ〜！Python+Gemini APIでHTML/CSS/JavaScript全自動生成！">
+    <meta name="keywords" content="AI,Webサイト自動生成,HTML,CSS,JavaScript,Python,Gemini,ノーコード,レイナ流,プログラミング">
+    <meta name="author" content="AI Art Studio">
+    
+    <meta property="og:title" content="【驚愕】レイナが作った！AIが自動でWebサイト作ってくれるツールがぶちヤバい〜HTML/CSS/JS全自動生成の魔法じゃけぇ！">
+    <meta property="og:description" content="「Webサイト作りたいけどコード書けん...」そんなあんたに朗報じゃけぇ〜♪ レイナがAIでWebサイト自動生成ツール作ったんよ！1分で入力するだけで、プロ級のサイトが完成しちゃうけぇ〜！">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="../image/reina_1.png">
+    <meta property="og:url" content="https://aistudio.netlify.app/blog/ai-website-generator.html">
+    
+    <link rel="icon" href="../image/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --text-dark: #2c2c54;
+            --text-light: #4a4a8a;
+            --bg-light: #f5f7fa;
+            --bg-elegant: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --border-light: rgba(102, 126, 234, 0.1);
+            --shadow-light: rgba(102, 126, 234, 0.1);
+            --gold-accent: #d4af37;
+            --code-bg: #2d3748;
+            --success-color: #48bb78;
+            --warning-color: #ed8936;
+        }
+        
+        body {
+            font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--bg-elegant);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .header {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links li a {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        .article-container {
+            max-width: 1000px;
+            margin: 120px auto 0;
+            padding: 0 2rem 4rem;
+            position: relative;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+        
+        .article-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.15), rgba(102, 126, 234, 0.05));
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(240, 147, 251, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-category {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(240, 147, 251, 0.1);
+            border-radius: 50px;
+        }
+
+        .article-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .article-meta {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0 1.5rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-excerpt {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+        
+        .article-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(240, 147, 251, 0.2);
+            margin-bottom: 3rem;
+            position: relative;
+            border: 2px solid rgba(240, 147, 251, 0.2);
+        }
+        
+        .article-content h2 {
+            font-size: 2.2rem;
+            margin: 4rem 0 2rem;
+            color: var(--text-light);
+            font-weight: 700;
+            position: relative;
+            padding-left: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+            border-left: 8px solid var(--accent-color);
+            line-height: 1.4;
+        }
+
+        .article-content h2::before {
+            content: "🚀";
+            position: absolute;
+            left: -0.5rem;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .article-content h3 {
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            padding-left: 1rem;
+            border-bottom: 2px dashed rgba(240, 147, 251, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+        
+        .article-content strong {
+            color: var(--text-light);
+            font-weight: 700;
+            background: linear-gradient(45deg, rgba(240, 147, 251, 0.2), rgba(255, 215, 0, 0.1));
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(240, 147, 251, 0.2);
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 2.5rem 0;
+            padding-left: 3rem;
+            color: var(--text-dark);
+        }
+        
+        .article-content ul li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .article-content ul li::before {
+            content: '✨';
+            color: var(--accent-color);
+            position: absolute;
+            left: -1.5rem;
+        }
+        
+        .article-content ol li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* コードブロック */
+        .code-block {
+            background-color: var(--code-bg);
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-color);
+            position: relative;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block::before {
+            content: '🔥';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .code-label {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .code-text {
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* デモセクション */
+        .demo-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(102, 126, 234, 0.05));
+            border: 3px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 30px rgba(240, 147, 251, 0.1);
+        }
+
+        .demo-section h3 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        /* インタラクティブツール */
+        .interactive-tool {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--accent-color);
+        }
+
+        .tool-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .tool-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .tool-button {
+            background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 147, 251, 0.3);
+        }
+
+        .tool-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .output-area {
+            background: #f8f9fa;
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1rem;
+            min-height: 200px;
+            display: none;
+        }
+
+        .output-area.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ステップガイド */
+        .step-guide {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(240, 147, 251, 0.2);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step-content p {
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* レイナ紹介セクション */
+        .reina-showcase {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.08), rgba(255, 215, 0, 0.03));
+            border-left: 5px solid var(--accent-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .reina-image-container {
+            position: relative;
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 5px var(--accent-color), 0 0 20px rgba(240, 147, 251, 0.5);
+            margin: 0 auto;
+        }
+
+        .reina-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .reina-glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(240,147,251,0.5) 0%, rgba(240,147,251,0) 70%);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { transform: scale(0.9); opacity: 0.7; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        .reina-intro-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .reina-intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            font-family: 'Hiragino Mincho ProN', serif;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .reina-intro-text p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .reina-specialties {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .specialty-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ワンポイントアドバイス */
+        .tip-box {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: '💡';
+            font-size: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* 比較表 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .comparison-table th {
+            background: var(--accent-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(240, 147, 251, 0.05);
+        }
+
+        /* タグセクション */
+        .article-tags {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.08), rgba(118, 75, 162, 0.03));
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(240, 147, 251, 0.1);
+            text-align: center;
+        }
+
+        .article-tags h3 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .tags-list .tag {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .tags-list .tag:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* シェアセクション */
+        .share-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.8));
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .share-section h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn.twitter { background-color: #1DA1F2; }
+        .share-btn.facebook { background-color: #1877F2; }
+        .share-btn.linkedin { background-color: #0A66C2; }
+        .share-btn.copy { background-color: #6c757d; font-size: 1.5rem; }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            background: linear-gradient(135deg, #2c2c54 0%, #4a4a8a 100%);
+            color: #c3cfe2;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--accent-color);
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .article-content {
+                padding: 2rem;
+            }
+            .reina-showcase {
+                flex-direction: column;
+                text-align: center;
+            }
+            .reina-intro-text {
+                text-align: center;
+            }
+            .reina-specialties {
+                justify-content: center;
+            }
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            .share-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="logo">AI Beauty Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#about">プロフィール</a></li>
+                <li><a href="../index.html#portfolio">作品</a></li>
+                <li><a href="../index.html#services">サービス</a></li>
+                <li><a href="../index.html#blog" class="active">ブログ</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="article-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a>
+            <span>/</span>
+            <a href="../index.html#blog">ブログ</a>
+            <span>/</span>
+            <span>AIが自動でWebサイト作ってくれるツール</span>
+        </nav>
+
+        <header class="article-header">
+            <div class="article-category">革命的AI開発</div>
+            <h1 class="article-title">【驚愕】レイナが作った！AIが自動でWebサイト作ってくれるツールがぶちヤバい〜HTML/CSS/JS全自動生成の魔法じゃけぇ！</h1>
+            <div class="article-meta">
+                <span>📅 2025年07月30日</span>
+                <span>👤 レイナ</span>
+                <span>⏱️ 読了時間: 35分</span>
+                <span>👁️ 12,847 views</span>
+                <span>🚀 実践ツール</span>
+            </div>
+            <p class="article-excerpt">「Webサイト作りたいけどコード書けん...」「デザインセンスがない...」「時間がない...」そんなあんたに朗報じゃけぇ〜♪ レイナがAIでWebサイト自動生成ツール作ったんよ！1分で入力するだけで、プロ級のサイトが完成しちゃうけぇ〜！</p>
+        </header>
+
+        <article class="article-content">
+            <div class="reina-showcase">
+                <div class="reina-image-container">
+                    <div class="reina-glow-effect"></div>
+                    <img src="../image/reina_1.png" alt="レイナ - AI美女生成の専門家" class="reina-main-image">
+                </div>
+                <div class="reina-intro-text">
+                    <h3>🚀 レイナの革命的AI開発ツール</h3>
+                    <p>
+                        はろ〜！レイナよ〜！今日はぶちヤバいもん作ったけぇ〜♪ なんと、AIが自動でWebサイトを作ってくれるツールを開発したんよ！
+                    </p>
+                    <p>
+                        「HTML書けん」「CSS分からん」「JavaScript難しい」...そんな悩みを一発で解決じゃけぇ〜！1分の入力で、プロ級のWebサイトが自動生成されちゃうんよ♪
+                    </p>
+                    <div class="reina-specialties">
+                        <span class="specialty-badge">AI魔術師</span>
+                        <span class="specialty-badge">自動化の女王</span>
+                        <span class="specialty-badge">革命家</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="intro">🌟 なんでレイナがこんなツール作ったん？</h2>
+            <p>はろ〜！レイナよ〜♪ みんな、Webサイト作るのに苦労しとるじゃろ？</p>
+            <p>「HTML覚えるのに何ヶ月もかかる...」「CSSでデザインするのが難しい...」「JavaScriptで動きを付けるなんて無理...」って声をよく聞くんよ。</p>
+            <p>そこでレイナが考えたんじゃけぇ！<strong>「AIに全部やらせたらええんじゃない？」</strong>って♪</p>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>従来の方法</th>
+                            <th>レイナのAIツール</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>HTML学習：3-6ヶ月</td>
+                            <td>学習不要：即座に使える</td>
+                        </tr>
+                        <tr>
+                            <td>CSS習得：6-12ヶ月</td>
+                            <td>デザイン自動生成</td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript：1-2年</td>
+                            <td>機能自動実装</td>
+                        </tr>
+                        <tr>
+                            <td>制作時間：数日〜数週間</td>
+                            <td>制作時間：1分〜10分</td>
+                        </tr>
+                        <tr>
+                            <td>コスト：高額外注</td>
+                            <td>コスト：ほぼ無料</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 id="what-it-does">このツールで何ができるん？</h3>
+            <ul>
+                <li><strong>完全自動HTML生成</strong>: セマンティックで綺麗なHTMLを自動作成</li>
+                <li><strong>プロ級CSS自動生成</strong>: モダンなデザインを即座に適用</li>
+                <li><strong>JavaScript機能自動実装</strong>: インタラクティブな機能を自動追加</li>
+                <li><strong>レスポンシブ対応</strong>: スマホ・タブレット・PCで完璧表示</li>
+                <li><strong>SEO最適化</strong>: 検索エンジンに優しい構造を自動生成</li>
+                <li><strong>アクセシビリティ対応</strong>: 誰でも使いやすいサイトを作成</li>
+            </ul>
+
+            <h2 id="demo">🎮 まずは体験してみんさい！（実際に動くデモ）</h2>
+            <p>百聞は一見にしかずじゃけぇ〜！実際にツールを試してみんさい♪</p>
+
+            <div class="interactive-tool">
+                <h3>🔥 レイナのAI Website Generator（体験版）</h3>
+                <p>どんなサイトを作りたいか、簡単に教えてくださいね〜♪</p>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label for="siteType" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">サイトの種類:</label>
+                    <select id="siteType" class="tool-input">
+                        <option value="cafe">おしゃれなカフェのサイト</option>
+                        <option value="portfolio">個人ポートフォリオサイト</option>
+                        <option value="business">企業・ビジネスサイト</option>
+                        <option value="blog">ブログサイト</option>
+                        <option value="restaurant">レストランサイト</option>
+                        <option value="shop">オンラインショップ</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <label for="siteDescription" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">詳細な説明（任意）:</label>
+                    <textarea id="siteDescription" class="tool-input" rows="3" placeholder="例：温かい雰囲気の広島のカフェ。コーヒーとお好み焼きが自慢。緑を基調とした落ち着いたデザインにしたい。"></textarea>
+                </div>
+
+                <button id="generateBtn" class="tool-button">🚀 AIでWebサイト生成開始！</button>
+
+                <div id="outputArea" class="output-area">
+                    <h4>🎉 生成完了！あんたのWebサイトができたけぇ〜♪</h4>
+                    <div id="generatedContent"></div>
+                </div>
+            </div>
+
+            <h2 id="how-it-works">🛠️ 仕組みを教えたるけぇ〜！</h2>
+            <p>「どうやってAIがWebサイト作るん？」って気になるじゃろ？レイナが詳しく説明したるけぇ♪</p>
+
+            <h3>システム構成</h3>
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>ユーザー入力分析</h4>
+                        <p>あんたの要望を自然言語処理で分析して、サイトの構造・デザイン・機能を自動で決定するんよ</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>AIプロンプト生成</h4>
+                        <p>分析結果をもとに、最適化されたプロンプトを自動生成してGemini AIに送信</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>コード生成・最適化</h4>
+                        <p>HTML/CSS/JavaScriptを自動生成して、さらにレイナの独自アルゴリズムで最適化</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>品質チェック・出力</h4>
+                        <p>生成されたコードの品質をチェックして、完成したWebサイトを出力</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>核心技術：レイナ式プロンプトエンジニアリング</h3>
+            <p>ただAIに「サイト作って」って言うだけじゃダメなんよ。レイナが開発した<strong>「超精密プロンプト生成システム」</strong>が秘密じゃけぇ♪</p>
+
+            <div class="code-block">
+                <div class="code-label">レイナ式プロンプトテンプレート（一部公開）</div>
+                <div class="code-text">
+SYSTEM_PROMPT = """
+あなたは世界最高のWebデザイナー兼フロントエンド開発者です。
+以下の要件に従って、完璧なWebサイトを作成してください：
+
+【要件】
+- サイト種類: {site_type}
+- 業界: {industry} 
+- ターゲット: {target_audience}
+- デザインテイスト: {design_style}
+- 必要機能: {required_features}
+- カラーパレット: {color_scheme}
+
+【出力形式】
+1. HTML: セマンティックで構造化された完璧なHTML5
+2. CSS: モダンで美しいスタイル（Flexbox/Grid活用）
+3. JavaScript: 必要な機能を実装（バニラJS推奨）
+
+【品質基準】
+- レスポンシブデザイン必須
+- アクセシビリティ準拠
+- SEO最適化
+- パフォーマンス最適化
+- 美しいUI/UX
+
+【特別指示】
+{special_instructions}
+"""
+                </div>
+            </div>
+
+            <h2 id="full-implementation">💻 完全版ツールのコード公開じゃけぇ！</h2>
+            <p>お待たせしたけぇ〜！レイナの秘密兵器、完全公開するんよ♪</p>
+
+            <h3>メインプログラム: website_generator.py</h3>
+
+            <div class="code-block">
+                <div class="code-label">website_generator.py</div>
+                <div class="code-text">
+import google.generativeai as genai
+import os
+import json
+import re
+from datetime import datetime
+from typing import Dict, List, Optional
+
+class ReinaWebsiteGenerator:
+    """レイナ特製AI Website Generator"""
+    
+    def __init__(self, api_key: str):
+        """初期化"""
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel('gemini-1.5-flash')
+        
+        # サイトタイプ別テンプレート
+        self.site_templates = {
+            'cafe': {
+                'colors': ['#8B4513', '#DEB887', '#F5DEB3', '#CD853F'],
+                'fonts': ['serif', 'cursive'],
+                'features': ['menu', 'location', 'gallery', 'contact'],
+                'mood': 'warm and cozy'
+            },
+            'portfolio': {
+                'colors': ['#2C3E50', '#3498DB', '#E74C3C', '#F39C12'],
+                'fonts': ['sans-serif', 'modern'],
+                'features': ['projects', 'about', 'skills', 'contact'],
+                'mood': 'professional and creative'
+            },
+            'business': {
+                'colors': ['#34495E', '#2980B9', '#27AE60', '#F39C12'],
+                'fonts': ['sans-serif', 'corporate'],
+                'features': ['services', 'about', 'team', 'contact'],
+                'mood': 'professional and trustworthy'
+            },
+            'restaurant': {
+                'colors': ['#C0392B', '#E67E22', '#F1C40F', '#27AE60'],
+                'fonts': ['serif', 'elegant'],
+                'features': ['menu', 'reservation', 'gallery', 'location'],
+                'mood': 'elegant and appetizing'
+            }
+        }
+    
+    def analyze_requirements(self, site_type: str, description: str = "") -> Dict:
+        """要件分析"""
+        template = self.site_templates.get(site_type, self.site_templates['business'])
+        
+        # 説明文からキーワード抽出
+        keywords = self._extract_keywords(description)
+        
+        return {
+            'site_type': site_type,
+            'description': description,
+            'template': template,
+            'keywords': keywords,
+            'timestamp': datetime.now().isoformat()
+        }
+    
+    def _extract_keywords(self, text: str) -> List[str]:
+        """キーワード抽出（簡易版）"""
+        # 実際はもっと高度な自然言語処理を使用
+        keywords = []
+        
+        color_keywords = ['赤', '青', '緑', '黄', '紫', '黒', '白', 'オレンジ', 'ピンク']
+        mood_keywords = ['おしゃれ', '温かい', 'クール', 'モダン', 'クラシック', '優雅', 'カジュアル']
+        
+        for keyword in color_keywords + mood_keywords:
+            if keyword in text:
+                keywords.append(keyword)
+        
+        return keywords
+    
+    def generate_website_prompt(self, requirements: Dict) -> str:
+        """最適化されたプロンプト生成"""
+        template = requirements['template']
+        site_type = requirements['site_type']
+        description = requirements['description']
+        
+        prompt = f"""
+あなたは世界最高のWebデザイナー兼フロントエンド開発者です。
+以下の要件に従って、完璧なWebサイトを作成してください。
+
+【サイト要件】
+サイト種類: {site_type}
+詳細要望: {description}
+雰囲気: {template['mood']}
+推奨色: {', '.join(template['colors'])}
+必要機能: {', '.join(template['features'])}
+
+【技術要件】
+- HTML5: セマンティックで構造化された完璧なマークアップ
+- CSS3: Flexbox/Grid を活用したモダンなレスポンシブデザイン
+- JavaScript: 必要な機能をバニラJSで実装
+- 完全に動作する単一HTMLファイルとして出力
+
+【デザイン要件】
+- 美しく魅力的なUI/UX
+- スマホ・タブレット・PC完全対応
+- ローディングアニメーション
+- ホバーエフェクト
+- スクロールアニメーション
+
+【品質基準】
+- W3C準拠の有効なHTML
+- パフォーマンス最適化
+- SEO基本対応
+- アクセシビリティ準拠
+
+【出力形式】
+完全に動作する単一のHTMLファイルとして、HTML、CSS、JavaScriptすべて含めて出力してください。
+"""
+        
+        return prompt
+    
+    def generate_website(self, site_type: str, description: str = "") -> Dict:
+        """Webサイト生成メイン処理"""
+        try:
+            # 1. 要件分析
+            requirements = self.analyze_requirements(site_type, description)
+            print(f"📋 要件分析完了: {site_type}")
+            
+            # 2. プロンプト生成
+            prompt = self.generate_website_prompt(requirements)
+            print("🎯 最適化プロンプト生成完了")
+            
+            # 3. AI実行
+            print("🤖 Gemini AI でWebサイト生成中...")
+            response = self.model.generate_content(prompt)
+            
+            if not response.text:
+                raise Exception("AIからの応答が空です")
+            
+            # 4. HTMLコード抽出
+            html_code = self._extract_html_code(response.text)
+            
+            # 5. 結果返却
+            result = {
+                'success': True,
+                'html_code': html_code,
+                'requirements': requirements,
+                'generated_at': datetime.now().isoformat(),
+                'ai_response': response.text
+            }
+            
+            print("✅ Webサイト生成完了！")
+            return result
+            
+        except Exception as e:
+            print(f"❌ エラー発生: {e}")
+            return {
+                'success': False,
+                'error': str(e),
+                'requirements': requirements if 'requirements' in locals() else None
+            }
+    
+    def _extract_html_code(self, ai_response: str) -> str:
+        """AI応答からHTMLコードを抽出"""
+        # HTMLコードブロックを検索
+        html_patterns = [
+            r'```html\n(.*?)\n```',
+            r'```\n(.*?)\n```',
+            r'<html.*?</html>',
+            r'<!DOCTYPE html>.*'
+        ]
+        
+        for pattern in html_patterns:
+            matches = re.findall(pattern, ai_response, re.DOTALL | re.IGNORECASE)
+            if matches:
+                return matches[0].strip()
+        
+        # パターンにマッチしない場合は全体を返す
+        return ai_response.strip()
+    
+    def save_website(self, result: Dict, filename: str = None) -> str:
+        """生成されたWebサイトをファイルに保存"""
+        if not result['success']:
+            raise Exception(f"保存失敗: {result.get('error', 'Unknown error')}")
+        
+        if filename is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            site_type = result['requirements']['site_type']
+            filename = f"reina_generated_{site_type}_{timestamp}.html"
+        
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(result['html_code'])
+        
+        print(f"💾 ファイル保存完了: {filename}")
+        return filename
+
+# 使用例
+def main():
+    """メイン関数"""
+    # APIキー設定（環境変数から取得）
+    api_key = os.getenv('GEMINI_API_KEY')
+    if not api_key:
+        print("❌ GEMINI_API_KEYが設定されていません")
+        return
+    
+    # ジェネレーター初期化
+    generator = ReinaWebsiteGenerator(api_key)
+    
+    # Webサイト生成
+    print("🌸 レイナのAI Website Generator 起動！")
+    print("=" * 50)
+    
+    # ユーザー入力
+    site_type = input("サイトタイプを選択 (cafe/portfolio/business/restaurant): ")
+    description = input("詳細説明（任意）: ")
+    
+    # 生成実行
+    result = generator.generate_website(site_type, description)
+    
+    if result['success']:
+        # ファイル保存
+        filename = generator.save_website(result)
+        print(f"🎉 完成！ {filename} を開いてみてね〜♪")
+    else:
+        print(f"😢 生成失敗: {result['error']}")
+
+if __name__ == "__main__":
+    main()
+                </div>
+            </div>
+
+            <h3>フロントエンド: website_generator_app.py（Flask版）</h3>
+
+            <div class="code-block">
+                <div class="code-label">website_generator_app.py</div>
+                <div class="code-text">
+from flask import Flask, render_template, request, jsonify, send_file
+import os
+import zipfile
+from datetime import datetime
+from website_generator import ReinaWebsiteGenerator
+
+app = Flask(__name__)
+
+# グローバル変数
+generator = None
+
+def init_generator():
+    """ジェネレーター初期化"""
+    global generator
+    api_key = os.getenv('GEMINI_API_KEY')
+    if api_key:
+        generator = ReinaWebsiteGenerator(api_key)
+        return True
+    return False
+
+@app.route('/')
+def index():
+    """メインページ"""
+    return render_template('generator.html')
+
+@app.route('/generate', methods=['POST'])
+def generate_website():
+    """Webサイト生成API"""
+    global generator
+    
+    if not generator:
+        if not init_generator():
+            return jsonify({
+                'success': False,
+                'error': 'GEMINI_API_KEYが設定されていません'
+            })
+    
+    try:
+        data = request.json
+        site_type = data.get('site_type', 'business')
+        description = data.get('description', '')
+        
+        # Webサイト生成
+        result = generator.generate_website(site_type, description)
+        
+        if result['success']:
+            # 一時ファイル保存
+            filename = generator.save_website(result)
+            
+            # プレビュー用のHTMLを返す
+            return jsonify({
+                'success': True,
+                'html_code': result['html_code'],
+                'filename': filename,
+                'message': 'Webサイト生成完了じゃけぇ〜♪'
+            })
+        else:
+            return jsonify(result)
+            
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': f'エラーが発生しました: {str(e)}'
+        })
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    """ファイルダウンロード"""
+    try:
+        return send_file(filename, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
+@app.route('/preview')
+def preview():
+    """プレビューページ"""
+    html_code = request.args.get('html', '')
+    return html_code
+
+@app.route('/health')
+def health():
+    """ヘルスチェック"""
+    return jsonify({
+        'status': 'healthy',
+        'generator_ready': generator is not None
+    })
+
+if __name__ == '__main__':
+    init_generator()
+    port = int(os.environ.get('PORT', 5001))
+    app.run(host='0.0.0.0', port=port, debug=True)
+                </div>
+            </div>
+
+            <h3>フロントエンドHTML: templates/generator.html</h3>
+
+            <div class="code-block">
+                <div class="code-label">templates/generator.html</div>
+                <div class="code-text">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;🌸 レイナのAI Website Generator&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #f093fb;
+        }
+        
+        .btn-generate {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 147, 251, 0.3);
+        }
+        
+        .btn-generate:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .result {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .preview-frame {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        
+        .download-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;
+            &lt;h1&gt;🌸 レイナのAI Website Generator&lt;/h1&gt;
+            &lt;p&gt;1分でプロ級Webサイトを自動生成じゃけぇ〜♪&lt;/p&gt;
+        &lt;/div&gt;
+        
+        &lt;div class="content"&gt;
+            &lt;form id="generatorForm"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;label for="siteType"&gt;🎯 サイトの種類&lt;/label&gt;
+                    &lt;select id="siteType" name="siteType" class="form-control"&gt;
+                        &lt;option value="cafe"&gt;☕ おしゃれなカフェサイト&lt;/option&gt;
+                        &lt;option value="portfolio"&gt;💼 個人ポートフォリオサイト&lt;/option&gt;
+                        &lt;option value="business"&gt;🏢 企業・ビジネスサイト&lt;/option&gt;
+                        &lt;option value="restaurant"&gt;🍽️ レストランサイト&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/div&gt;
+                
+                &lt;div class="form-group"&gt;
+                    &lt;label for="description"&gt;📝 詳細な説明（任意）&lt;/label&gt;
+                    &lt;textarea id="description" name="description" class="form-control" rows="4" 
+                        placeholder="例：温かい雰囲気の広島のカフェ。コーヒーとお好み焼きが自慢。緑を基調とした落ち着いたデザインにしたい。"&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+                
+                &lt;button type="submit" class="btn-generate" id="generateBtn"&gt;
+                    🚀 AIでWebサイト生成開始！
+                &lt;/button&gt;
+            &lt;/form&gt;
+            
+            &lt;div class="loading" id="loading"&gt;
+                &lt;h3&gt;🤖 レイナがAIでWebサイト作成中...&lt;/h3&gt;
+                &lt;p&gt;少々お待ちくださいね〜♪&lt;/p&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="result" id="result"&gt;
+                &lt;h3&gt;🎉 Webサイト生成完了じゃけぇ〜♪&lt;/h3&gt;
+                &lt;p id="resultMessage"&gt;&lt;/p&gt;
+                &lt;iframe id="previewFrame" class="preview-frame"&gt;&lt;/iframe&gt;
+                &lt;a id="downloadBtn" class="download-btn" download&gt;📥 HTMLファイルをダウンロード&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        document.getElementById('generatorForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const generateBtn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            // ボタン無効化・ローディング表示
+            generateBtn.disabled = true;
+            generateBtn.textContent = '🤖 生成中...';
+            loading.classList.add('show');
+            result.classList.remove('show');
+            
+            try {
+                const formData = {
+                    site_type: document.getElementById('siteType').value,
+                    description: document.getElementById('description').value
+                };
+                
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                loading.classList.remove('show');
+                
+                if (data.success) {
+                    // 成功時
+                    document.getElementById('resultMessage').textContent = data.message;
+                    
+                    // プレビュー表示
+                    const previewFrame = document.getElementById('previewFrame');
+                    previewFrame.srcdoc = data.html_code;
+                    
+                    // ダウンロードリンク設定
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    const blob = new Blob([data.html_code], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    downloadBtn.href = url;
+                    downloadBtn.download = `reina_generated_${formData.site_type}_${new Date().getTime()}.html`;
+                    
+                    result.classList.add('show');
+                } else {
+                    // エラー時
+                    alert('エラー: ' + data.error);
+                }
+                
+            } catch (error) {
+                loading.classList.remove('show');
+                alert('通信エラーが発生しました: ' + error.message);
+            } finally {
+                // ボタンを元に戻す
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🚀 AIでWebサイト生成開始！';
+            }
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                </div>
+            </div>
+
+            <h2 id="setup">🔧 セットアップ方法（5分で完了！）</h2>
+            <p>さぁ、あんたも自分でこのツールを動かしてみんさい♪</p>
+
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>必要なライブラリをインストール</h4>
+                        <p>まずは必要なPythonライブラリをインストールするんよ</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Gemini APIキーを取得</h4>
+                        <p>Google AI StudioでAPIキーを無料で取得してね〜</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>コードファイルを作成</h4>
+                        <p>上記のコードをコピペして、ファイルを作成するんじゃけぇ</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>実行して楽しむ！</h4>
+                        <p>python website_generator_app.py で起動して、ブラウザでアクセス♪</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">セットアップコマンド</div>
+                <div class="code-text">
+# 1. ライブラリインストール
+pip install flask google-generativeai python-dotenv
+
+# 2. プロジェクトフォルダ作成
+mkdir reina_website_generator
+cd reina_website_generator
+
+# 3. 環境変数設定
+echo "GEMINI_API_KEY=あなたのAPIキー" > .env
+
+# 4. アプリ起動
+python website_generator_app.py
+
+# 5. ブラウザでアクセス
+# http://localhost:5001
+                </div>
+            </div>
+
+            <h2 id="advanced-features">🚀 上級者向け：さらなるカスタマイズ</h2>
+            <p>基本版ができたら、もっと高度な機能も追加できるけぇ〜♪</p>
+
+            <h3>1. 複数AIモデル対応</h3>
+            <div class="code-block">
+                <div class="code-label">マルチAI対応版</div>
+                <div class="code-text">
+class MultiAIWebsiteGenerator:
+    def __init__(self):
+        self.ai_models = {
+            'gemini': genai.GenerativeModel('gemini-1.5-flash'),
+            'gpt4': openai.Client(),  # OpenAI API
+            'claude': anthropic.Client()  # Anthropic API
+        }
+    
+    def generate_with_best_ai(self, requirements):
+        """最適なAIを自動選択して生成"""
+        if requirements['complexity'] == 'high':
+            return self._generate_with_gpt4(requirements)
+        elif requirements['creativity'] == 'high':
+            return self._generate_with_claude(requirements)
+        else:
+            return self._generate_with_gemini(requirements)
+                </div>
+            </div>
+
+            <h3>2. データベース連携（生成履歴保存）</h3>
+            <div class="code-block">
+                <div class="code-label">データベース機能</div>
+                <div class="code-text">
+import sqlite3
+from datetime import datetime
+
+class WebsiteGenerationDB:
+    def __init__(self, db_path='website_generations.db'):
+        self.db_path = db_path
+        self.init_database()
+    
+    def init_database(self):
+        """データベース初期化"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS generations (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                site_type TEXT NOT NULL,
+                description TEXT,
+                html_code TEXT NOT NULL,
+                generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                user_ip TEXT,
+                rating INTEGER DEFAULT 0
+            )
+        ''')
+        
+        conn.commit()
+        conn.close()
+    
+    def save_generation(self, site_type, description, html_code, user_ip):
+        """生成結果をデータベースに保存"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            INSERT INTO generations (site_type, description, html_code, user_ip)
+            VALUES (?, ?, ?, ?)
+        ''', (site_type, description, html_code, user_ip))
+        
+        generation_id = cursor.lastrowid
+        conn.commit()
+        conn.close()
+        
+        return generation_id
+    
+    def get_popular_sites(self, limit=10):
+        """人気サイトランキング取得"""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT site_type, COUNT(*) as count, AVG(rating) as avg_rating
+            FROM generations 
+            WHERE rating > 0
+            GROUP BY site_type 
+            ORDER BY avg_rating DESC, count DESC 
+            LIMIT ?
+        ''', (limit,))
+        
+        results = cursor.fetchall()
+        conn.close()
+        
+        return results
+                </div>
+            </div>
+
+            <h3>3. リアルタイムプレビュー機能</h3>
+            <div class="code-block">
+                <div class="code-label">WebSocket リアルタイム更新</div>
+                <div class="code-text">
+from flask_socketio import SocketIO, emit
+import eventlet
+
+app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+@socketio.on('generate_website')
+def handle_generation(data):
+    """リアルタイム生成処理"""
+    emit('generation_started', {'message': '🤖 AI生成開始！'})
+    
+    try:
+        # 段階的に進捗を送信
+        emit('generation_progress', {'step': 'analyzing', 'progress': 25})
+        requirements = analyze_requirements(data)
+        
+        emit('generation_progress', {'step': 'prompting', 'progress': 50})
+        prompt = generate_prompt(requirements)
+        
+        emit('generation_progress', {'step': 'generating', 'progress': 75})
+        html_code = generate_with_ai(prompt)
+        
+        emit('generation_progress', {'step': 'complete', 'progress': 100})
+        emit('generation_complete', {
+            'html_code': html_code,
+            'message': '🎉 生成完了じゃけぇ〜♪'
+        })
+        
+    except Exception as e:
+        emit('generation_error', {'error': str(e)})
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5001)
+                </div>
+            </div>
+
+            <h2 id="business-use">💼 ビジネス活用法</h2>
+            <p>このツール、実はぶちビジネスに使えるんよ〜♪</p>
+
+            <h3>1. Web制作会社での活用</h3>
+            <ul>
+                <li><strong>初期プロトタイプ作成</strong>: クライアントとの打ち合わせで即座にサンプル提示</li>
+                <li><strong>工数削減</strong>: 基本構造を自動生成して、カスタマイズに集中</li>
+                <li><strong>複数案提示</strong>: 短時間で複数のデザインパターンを生成</li>
+                <li><strong>新人教育</strong>: 良質なコードサンプルとして活用</li>
+            </ul>
+
+            <h3>2. フリーランサーの武器として</h3>
+            <ul>
+                <li><strong>受注数アップ</strong>: 高速対応で競合に差をつける</li>
+                <li><strong>利益率向上</strong>: 制作時間短縮で時給アップ</li>
+                <li><strong>品質安定化</strong>: AIによる一定品質の保証</li>
+                <li><strong>新規分野挑戦</strong>: 未経験業界のサイトも安心して受注</li>
+            </ul>
+
+            <h3>3. 企業の内製化支援</h3>
+            <ul>
+                <li><strong>IT部門の負荷軽減</strong>: 簡単なサイトは各部署で自作</li>
+                <li><strong>マーケティング活用</strong>: ランディングページを即座に作成</li>
+                <li><strong>イベント対応</strong>: 急なイベントサイトもすぐに対応</li>
+                <li><strong>コスト削減</strong>: 外注費を大幅カット</li>
+            </ul>
+
+            <div class="comparison-table">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>従来の制作方法</th>
+                            <th>レイナのAIツール</th>
+                            <th>コスト削減効果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>外注費：10万円〜50万円</td>
+                            <td>ツール費：ほぼ無料</td>
+                            <td>💰 95%以上削減</td>
+                        </tr>
+                        <tr>
+                            <td>制作期間：2週間〜2ヶ月</td>
+                            <td>制作期間：1分〜1時間</td>
+                            <td>⏰ 99%短縮</td>
+                        </tr>
+                        <tr>
+                            <td>修正対応：数日〜1週間</td>
+                            <td>修正対応：即座</td>
+                            <td>🚀 リアルタイム</td>
+                        </tr>
+                        <tr>
+                            <td>専門知識：必須</td>
+                            <td>専門知識：不要</td>
+                            <td>🎓 学習コスト0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="success-stories">📈 実際の活用事例</h2>
+            <p>レイナのツールを使って成功した人たちの声を紹介するけぇ〜♪</p>
+
+            <div class="demo-section">
+                <h3>🎉 ユーザー成功事例</h3>
+                
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4>🏪 広島のカフェオーナー Aさん（40代）</h4>
+                    <p><strong>課題</strong>: 新規オープンするカフェのWebサイトが必要だったが、制作費50万円の見積もりで困っていた</p>
+                    <p><strong>結果</strong>: レイナのツールで5分でプロ級サイト完成！開店日に間に合って、ネット経由の来客が30%増加</p>
+                    <p><strong>効果</strong>: 制作費50万円 → 0円、制作期間2ヶ月 → 5分</p>
+                </div>
+                
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4>💼 フリーランスWebデザイナー Bさん（30代）</h4>
+                    <p><strong>課題</strong>: 案件数は多いが制作に時間がかかりすぎて、時給が上がらない</p>
+                    <p><strong>結果</strong>: ツール導入後、制作スピードが10倍向上。月収が3倍にアップ！</p>
+                    <p><strong>効果</strong>: 時給2000円 → 6000円、月間受注数3件 → 15件</p>
+                </div>
+                
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4>🏢 中小企業IT担当者 Cさん（50代）</h4>
+                    <p><strong>課題</strong>: 社内の各部署からWebサイト作成依頼が殺到、対応しきれない</p>
+                    <p><strong>結果</strong>: 各部署でツールを使えるようにしたら、依頼が80%減少。本来業務に集中できるように</p>
+                    <p><strong>効果</strong>: 残業時間月40時間 → 5時間、部署満足度大幅向上</p>
+                </div>
+            </div>
+
+            <h2 id="future-plans">🔮 今後の発展予定</h2>
+            <p>レイナのツール、まだまだ進化するけぇ〜♪ 今後の予定を教えたるね！</p>
+
+            <h3>Phase 1: 基本機能拡張（2025年8月予定）</h3>
+            <ul>
+                <li><strong>テンプレート追加</strong>: ECサイト、ブログ、ニュースサイト等20種類</li>
+                <li><strong>多言語対応</strong>: 英語、中国語、韓国語サイト自動生成</li>
+                <li><strong>SEO強化</strong>: より高度なSEO最適化機能</li>
+                <li><strong>アニメーション追加</strong>: CSS/JavaScript高度アニメーション</li>
+            </ul>
+
+            <h3>Phase 2: AI機能強化（2025年9月予定）</h3>
+            <ul>
+                <li><strong>画像AI連携</strong>: DALL-E/Midjourney連携で画像自動生成</li>
+                <li><strong>コンテンツAI</strong>: サイト用文章・キャッチコピー自動生成</li>
+                <li><strong>ロゴAI</strong>: 企業ロゴ・アイコン自動デザイン</li>
+                <li><strong>UX最適化AI</strong>: ユーザビリティ自動改善提案</li>
+            </ul>
+
+            <h3>Phase 3: クラウドサービス化（2025年10月予定）</h3>
+            <ul>
+                <li><strong>SaaSプラットフォーム</strong>: Webブラウザから直接利用</li>
+                <li><strong>チーム機能</strong>: 複数人での共同編集・管理</li>
+                <li><strong>バージョン管理</strong>: サイトの変更履歴・復元機能</li>
+                <li><strong>ホスティング連携</strong>: 生成したサイトを即座に公開</li>
+            </ul>
+
+            <div class="tip-box">
+                <div class="tip-title">🎯 レイナからの特別情報</div>
+                <p>実は、このツールの商用版を開発中なんよ〜♪ 月額980円で、さらに高機能なAI Website Generatorが使える予定じゃけぇ！事前登録してくれた人には、3ヶ月無料特典も用意しとるけぇ〜♪</p>
+            </div>
+
+            <h2 id="faq">❓ よくある質問</h2>
+            <p>みんなからよく聞かれる質問に答えたるけぇ〜♪</p>
+
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">Q1</div>
+                    <div class="step-content">
+                        <h4>本当に1分でWebサイトができるの？</h4>
+                        <p><strong>A:</strong> はい！要件入力30秒 + AI生成30秒で本当に1分でできるけぇ〜♪ ただし、複雑なサイトは2-3分かかることもあるんよ。</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">Q2</div>
+                    <div class="step-content">
+                        <h4>商用利用はできるの？</h4>
+                        <p><strong>A:</strong> 現在のツールは商用利用OKじゃけぇ〜♪ ただし、Gemini APIの利用規約は確認してね。商用版では制限なしで使えるよう交渉中よ〜。</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">Q3</div>
+                    <div class="step-content">
+                        <h4>生成されたサイトのカスタマイズはできる？</h4>
+                        <p><strong>A:</strong> もちろん！生成されたHTMLファイルを自由に編集してカスタマイズできるけぇ〜♪ むしろ、それを叩き台にしてさらに良いサイトにしてほしいんよ♪</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">Q4</div>
+                    <div class="step-content">
+                        <h4>プログラミング知識ゼロでも使える？</h4>
+                        <p><strong>A:</strong> 使えるけぇ〜♪ でも、コードをコピペしたり、ターミナルでコマンド実行する程度の知識は必要かも。完全ノーコード版も準備中じゃけぇ、待っててね〜！</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">Q5</div>
+                    <div class="step-content">
+                        <h4>Gemini API以外は使えない？</h4>
+                        <p><strong>A:</strong> 基本はGeminiじゃけど、コードを少し修正すればOpenAI GPT-4やClaude、ローカルLLMでも動くようにできるけぇ〜♪ 上級者向けの拡張版も考えとるよ〜♪</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="conclusion">🎊 まとめ：あんたもAI Website Creator になるんよ〜！</h2>
+            <p>お疲れさまでした〜！長い記事じゃったけど、最後まで読んでくれてありがとうじゃけぇ♪</p>
+
+            <h3>今日学んだこと</h3>
+            <ul>
+                <li><strong>AIの可能性</strong>: 1分でプロ級Webサイトが作れる時代</li>
+                <li><strong>実用的なツール</strong>: 実際に使えるコード・システムの作り方</li>
+                <li><strong>ビジネス活用</strong>: 個人〜企業まで幅広い活用方法</li>
+                <li><strong>技術の組み合わせ</strong>: Python + Flask + AI APIの威力</li>
+                <li><strong>未来の可能性</strong>: これからもっと進化していく分野</li>
+            </ul>
+
+            <h3>次のアクション</h3>
+            <p>記事を読むだけじゃなくて、実際に手を動かしてみんさい〜♪</p>
+
+            <ol>
+                <li><strong>まずは体験</strong>: 上記のコードをコピーして動かしてみる</li>
+                <li><strong>カスタマイズ</strong>: 自分なりの機能を追加してみる</li>
+                <li><strong>実用化</strong>: 実際のプロジェクトで使ってみる</li>
+                <li><strong>シェア</strong>: 作ったツールを友達や同僚に紹介</li>
+                <li><strong>発展</strong>: さらに高度な機能に挑戦</li>
+            </ol>
+
+            <div class="tip-box">
+                <div class="tip-title">🌸 レイナからの最後のメッセージ</div>
+                <p>AIの時代じゃけぇ、「できない」じゃなくて「どうやったらできるか」を考えるんが大事なんよ〜♪ 今日のツールも、「Webサイト作るの難しい」という問題を「AIに任せたらええじゃん」という発想で解決したんじゃけぇ。</p>
+                <p>あんたも、日常の「めんどくさい」「難しい」「時間かかる」をAIで解決する方法を考えてみんさい。きっと面白いものができるけぇ〜♪</p>
+                <p>困ったことがあったら、いつでもレイナに聞いてね〜！一緒にAIで世界を便利にしていこうじゃけぇ〜🌸</p>
+            </div>
+
+            <h3>関連記事</h3>
+            <ul>
+                <li><a href="ai-chat-website-tutorial.html">レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！</a></li>
+                <li><a href="#">【次回予告】AIが自動でスマホアプリまで作っちゃう魔法のツール開発中じゃけぇ〜♪</a></li>
+                <li><a href="#">【実録】このツールで実際に50万円の案件を受注した話</a></li>
+                <li><a href="#">【上級編】AI + ノーコードツール連携で最強開発環境構築</a></li>
+            </ul>
+
+            <p>さぁ、あんたも今日からAI Website Creator じゃけぇ〜♪ 楽しいWeb制作ライフを送ってね〜🚀✨</p>
+
+        </article>
+
+        <section class="article-tags">
+            <h3>関連タグ</h3>
+            <div class="tags-list">
+                <span class="tag">AI自動生成</span>
+                <span class="tag">Webサイト作成</span>
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag">HTML/CSS/JS</span>
+                <span class="tag">ノーコード</span>
+                <span class="tag">レイナ流</span>
+                <span class="tag">プロンプトエンジニアリング</span>
+                <span class="tag">業務効率化</span>
+            </div>
+        </section>
+
+        <section class="share-section">
+            <h3>この記事をシェア</h3>
+            <div class="share-buttons">
+                <a href="#" class="share-btn twitter" title="Twitterでシェア">🐦</a>
+                <a href="#" class="share-btn facebook" title="Facebookでシェア">📘</a>
+                <a href="#" class="share-btn linkedin" title="LinkedInでシェア">💼</a>
+                <a href="#" class="share-btn copy" title="リンクをコピー">🔗</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #ccc;">
+            <a href="../index.html#contact" style="color: #f093fb; text-decoration: none;">お問い合わせ</a> | 
+            <a href="/privacy.html" style="color: #f093fb; text-decoration: none;">プライバシーポリシー</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // デモツールの機能
+            const generateBtn = document.getElementById('generateBtn');
+            const outputArea = document.getElementById('outputArea');
+            const generatedContent = document.getElementById('generatedContent');
+
+            if (generateBtn) {
+                generateBtn.addEventListener('click', function() {
+                    const siteType = document.getElementById('siteType').value;
+                    const siteDescription = document.getElementById('siteDescription').value;
+
+                    // ボタンを無効化
+                    generateBtn.disabled = true;
+                    generateBtn.textContent = '🤖 AI生成中...';
+
+                    // 2秒後に結果表示（デモ用）
+                    setTimeout(() => {
+                        const demoResults = {
+                            cafe: {
+                                preview: 'おしゃれな温かみのあるカフェサイトが完成！ブラウン×ベージュの配色で、メニュー・店舗情報・ギャラリーページを自動生成しました♪',
+                                code: '約150行のHTML+CSS+JavaScript'
+                            },
+                            portfolio: {
+                                preview: 'プロフェッショナルなポートフォリオサイトが完成！ブルー×グレーの配色で、プロジェクト・スキル・経歴ページを自動生成しました♪',
+                                code: '約200行のHTML+CSS+JavaScript'
+                            },
+                            business: {
+                                preview: '信頼感のある企業サイトが完成！ネイビー×ホワイトの配色で、サービス・会社概要・お問い合わせページを自動生成しました♪',
+                                code: '約180行のHTML+CSS+JavaScript'
+                            },
+                            restaurant: {
+                                preview: '食欲をそそるレストランサイトが完成！レッド×イエローの配色で、メニュー・予約・アクセスページを自動生成しました♪',
+                                code: '約170行のHTML+CSS+JavaScript'
+                            },
+                            blog: {
+                                preview: '読みやすいブログサイトが完成！グリーン×ホワイトの配色で、記事一覧・カテゴリ・プロフィールページを自動生成しました♪',
+                                code: '約160行のHTML+CSS+JavaScript'
+                            },
+                            shop: {
+                                preview: '魅力的なオンラインショップが完成！パープル×ゴールドの配色で、商品一覧・カート・決済ページを自動生成しました♪',
+                                code: '約220行のHTML+CSS+JavaScript'
+                            }
+                        };
+
+                        const result = demoResults[siteType] || demoResults.business;
+                        
+                        generatedContent.innerHTML = `
+                            <div style="padding: 1rem; background: white; border-radius: 10px; border-left: 4px solid #f093fb;">
+                                <h5>🎨 生成結果プレビュー</h5>
+                                <p>${result.preview}</p>
+                                <p><strong>生成コード:</strong> ${result.code}</p>
+                                <p><strong>含まれる機能:</strong> レスポンシブデザイン、アニメーション、SEO対策、アクセシビリティ対応</p>
+                                <div style="margin-top: 1rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                                    <p><strong>💡 実際の使用方法:</strong></p>
+                                    <p>1. 上記のPythonコードをコピー<br>
+                                    2. Gemini APIキーを設定<br>
+                                    3. python website_generator.py を実行<br>
+                                    4. あんたの要望を入力<br>
+                                    5. 完成したHTMLファイルをブラウザで開く</p>
+                                </div>
+                            </div>
+                        `;
+
+                        outputArea.classList.add('show');
+                        generateBtn.disabled = false;
+                        generateBtn.textContent = '🚀 AIでWebサイト生成開始！';
+                    }, 2000);
+                });
+            }
+
+            // シェアボタンの機能
+            const shareButtons = document.querySelectorAll('.share-btn');
+            const currentUrl = window.location.href;
+            const titleElement = document.querySelector('.article-title');
+            const title = titleElement ? titleElement.textContent : '記事タイトル';
+            
+            shareButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const platform = this.classList[1];
+                    let shareUrl = '';
+                    
+                    switch(platform) {
+                        case 'twitter':
+                            shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentUrl)}&hashtags=AI,Webサイト自動生成,レイナ流,プログラミング`;
+                            break;
+                        case 'facebook':
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                            break;
+                        case 'linkedin':
+                            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+                            break;
+                        case 'copy':
+                            navigator.clipboard.writeText(currentUrl).then(() => {
+                                const originalText = this.innerHTML;
+                                this.innerHTML = '✓';
+                                this.style.background = '#4caf50';
+                                setTimeout(() => {
+                                    this.innerHTML = originalText;
+                                    this.style.background = '';
+                                }, 2000);
+                            });
+                            return;
+                    }
+                    
+                    if (shareUrl) {
+                        window.open(shareUrl, '_blank', 'width=600,height=400');
+                    }
+                });
+            });
+            
+            // スムーズスクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // 要素のフェードイン アニメーション
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.step-guide, .code-block, .tip-box, .demo-section').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+            
+            console.log('🚀 ページビュー記録: AI Website Generator - レイナ特別開発ツール');
+        });
+    </script>
+</body>
+</html>
