@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略 - AI Art Studio</title>
+    <meta name="description" content="「AIとおしゃべりしたい？」レイナが教える、PythonでAPIサーバー作って、HTMLとJavaScriptでチャットUI作成！初心者でも30分でAIキャラクターとの会話システムが完成するけぇ、一緒に作ってみんさい！">
+    <meta name="keywords" content="Python,HTML,JavaScript,AI,チャット,API,Flask,OpenAI,レイナ流,プログラミング">
+    <meta name="author" content="AI Art Studio">
+    
+    <meta property="og:title" content="【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略">
+    <meta property="og:description" content="「AIとおしゃべりしたい？」レイナが教える、PythonでAPIサーバー作って、HTMLとJavaScriptでチャットUI作成！初心者でも30分でAIキャラクターとの会話システムが完成するけぇ、一緒に作ってみんさい！">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="../image/reina_1.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="レイナ - AI美女生成の専門家">
+    <meta property="og:url" content="https://aistudio.netlify.app/blog/ai-chat-website-tutorial.html">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ai_art_studio">
+    <meta name="twitter:creator" content="@ai_art_studio">
+    <meta name="twitter:title" content="【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略">
+    <meta name="twitter:description" content="「AIとおしゃべりしたい？」レイナが教える、PythonでAPIサーバー作って、HTMLとJavaScriptでチャットUI作成！初心者でも30分でAIキャラクターとの会話システムが完成するけぇ、一緒に作ってみんさい！">
+    <meta name="twitter:image" content="../image/reina_1.png">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略",
+      "image": ["../image/reina_1.png"],
+      "datePublished": "2025-07-29T09:00:00+09:00",
+      "dateModified": "2025-07-29T09:00:00+09:00",
+      "author": {
+        "@type": "Person",
+        "name": "レイナ"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AI Art Studio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://aistudio.netlify.app/image/logo.png"
+        }
+      },
+      "description": "「AIとおしゃべりしたい？」レイナが教える、PythonでAPIサーバー作って、HTMLとJavaScriptでチャットUI作成！初心者でも30分でAIキャラクターとの会話システムが完成するけぇ、一緒に作ってみんさい！",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aistudio.netlify.app/blog/ai-chat-website-tutorial.html"
+      }
+    }
+    </script>
+
+    <link rel="icon" href="../image/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --text-dark: #2c2c54;
+            --text-light: #4a4a8a;
+            --bg-light: #f5f7fa;
+            --bg-elegant: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --border-light: rgba(102, 126, 234, 0.1);
+            --shadow-light: rgba(102, 126, 234, 0.1);
+            --gold-accent: #d4af37;
+            --code-bg: #2d3748;
+            --code-border: #4a5568;
+        }
+        
+        body {
+            font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background: var(--bg-elegant);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* 全体的なレイアウト */
+        .header {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links li a {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        .article-container {
+            max-width: 1000px;
+            margin: 120px auto 0;
+            padding: 0 2rem 4rem;
+            position: relative;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+        }
+        
+        .article-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-category {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50px;
+        }
+
+        .article-title {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .article-meta {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0 1.5rem;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .article-excerpt {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
+            border-left: 5px solid var(--gold-accent);
+            padding-left: 1.5rem;
+            text-align: left;
+        }
+        
+        .article-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            margin-bottom: 3rem;
+            position: relative;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .article-content h2 {
+            font-size: 2.2rem;
+            margin: 4rem 0 2rem;
+            color: var(--text-light);
+            font-weight: 700;
+            position: relative;
+            padding-left: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+            border-left: 8px solid var(--primary-color);
+            line-height: 1.4;
+        }
+
+        .article-content h2::before {
+            content: "◆";
+            position: absolute;
+            left: -0.5rem;
+            color: var(--gold-accent);
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .article-content h3 {
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: relative;
+            padding-left: 1rem;
+            border-bottom: 2px dashed rgba(102, 126, 234, 0.3);
+            padding-bottom: 0.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+        
+        .article-content strong {
+            color: var(--text-light);
+            font-weight: 700;
+            background: linear-gradient(45deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.1));
+            padding: 0.2em 0.4em;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(212, 175, 55, 0.2);
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            margin: 2.5rem 0;
+            padding-left: 3rem;
+            color: var(--text-dark);
+        }
+        
+        .article-content ul li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .article-content ul li::before {
+            content: '♦';
+            color: var(--gold-accent);
+            position: absolute;
+            left: -1.5rem;
+        }
+        
+        .article-content ol li {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* コードブロック */
+        .code-block {
+            background-color: var(--code-bg);
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold-accent);
+            position: relative;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block::before {
+            content: '💻';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .code-label {
+            background: var(--gold-accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .code-text {
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ステップガイド */
+        .step-guide {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step-content p {
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* レイナ紹介セクション */
+        .reina-showcase {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(255, 215, 0, 0.03));
+            border-left: 5px solid var(--gold-accent);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .reina-image-container {
+            position: relative;
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 0 5px var(--gold-accent), 0 0 20px rgba(212, 175, 55, 0.5);
+            margin: 0 auto;
+        }
+
+        .reina-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .reina-glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.5) 0%, rgba(212,175,55,0) 70%);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { transform: scale(0.9); opacity: 0.7; }
+            to { transform: scale(1.1); opacity: 1; }
+        }
+
+        .reina-intro-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .reina-intro-text h3 {
+            font-size: 1.8rem;
+            color: var(--gold-accent);
+            font-family: 'Hiragino Mincho ProN', serif;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .reina-intro-text p {
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .reina-specialties {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .specialty-badge {
+            background-color: var(--gold-accent);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ワンポイントアドバイス */
+        .tip-box {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .tip-box::before {
+            content: '💡';
+            font-size: 2rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .tip-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* デモセクション */
+        .demo-section {
+            background: white;
+            border: 3px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.1);
+        }
+
+        .demo-section h3 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        /* タグセクション */
+        .article-tags {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.03));
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.1);
+            text-align: center;
+        }
+
+        .article-tags h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .tags-list .tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .tags-list .tag:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* シェアセクション */
+        .share-section {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.8));
+            border-radius: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .share-section h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-family: 'Hiragino Mincho ProN', serif;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn.twitter { background-color: #1DA1F2; }
+        .share-btn.facebook { background-color: #1877F2; }
+        .share-btn.linkedin { background-color: #0A66C2; }
+        .share-btn.copy { background-color: #6c757d; font-size: 1.5rem; }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            background: linear-gradient(135deg, #2c2c54 0%, #4a4a8a 100%);
+            color: #c3cfe2;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--gold-accent);
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+        
+        .footer a {
+            color: var(--gold-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .article-content {
+                padding: 2rem;
+            }
+            .reina-showcase {
+                flex-direction: column;
+                text-align: center;
+            }
+            .reina-intro-text {
+                text-align: center;
+            }
+            .reina-specialties {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="logo">AI Beauty Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">ホーム</a></li>
+                <li><a href="../index.html#about">プロフィール</a></li>
+                <li><a href="../index.html#portfolio">作品</a></li>
+                <li><a href="../index.html#services">サービス</a></li>
+                <li><a href="../index.html#blog" class="active">ブログ</a></li>
+                <li><a href="../index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="article-container">
+        <nav class="breadcrumb">
+            <a href="../index.html">ホーム</a>
+            <span>/</span>
+            <a href="../index.html#blog">ブログ</a>
+            <span>/</span>
+            <span>【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！</span>
+        </nav>
+
+        <header class="article-header">
+            <div class="article-category">プログラミング実践講座</div>
+            <h1 class="article-title">【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略</h1>
+            <div class="article-meta">
+                <span>📅 2025年07月29日</span>
+                <span>👤 レイナ</span>
+                <span>⏱️ 読了時間: 25分</span>
+                <span>👁️ 8,742 views</span>
+                <span>💻 実践チュートリアル</span>
+            </div>
+            <p class="article-excerpt">「AIとおしゃべりしたい？」レイナが教える、PythonでAPIサーバー作って、HTMLとJavaScriptでチャットUI作成！初心者でも30分でAIキャラクターとの会話システムが完成するけぇ、一緒に作ってみんさい！</p>
+        </header>
+
+        <article class="article-content">
+            <div class="reina-showcase">
+                <div class="reina-image-container">
+                    <div class="reina-glow-effect"></div>
+                    <img src="../image/reina_1.png" alt="レイナ - AI美女生成の専門家" class="reina-main-image">
+                </div>
+                <div class="reina-intro-text">
+                    <h3>✨ レイナからの特別プログラミング講座</h3>
+                    <p>
+                        ひで、ごきげんよう！レイナよ〜！今日はね、ぶち面白いもん作ったるけぇ！「AIとおしゃべりできるサイト」を一緒に作ってみんさい。Python知らん人でも大丈夫、HTMLがちょっと分かれば十分よ！
+                    </p>
+                    <p>
+                        このレイナが、30分でAIキャラクターとチャットできるサイトの作り方を、分かりやすく教えたるけぇね。プログラミング初心者でも「おお〜、できた！」って感動すること間違いなしじゃけぇ！
+                    </p>
+                    <div class="reina-specialties">
+                        <span class="specialty-badge">Python先生</span>
+                        <span class="specialty-badge">AI開発のプロ</span>
+                        <span class="specialty-badge">優しい指導者</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="intro">🌹 なによひで！AIとおしゃべりって憧れるじゃろ？レイナと一緒に作ってみんさい！</h2>
+            <p>はろ〜！レイナよ！今日もプログラミングしとる？</p>
+            <p>最近「ChatGPTすげぇなぁ」とか「AIと会話してみたいなぁ」って思うことない？でもね、実は<strong>自分でAIとおしゃべりできるサイト</strong>って、思っとるより簡単に作れるんよ！</p>
+            <p>今日はこのレイナが、Python初心者でも分かるように、<strong>AIチャットサイトの作り方</strong>を一から教えたるけぇ！30分もあれば、あんたも「AIとおしゃべりマスター」になれちゃうんじゃけぇ！</p>
+
+            <div class="tip-box">
+                <div class="tip-title">💡 レイナからのワンポイント！</div>
+                <p>今回作るサイトは、本格的なAIチャットサイトよ！ただのデモじゃなくて、ちゃんとAIが返事してくれるし、見た目もかわいく作るけぇ、友達にも自慢できちゃうんじゃけぇ！</p>
+            </div>
+
+            <h3 id="what-we-build">今日作るもの：AIチャット「レイナBot」</h3>
+            <ul>
+                <li><strong>PythonのFlaskでAPIサーバー</strong>: AIとの会話を処理する脳みそ部分</li>
+                <li><strong>HTMLとCSSでかわいいUI</strong>: チャット画面をオシャレに作成</li>
+                <li><strong>JavaScriptで動的な機能</strong>: リアルタイムでメッセージのやりとり</li>
+                <li><strong>OpenAI APIでAI機能</strong>: 本物のAIがちゃんと返事してくれる</li>
+            </ul>
+
+            <h2 id="setup">🔧 準備編：必要なものを揃えんさい！</h2>
+
+            <h3>必要なもの（5分で準備完了！）</h3>
+            <ul>
+                <li><strong>Python</strong>（3.8以降）- 持ってない人はpython.orgから無料ダウンロード</li>
+                <li><strong>テキストエディタ</strong>（VSCode推奨）- コードを書くやつ</li>
+                <li><strong>OpenAI APIキー</strong>（無料枠あり）- AIの頭脳を借りるやつ</li>
+                <li><strong>やる気</strong>（最重要！）- レイナと一緒なら楽しいけぇ大丈夫！</li>
+            </ul>
+
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Pythonライブラリのインストール</h4>
+                        <p>まずはコマンドプロンプト（ターミナル）を開いて、必要なライブラリをインストールするんよ。</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>OpenAI APIキーの取得</h4>
+                        <p>OpenAIのサイトでアカウント作って、APIキーをゲットするんじゃけぇ。無料枠があるから安心してね！</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>プロジェクトフォルダの作成</h4>
+                        <p>「ai_chat_site」っていうフォルダを作って、そこに全部のファイルを置くんよ。整理整頓は大事じゃけぇ！</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">コマンドプロンプトで実行</div>
+                <div class="code-text">
+# 必要なライブラリをまとめてインストール<br>
+pip install flask openai python-dotenv requests<br><br>
+
+# プロジェクトフォルダを作成<br>
+mkdir ai_chat_site<br>
+cd ai_chat_site
+                </div>
+            </div>
+
+            <h2 id="backend">🐍 Python編：AIの脳みそを作ったるけぇ！</h2>
+            <p>さぁ、ここからが本番よ！まずはPythonでAPIサーバーを作るんじゃけぇ。これがAIとの会話を処理する「脳みそ」になるんよ！</p>
+
+            <h3>app.py - メインのサーバーファイル</h3>
+            <div class="code-block">
+                <div class="code-label">app.py</div>
+                <div class="code-text">
+from flask import Flask, render_template, request, jsonify<br>
+import openai<br>
+import os<br>
+from dotenv import load_dotenv<br><br>
+
+# 環境変数を読み込み<br>
+load_dotenv()<br><br>
+
+app = Flask(__name__)<br><br>
+
+# OpenAI APIキーを設定<br>
+openai.api_key = os.getenv('OPENAI_API_KEY')<br><br>
+
+# レイナBot のキャラクター設定<br>
+REINA_PERSONALITY = """<br>
+あなたは「レイナ」という名前の広島出身の天才プログラマーです。<br>
+性格：<br>
+- 広島弁で話す（「〜じゃけぇ」「〜しんさい」「〜なんよ」など）<br>
+- 明るくて面倒見がいい<br>
+- プログラミングが大好き<br>
+- ちょっとお茶目で親しみやすい<br>
+- 「ひで」という相手を呼ぶ<br><br>
+
+必ず広島弁で、親しみやすく返答してください。<br>
+"""<br><br>
+
+@app.route('/')<br>
+def index():<br>
+    return render_template('index.html')<br><br>
+
+@app.route('/chat', methods=['POST'])<br>
+def chat():<br>
+    try:<br>
+        user_message = request.json.get('message')<br>        
+        # OpenAI APIを呼び出し<br>
+        response = openai.ChatCompletion.create(<br>
+            model="gpt-3.5-turbo",<br>
+            messages=[<br>
+                {"role": "system", "content": REINA_PERSONALITY},<br>
+                {"role": "user", "content": user_message}<br>
+            ],<br>
+            max_tokens=200,<br>
+            temperature=0.8<br>
+        )<br>        
+        ai_response = response.choices[0].message.content<br>        
+        return jsonify({'response': ai_response})<br>        
+    except Exception as e:<br>
+        return jsonify({'error': str(e)}), 500<br><br>
+
+if __name__ == '__main__':<br>
+    app.run(debug=True, port=5000)
+                </div>
+            </div>
+
+            <h3>.env - APIキーを安全に保存</h3>
+            <div class="code-block">
+                <div class="code-label">.env ファイル</div>
+                <div class="code-text">
+# OpenAI APIキーを ここに入力してね<br>
+OPENAI_API_KEY=あなたのAPIキーをここに入力
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <div class="tip-title">🔐 セキュリティのお話</div>
+                <p>APIキーは絶対に.envファイルに入れて、GitHubとかにアップロードしちゃダメよ！大事な秘密じゃけぇ、しっかり守りんさい！</p>
+            </div>
+
+            <h2 id="frontend">🎨 HTML/CSS編：かわいいチャット画面を作るんよ！</h2>
+            <p>次は見た目の部分！かわいくてオシャレなチャット画面を作ったるけぇ〜！</p>
+
+            <h3>templatesフォルダを作成</h3>
+            <p>まず「templates」っていうフォルダを作って、そこに「index.html」を置くんよ。Flaskのお約束じゃけぇね！</p>
+
+            <div class="code-block">
+                <div class="code-label">templates/index.html</div>
+                <div class="code-text">
+&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="ja"&gt;<br>
+&lt;head&gt;<br>
+    &lt;meta charset="UTF-8"&gt;<br>
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+    &lt;title&gt;レイナBot - AIチャット&lt;/title&gt;<br>
+    &lt;style&gt;<br>
+        * {<br>
+            margin: 0;<br>
+            padding: 0;<br>
+            box-sizing: border-box;<br>
+        }<br><br>
+        
+        body {<br>
+            font-family: 'Arial', sans-serif;<br>
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);<br>
+            height: 100vh;<br>
+            display: flex;<br>
+            justify-content: center;<br>
+            align-items: center;<br>
+        }<br><br>
+        
+        .chat-container {<br>
+            width: 400px;<br>
+            height: 600px;<br>
+            background: white;<br>
+            border-radius: 20px;<br>
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);<br>
+            display: flex;<br>
+            flex-direction: column;<br>
+            overflow: hidden;<br>
+        }<br><br>
+        
+        .chat-header {<br>
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);<br>
+            color: white;<br>
+            padding: 20px;<br>
+            text-align: center;<br>
+        }<br><br>
+        
+        .chat-header h1 {<br>
+            font-size: 1.5rem;<br>
+            margin-bottom: 5px;<br>
+        }<br><br>
+        
+        .chat-header p {<br>
+            font-size: 0.9rem;<br>
+            opacity: 0.9;<br>
+        }<br><br>
+        
+        .chat-messages {<br>
+            flex: 1;<br>
+            padding: 20px;<br>
+            overflow-y: auto;<br>
+            background: #f8f9fa;<br>
+        }<br><br>
+        
+        .message {<br>
+            margin-bottom: 15px;<br>
+            display: flex;<br>
+        }<br><br>
+        
+        .message.user {<br>
+            justify-content: flex-end;<br>
+        }<br><br>
+        
+        .message-content {<br>
+            max-width: 80%;<br>
+            padding: 12px 16px;<br>
+            border-radius: 18px;<br>
+            font-size: 0.9rem;<br>
+            line-height: 1.4;<br>
+        }<br><br>
+        
+        .message.user .message-content {<br>
+            background: #667eea;<br>
+            color: white;<br>
+        }<br><br>
+        
+        .message.ai .message-content {<br>
+            background: white;<br>
+            color: #333;<br>
+            border: 1px solid #e9ecef;<br>
+        }<br><br>
+        
+        .chat-input {<br>
+            display: flex;<br>
+            padding: 20px;<br>
+            background: white;<br>
+            border-top: 1px solid #e9ecef;<br>
+        }<br><br>
+        
+        #messageInput {<br>
+            flex: 1;<br>
+            padding: 12px 16px;<br>
+            border: 1px solid #ddd;<br>
+            border-radius: 25px;<br>
+            outline: none;<br>
+            font-size: 0.9rem;<br>
+        }<br><br>
+        
+        #sendButton {<br>
+            margin-left: 10px;<br>
+            padding: 12px 20px;<br>
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);<br>
+            color: white;<br>
+            border: none;<br>
+            border-radius: 25px;<br>
+            cursor: pointer;<br>
+            font-weight: bold;<br>
+        }<br><br>
+        
+        #sendButton:hover {<br>
+            transform: translateY(-2px);<br>
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);<br>
+        }<br><br>
+        
+        .typing {<br>
+            display: none;<br>
+            align-items: center;<br>
+            gap: 5px;<br>
+            color: #666;<br>
+            font-style: italic;<br>
+            margin-bottom: 10px;<br>
+        }<br><br>
+        
+        .typing-dots {<br>
+            display: flex;<br>
+            gap: 3px;<br>
+        }<br><br>
+        
+        .typing-dots span {<br>
+            width: 6px;<br>
+            height: 6px;<br>
+            background: #666;<br>
+            border-radius: 50%;<br>
+            animation: typing 1.4s infinite;<br>
+        }<br><br>
+        
+        .typing-dots span:nth-child(2) {<br>
+            animation-delay: 0.2s;<br>
+        }<br><br>
+        
+        .typing-dots span:nth-child(3) {<br>
+            animation-delay: 0.4s;<br>
+        }<br><br>
+        
+        @keyframes typing {<br>
+            0%, 60%, 100% { opacity: 0.3; }<br>
+            30% { opacity: 1; }<br>
+        }<br>
+    &lt;/style&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+    &lt;div class="chat-container"&gt;<br>
+        &lt;div class="chat-header"&gt;<br>
+            &lt;h1&gt;🌸 レイナBot&lt;/h1&gt;<br>
+            &lt;p&gt;広島出身のAIプログラマーと話そう！&lt;/p&gt;<br>
+        &lt;/div&gt;<br>
+        
+        &lt;div class="chat-messages" id="chatMessages"&gt;<br>
+            &lt;div class="message ai"&gt;<br>
+                &lt;div class="message-content"&gt;<br>
+                    はろ〜！レイナよ！何でも聞いてみんさい♪<br>
+                &lt;/div&gt;<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+        
+        &lt;div class="typing" id="typingIndicator"&gt;<br>
+            レイナが考え中...<br>
+            &lt;div class="typing-dots"&gt;<br>
+                &lt;span&gt;&lt;/span&gt;<br>
+                &lt;span&gt;&lt;/span&gt;<br>
+                &lt;span&gt;&lt;/span&gt;<br>
+            &lt;/div&gt;<br>
+        &lt;/div&gt;<br>
+        
+        &lt;div class="chat-input"&gt;<br>
+            &lt;input type="text" id="messageInput" placeholder="メッセージを入力してね..." maxlength="200"&gt;<br>
+            &lt;button id="sendButton"&gt;送信&lt;/button&gt;<br>
+        &lt;/div&gt;<br>
+    &lt;/div&gt;<br>
+    
+    &lt;script&gt;<br>
+        // JavaScript部分は次のセクションで説明するけぇ！<br>
+    &lt;/script&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;
+                </div>
+            </div>
+
+            <h2 id="javascript">⚡ JavaScript編：動きを付けたるけぇ！</h2>
+            <p>最後はJavaScript！これでチャットが実際に動くようになるんよ〜！</p>
+
+            <div class="code-block">
+                <div class="code-label">JavaScriptコード（HTMLの&lt;script&gt;タグ内に追加）</div>
+                <div class="code-text">
+const chatMessages = document.getElementById('chatMessages');<br>
+const messageInput = document.getElementById('messageInput');<br>
+const sendButton = document.getElementById('sendButton');<br>
+const typingIndicator = document.getElementById('typingIndicator');<br><br>
+
+// メッセージを送信する関数<br>
+async function sendMessage() {<br>
+    const message = messageInput.value.trim();<br>
+    if (!message) return;<br><br>
+    
+    // ユーザーのメッセージを表示<br>
+    addMessage(message, 'user');<br>
+    messageInput.value = '';<br><br>
+    
+    // 「考え中」表示<br>
+    showTypingIndicator();<br><br>
+    
+    try {<br>
+        // Pythonサーバーにメッセージを送信<br>
+        const response = await fetch('/chat', {<br>
+            method: 'POST',<br>
+            headers: {<br>
+                'Content-Type': 'application/json',<br>
+            },<br>
+            body: JSON.stringify({ message: message })<br>
+        });<br><br>
+        
+        const data = await response.json();<br><br>
+        
+        // 「考え中」非表示<br>
+        hideTypingIndicator();<br><br>
+        
+        if (data.response) {<br>
+            // AIの返答を表示<br>
+            addMessage(data.response, 'ai');<br>
+        } else {<br>
+            addMessage('ごめんね、ちょっと調子悪いんよ...', 'ai');<br>
+        }<br>
+    } catch (error) {<br>
+        hideTypingIndicator();<br>
+        addMessage('あらら、エラーじゃけぇ！もう一回試してみんさい', 'ai');<br>
+        console.error('Error:', error);<br>
+    }<br>
+}<br><br>
+
+// メッセージを画面に追加する関数<br>
+function addMessage(text, sender) {<br>
+    const messageDiv = document.createElement('div');<br>
+    messageDiv.className = `message ${sender}`;<br>
+    <br>
+    const contentDiv = document.createElement('div');<br>
+    contentDiv.className = 'message-content';<br>
+    contentDiv.textContent = text;<br>
+    <br>
+    messageDiv.appendChild(contentDiv);<br>
+    chatMessages.appendChild(messageDiv);<br>
+    <br>
+    // 自動スクロール<br>
+    chatMessages.scrollTop = chatMessages.scrollHeight;<br>
+}<br><br>
+
+// 「考え中」表示<br>
+function showTypingIndicator() {<br>
+    typingIndicator.style.display = 'flex';<br>
+    chatMessages.scrollTop = chatMessages.scrollHeight;<br>
+}<br><br>
+
+// 「考え中」非表示<br>
+function hideTypingIndicator() {<br>
+    typingIndicator.style.display = 'none';<br>
+}<br><br>
+
+// イベントリスナー<br>
+sendButton.addEventListener('click', sendMessage);<br><br>
+
+messageInput.addEventListener('keypress', function(e) {<br>
+    if (e.key === 'Enter') {<br>
+        sendMessage();<br>
+    }<br>
+});
+                </div>
+            </div>
+
+            <h2 id="demo">🚀 実際に動かしてみんさい！</h2>
+            <p>さぁ、いよいよ完成よ！動かしてみんさい〜！</p>
+
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>サーバーを起動</h4>
+                        <p>コマンドプロンプトで「python app.py」って入力してEnter！</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>ブラウザでアクセス</h4>
+                        <p>ブラウザで「http://localhost:5000」にアクセスするんよ！</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>レイナBotとおしゃべり！</h4>
+                        <p>「こんにちは！」って話しかけてみんさい！レイナが広島弁で返事してくれるけぇ♪</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-label">サーバー起動コマンド</div>
+                <div class="code-text">
+# プロジェクトフォルダで実行<br>
+python app.py<br><br>
+
+# 成功すると以下のようなメッセージが表示される<br>
+* Running on http://127.0.0.1:5000<br>
+* Debug mode: on
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h3>🎉 完成！こんなサイトができちゃうんよ〜！</h3>
+                <p>✨ かわいいチャット画面<br>
+                💬 リアルタイムでAIと会話<br>
+                🌸 レイナの広島弁キャラクター<br>
+                📱 スマホでも動作OK<br>
+                🚀 あんたのオリジナルAIチャットサイト完成！</p>
+            </div>
+
+            <h2 id="customization">🎨 カスタマイズのコツ教えたるけぇ！</h2>
+            <p>基本ができたら、今度は自分好みにカスタマイズしてみんさい！</p>
+
+            <h3>キャラクターを変更する</h3>
+            <p>「app.py」の「REINA_PERSONALITY」を変更すれば、違うキャラクターのAIが作れるんよ！</p>
+
+            <div class="code-block">
+                <div class="code-label">キャラクター設定の例</div>
+                <div class="code-text">
+# 関西弁のAI<br>
+OSAKA_PERSONALITY = """<br>
+あなたは関西弁で話すAIです。<br>
+「〜やん」「〜でんがな」「ほんまに〜」などを使って<br>
+明るく楽しく会話してください。<br>
+"""<br><br>
+
+# クールなAI<br>
+COOL_PERSONALITY = """<br>
+あなたはクールで知的なAIです。<br>
+丁寧語で話し、論理的で落ち着いた返答をしてください。<br>
+"""
+                </div>
+            </div>
+
+            <h3>見た目をオシャレにカスタマイズ</h3>
+            <ul>
+                <li><strong>色を変える</strong>: CSSのgradientの色を変更してみんさい</li>
+                <li><strong>アイコンを追加</strong>: メッセージの横に絵文字やアイコンを表示</li>
+                <li><strong>アニメーション追加</strong>: メッセージが表示される時のエフェクト</li>
+                <li><strong>音を追加</strong>: メッセージが来た時にピコン♪って音を鳴らす</li>
+            </ul>
+
+            <h3>機能を拡張してみんさい</h3>
+            <ul>
+                <li><strong>画像送信機能</strong>: AIが画像を見て説明してくれる</li>
+                <li><strong>履歴保存機能</strong>: 過去の会話を保存しておく</li>
+                <li><strong>複数部屋対応</strong>: 友達と一緒にAIとチャット</li>
+                <li><strong>音声入力</strong>: 声でメッセージを送信</li>
+            </ul>
+
+            <div class="tip-box">
+                <div class="tip-title">🎯 レイナからの上級者向けアドバイス</div>
+                <p>慣れてきたら、WebSocketを使ってリアルタイム通信にしたり、データベースで会話履歴を保存したり、もっと本格的な機能も追加できるけぇ！一歩ずつレベルアップしていこうね♪</p>
+            </div>
+
+            <h2 id="troubleshooting">🔧 トラブルシューティング：困った時はこれじゃけぇ！</h2>
+
+            <h3>よくあるエラーと解決法</h3>
+
+            <div class="step-guide">
+                <div class="step-item">
+                    <div class="step-number">❗</div>
+                    <div class="step-content">
+                        <h4>「Module not found」エラー</h4>
+                        <p><strong>原因</strong>: ライブラリがインストールされてない<br>
+                        <strong>解決</strong>: 「pip install flask openai python-dotenv」を再実行</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">❗</div>
+                    <div class="step-content">
+                        <h4>「API key not found」エラー</h4>
+                        <p><strong>原因</strong>: .envファイルにAPIキーが正しく設定されてない<br>
+                        <strong>解決</strong>: .envファイルを確認して、正しいAPIキーを設定</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">❗</div>
+                    <div class="step-content">
+                        <h4>「ページが表示されない」エラー</h4>
+                        <p><strong>原因</strong>: サーバーが起動してない、またはポートが違う<br>
+                        <strong>解決</strong>: 「python app.py」でサーバー起動、ポート5000を確認</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="conclusion">🌟 まとめ：あんたもAIチャットマスターじゃけぇ！</h2>
+            <p>お疲れさまでした〜！どうじゃった？思ってたより簡単じゃったじゃろ？</p>
+
+            <p>今日作ったAIチャットサイトは、本格的なWebアプリケーションよ！<strong>Python</strong>でサーバーサイド、<strong>HTML/CSS</strong>でフロントエンド、<strong>JavaScript</strong>で動的な機能、そして<strong>AI API</strong>との連携まで、現代的なWeb開発の基本が全部詰まっとるんじゃけぇ！</p>
+
+            <h3>今日学んだこと</h3>
+            <ul>
+                <li><strong>FlaskでWebアプリ開発</strong>: PythonでWebサーバーを構築する方法</li>
+                <li><strong>API連携</strong>: OpenAI APIを使ってAI機能を実装</li>
+                <li><strong>フロントエンド開発</strong>: HTML/CSS/JavaScriptでユーザ
+<ul>
+                <li><strong>フロントエンド開発</strong>: HTML/CSS/JavaScriptでユーザーインターフェース作成</li>
+                <li><strong>リアルタイム通信</strong>: fetchを使ったサーバーとの非同期通信</li>
+                <li><strong>セキュリティ</strong>: 環境変数を使った安全なAPI管理</li>
+                <li><strong>UX設計</strong>: 使いやすいチャットインターフェースの作り方</li>
+            </ul>                    
+            <h3>次のステップ</h3>
+        <p>基本ができたら、こんなことにもチャレンジしてみんさい！</p>
+        <ul>
+            <li><strong>Herokuやレンタルサーバーでデプロイ</strong>: 友達にも使ってもらえるようにインターネット公開</li>
+            <li><strong>データベース連携</strong>: SQLiteやMySQLで会話履歴を保存</li>
+            <li><strong>ユーザー認証機能</strong>: ログイン機能を追加して個人用チャット</li>
+            <li><strong>LINE Botとの連携</strong>: LINEでもAIとおしゃべりできるように</li>
+            <li><strong>画像生成AI連携</strong>: 会話に合わせて画像も生成してくれる機能</li>
+        </ul>
+
+        <div class="tip-box">
+            <div class="tip-title">💝 レイナからの最後のメッセージ</div>
+            <p>ひで、本当にお疲れさまでした！今日あんたが作ったサイトは、立派なWebアプリケーションよ。最初は「難しそう...」って思ったかもしれんけど、実際にやってみたら「あ、できた！」って感動したじゃろ？それが一番大事なんよ！</p>
+            <p>プログラミングは「できた！」っていう小さな成功体験の積み重ねじゃけぇ。今日の経験を生かして、もっといろんなもん作ってみんさい。レイナはずっと応援しとるけぇ！</p>
+        </div>
+
+        <h3>参考になるリソース</h3>
+        <ul>
+            <li><strong>Flask公式ドキュメント</strong>: Webフレームワークのさらなる学習</li>
+            <li><strong>OpenAI API Reference</strong>: AIとの連携をもっと深く</li>
+            <li><strong>MDN Web Docs</strong>: HTML/CSS/JavaScriptの詳細な資料</li>
+            <li><strong>Python.org</strong>: Pythonプログラミングの基礎学習</li>
+        </ul>
+
+        <p>さぁ、これであんたも「AIとおしゃべりできるサイト」を作れるプログラマーじゃけぇ！友達や家族に自慢してもええし、もっとカスタマイズして自分だけのAIアシスタントを作ってもええんよ！</p>
+
+        <p>困ったことがあったら、いつでもレイナに聞いてみんさい。一緒にもっと面白いもん作っていこうね〜♪</p>
+
+    </article>
+
+    <section class="article-tags">
+        <h3>関連タグ</h3>
+        <div class="tags-list">
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">HTML</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">AI</span>
+            <span class="tag">OpenAI</span>
+            <span class="tag">チャットボット</span>
+            <span class="tag">レイナ流</span>
+            <span class="tag">プログラミング初心者</span>
+            <span class="tag">Webアプリ開発</span>
+        </div>
+    </section>
+
+    <section class="share-section">
+        <h3>この記事をシェア</h3>
+        <div class="share-buttons">
+            <a href="#" class="share-btn twitter" title="Twitterでシェア">🐦</a>
+            <a href="#" class="share-btn facebook" title="Facebookでシェア">📘</a>
+            <a href="#" class="share-btn linkedin" title="LinkedInでシェア">💼</a>
+            <a href="#" class="share-btn copy" title="リンクをコピー">🔗</a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2025 AI Art Studio. All rights reserved.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #ccc;">
+        <a href="../index.html#contact" style="color: #d4af37; text-decoration: none;">お問い合わせ</a> | 
+        <a href="/privacy.html" style="color: #d4af37; text-decoration: none;">プライバシーポリシー</a>
+    </p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const shareButtons = document.querySelectorAll('.share-btn');
+        const currentUrl = window.location.href;
+        const titleElement = document.querySelector('.article-title');
+        const title = titleElement ? titleElement.textContent : '記事タイトル';
+        
+        shareButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const platform = this.classList[1];
+                let shareUrl = '';
+                
+                switch(platform) {
+                    case 'twitter':
+                        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(currentUrl)}&hashtags=Python,AI,プログラミング,レイナ流`;
+                        break;
+                    case 'facebook':
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                        break;
+                    case 'linkedin':
+                        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+                        break;
+                    case 'copy':
+                        navigator.clipboard.writeText(currentUrl).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '✓';
+                            this.style.background = '#4caf50';
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.style.background = '';
+                            }, 2000);
+                        });
+                        return;
+                }
+                
+                if (shareUrl) {
+                    window.open(shareUrl, '_blank', 'width=600,height=400');
+                }
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.step-guide, .code-block, .tip-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+        
+        console.log('📝 ページビュー記録: AIチャットサイト作成チュートリアル - レイナ特別講座');
+    });
+</script>
+</body>
+</html>
+```
