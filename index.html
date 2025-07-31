@@ -95,57 +95,23 @@
             "addressRegion": "広島県",
             "addressCountry": "JP"
         },
-        "areaServed": [
+        "contactPoint": [
             {
-                "@type": "Country",
-                "name": "Japan"
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "availableLanguage": "Japanese",
+                "areaServed": "JP"
             },
             {
-                "@type": "Place",
-                "name": "広島県"
-            },
-            {
-                "@type": "Place", 
-                "name": "全国"
+                "@type": "ContactPoint",
+                "contactType": "LINE Official Account",
+                "url": "https://line.me/R/ti/p/@your-line-id",
+                "availableLanguage": "Japanese",
+                "areaServed": "JP"
             }
         ],
-        "serviceType": [
-            "AI画像生成",
-            "AI美女生成",
-            "Python開発",
-            "Java開発",
-            "技術コンサルティング",
-            "プロンプトエンジニアリング",
-            "Stable Diffusion",
-            "Midjourney",
-            "DALL-E",
-            "業務自動化",
-            "データ分析",
-            "機械学習"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "availableLanguage": "Japanese",
-            "areaServed": "JP"
-        },
         "sameAs": [
             "https://github.com/rancorder/website"
-        ],
-        "knowsAbout": [
-            "AI画像生成",
-            "AI美女生成",
-            "Stable Diffusion",
-            "Midjourney", 
-            "DALL-E",
-            "プロンプトエンジニアリング",
-            "Python開発",
-            "Java開発",
-            "機械学習",
-            "データ分析",
-            "業務自動化",
-            "Google Colab",
-            "Gemini AI"
         ]
     }
     </script>
@@ -197,10 +163,10 @@
             },
             {
                 "@type": "Question",
-                "name": "Python・Java開発の実績はありますか？",
+                "name": "公式LINEでの相談は可能ですか？",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "豊富な開発実績があります。Pythonでは業務自動化ツール、データ分析、機械学習システムを、Javaでは大規模システム開発を手がけています。レイナの技術力で効率的で拡張性の高いシステム構築が可能です。"
+                    "text": "はい、公式LINEアカウントでお気軽にご相談いただけます。AI画像生成、Python・Java開発、技術的なご質問まで、レイナが直接サポートいたします。24時間いつでもメッセージをお送りください。"
                 }
             }
         ]
@@ -219,6 +185,7 @@
             --general-accent: #8aff00;
             --secondary-accent: #ff4000;
             --tertiary-accent: #4000ff;
+            --line-accent: #00c300;
             --text-light: #e0faff;
             --text-medium: #a0c0ff;
             --text-dim: #6080a0;
@@ -426,7 +393,6 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 2rem;
-            /* GPU加速 */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -571,7 +537,6 @@
             overflow: hidden;
             border: 2px solid transparent;
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
-            /* GPU加速 */
             will-change: transform;
             transform: translateZ(0);
         }
@@ -627,6 +592,22 @@
         @keyframes ctaFade {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LINEボタン特別スタイル */
+        .line-cta {
+            background: linear-gradient(45deg, var(--line-accent), #00ff50) !important;
+            position: relative;
+        }
+
+        .line-cta::before {
+            content: '📱';
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+
+        .line-cta:hover {
+            box-shadow: 0 15px 40px rgba(0, 195, 0, 0.7) !important;
         }
 
         /* ナビゲーション */
@@ -789,7 +770,6 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #020210 0%, #0a0030 50%, #300010 100%);
-            /* CLS防止のための固定アスペクト比 */
             aspect-ratio: 16/9;
         }
 
@@ -799,7 +779,6 @@
             object-fit: contain;
             object-position: center;
             transition: transform 0.8s ease;
-            /* CLS防止 */
             display: block;
         }
 
@@ -1562,6 +1541,128 @@
             margin-top: 1rem;
         }
 
+        /* お問い合わせセクション改良版 */
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-method {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .contact-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .contact-method.line::before {
+            background: var(--line-accent);
+        }
+
+        .contact-method.form::before {
+            background: var(--ai-accent);
+        }
+
+        .contact-method:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--general-accent);
+        }
+
+        .contact-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .contact-method.line .contact-icon {
+            color: var(--line-accent);
+        }
+
+        .contact-method.form .contact-icon {
+            color: var(--ai-accent);
+        }
+
+        .contact-method h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--general-accent);
+        }
+
+        .contact-method p {
+            color: var(--text-medium);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+
+        .line-contact-btn {
+            background: linear-gradient(45deg, var(--line-accent), #00ff50);
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 195, 0, 0.4);
+        }
+
+        .line-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 195, 0, 0.6);
+        }
+
+        .form-contact-btn {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .form-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6);
+        }
+
         /* お問い合わせフォーム */
         .contact-form {
             max-width: 700px;
@@ -1704,6 +1805,10 @@
                 padding: 2rem;
             }
 
+            .contact-options {
+                grid-template-columns: 1fr;
+            }
+
             .reina-intro-card {
                 flex-direction: column;
                 text-align: center;
@@ -1729,13 +1834,6 @@
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
-        }% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-
-        @keyframes skeleton-loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
         }
 
         /* レスポンシブ */
@@ -1846,7 +1944,7 @@
             </div>
             <div class="cta-container">
                 <a href="#portfolio" class="cta-button">制作実績を見る</a>
-                <a href="#contact" class="cta-button">相談を開始する</a>
+                <a href="https://line.me/R/ti/p/@your-line-id" class="cta-button line-cta" target="_blank">LINEで相談する</a>
             </div>
         </div>
     </section>
@@ -2286,6 +2384,20 @@
             </div>
            
             <div class="blog-grid" id="blogGrid">
+                <!-- AI Website Generator記事 -->
+                <article class="blog-card hover-glow" data-category="reina ai development" data-title="驚愕 レイナが作った AIが自動でWebサイト作ってくれるツール HTML CSS JS全自動生成の魔法" data-content="Webサイト作りたいけどコード書けん デザインセンスがない 時間がない AIでWebサイト自動生成ツール 1分で入力するだけで プロ級のサイトが完成 Python Gemini API Flask">
+                    <a href="blog/ai-website-generator.html">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ流AI Website Generator" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>【驚愕】レイナが作った！AIが自動でWebサイト作ってくれるツールがぶちヤバい〜HTML/CSS/JS全自動生成の魔法じゃけぇ！</h4>
+                            <p>「Webサイト作りたいけどコード書けん...」「デザインセンスがない...」「時間がない...」そんなあんたに朗報じゃけぇ〜♪ レイナがAIでWebサイト自動生成ツール作ったんよ！1分で入力するだけで、プロ級のサイトが完成しちゃうけぇ〜！</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">🚀 革命的AI開発</span>
+                                <span>2025年7月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
                 <!-- AIチャットサイト作成チュートリアル記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="2025年最新 レイナ特製 AIとおしゃべりできるWebサイトを作ったるけぇ Python HTML JavaScript完全攻略" data-content="AIとおしゃべりしたい レイナが教える PythonでAPIサーバー作って HTMLとJavaScriptでチャットUI作成 初心者でも30分でAIキャラクターとの会話システムが完成する">
                     <a href="blog/ai-chat-website-tutorial.html">
@@ -2508,45 +2620,79 @@
             <div class="section-header">
                 <h2 class="section-title">お問い合わせ</h2>
                 <p class="section-subtitle">
-                    プロジェクトのご相談から技術的なお悩みまで、お気軽にお問い合わせください。
-                    専門スタッフが最適なソリューションをご提案いたします。
+                    プロジェクトのご相談から技術的なお悩みまで、お気軽にお問い合わせください。<br>
+                    LINEでの気軽な相談も大歓迎です！
                 </p>
             </div>
+
+            <!-- お問い合わせ方法選択 -->
+            <div class="contact-options">
+                <div class="contact-method line">
+                    <div class="contact-icon">📱</div>
+                    <h3>LINE公式アカウント</h3>
+                    <p>
+                        気軽にご相談いただけます！<br>
+                        AI画像生成や開発に関する質問、<br>
+                        お見積もりなど何でもお聞かせください。<br>
+                        <strong>24時間いつでもメッセージOK</strong>
+                    </p>
+                    <a href="https://line.me/R/ti/p/@353pxbjc" class="contact-btn line-contact-btn" target="_blank">
+                        LINEで相談する
+                    </a>
+                </div>
+
+                <div class="contact-method form">
+                    <div class="contact-icon">💌</div>
+                    <h3>お問い合わせフォーム</h3>
+                    <p>
+                        詳細なプロジェクト内容や<br>
+                        正式なお見積もりをご希望の場合は<br>
+                        こちらのフォームをご利用ください。<br>
+                        <strong>48時間以内にご返信いたします</strong>
+                    </p>
+                    <a href="#contact-form" class="contact-btn form-contact-btn">
+                        フォームで相談する
+                    </a>
+                </div>
+            </div>
            
-            <form class="contact-form" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="name" class="form-label">お名前</label>
-                    <input type="text" id="name" name="name" class="form-input" required placeholder="山田太郎">
-                </div>
-               
-                <div class="form-group">
-                    <label for="email" class="form-label">メールアドレス</label>
-                    <input type="email" id="email" name="email" class="form-input" required placeholder="example@company.com">
-                </div>
-               
-                <div class="form-group">
-                    <label for="service" class="form-label">ご希望のサービス</label>
-                    <select id="service" name="service" class="form-input" required>
-                        <option value="">選択してください</option>
-                        <option value="ai-art">AI画像生成</option>
-                        <option value="ai-beauty">AI美女生成</option>
-                        <option value="python-dev">Python開発</option>
-                        <option value="java-dev">Java開発</option>
-                        <option value="web-dev">Webサイト制作</option>
-                        <option value="consulting">技術コンサルティング</option>
-                        <option value="integration">システム統合</option>
-                        <option value="other">その他</option>
-                    </select>
-                </div>
-               
-                <div class="form-group">
-                    <label for="message" class="form-label">お問い合わせ内容</label>
-                    <textarea id="message" name="message" class="form-input form-textarea" required 
-                              placeholder="プロジェクトの詳細、ご要望、技術的な課題など、お気軽にお聞かせください。"></textarea>
-                </div>
-               
-                <button type="submit" class="submit-button">送信する</button>
-            </form>
+            <!-- お問い合わせフォーム -->
+            <div id="contact-form">
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name" class="form-label">お名前</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="山田太郎">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="email" class="form-label">メールアドレス</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="example@company.com">
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="service" class="form-label">ご希望のサービス</label>
+                        <select id="service" name="service" class="form-input" required>
+                            <option value="">選択してください</option>
+                            <option value="ai-art">AI画像生成</option>
+                            <option value="ai-beauty">AI美女生成</option>
+                            <option value="python-dev">Python開発</option>
+                            <option value="java-dev">Java開発</option>
+                            <option value="web-dev">Webサイト制作</option>
+                            <option value="consulting">技術コンサルティング</option>
+                            <option value="integration">システム統合</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="message" class="form-label">お問い合わせ内容</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" required 
+                                  placeholder="プロジェクトの詳細、ご要望、技術的な課題など、お気軽にお聞かせください。"></textarea>
+                    </div>
+                   
+                    <button type="submit" class="submit-button">送信する</button>
+                </form>
+            </div>
         </section>
         
     </main>
@@ -2559,6 +2705,7 @@
                 <a href="#">プライバシーポリシー</a>
                 <a href="#">利用規約</a>
                 <a href="#">サイトマップ</a>
+                <a href="https://line.me/R/ti/p/@your-line-id" target="_blank">公式LINE</a>
             </div>
             <p class="footer-text">Powered by Advanced Digital Solutions</p>
         </div>
@@ -3188,7 +3335,7 @@
             submitBtn.disabled = true;
            
             setTimeout(() => {
-                alert('お問い合わせありがとうございます！48時間以内にご返信いたします。');
+                alert('お問い合わせありがとうございます！48時間以内にご返信いたします。\n\nお急ぎの場合は、LINEでもお気軽にお問い合わせください！');
                 event.target.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
@@ -3201,7 +3348,7 @@
             const blogManager = new BlogManager();
             initImageSlider();
             
-            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization');
+            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization and LINE integration');
         });
 
         // Web Vitals ライブラリの動的読み込み（オプション）
