@@ -1507,12 +1507,14 @@
             padding: 6rem 0 2rem 0;
         }
 
+        /* ===== ブログセクション モバイル修正 ===== */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 3rem 0 1rem 0;
-            min-height: auto;
+            min-height: 400px; /* 最小高さを確保 */
+            width: 100%;
         }
 
         .blog-card {
@@ -1525,10 +1527,12 @@
             position: relative;
             opacity: 1;
             transform: scale(1);
+            display: block; /* 重要: 確実に表示 */
+            visibility: visible; /* 重要: 確実に表示 */
         }
 
         .blog-card.hidden {
-            display: none;
+            display: none !important; /* 重要: 強制的に非表示 */
         }
 
         .blog-card:hover {
@@ -1630,7 +1634,7 @@
             color: var(--text-dim);
             font-size: 1.2rem;
             margin: 3rem 0;
-            grid-column: 1 / span 3;
+            grid-column: 1 / -1;
         }
 
         /* Contact Section */
@@ -1918,8 +1922,25 @@
                 grid-template-columns: 1fr;
             }
 
+            /* ===== モバイル専用ブログ修正 ===== */
             .blog-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important; /* 強制的に1列 */
+                gap: 1.5rem;
+                margin: 2rem 0 1rem 0;
+                min-height: 300px; /* モバイル用最小高さ */
+                width: 100%;
+            }
+
+            .blog-card {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                display: block !important; /* 強制表示 */
+                visibility: visible !important; /* 強制表示 */
+            }
+
+            .blog-card.hidden {
+                display: none !important;
             }
 
             .blog-controls {
@@ -1929,6 +1950,19 @@
 
             .blog-search {
                 max-width: 100%;
+            }
+
+            .blog-filters {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                flex: 1;
+                min-width: auto;
+                text-align: center;
             }
 
             .contact-form {
@@ -1990,13 +2024,40 @@
                 height: 200px;
             }
 
+            /* ===== 超小型モバイル用ブログ修正 ===== */
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+
+            .blog-card {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .blog-card img {
+                height: 180px;
+            }
+
+            .blog-card-content {
+                padding: 1rem;
+            }
+
+            .blog-card h4 {
+                font-size: 1.1rem;
+                line-height: 1.3;
+            }
+
             .blog-filters {
                 justify-content: center;
+                gap: 0.5rem;
             }
 
             .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                min-width: 60px;
             }
 
             .hero-title {
@@ -2009,6 +2070,14 @@
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            #blog {
+                padding: 4rem 0 2rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
             }
         }
 
@@ -2036,6 +2105,16 @@
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
             border: 0;
+        }
+
+        /* ===== デバッグ用スタイル（開発時のみ） ===== */
+        .debug-blog {
+            border: 2px solid red !important;
+            background: rgba(255, 0, 0, 0.1) !important;
+        }
+
+        .debug-visible {
+            outline: 3px solid lime !important;
         }
     </style>
 </head>
@@ -2520,7 +2599,7 @@
             </div>
         </section>
 
-        <!-- Blog Section -->
+        <!-- Blog Section - モバイル表示問題修正版 -->
         <section id="blog" class="container">
             <div class="section-header">
                 <h2 class="section-title">ブログ</h2>
@@ -2765,6 +2844,126 @@
                             <p>最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説します。</p>
                             <div class="blog-meta">
                                 <span class="blog-tag">AIトレンド</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Python自動化記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="Python自動化術 業務効率を劇的に向上させる実践テクニック" data-content="繰り返し作業を自動化して生産性を大幅アップ Python RPA Selenium BeautifulSoup">
+                    <a href="blog/python-automation-guide.html" onclick="trackEvent('click', 'Blog', 'Python Automation', 1)">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=220&fit=crop&crop=center" alt="Python自動化術" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>Python自動化術：業務効率を劇的に向上させる実践テクニック</h4>
+                            <p>繰り返し作業を自動化して生産性を大幅アップ。Pythonを使った実用的な自動化事例を詳しく解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">Python自動化</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- クラウド比較記事 -->
+                <article class="blog-card hover-glow" data-category="programming business" data-title="クラウドサービス徹底比較 AWS vs Azure vs GCP 2025年版" data-content="主要クラウドサービスの特徴 コスト 性能を詳細比較 あなたのプロジェクトに最適な選択肢">
+                    <a href="blog/cloud-services-comparison-2025.html" onclick="trackEvent('click', 'Blog', 'Cloud Comparison', 1)">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=220&fit=crop&crop=center" alt="クラウドサービス比較" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>クラウドサービス徹底比較：AWS vs Azure vs GCP 2025年版</h4>
+                            <p>主要クラウドサービスの特徴、コスト、性能を詳細比較。あなたのプロジェクトに最適な選択肢を見つけましょう。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">クラウド比較</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- データベース設計記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="モダンデータベース設計の極意 MySQL PostgreSQL MongoDB 使い分け術" data-content="データベース設計のベストプラクティス リレーショナル NoSQL 選択基準 パフォーマンス最適化">
+                    <a href="blog/modern-database-design.html" onclick="trackEvent('click', 'Blog', 'Database Design', 1)">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=220&fit=crop&crop=center" alt="データベース設計" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>モダンデータベース設計の極意：MySQL vs PostgreSQL vs MongoDB 使い分け術</h4>
+                            <p>データベース設計のベストプラクティス。リレーショナルとNoSQLの選択基準、パフォーマンス最適化テクニックを解説。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">データベース</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- セキュリティ記事 -->
+                <article class="blog-card hover-glow" data-category="programming business" data-title="Webセキュリティの最前線 2025年に知っておくべき脅威と対策" data-content="最新のサイバー脅威 セキュリティ対策 脆弱性 ペネトレーションテスト 暗号化">
+                    <a href="blog/web-security-2025.html" onclick="trackEvent('click', 'Blog', 'Web Security', 1)">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=220&fit=crop&crop=center" alt="Webセキュリティ" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>Webセキュリティの最前線：2025年に知っておくべき脅威と対策</h4>
+                            <p>最新のサイバー脅威とセキュリティ対策を詳しく解説。開発者が知っておくべき脆弱性と防御テクニック。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">セキュリティ</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- フロントエンド記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="React vs Vue.js vs Angular 2025年フロントエンド戦争の結末" data-content="主要フロントエンドフレームワーク徹底比較 パフォーマンス 学習コスト エコシステム">
+                    <a href="blog/frontend-frameworks-2025.html" onclick="trackEvent('click', 'Blog', 'Frontend Frameworks', 1)">
+                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=220&fit=crop&crop=center" alt="フロントエンドフレームワーク比較" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>React vs Vue.js vs Angular：2025年フロントエンド戦争の結末</h4>
+                            <p>主要フロントエンドフレームワークを徹底比較。パフォーマンス、学習コスト、エコシステムの観点から分析します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">フロントエンド</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- API設計記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="RESTful API設計の黄金律 開発者が知るべき実践的ガイドライン" data-content="API設計のベストプラクティス REST GraphQL マイクロサービス 認証 エラーハンドリング">
+                    <a href="blog/restful-api-design-guide.html" onclick="trackEvent('click', 'Blog', 'API Design', 1)">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=220&fit=crop&crop=center" alt="API設計ガイド" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>RESTful API設計の黄金律：開発者が知るべき実践的ガイドライン</h4>
+                            <p>API設計のベストプラクティス。REST、GraphQL、マイクロサービス、認証、エラーハンドリングまで完全解説。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">API設計</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- DevOps記事 -->
+                <article class="blog-card hover-glow" data-category="programming business" data-title="DevOps完全攻略 CI CD Docker Kubernetes で開発生産性を極限まで高める方法" data-content="DevOps 継続的インテグレーション 継続的デプロイ コンテナ化 オーケストレーション">
+                    <a href="blog/devops-complete-guide.html" onclick="trackEvent('click', 'Blog', 'DevOps Guide', 1)">
+                        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=400&h=220&fit=crop&crop=center" alt="DevOps完全攻略" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>DevOps完全攻略：CI/CD・Docker・Kubernetesで開発生産性を極限まで高める方法</h4>
+                            <p>DevOpsの全てを解説。継続的インテグレーション・デプロイ、コンテナ化、オーケストレーションで開発効率を最大化。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">DevOps</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- アジャイル開発記事 -->
+                <article class="blog-card hover-glow" data-category="business" data-title="アジャイル開発2025 スクラム カンバン リモートチームでの実践術" data-content="アジャイル開発手法 スクラム カンバン リモートワーク チーム管理 プロジェクト成功の秘訣">
+                    <a href="blog/agile-development-2025.html" onclick="trackEvent('click', 'Blog', 'Agile Development', 1)">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=220&fit=crop&crop=center" alt="アジャイル開発" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>アジャイル開発2025：スクラム・カンバン・リモートチームでの実践術</h4>
+                            <p>最新のアジャイル開発手法を完全解説。スクラム、カンバン、リモートワークでのチーム管理とプロジェクト成功の秘訣。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">アジャイル</span>
                                 <span>2025年1月</span>
                             </div>
                         </div>
@@ -3399,7 +3598,7 @@
             }
         }
 
-        // ブログシステム
+        // ===== モバイル特化ブログシステム - 修正版 =====
         class BlogManager {
             constructor() {
                 this.articles = document.querySelectorAll('.blog-card');
@@ -3407,8 +3606,14 @@
                 this.filterButtons = document.querySelectorAll('.filter-btn');
                 this.currentCategory = 'all';
                 this.currentPage = 1;
-                this.articlesPerPage = 6;
+                this.articlesPerPage = window.innerWidth <= 768 ? 4 : 6; // モバイルは4記事ずつ
                 this.init();
+                
+                // デバッグ情報
+                console.log('🔧 BlogManager initialized');
+                console.log('📱 Mobile mode:', window.innerWidth <= 768);
+                console.log('📝 Total articles:', this.articles.length);
+                console.log('📄 Articles per page:', this.articlesPerPage);
             }
 
             init() {
@@ -3416,6 +3621,21 @@
                 this.setupFilters();
                 this.setupPagination();
                 this.updateDisplay();
+                this.setupMobileDebug(); // デバッグ用
+            }
+
+            // デバッグ用関数（開発時のみ）
+            setupMobileDebug() {
+                if (window.innerWidth <= 768) {
+                    console.log('📱 Mobile Blog Debug Mode');
+                    this.articles.forEach((article, index) => {
+                        console.log(`Article ${index}:`, {
+                            display: window.getComputedStyle(article).display,
+                            visibility: window.getComputedStyle(article).visibility,
+                            className: article.className
+                        });
+                    });
+                }
             }
 
             setupSearch() {
@@ -3432,6 +3652,8 @@
             setupFilters() {
                 this.filterButtons.forEach(btn => {
                     btn.addEventListener('click', () => {
+                        console.log('🔄 Filter clicked:', btn.dataset.category);
+                        
                         this.filterButtons.forEach(b => b.classList.remove('active'));
                         btn.classList.add('active');
                         this.currentCategory = btn.dataset.category;
@@ -3465,15 +3687,19 @@
             }
 
             performSearch(query) {
+                console.log('🔍 Search performed:', query);
+                
                 this.articles.forEach(article => {
-                    const title = article.dataset.title.toLowerCase();
-                    const content = article.dataset.content.toLowerCase();
+                    const title = article.dataset.title?.toLowerCase() || '';
+                    const content = article.dataset.content?.toLowerCase() || '';
                     const searchQuery = query.toLowerCase();
 
                     if (title.includes(searchQuery) || content.includes(searchQuery)) {
                         article.style.display = 'block';
+                        article.style.visibility = 'visible';
                     } else {
                         article.style.display = 'none';
+                        article.style.visibility = 'hidden';
                     }
                 });
 
@@ -3483,24 +3709,38 @@
 
             filterArticles() {
                 let visibleCount = 0;
+                
+                console.log('🏷️ Filtering by category:', this.currentCategory);
                
-                this.articles.forEach(article => {
-                    const categories = article.dataset.category.split(' ');
+                this.articles.forEach((article, index) => {
+                    const categories = article.dataset.category?.split(' ') || [];
                     const shouldShow = this.currentCategory === 'all' || 
                                      categories.includes(this.currentCategory);
 
                     if (shouldShow) {
                         article.style.display = 'block';
+                        article.style.visibility = 'visible';
+                        article.classList.remove('hidden');
                         visibleCount++;
+                        
+                        // モバイルデバッグ
+                        if (window.innerWidth <= 768) {
+                            console.log(`✅ Article ${index} visible:`, article.dataset.title?.substring(0, 30));
+                        }
                     } else {
                         article.style.display = 'none';
+                        article.style.visibility = 'hidden';
+                        article.classList.add('hidden');
                     }
                 });
 
+                console.log('👁️ Visible articles count:', visibleCount);
                 return visibleCount;
             }
 
             updateDisplay() {
+                console.log('🔄 Updating display...');
+                
                 const visibleCount = this.filterArticles();
                 this.paginateArticles();
                 this.updatePagination();
@@ -3516,32 +3756,58 @@
                     noResultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-dim); font-size: 1.2rem; margin: 2rem 0; grid-column: 1 / -1;">該当する記事が見つかりませんでした。</p>';
                     blogGrid.appendChild(noResultsDiv);
                 }
+
+                // モバイル用強制再描画
+                if (window.innerWidth <= 768) {
+                    const blogGrid = document.getElementById('blogGrid');
+                    blogGrid.style.display = 'none';
+                    blogGrid.offsetHeight; // 強制リフロー
+                    blogGrid.style.display = 'grid';
+                    
+                    console.log('📱 Mobile force redraw completed');
+                }
             }
 
             paginateArticles() {
                 const visibleArticles = Array.from(this.articles).filter(article => 
-                    article.style.display !== 'none'
+                    article.style.display !== 'none' && !article.classList.contains('hidden')
                 );
 
                 const startIndex = (this.currentPage - 1) * this.articlesPerPage;
                 const endIndex = startIndex + this.articlesPerPage;
 
-                // すべての記事を一旦非表示
-                this.articles.forEach(article => {
+                console.log('📄 Pagination:', {
+                    page: this.currentPage,
+                    total: visibleArticles.length,
+                    start: startIndex,
+                    end: endIndex,
+                    perPage: this.articlesPerPage
+                });
+
+                // すべての表示中記事を一旦非表示
+                visibleArticles.forEach(article => {
                     article.classList.add('hidden');
+                    article.style.display = 'none';
                 });
 
                 // 現在のページの記事のみ表示
                 visibleArticles.forEach((article, index) => {
                     if (index >= startIndex && index < endIndex) {
                         article.classList.remove('hidden');
+                        article.style.display = 'block';
+                        article.style.visibility = 'visible';
+                        
+                        // モバイルデバッグ
+                        if (window.innerWidth <= 768) {
+                            console.log(`📱 Page ${this.currentPage} - Showing article ${index}:`, article.dataset.title?.substring(0, 20));
+                        }
                     }
                 });
             }
 
             getMaxPages() {
                 const visibleArticles = Array.from(this.articles).filter(article => 
-                    article.style.display !== 'none'
+                    article.style.display !== 'none' && !article.classList.contains('hidden')
                 );
                 return Math.ceil(visibleArticles.length / this.articlesPerPage);
             }
@@ -3555,6 +3821,13 @@
                 prevBtn.disabled = this.currentPage === 1;
                 nextBtn.disabled = this.currentPage === maxPages || maxPages === 0;
                 pageInfo.textContent = `${this.currentPage} / ${maxPages || 1}`;
+                
+                console.log('🔢 Pagination updated:', {
+                    current: this.currentPage,
+                    max: maxPages,
+                    prevDisabled: prevBtn.disabled,
+                    nextDisabled: nextBtn.disabled
+                });
             }
         }
 
@@ -3606,62 +3879,55 @@
             }, 100);
         });
 
+        // ウィンドウリサイズ対応
+        window.addEventListener('resize', () => {
+            // モバイル⇔デスクトップ切り替え時にブログマネージャーを再初期化
+            const isMobile = window.innerWidth <= 768;
+            const currentArticlesPerPage = isMobile ? 4 : 6;
+            
+            if (window.blogManager && window.blogManager.articlesPerPage !== currentArticlesPerPage) {
+                console.log('📱 Screen size changed - reinitializing blog manager');
+                window.blogManager.articlesPerPage = currentArticlesPerPage;
+                window.blogManager.currentPage = 1;
+                window.blogManager.updateDisplay();
+            }
+        });
+
         // アプリケーション初期化
         document.addEventListener('DOMContentLoaded', () => {
             const cyberStudio = new CyberStudio();
-            const blogManager = new BlogManager();
+            window.blogManager = new BlogManager(); // グローバルに保存
             initImageSlider();
             
-            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization, Google Analytics 4, and enhanced UX');
-        });
-
-        // Web Vitals ライブラリの動的読み込み（オプション）
-        if ('PerformanceObserver' in window) {
-            // Web Vitals の詳細測定
-            const measureWebVitals = async () => {
-                try {
-                    const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('https://unpkg.com/web-vitals@3/dist/web-vitals.js');
+            console.log('🚀 AI Art Studio initialized with Mobile Blog Fix, Core Web Vitals optimization, and enhanced UX');
+            
+            // モバイルブログ確認
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    console.log('📱 Mobile Blog Final Check:');
+                    const blogSection = document.getElementById('blog');
+                    const blogGrid = document.getElementById('blogGrid');
+                    const visibleCards = document.querySelectorAll('.blog-card:not(.hidden)');
                     
-                    const sendToAnalytics = (metric) => {
-                        console.log(`📊 ${metric.name}:`, Math.round(metric.value) + (metric.name === 'CLS' ? '' : 'ms'));
-                        
-                        // Google Analytics 4 への送信
-                        if (typeof gtag !== 'undefined') {
-                            gtag('event', 'web_vitals', {
-                                event_category: 'Web Vitals',
-                                event_label: metric.name,
-                                value: Math.round(metric.value),
-                                non_interaction: true
-                            });
-                        }
-                    };
-
-                    getCLS(sendToAnalytics);
-                    getFID(sendToAnalytics);
-                    getFCP(sendToAnalytics);
-                    getLCP(sendToAnalytics);
-                    getTTFB(sendToAnalytics);
-                } catch (error) {
-                    console.log('Web Vitals library not loaded');
-                }
-            };
-
-            // ページ読み込み後に測定開始
-            window.addEventListener('load', measureWebVitals);
-        }
-
-        // Service Worker登録（将来のPWA対応）
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('🔧 Service Worker registered');
-                    })
-                    .catch(error => {
-                        // Service Workerが無い場合はスキップ
-                    });
-            });
-        }
+                    console.log('Blog section visible:', blogSection ? 'YES' : 'NO');
+                    console.log('Blog grid visible:', blogGrid ? 'YES' : 'NO');
+                    console.log('Visible blog cards:', visibleCards.length);
+                    
+                    if (visibleCards.length === 0) {
+                        console.error('❌ No blog cards visible on mobile!');
+                        // 緊急修正: 全記事を強制表示
+                        document.querySelectorAll('.blog-card').forEach(card => {
+                            card.style.display = 'block';
+                            card.style.visibility = 'visible';
+                            card.classList.remove('hidden');
+                        });
+                        console.log('🔧 Emergency fix applied - all cards forced visible');
+                    } else {
+                        console.log('✅ Mobile blog display working correctly');
+                    }
+                }, 1000);
+            }
+        });
 
         // エラーハンドリング
         window.addEventListener('error', (e) => {
@@ -3687,22 +3953,6 @@
                 }
             }
         }, true);
-    </script>
-
-    <!-- 非クリティカルリソースの遅延読み込み -->
-    <script>
-        // 追加機能の遅延読み込み
-        setTimeout(() => {
-            console.log('📡 Loading additional features...');
-            
-            // Microsoft Clarity (ヒートマップ)の読み込み
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
-            
-        }, 3000);
     </script>
 
 </body>
