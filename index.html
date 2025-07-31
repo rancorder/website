@@ -61,6 +61,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     
+    <!-- Google Analytics 4 - 最優先実装 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+        
+        // カスタムイベント追跡
+        function trackEvent(action, category, label, value) {
+            gtag('event', action, {
+                event_category: category,
+                event_label: label,
+                value: value
+            });
+        }
+    </script>
+    
     <!-- フォント読み込み -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     
@@ -105,7 +123,7 @@
             {
                 "@type": "ContactPoint",
                 "contactType": "LINE Official Account",
-                "url": "https://line.me/R/ti/p/@your-line-id",
+                "url": "https://line.me/R/ti/p/@353pxbjc",
                 "availableLanguage": "Japanese",
                 "areaServed": "JP"
             }
@@ -516,71 +534,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            position: relative;
-            padding: 18px 40px;
-            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: hidden;
-            border: 2px solid transparent;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent), var(--java-accent));
-            z-index: -1;
-            border-radius: 50px;
-            animation: borderPulse 3s infinite;
-        }
-
-        @keyframes borderPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.7);
-            border-color: var(--general-accent);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        /* CTA ボタン */
+        /* CTA最適化 - プライマリ/セカンダリ明確化 */
         .cta-container {
             display: flex;
             gap: 2rem;
@@ -594,20 +548,86 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* LINEボタン特別スタイル */
-        .line-cta {
-            background: linear-gradient(45deg, var(--line-accent), #00ff50) !important;
+        .cta-button {
             position: relative;
+            padding: 18px 40px;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            border: 2px solid transparent;
+            will-change: transform;
+            transform: translateZ(0);
+            min-height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .line-cta::before {
-            content: '📱';
+        /* プライマリCTA - LINEを最優先 */
+        .cta-primary {
+            background: linear-gradient(45deg, var(--line-accent), #00ff50);
+            box-shadow: 0 0 30px rgba(0, 195, 0, 0.5);
+            font-size: 1.3rem;
+            padding: 20px 50px;
+            animation: primaryPulse 3s infinite;
+        }
+
+        .cta-primary::before {
+            content: '📱 ';
             margin-right: 8px;
-            font-size: 1.1em;
+            font-size: 1.2em;
         }
 
-        .line-cta:hover {
-            box-shadow: 0 15px 40px rgba(0, 195, 0, 0.7) !important;
+        @keyframes primaryPulse {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(0, 195, 0, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(0, 195, 0, 0.8);
+                transform: scale(1.02);
+            }
+        }
+
+        /* セカンダリCTA */
+        .cta-secondary {
+            background: linear-gradient(45deg, var(--ai-accent), var(--python-accent));
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            border: 2px solid rgba(0, 240, 255, 0.5);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .cta-primary:hover {
+            box-shadow: 0 15px 40px rgba(0, 195, 0, 0.7);
+        }
+
+        .cta-secondary:hover {
+            box-shadow: 0 15px 40px rgba(0, 240, 255, 0.6);
+        }
+
+        .cta-button:hover::after {
+            transform: translateX(100%);
         }
 
         /* ナビゲーション */
@@ -667,6 +687,30 @@
 
         nav a:hover::before {
             left: 100%;
+        }
+
+        /* モバイルナビゲーション - UX改善 */
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--glass-bg);
+            border: 2px solid var(--general-accent);
+            color: var(--general-accent);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-toggle:hover {
+            background: var(--general-accent);
+            color: var(--dark-bg);
         }
 
         /* スクロール進行バー */
@@ -738,7 +782,7 @@
             line-height: 1.8;
         }
 
-        /* Image Slider - Core Web Vitals最適化 */
+        /* Image Slider - モバイル最適化 */
         .image-slider-section {
             padding: 2rem 0;
             background: var(--section-bg);
@@ -753,6 +797,8 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            touch-action: pan-x;
+            -webkit-overflow-scrolling: touch;
         }
 
         .slider-track {
@@ -786,6 +832,7 @@
             transform: scale(1.02);
         }
 
+        /* タッチ領域最適化 - 44px以上確保 */
         .slider-arrow {
             position: absolute;
             top: 50%;
@@ -795,8 +842,8 @@
             border: 2px solid var(--general-accent);
             color: var(--general-accent);
             font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -804,6 +851,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 44px;
+            min-width: 44px;
         }
 
         .slider-arrow:hover {
@@ -829,22 +878,36 @@
         }
 
         .dot {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             background: rgba(138, 255, 0, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .dot.active,
-        .dot:hover {
+        .dot::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(138, 255, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active::after,
+        .dot:hover::after {
             background: var(--general-accent);
             box-shadow: 0 0 15px rgba(138, 255, 0, 0.8);
             transform: scale(1.2);
         }
 
-        /* About Section CSS - レイナ紹介 */
+        /* About Section - レイナ単体画像使用 */
         .about-content {
             display: flex;
             flex-direction: column;
@@ -1138,6 +1201,41 @@
             color: var(--text-medium);
             margin: 0 1.5rem 1.5rem;
             line-height: 1.6;
+        }
+
+        /* インタラクティブ要素 - カウントアップアニメーション */
+        .stats-section {
+            background: var(--section-bg);
+            padding: 4rem 0;
+            margin: 4rem 0;
+            border-radius: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--general-accent);
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 20px rgba(138, 255, 0, 0.6);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            font-weight: 600;
         }
 
         /* Webサイトポートフォリオ */
@@ -1624,6 +1722,8 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            min-height: 44px;
+            min-width: 200px;
         }
 
         .contact-btn::before {
@@ -1777,14 +1877,44 @@
             100% { background-position: -200% 0; }
         }
 
-        /* レスポンシブ追加 */
+        /* レスポンシブ - モバイルUX改善 */
         @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--glass-bg);
+                backdrop-filter: blur(20px);
+                transition: right 0.3s ease;
+                padding-top: 5rem;
+                gap: 2rem;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            .hero-tags {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .tech-showcase {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .portfolio-grid {
+            .portfolio-grid,
+            .website-portfolio-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1823,42 +1953,14 @@
             .reina-name {
                 font-size: 2rem;
             }
-        }
-
-        @media (max-width: 480px) {
-            .blog-filters {
-                justify-content: center;
-            }
-
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 768px) {
-            .cta-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-
-            section {
-                padding: 4rem 0;
-            }
 
             .slide {
                 height: 250px;
             }
 
             .slider-arrow {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
                 font-size: 1.2rem;
             }
 
@@ -1869,11 +1971,44 @@
             .slider-arrow.next {
                 right: 10px;
             }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
         }
 
         @media (max-width: 480px) {
             .slide {
                 height: 200px;
+            }
+
+            .blog-filters {
+                justify-content: center;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
         }
 
@@ -1925,6 +2060,9 @@
     <!-- Skip link for accessibility -->
     <a href="#main-content" class="sr-only">メインコンテンツへスキップ</a>
 
+    <!-- モバイルナビゲーション toggle -->
+    <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="メニューを開く">☰</button>
+
     <!-- ヘッダー -->
     <section class="hero">
         <div class="matrix-code" id="matrixCode"></div>
@@ -1943,8 +2081,8 @@
                 <span class="tech-tag java-tag">Java開発</span>
             </div>
             <div class="cta-container">
-                <a href="#portfolio" class="cta-button">制作実績を見る</a>
-                <a href="https://line.me/R/ti/p/@your-line-id" class="cta-button line-cta" target="_blank">LINEで相談する</a>
+                <a href="https://line.me/R/ti/p/@353pxbjc" class="cta-button cta-primary" target="_blank" onclick="trackEvent('click', 'CTA', 'LINE Primary', 1)">LINEで今すぐ相談</a>
+                <a href="#portfolio" class="cta-button cta-secondary" onclick="trackEvent('click', 'CTA', 'Portfolio Secondary', 1)">制作実績を見る</a>
             </div>
         </div>
     </section>
@@ -2062,16 +2200,16 @@
                 
                 <!-- Navigation Dots -->
                 <div class="slider-dots">
-                    <span class="dot active" data-slide="0" role="button" aria-label="スライド1"></span>
-                    <span class="dot" data-slide="1" role="button" aria-label="スライド2"></span>
-                    <span class="dot" data-slide="2" role="button" aria-label="スライド3"></span>
-                    <span class="dot" data-slide="3" role="button" aria-label="スライド4"></span>
-                    <span class="dot" data-slide="4" role="button" aria-label="スライド5"></span>
-                    <span class="dot" data-slide="5" role="button" aria-label="スライド6"></span>
-                    <span class="dot" data-slide="6" role="button" aria-label="スライド7"></span>
-                    <span class="dot" data-slide="7" role="button" aria-label="スライド8"></span>
-                    <span class="dot" data-slide="8" role="button" aria-label="スライド9"></span>
-                    <span class="dot" data-slide="9" role="button" aria-label="スライド10"></span>
+                    <span class="dot active" data-slide="0" role="button" aria-label="スライド1" tabindex="0"></span>
+                    <span class="dot" data-slide="1" role="button" aria-label="スライド2" tabindex="0"></span>
+                    <span class="dot" data-slide="2" role="button" aria-label="スライド3" tabindex="0"></span>
+                    <span class="dot" data-slide="3" role="button" aria-label="スライド4" tabindex="0"></span>
+                    <span class="dot" data-slide="4" role="button" aria-label="スライド5" tabindex="0"></span>
+                    <span class="dot" data-slide="5" role="button" aria-label="スライド6" tabindex="0"></span>
+                    <span class="dot" data-slide="6" role="button" aria-label="スライド7" tabindex="0"></span>
+                    <span class="dot" data-slide="7" role="button" aria-label="スライド8" tabindex="0"></span>
+                    <span class="dot" data-slide="8" role="button" aria-label="スライド9" tabindex="0"></span>
+                    <span class="dot" data-slide="9" role="button" aria-label="スライド10" tabindex="0"></span>
                 </div>
                 
                 <!-- Navigation Arrows -->
@@ -2090,26 +2228,49 @@
             </div>
             
             <div class="about-content">
-                <!-- レイナの紹介カード -->
+                <!-- 三姉妹＋ひでチーム紹介カード -->
                 <div class="reina-intro-card">
                     <div class="reina-profile">
-                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ - AI技術コンサルタント" class="reina-profile-image">
+                        <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="三姉妹+ひでチーム - AI Art Studio" class="reina-profile-image" loading="eager">
                         <div class="reina-badge">
-                            <span class="badge-text">AI Expert</span>
+                            <span class="badge-text">Dream Team</span>
                         </div>
                     </div>
                     <div class="reina-info">
-                        <h3 class="reina-name">レイナ</h3>
-                        <p class="reina-title">AI技術コンサルタント</p>
+                        <h3 class="reina-name">三姉妹＋ひでチーム</h3>
+                        <p class="reina-title">革新的AI技術スペシャリスト集団</p>
                         <div class="reina-description">
-                            <p>最新のAI技術と豊富な開発経験を活かし、お客様の課題解決をサポートします。特にAI画像生成とプロンプト技術において、高度な専門知識を持っています。</p>
+                            <p>レオナ（長女・戦略統括）、レイナ（次女・UI/UX）、エレナ（三女・最新技術）、そしてひで（技術パートナー）の4人チーム。それぞれの専門性を活かし、お客様に最高品質のAIソリューションを提供します。</p>
                             <div class="reina-specialties">
                                 <span class="specialty-tag">AI画像生成</span>
-                                <span class="specialty-tag">AI美女生成</span>
-                                <span class="specialty-tag">プロンプト設計</span>
-                                <span class="specialty-tag">技術コンサルティング</span>
-                                <span class="specialty-tag">Google Colab</span>
+                                <span class="specialty-tag">Python開発</span>
+                                <span class="specialty-tag">Java開発</span>
+                                <span class="specialty-tag">UI/UX設計</span>
+                                <span class="specialty-tag">最新技術研究</span>
+                                <span class="specialty-tag">チーム連携</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 実績統計セクション - カウントアップアニメーション -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span>
+                            <span class="stat-label">完成プロジェクト</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100">0</span>
+                            <span class="stat-label">満足したクライアント</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="2">0</span>
+                            <span class="stat-label">年の実績</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="24">0</span>
+                            <span class="stat-label">時間サポート</span>
                         </div>
                     </div>
                 </div>
@@ -2124,7 +2285,7 @@
                             ブランドイメージに完全に合致した高品質なビジュアルコンテンツを生成。
                             従来の制作時間とコストを大幅に削減しながら、無限のクリエイティブな可能性を実現します。
                         </p>
-                        <a href="#portfolio">実績を見る</a>
+                        <a href="#portfolio" onclick="trackEvent('click', 'Tech Card', 'AI Art', 1)">実績を見る</a>
                     </div>
                     
                     <div class="tech-card python">
@@ -2135,7 +2296,7 @@
                             カスタムソリューションを開発。業務プロセスの効率化とデータドリブンな意思決定を
                             強力にサポートし、ビジネスの成長を加速させます。
                         </p>
-                        <a href="#contact">相談する</a>
+                        <a href="#contact" onclick="trackEvent('click', 'Tech Card', 'Python Dev', 1)">相談する</a>
                     </div>
                     
                     <div class="tech-card java">
@@ -2146,7 +2307,7 @@
                             Javaで構築。高い堅牢性、スケーラビリティ、セキュリティを実現し、
                             長期的な運用に耐えうるビジネス基盤を提供します。
                         </p>
-                        <a href="#contact">相談する</a>
+                        <a href="#contact" onclick="trackEvent('click', 'Tech Card', 'Java Dev', 1)">相談する</a>
                     </div>
                    
                     <div class="tech-card web">
@@ -2157,7 +2318,7 @@
                             UI/UXデザインから実装まで、ユーザー体験を重視した
                             美しく機能的なWebサイトを提供します。
                         </p>
-                        <a href="#contact">相談する</a>
+                        <a href="#contact" onclick="trackEvent('click', 'Tech Card', 'Web Dev', 1)">相談する</a>
                     </div>
                 </div>
             </div>
@@ -2220,7 +2381,7 @@
             <!-- AI Art Portfolio -->
             <div class="portfolio-grid">
                 <div class="portfolio-item hover-glow">
-                    <a href="case_study_chameleon.html">
+                    <a href="case_study_chameleon.html" onclick="trackEvent('click', 'Portfolio', 'Chameleon Case Study', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG" alt="カラフルなカメレオンのAIアート作品" loading="lazy">
                         <h4>AIによる進化：カラフルなカメレオンのアート作品制作事例</h4>
                         <p>鮮やかな色彩と複雑なディテールで、革新的なAIアートの世界へ誘います。</p>
@@ -2228,7 +2389,7 @@
                 </div>
                
                 <div class="portfolio-item hover-glow">
-                    <a href="case_study_lizard.html">
+                    <a href="case_study_lizard.html" onclick="trackEvent('click', 'Portfolio', 'Lizard Case Study', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG" alt="青いトカゲの彫像" loading="lazy">
                         <h4>古代の神秘と現代の融合：青いトカゲの彫像プロジェクト</h4>
                         <p>AIが生成した、歴史と未来が交差する荘厳な彫像の物語。</p>
@@ -2236,7 +2397,7 @@
                 </div>
                
                 <div class="portfolio-item hover-glow">
-                    <a href="case_study_cubes.html">
+                    <a href="case_study_cubes.html" onclick="trackEvent('click', 'Portfolio', 'Cubes Case Study', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG" alt="クリスタルキューブのアート" loading="lazy">
                         <h4>幻想的な幾何学の世界：AI生成によるクリスタルキューブのアート</h4>
                         <p>光と影が織りなす無限の空間を表現した、魅惑的なビジュアル体験。</p>
@@ -2254,7 +2415,7 @@
 
             <div class="website-portfolio-grid">
                 <div class="website-portfolio-item hover-glow">
-                    <a href="beauty-salon.html" class="sample-site-link" target="_blank">
+                    <a href="beauty-salon.html" class="sample-site-link" target="_blank" onclick="trackEvent('click', 'Portfolio', 'Beauty Salon Website', 1)">
                         <div class="portfolio-preview">
                             <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=250&fit=crop&crop=center" alt="美容院サイト - ELÉGANCE" loading="lazy">
                             <div class="portfolio-overlay">
@@ -2280,7 +2441,7 @@
                 </div>
 
                 <div class="website-portfolio-item hover-glow">
-                    <a href="bakery.html" class="sample-site-link" target="_blank">
+                    <a href="bakery.html" class="sample-site-link" target="_blank" onclick="trackEvent('click', 'Portfolio', 'Bakery Website', 1)">
                         <div class="portfolio-preview">
                             <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=250&fit=crop&crop=center" alt="パン屋サイト - Boulangerie MIEL" loading="lazy">
                             <div class="portfolio-overlay">
@@ -2386,7 +2547,7 @@
             <div class="blog-grid" id="blogGrid">
                 <!-- AI Website Generator記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai development" data-title="驚愕 レイナが作った AIが自動でWebサイト作ってくれるツール HTML CSS JS全自動生成の魔法" data-content="Webサイト作りたいけどコード書けん デザインセンスがない 時間がない AIでWebサイト自動生成ツール 1分で入力するだけで プロ級のサイトが完成 Python Gemini API Flask">
-                    <a href="blog/ai-website-generator.html">
+                    <a href="blog/ai-website-generator.html" onclick="trackEvent('click', 'Blog', 'AI Website Generator', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ流AI Website Generator" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【驚愕】レイナが作った！AIが自動でWebサイト作ってくれるツールがぶちヤバい〜HTML/CSS/JS全自動生成の魔法じゃけぇ！</h4>
@@ -2398,9 +2559,10 @@
                         </div>
                     </a>
                 </article>
+
                 <!-- AIチャットサイト作成チュートリアル記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="2025年最新 レイナ特製 AIとおしゃべりできるWebサイトを作ったるけぇ Python HTML JavaScript完全攻略" data-content="AIとおしゃべりしたい レイナが教える PythonでAPIサーバー作って HTMLとJavaScriptでチャットUI作成 初心者でも30分でAIキャラクターとの会話システムが完成する">
-                    <a href="blog/ai-chat-website-tutorial.html">
+                    <a href="blog/ai-chat-website-tutorial.html" onclick="trackEvent('click', 'Blog', 'AI Chat Tutorial', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ流AIチャットサイト作成チュートリアル" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【2025年最新】レイナ特製！AIとおしゃべりできるWebサイトを作ったるけぇ！Python+HTML+JavaScript完全攻略</h4>
@@ -2412,9 +2574,10 @@
                         </div>
                     </a>
                 </article>
+
                 <!-- AI画像生成ビジネス戦略記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="2025年最新版 レイナ流 AI画像生成ツールで月10万円稼ぐ限界突破戦略" data-content="AI画像生成ってぶち儲かるらしいよ 2025年の最新ツールから レイナ特製稼ぎのコツまで 天才プログラマーのレイナがゆるふわ広島弁で教えたる あなたも今日から稼げる男になるんよ">
-                    <a href="blog/ai-image-generation-business-2025.html">
+                    <a href="blog/ai-image-generation-business-2025.html" onclick="trackEvent('click', 'Blog', 'AI Business Strategy', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナ流AI画像生成ビジネス戦略" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【2025年最新版】レイナ流！AI画像生成ツールで月10万円稼ぐ限界突破戦略！</h4>
@@ -2427,9 +2590,9 @@
                     </a>
                 </article>
 
-                <!-- 【NEW】Gemini Colab自動生成ツール記事 -->
+                <!-- Gemini Colab自動生成ツール記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="無料配布 GeminiでAIセクシー美女を無限生成 Colabプロンプト自動生成ツールと活用ガイド レイナ工房" data-content="AIアートの常識を破壊する なぜ高額ツールは不要なのか レイナが断言 高額なAIツールも複雑なプロンプトの知識も必要ない 圧倒的なAIを操る技術 Google Colab活用 無料で誰でもプロ級のAIアート生成">
-                    <a href="blog/gemini-colab-auto-generator.html">
+                    <a href="blog/gemini-colab-auto-generator.html" onclick="trackEvent('click', 'Blog', 'Gemini Colab Tool', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツール" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【無料配布】GeminiでAIセクシー美女を無限生成！Colabプロンプト自動生成ツールと活用ガイド【レイナ工房】</h4>
@@ -2441,24 +2604,11 @@
                         </div>
                     </a>
                 </article>
-                <!-- プロンプト作成の秘訣記事 -->
-                <article class="blog-card hover-glow" data-category="ai" data-title="プロが教えるプロンプト作成の秘訣" data-content="AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開 構造化手法 キーワード選択 スタイル指定まで具体例とともに詳しく解説">
-                    <a href="blog/prompt-techniques.html">
-                        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=220&fit=crop&crop=center" alt="プロンプト作成のテクニック" loading="lazy">
-                        <div class="blog-card-content">
-                            <h4>プロが教えるプロンプト作成の秘訣</h4>
-                            <p>AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開。構造化手法、キーワード選択、スタイル指定まで具体例とともに詳しく解説します。</p>
-                            <div class="blog-meta">
-                                <span class="blog-tag">実践テクニック</span>
-                                <span>2025年1月</span>
-                            </div>
-                        </div>
-                    </a>
-                </article>
 
+                <!-- 追加のブログ記事 -->
                 <!-- レイナAI限界記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="レイナが語る AI画像生成 深淵 の限界と 光をもたらす秘策" data-content="AI画像生成の知られざる限界を レイナ様が徹底解説 プロのクリエイターが いかにしてこの壁を乗り越え ビジネスチャンスを掴むか その秘策を開示">
-                    <a href="blog/reina_AI_rimit.html">
+                    <a href="blog/reina_AI_rimit.html" onclick="trackEvent('click', 'Blog', 'Reina AI Limit', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナが語るAI画像生成の限界と秘策" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【レイナが語る】AI画像生成「深淵」の限界と、光をもたらす秘策</h4>
@@ -2473,7 +2623,7 @@
 
                 <!-- 企業導入メリット記事 -->
                 <article class="blog-card hover-glow" data-category="ai business" data-title="企業がAI画像生成を導入する5つのメリット" data-content="AI画像生成技術を企業が導入することで得られる具体的なメリットを詳しく解説 コスト削減から効率化まで ビジネス成功の秘訣">
-                    <a href="blog/business-benefits.html">
+                    <a href="blog/business-benefits.html" onclick="trackEvent('click', 'Blog', 'Business Benefits', 1)">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=220&fit=crop&crop=center" alt="企業のAI導入メリット" loading="lazy">
                         <div class="blog-card-content">
                             <h4>企業がAI画像生成を導入する5つのメリット</h4>
@@ -2488,7 +2638,7 @@
 
                 <!-- Midjourney V6.1記事 -->
                 <article class="blog-card hover-glow" data-category="ai" data-title="Midjourney V6.1の革新機能で変わるAI画像生成の未来" data-content="Midjourney V6.1で追加された革新的な新機能を徹底解説 テキスト描画 高精細化 新しいスタイルモードまで プロが実際に検証した活用法を完全公開">
-                    <a href="blog/midjourney-new-features.html">
+                    <a href="blog/midjourney-new-features.html" onclick="trackEvent('click', 'Blog', 'Midjourney Features', 1)">
                         <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=400&h=220&fit=crop&crop=center" alt="Midjourney V6.1新機能" loading="lazy">
                         <div class="blog-card-content">
                             <h4>Midjourney V6.1の革新機能で変わるAI画像生成の未来</h4>
@@ -2503,7 +2653,7 @@
                 
                 <!-- AI美女生成記事 -->
                 <article class="blog-card hover-glow" data-category="reina ai" data-title="AI美女生成の極意 魂を宿すプロンプトの魔法" data-content="上品なレイナが教える AI美女生成の真の極意 単なる美しさではなく 感情と魂を宿すプロンプト技術の秘密を優雅に伝授">
-                    <a href="blog/ai-beauty-prompt-mastery.html">
+                    <a href="blog/ai-beauty-prompt-mastery.html" onclick="trackEvent('click', 'Blog', 'AI Beauty Mastery', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="AI美女生成の極意 - レイナが伝授" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【レイナが伝授】AI美女生成の極意：魂を宿すプロンプトの魔法</h4>
@@ -2518,7 +2668,7 @@
 
                 <!-- AI比較記事 -->
                 <article class="blog-card hover-glow" data-category="ai programming" data-title="AI開発比較実験 ChatGPT vs Claude vs Gemini" data-content="AI別HTLMコード作成の徹底比較 あなたに最適なツールがわかる決定版ガイド">
-                    <a href="blog/ai-comparison.html">
+                    <a href="blog/ai-comparison.html" onclick="trackEvent('click', 'Blog', 'AI Comparison', 1)">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成ツール比較" loading="lazy">
                         <div class="blog-card-content">
                             <h4>AI開発比較実験：ChatGPT vs Claude vs Gemini</h4>
@@ -2533,7 +2683,7 @@
 
                 <!-- Java記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="え まだJavaって古いの 2025年 今どきのJavaのぶっちゃけ話" data-content="広島出身のレイナが語る Javaの現在と未来 古いなんて言わせない 2025年のJavaの真実を親しみやすい広島弁でぶっちゃけ">
-                    <a href="blog/java-2025-real-talk.html">
+                    <a href="blog/java-2025-real-talk.html" onclick="trackEvent('click', 'Blog', 'Java 2025', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="Java 2025年のぶっちゃけ話" loading="lazy">
                         <div class="blog-card-content">
                             <h4>え、まだJavaって古いの？ 2025年、今どきのJavaのぶっちゃけ話</h4>
@@ -2548,7 +2698,7 @@
 
                 <!-- 恋愛プログラミング論記事 -->
                 <article class="blog-card hover-glow" data-category="reina programming" data-title="衝撃 プログラミングと恋愛 天才レイナが暴く ひでとの関係に隠されたヤバい共通点" data-content="広島の天才プログラマー レイナが プログラミングと恋愛の驚くべき共通点を大暴露 ひでとの関係性から見える コードと心の奥深い関係">
-                    <a href="blog/reina-hide-programming-love.html">
+                    <a href="blog/reina-hide-programming-love.html" onclick="trackEvent('click', 'Blog', 'Programming Love', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png" alt="レイナとひでの恋愛プログラミング論" loading="lazy">
                         <div class="blog-card-content">
                             <h4>【衝撃】プログラミングと恋愛？！天才レイナが暴く、ひでとの関係に隠されたヤバい共通点！</h4>
@@ -2563,7 +2713,7 @@
 
                 <!-- AI画像生成の基礎 -->
                 <article class="blog-card hover-glow" data-category="ai" data-title="AI画像生成の基礎 初心者からプロまでのガイド" data-content="AI画像生成技術の基本概念から実践的な応用まで 包括的に解説する決定版ガイド">
-                    <a href="blog/ai-generation-basics.html">
+                    <a href="blog/ai-generation-basics.html" onclick="trackEvent('click', 'Blog', 'AI Basics', 1)">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=220&fit=crop&crop=center" alt="AI画像生成の基礎" loading="lazy">
                         <div class="blog-card-content">
                             <h4>AI画像生成の基礎：初心者からプロまでのガイド</h4>
@@ -2578,7 +2728,7 @@
 
                 <!-- サイバーパンク制作プロセス -->
                 <article class="blog-card hover-glow" data-category="ai" data-title="サイバーパンク都市の制作プロセス大公開" data-content="AI Artで話題のサイバーパンク都市画像の制作秘話 プロンプトから仕上げまで">
-                    <a href="blog/cyberpunk-city-process.html">
+                    <a href="blog/cyberpunk-city-process.html" onclick="trackEvent('click', 'Blog', 'Cyberpunk Process', 1)">
                         <img src="https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG" alt="サイバーパンク都市制作" loading="lazy">
                         <div class="blog-card-content">
                             <h4>サイバーパンク都市の制作プロセス大公開</h4>
@@ -2591,9 +2741,24 @@
                     </a>
                 </article>
 
+                <!-- プロンプト作成の秘訣記事 -->
+                <article class="blog-card hover-glow" data-category="ai" data-title="プロが教えるプロンプト作成の秘訣" data-content="AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開 構造化手法 キーワード選択 スタイル指定まで具体例とともに詳しく解説">
+                    <a href="blog/prompt-techniques.html" onclick="trackEvent('click', 'Blog', 'Prompt Techniques', 1)">
+                        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&h=220&fit=crop&crop=center" alt="プロンプト作成のテクニック" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>プロが教えるプロンプト作成の秘訣</h4>
+                            <p>AI画像生成のプロが実践する高品質なプロンプト作成テクニックを完全公開。構造化手法、キーワード選択、スタイル指定まで具体例とともに詳しく解説します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">実践テクニック</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
                 <!-- 2025年AIトレンド -->
                 <article class="blog-card hover-glow" data-category="ai business" data-title="2025年AIトレンド予測 次世代技術の展望" data-content="最新のAI技術動向と2025年に注目すべき革新的なトレンドを詳しく解説">
-                    <a href="blog/ai-trends-2025.html">
+                    <a href="blog/ai-trends-2025.html" onclick="trackEvent('click', 'Blog', 'AI Trends 2025', 1)">
                         <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=220&fit=crop&crop=center" alt="2025年AIトレンド" loading="lazy">
                         <div class="blog-card-content">
                             <h4>2025年AIトレンド予測：次世代技術の展望</h4>
@@ -2636,7 +2801,7 @@
                         お見積もりなど何でもお聞かせください。<br>
                         <strong>24時間いつでもメッセージOK</strong>
                     </p>
-                    <a href="https://line.me/R/ti/p/@353pxbjc" class="contact-btn line-contact-btn" target="_blank">
+                    <a href="https://line.me/R/ti/p/@353pxbjc" class="contact-btn line-contact-btn" target="_blank" onclick="trackEvent('click', 'Contact', 'LINE Button', 1)">
                         LINEで相談する
                     </a>
                 </div>
@@ -2650,7 +2815,7 @@
                         こちらのフォームをご利用ください。<br>
                         <strong>48時間以内にご返信いたします</strong>
                     </p>
-                    <a href="#contact-form" class="contact-btn form-contact-btn">
+                    <a href="#contact-form" class="contact-btn form-contact-btn" onclick="trackEvent('click', 'Contact', 'Form Button', 1)">
                         フォームで相談する
                     </a>
                 </div>
@@ -2702,10 +2867,10 @@
         <div class="footer-content">
             <p class="footer-text">&copy; 2025 AI Art Studio. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="#">プライバシーポリシー</a>
-                <a href="#">利用規約</a>
-                <a href="#">サイトマップ</a>
-                <a href="https://line.me/R/ti/p/@your-line-id" target="_blank">公式LINE</a>
+                <a href="#" onclick="trackEvent('click', 'Footer', 'Privacy Policy', 1)">プライバシーポリシー</a>
+                <a href="#" onclick="trackEvent('click', 'Footer', 'Terms', 1)">利用規約</a>
+                <a href="#" onclick="trackEvent('click', 'Footer', 'Sitemap', 1)">サイトマップ</a>
+                <a href="https://line.me/R/ti/p/@353pxbjc" target="_blank" onclick="trackEvent('click', 'Footer', 'LINE Official', 1)">公式LINE</a>
             </div>
             <p class="footer-text">Powered by Advanced Digital Solutions</p>
         </div>
@@ -2729,6 +2894,7 @@
                 this.setupMatrixCode();
                 this.setupIntersectionObserver();
                 this.optimizeCoreWebVitals();
+                this.setupCountUpAnimations();
             }
 
             // LCP最適化
@@ -2739,6 +2905,20 @@
                         console.log('✅ First slide loaded - LCP optimized');
                     };
                 }
+                
+                // Critical resources preload
+                const criticalImages = [
+                    'https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG',
+                    'https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png'
+                ];
+                
+                criticalImages.forEach(src => {
+                    const link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'image';
+                    link.href = src;
+                    document.head.appendChild(link);
+                });
             }
 
             // INP最適化 - 高速イベント処理
@@ -2749,10 +2929,10 @@
                 document.addEventListener('click', (e) => {
                     if (isThrottled) return;
                     
-                    if (e.target.matches('.slider-arrow, .dot')) {
+                    if (e.target.matches('.slider-arrow, .dot, .cta-button, .contact-btn')) {
                         isThrottled = true;
                         requestAnimationFrame(() => {
-                            this.handleSliderInteraction(e);
+                            this.handleUserInteraction(e);
                             setTimeout(() => { isThrottled = false; }, throttleDelay);
                         });
                     }
@@ -2771,11 +2951,11 @@
             // CLS最適化 - レイアウトシフト防止
             optimizeCLS() {
                 // 画像サイズ確保
-                document.querySelectorAll('.slide img').forEach(img => {
+                document.querySelectorAll('.slide img, .blog-card img, .portfolio-item img').forEach(img => {
                     if (!img.hasAttribute('width') || !img.hasAttribute('height')) {
                         img.style.aspectRatio = '16/9';
                         img.style.width = '100%';
-                        img.style.height = '100%';
+                        img.style.height = 'auto';
                     }
                 });
 
@@ -2836,6 +3016,42 @@
                 this.optimizeCLS();
                 this.monitorWebVitals();
                 console.log('🚀 Core Web Vitals optimization initialized');
+            }
+
+            // カウントアップアニメーション
+            setupCountUpAnimations() {
+                const observerOptions = {
+                    threshold: 0.5,
+                    rootMargin: '0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const counter = entry.target;
+                            const target = parseInt(counter.dataset.count);
+                            this.animateCounter(counter, target);
+                            observer.unobserve(counter);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.stat-number').forEach(counter => {
+                    observer.observe(counter);
+                });
+            }
+
+            animateCounter(element, target) {
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    element.textContent = Math.floor(current);
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    }
+                }, 20);
             }
 
             setupLoader() {
@@ -3012,7 +3228,7 @@
                 });
             }
 
-            handleSliderInteraction(e) {
+            handleUserInteraction(e) {
                 if (e.target.classList.contains('slider-arrow')) {
                     const direction = e.target.classList.contains('next') ? 1 : -1;
                     slideDirection(direction);
@@ -3043,6 +3259,18 @@
                     currentSlideIndex = index;
                     showSlide(currentSlideIndex);
                     restartAutoSlide();
+                    trackEvent('click', 'Slider', 'Dot Navigation', index);
+                });
+
+                // キーボード操作対応
+                dot.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        currentSlideIndex = index;
+                        showSlide(currentSlideIndex);
+                        restartAutoSlide();
+                        trackEvent('keyboard', 'Slider', 'Dot Navigation', index);
+                    }
                 });
             });
         }
@@ -3072,6 +3300,7 @@
             currentSlideIndex += direction;
             showSlide(currentSlideIndex);
             restartAutoSlide();
+            trackEvent('click', 'Slider', 'Arrow Navigation', direction);
         }
 
         function preloadNextImage() {
@@ -3103,6 +3332,13 @@
             startAutoSlide();
         }
 
+        // モバイルナビゲーション
+        function toggleMobileNav() {
+            const navUl = document.querySelector('nav ul');
+            navUl.classList.toggle('active');
+            trackEvent('click', 'Navigation', 'Mobile Toggle', 1);
+        }
+
         // スムーススクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -3113,6 +3349,7 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    trackEvent('click', 'Navigation', 'Anchor Link', this.getAttribute('href'));
                 }
             });
         });
@@ -3121,53 +3358,46 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 slideDirection(-1);
+                trackEvent('keyboard', 'Slider', 'Arrow Left', 1);
             } else if (e.key === 'ArrowRight') {
                 slideDirection(1);
+                trackEvent('keyboard', 'Slider', 'Arrow Right', 1);
             }
         });
 
-        // タッチスワイプのサポート
+        // タッチスワイプのサポート - 改良版
         let touchStartX = 0;
         let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
 
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
 
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
         }, { passive: true });
 
         function handleSwipe() {
             const swipeThreshold = 50;
-            const swipeDistance = touchStartX - touchEndX;
+            const swipeDistanceX = Math.abs(touchEndX - touchStartX);
+            const swipeDistanceY = Math.abs(touchEndY - touchStartY);
            
-            if (Math.abs(swipeDistance) > swipeThreshold) {
-                if (swipeDistance > 0) {
-                    slideDirection(1);
+            // 横方向のスワイプが縦方向より大きい場合のみ処理
+            if (swipeDistanceX > swipeDistanceY && swipeDistanceX > swipeThreshold) {
+                if (touchEndX < touchStartX) {
+                    slideDirection(1); // 左にスワイプ = 次へ
+                    trackEvent('touch', 'Slider', 'Swipe Left', 1);
                 } else {
-                    slideDirection(-1);
+                    slideDirection(-1); // 右にスワイプ = 前へ
+                    trackEvent('touch', 'Slider', 'Swipe Right', 1);
                 }
             }
         }
-
-        // パフォーマンス監視
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log('📈 Load Performance:', {
-                    'DOM Ready': Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart) + 'ms',
-                    'Full Load': Math.round(perfData.loadEventEnd - perfData.fetchStart) + 'ms'
-                });
-
-                // パフォーマンス情報をコンソールに表示
-                if (performance.getEntriesByType('paint').length > 0) {
-                    const fcp = performance.getEntriesByType('paint')[0].startTime;
-                    console.log('📊 FCP (First Contentful Paint):', Math.round(fcp) + 'ms');
-                }
-            }, 100);
-        });
 
         // ブログシステム
         class BlogManager {
@@ -3194,6 +3424,7 @@
                     clearTimeout(searchTimeout);
                     searchTimeout = setTimeout(() => {
                         this.performSearch(e.target.value);
+                        trackEvent('search', 'Blog', 'Search Query', e.target.value.length);
                     }, 300);
                 });
             }
@@ -3206,6 +3437,7 @@
                         this.currentCategory = btn.dataset.category;
                         this.currentPage = 1;
                         this.updateDisplay();
+                        trackEvent('click', 'Blog Filter', btn.dataset.category, 1);
                     });
                 });
             }
@@ -3218,6 +3450,7 @@
                     if (this.currentPage > 1) {
                         this.currentPage--;
                         this.updateDisplay();
+                        trackEvent('click', 'Blog Pagination', 'Previous', this.currentPage);
                     }
                 });
 
@@ -3226,6 +3459,7 @@
                     if (this.currentPage < maxPages) {
                         this.currentPage++;
                         this.updateDisplay();
+                        trackEvent('click', 'Blog Pagination', 'Next', this.currentPage);
                     }
                 });
             }
@@ -3334,13 +3568,43 @@
             submitBtn.textContent = '送信中...';
             submitBtn.disabled = true;
            
+            // フォームデータをGoogle Analyticsに送信
+            const formData = new FormData(event.target);
+            trackEvent('form_submit', 'Contact Form', formData.get('service'), 1);
+           
             setTimeout(() => {
                 alert('お問い合わせありがとうございます！48時間以内にご返信いたします。\n\nお急ぎの場合は、LINEでもお気軽にお問い合わせください！');
                 event.target.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
+                trackEvent('form_success', 'Contact Form', 'Form Submitted Successfully', 1);
             }, 2000);
         }
+
+        // パフォーマンス監視
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('📈 Load Performance:', {
+                    'DOM Ready': Math.round(perfData.domContentLoadedEventEnd - perfData.fetchStart) + 'ms',
+                    'Full Load': Math.round(perfData.loadEventEnd - perfData.fetchStart) + 'ms'
+                });
+
+                // パフォーマンス情報をGoogle Analyticsに送信
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'timing_complete', {
+                        name: 'page_load',
+                        value: Math.round(perfData.loadEventEnd - perfData.fetchStart)
+                    });
+                }
+
+                // パフォーマンス情報をコンソールに表示
+                if (performance.getEntriesByType('paint').length > 0) {
+                    const fcp = performance.getEntriesByType('paint')[0].startTime;
+                    console.log('📊 FCP (First Contentful Paint):', Math.round(fcp) + 'ms');
+                }
+            }, 100);
+        });
 
         // アプリケーション初期化
         document.addEventListener('DOMContentLoaded', () => {
@@ -3348,7 +3612,7 @@
             const blogManager = new BlogManager();
             initImageSlider();
             
-            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization and LINE integration');
+            console.log('🚀 AI Art Studio initialized with Core Web Vitals optimization, Google Analytics 4, and enhanced UX');
         });
 
         // Web Vitals ライブラリの動的読み込み（オプション）
@@ -3361,7 +3625,7 @@
                     const sendToAnalytics = (metric) => {
                         console.log(`📊 ${metric.name}:`, Math.round(metric.value) + (metric.name === 'CLS' ? '' : 'ms'));
                         
-                        // Google Analytics 4 への送信（実装時）
+                        // Google Analytics 4 への送信
                         if (typeof gtag !== 'undefined') {
                             gtag('event', 'web_vitals', {
                                 event_category: 'Web Vitals',
@@ -3402,13 +3666,25 @@
         // エラーハンドリング
         window.addEventListener('error', (e) => {
             console.error('JavaScript Error:', e.error);
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'exception', {
+                    description: e.error.toString(),
+                    fatal: false
+                });
+            }
         });
 
         // リソース読み込みエラーの監視
         window.addEventListener('error', (e) => {
             if (e.target.tagName === 'IMG') {
                 console.warn('Image load failed:', e.target.src);
-                // フォールバック画像の設定など
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'resource_load_error', {
+                        event_category: 'Resource',
+                        event_label: 'Image Load Failed',
+                        value: 1
+                    });
+                }
             }
         }, true);
     </script>
@@ -3417,8 +3693,15 @@
     <script>
         // 追加機能の遅延読み込み
         setTimeout(() => {
-            // Analytics、チャットボット、その他の非クリティカル機能
             console.log('📡 Loading additional features...');
+            
+            // Microsoft Clarity (ヒートマップ)の読み込み
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
+            
         }, 3000);
     </script>
 
