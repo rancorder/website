@@ -1,155 +1,332 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- メインページ -->
-    <url>
-        <loc>https://aistudio.netlify.app/</loc>
-        <lastmod>2025-07-30</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <!-- 既存ページ -->
-    <url>
-        <loc>https://aistudio.netlify.app/portfolio.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/gallery.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- サンプルサイト -->
-    <url>
-        <loc>https://aistudio.netlify.app/beauty-salon.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/bakery.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <!-- ケーススタディ -->
-    <url>
-        <loc>https://aistudio.netlify.app/case_study_chameleon.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/case_study_lizard.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/case_study_cubes.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <!-- ブログ記事 -->
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-beauty-prompt-mastery.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-comparison.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/java-2025-real-talk.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/reina-hide-programming-love.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-generation-basics.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-trends-2025.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/business-benefits.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/midjourney-new-features.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/prompt-techniques.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/stable-diffusion-3-guide.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/cyberpunk-city-process.html</loc>
-        <lastmod>2025-07-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
-    <!-- 🌸 レイナの新記事（2025年7月追加） -->
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-chat-website-tutorial.html</loc>
-        <lastmod>2025-07-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://aistudio.netlify.app/blog/ai-website-generator.html</loc>
-        <lastmod>2025-07-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
+<!-- メインページ -->
+<url>
+    <loc>https://aistudio.netlify.app/</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>AI Art Studio - プロデューサーひで×三姉妹チーム</image:caption>
+        <image:title>AI Art Studio メインチーム写真</image:title>
+    </image:image>
+</url>
+
+<!-- チーム紹介セクション -->
+<url>
+    <loc>https://aistudio.netlify.app/#team</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+</url>
+
+<!-- サービスセクション -->
+<url>
+    <loc>https://aistudio.netlify.app/#services</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+</url>
+
+<!-- ブログセクション -->
+<url>
+    <loc>https://aistudio.netlify.app/#blog</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+</url>
+
+<!-- お問い合わせセクション -->
+<url>
+    <loc>https://aistudio.netlify.app/#contact</loc>
+    <lastmod>2025-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+</url>
+
+<!-- ===== レイナのブログ記事 ===== -->
+<!-- AI Website Generator -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-website-generator.html</loc>
+    <lastmod>2025-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>レイナ流AI Website Generator</image:caption>
+    </image:image>
+</url>
+
+<!-- AIチャットサイト作成チュートリアル -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-chat-website-tutorial.html</loc>
+    <lastmod>2025-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>レイナ流AIチャットサイト作成チュートリアル</image:caption>
+    </image:image>
+</url>
+
+<!-- AI画像生成ビジネス戦略 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-image-generation-business-2025.html</loc>
+    <lastmod>2025-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>レイナ流AI画像生成ビジネス戦略</image:caption>
+    </image:image>
+</url>
+
+<!-- Gemini Colab自動生成ツール -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/gemini-colab-auto-generator.html</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>GeminiでAIセクシー美女を無限生成！</image:caption>
+    </image:image>
+</url>
+
+<!-- AI限界記事 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/reina_AI_rimit.html</loc>
+    <lastmod>2025-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>レイナが語るAI画像生成の限界と秘策</image:caption>
+    </image:image>
+</url>
+
+<!-- AI美女生成の極意 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-beauty-prompt-mastery.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>AI美女生成の極意 - レイナが伝授</image:caption>
+    </image:image>
+</url>
+
+<!-- Java 2025年のぶっちゃけ話 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/java-2025-real-talk.html</loc>
+    <lastmod>2025-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>Java 2025年のぶっちゃけ話</image:caption>
+    </image:image>
+</url>
+
+<!-- 恋愛プログラミング論 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/reina-hide-programming-love.html</loc>
+    <lastmod>2025-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png</image:loc>
+        <image:caption>レイナとひでの恋愛プログラミング論</image:caption>
+    </image:image>
+</url>
+
+<!-- プロンプト作成の秘訣 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/prompt-techniques.html</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- ===== ひでの記事 ===== -->
+<!-- 企業のAI導入メリット -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/business-benefits.html</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- AI開発比較実験 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-comparison.html</loc>
+    <lastmod>2025-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- ===== レオナの記事 ===== -->
+<!-- AI画像生成の基礎 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-generation-basics.html</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- Python自動化術 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/python-automation-guide.html</loc>
+    <lastmod>2025-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- クラウドサービス比較 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/cloud-services-comparison-2025.html</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- データベース設計 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/modern-database-design.html</loc>
+    <lastmod>2025-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- Webセキュリティ -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/web-security-2025.html</loc>
+    <lastmod>2025-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- RESTful API設計 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/restful-api-design-guide.html</loc>
+    <lastmod>2025-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- DevOps完全攻略 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/devops-complete-guide.html</loc>
+    <lastmod>2025-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- アジャイル開発 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/agile-development-2025.html</loc>
+    <lastmod>2025-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+</url>
+
+<!-- ===== エレナの記事 ===== -->
+<!-- Midjourney V6.1新機能 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/midjourney-new-features.html</loc>
+    <lastmod>2025-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- サイバーパンク都市制作 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/cyberpunk-city-process.html</loc>
+    <lastmod>2025-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/cyberpunk_city.JPG</image:loc>
+        <image:caption>サイバーパンク都市制作プロセス</image:caption>
+    </image:image>
+</url>
+
+<!-- 2025年AIトレンド -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/ai-trends-2025.html</loc>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+</url>
+
+<!-- フロントエンドフレームワーク比較 -->
+<url>
+    <loc>https://aistudio.netlify.app/blog/frontend-frameworks-2025.html</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+</url>
+
+<!-- ===== Webサイト制作実績 ===== -->
+<!-- 美容院サイト -->
+<url>
+    <loc>https://aistudio.netlify.app/beauty-salon.html</loc>
+    <lastmod>2025-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+</url>
+
+<!-- パン屋サイト -->
+<url>
+    <loc>https://aistudio.netlify.app/bakery.html</loc>
+    <lastmod>2025-06-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+</url>
+
+<!-- ===== ケーススタディ ===== -->
+<!-- カメレオンケーススタディ -->
+<url>
+    <loc>https://aistudio.netlify.app/case_study_chameleon.html</loc>
+    <lastmod>2025-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/chameleon.JPG</image:loc>
+        <image:caption>カラフルなカメレオンのAIアート作品</image:caption>
+    </image:image>
+</url>
+
+<!-- トカゲケーススタディ -->
+<url>
+    <loc>https://aistudio.netlify.app/case_study_lizard.html</loc>
+    <lastmod>2025-05-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/lizard.JPG</image:loc>
+        <image:caption>青いトカゲの彫像</image:caption>
+    </image:image>
+</url>
+
+<!-- キューブケーススタディ -->
+<url>
+    <loc>https://aistudio.netlify.app/case_study_cubes.html</loc>
+    <lastmod>2025-05-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+        <image:loc>https://raw.githubusercontent.com/rancorder/website/main/image/cubes.JPG</image:loc>
+        <image:caption>クリスタルキューブのアート</image:caption>
+    </image:image>
+</url>
+
 </urlset>
