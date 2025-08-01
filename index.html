@@ -1923,20 +1923,26 @@
             }
 
             /* ===== モバイル専用ブログ修正 ===== */
+            /* ===== モバイル専用ブログ修正（強化版） ===== */
             .blog-grid {
+                display: grid !important;
                 grid-template-columns: 1fr !important; /* 強制的に1列 */
-                gap: 1.5rem;
+                gap: 1.5rem !important;
                 margin: 2rem 0 1rem 0;
                 min-height: 300px; /* モバイル用最小高さ */
-                width: 100%;
+                width: 100% !important;
+                padding: 0 !important;
             }
 
             .blog-card {
-                width: 100%;
-                max-width: 100%;
-                margin: 0 auto;
-                display: block !important; /* 強制表示 */
-                visibility: visible !important; /* 強制表示 */
+                display: block !important; /* 最優先表示 */
+                visibility: visible !important; /* 最優先表示 */
+                opacity: 1 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                position: relative !important;
+                transform: none !important;
             }
 
             .blog-card.hidden {
@@ -2025,15 +2031,24 @@
             }
 
             /* ===== 超小型モバイル用ブログ修正 ===== */
+            /* ===== 超小型モバイル用ブログ修正（強化版） ===== */
             .blog-grid {
+                display: grid !important;
                 grid-template-columns: 1fr !important;
-                gap: 1rem;
-                padding: 0 0.5rem;
+                gap: 1rem !important;
+                padding: 0 0.5rem !important;
+                width: 100% !important;
+                margin: 1rem 0 !important;
             }
 
             .blog-card {
-                max-width: 100%;
-                margin: 0;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                width: 100% !important;
+                position: relative !important;
             }
 
             .blog-card img {
