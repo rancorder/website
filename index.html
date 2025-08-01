@@ -2969,6 +2969,66 @@
                         </div>
                     </a>
                 </article>
+
+                <!-- フロントエンド記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="React vs Vue.js vs Angular 2025年フロントエンド戦争の結末" data-content="主要フロントエンドフレームワーク徹底比較 パフォーマンス 学習コスト エコシステム">
+                    <a href="blog/frontend-frameworks-2025.html" onclick="trackEvent('click', 'Blog', 'Frontend Frameworks', 1)">
+                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=220&fit=crop&crop=center" alt="フロントエンドフレームワーク比較" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>React vs Vue.js vs Angular：2025年フロントエンド戦争の結末</h4>
+                            <p>主要フロントエンドフレームワークを徹底比較。パフォーマンス、学習コスト、エコシステムの観点から分析します。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">フロントエンド</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- API設計記事 -->
+                <article class="blog-card hover-glow" data-category="programming" data-title="RESTful API設計の黄金律 開発者が知るべき実践的ガイドライン" data-content="API設計のベストプラクティス REST GraphQL マイクロサービス 認証 エラーハンドリング">
+                    <a href="blog/restful-api-design-guide.html" onclick="trackEvent('click', 'Blog', 'API Design', 1)">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=220&fit=crop&crop=center" alt="API設計ガイド" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>RESTful API設計の黄金律：開発者が知るべき実践的ガイドライン</h4>
+                            <p>API設計のベストプラクティス。REST、GraphQL、マイクロサービス、認証、エラーハンドリングまで完全解説。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">API設計</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- DevOps記事 -->
+                <article class="blog-card hover-glow" data-category="programming business" data-title="DevOps完全攻略 CI CD Docker Kubernetes で開発生産性を極限まで高める方法" data-content="DevOps 継続的インテグレーション 継続的デプロイ コンテナ化 オーケストレーション">
+                    <a href="blog/devops-complete-guide.html" onclick="trackEvent('click', 'Blog', 'DevOps Guide', 1)">
+                        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=400&h=220&fit=crop&crop=center" alt="DevOps完全攻略" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>DevOps完全攻略：CI/CD・Docker・Kubernetesで開発生産性を極限まで高める方法</h4>
+                            <p>DevOpsの全てを解説。継続的インテグレーション・デプロイ、コンテナ化、オーケストレーションで開発効率を最大化。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">DevOps</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- アジャイル開発記事 -->
+                <article class="blog-card hover-glow" data-category="business" data-title="アジャイル開発2025 スクラム カンバン リモートチームでの実践術" data-content="アジャイル開発手法 スクラム カンバン リモートワーク チーム管理 プロジェクト成功の秘訣">
+                    <a href="blog/agile-development-2025.html" onclick="trackEvent('click', 'Blog', 'Agile Development', 1)">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=220&fit=crop&crop=center" alt="アジャイル開発" loading="lazy">
+                        <div class="blog-card-content">
+                            <h4>アジャイル開発2025：スクラム・カンバン・リモートチームでの実践術</h4>
+                            <p>最新のアジャイル開発手法を完全解説。スクラム、カンバン、リモートワークでのチーム管理とプロジェクト成功の秘訣。</p>
+                            <div class="blog-meta">
+                                <span class="blog-tag">アジャイル</span>
+                                <span>2025年1月</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
             </div>
 
             <!-- ページネーション -->
@@ -3598,55 +3658,110 @@
             }
         }
 
-        // ===== モバイル特化ブログシステム - 修正版 =====
+        // ===== 完全修正版ブログシステム - 14記事対応 =====
         class BlogManager {
             constructor() {
-                this.articles = document.querySelectorAll('.blog-card');
-                this.searchInput = document.getElementById('blogSearch');
-                this.filterButtons = document.querySelectorAll('.filter-btn');
+                this.articles = [];
+                this.searchInput = null;
+                this.filterButtons = [];
                 this.currentCategory = 'all';
                 this.currentPage = 1;
                 this.articlesPerPage = window.innerWidth <= 768 ? 4 : 6; // モバイルは4記事ずつ
-                this.init();
+                this.isInitialized = false;
+                this.debugMode = true; // デバッグモード有効
                 
-                // デバッグ情報
-                console.log('🔧 BlogManager initialized');
-                console.log('📱 Mobile mode:', window.innerWidth <= 768);
-                console.log('📝 Total articles:', this.articles.length);
-                console.log('📄 Articles per page:', this.articlesPerPage);
-            }
-
-            init() {
-                this.setupSearch();
-                this.setupFilters();
-                this.setupPagination();
-                this.updateDisplay();
-                this.setupMobileDebug(); // デバッグ用
-            }
-
-            // デバッグ用関数（開発時のみ）
-            setupMobileDebug() {
-                if (window.innerWidth <= 768) {
-                    console.log('📱 Mobile Blog Debug Mode');
-                    this.articles.forEach((article, index) => {
-                        console.log(`Article ${index}:`, {
-                            display: window.getComputedStyle(article).display,
-                            visibility: window.getComputedStyle(article).visibility,
-                            className: article.className
-                        });
-                    });
+                // DOM読み込み完了を待つ
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => this.init());
+                } else {
+                    this.init();
                 }
             }
 
+            init() {
+                console.log('🚀 BlogManager initializing...');
+                
+                // DOM要素の再取得
+                this.articles = document.querySelectorAll('.blog-card');
+                this.searchInput = document.getElementById('blogSearch');
+                this.filterButtons = document.querySelectorAll('.filter-btn');
+                
+                // 初期化チェック
+                if (this.articles.length === 0) {
+                    console.error('❌ No blog articles found!');
+                    setTimeout(() => this.init(), 500); // 500ms後に再試行
+                    return;
+                }
+                
+                if (!this.searchInput || this.filterButtons.length === 0) {
+                    console.error('❌ Blog controls not found!');
+                    setTimeout(() => this.init(), 500);
+                    return;
+                }
+                
+                console.log('✅ BlogManager initialized successfully');
+                console.log('📱 Mobile mode:', window.innerWidth <= 768);
+                console.log('📝 Total articles:', this.articles.length);
+                console.log('📄 Articles per page:', this.articlesPerPage);
+                
+                this.setupSearch();
+                this.setupFilters();
+                this.setupPagination();
+                this.resetAllArticles(); // 全記事を初期状態にリセット
+                this.updateDisplay();
+                this.isInitialized = true;
+                
+                if (this.debugMode) {
+                    this.runDiagnostics();
+                }
+            }
+
+            // 診断機能
+            runDiagnostics() {
+                console.log('🔍 Running blog diagnostics...');
+                console.log('Articles found:', this.articles.length);
+                
+                this.articles.forEach((article, index) => {
+                    const style = window.getComputedStyle(article);
+                    console.log(`Article ${index + 1}:`, {
+                        title: article.dataset.title?.substring(0, 30) + '...',
+                        category: article.dataset.category,
+                        display: style.display,
+                        visibility: style.visibility,
+                        className: article.className
+                    });
+                });
+            }
+
+            // 全記事を初期状態にリセット
+            resetAllArticles() {
+                console.log('🔄 Resetting all articles to initial state...');
+                this.articles.forEach((article, index) => {
+                    // すべてのクラスとスタイルをリセット
+                    article.classList.remove('hidden');
+                    article.style.display = 'block';
+                    article.style.visibility = 'visible';
+                    
+                    if (this.debugMode) {
+                        console.log(`Article ${index + 1} reset:`, article.dataset.title?.substring(0, 30));
+                    }
+                });
+            }
+
             setupSearch() {
+                if (!this.searchInput) return;
+                
                 let searchTimeout;
                 this.searchInput.addEventListener('input', (e) => {
                     clearTimeout(searchTimeout);
                     searchTimeout = setTimeout(() => {
                         this.performSearch(e.target.value);
-                        trackEvent('search', 'Blog', 'Search Query', e.target.value.length);
+                        if (typeof trackEvent !== 'undefined') {
+                            trackEvent('search', 'Blog', 'Search Query', e.target.value.length);
+                        }
                     }, 300);
                 });
+                console.log('✅ Search setup complete');
             }
 
             setupFilters() {
@@ -3659,20 +3774,33 @@
                         this.currentCategory = btn.dataset.category;
                         this.currentPage = 1;
                         this.updateDisplay();
-                        trackEvent('click', 'Blog Filter', btn.dataset.category, 1);
+                        
+                        if (typeof trackEvent !== 'undefined') {
+                            trackEvent('click', 'Blog Filter', btn.dataset.category, 1);
+                        }
                     });
                 });
+                console.log('✅ Filters setup complete');
             }
 
             setupPagination() {
                 const prevBtn = document.getElementById('prevBtn');
                 const nextBtn = document.getElementById('nextBtn');
 
+                if (!prevBtn || !nextBtn) {
+                    console.error('❌ Pagination buttons not found!');
+                    return;
+                }
+
                 prevBtn.addEventListener('click', () => {
                     if (this.currentPage > 1) {
                         this.currentPage--;
                         this.updateDisplay();
-                        trackEvent('click', 'Blog Pagination', 'Previous', this.currentPage);
+                        console.log('⬅️ Previous page:', this.currentPage);
+                        
+                        if (typeof trackEvent !== 'undefined') {
+                            trackEvent('click', 'Blog Pagination', 'Previous', this.currentPage);
+                        }
                     }
                 });
 
@@ -3681,30 +3809,38 @@
                     if (this.currentPage < maxPages) {
                         this.currentPage++;
                         this.updateDisplay();
-                        trackEvent('click', 'Blog Pagination', 'Next', this.currentPage);
+                        console.log('➡️ Next page:', this.currentPage);
+                        
+                        if (typeof trackEvent !== 'undefined') {
+                            trackEvent('click', 'Blog Pagination', 'Next', this.currentPage);
+                        }
                     }
                 });
+                
+                console.log('✅ Pagination setup complete');
             }
 
             performSearch(query) {
                 console.log('🔍 Search performed:', query);
                 
-                this.articles.forEach(article => {
+                this.articles.forEach((article, index) => {
                     const title = article.dataset.title?.toLowerCase() || '';
                     const content = article.dataset.content?.toLowerCase() || '';
                     const searchQuery = query.toLowerCase();
 
-                    if (title.includes(searchQuery) || content.includes(searchQuery)) {
+                    if (!query || title.includes(searchQuery) || content.includes(searchQuery)) {
                         article.style.display = 'block';
                         article.style.visibility = 'visible';
+                        article.classList.remove('hidden');
                     } else {
                         article.style.display = 'none';
                         article.style.visibility = 'hidden';
+                        article.classList.add('hidden');
                     }
                 });
 
                 this.currentPage = 1;
-                this.updatePagination();
+                this.updateDisplay();
             }
 
             filterArticles() {
@@ -3718,19 +3854,19 @@
                                      categories.includes(this.currentCategory);
 
                     if (shouldShow) {
-                        article.style.display = 'block';
-                        article.style.visibility = 'visible';
-                        article.classList.remove('hidden');
-                        visibleCount++;
-                        
-                        // モバイルデバッグ
-                        if (window.innerWidth <= 768) {
-                            console.log(`✅ Article ${index} visible:`, article.dataset.title?.substring(0, 30));
+                        // 検索で非表示になっていない場合のみ表示
+                        if (!article.classList.contains('hidden')) {
+                            article.style.display = 'block';
+                            article.style.visibility = 'visible';
+                            visibleCount++;
+                            
+                            if (this.debugMode) {
+                                console.log(`✅ Article ${index + 1} visible:`, article.dataset.title?.substring(0, 30));
+                            }
                         }
                     } else {
                         article.style.display = 'none';
                         article.style.visibility = 'hidden';
-                        article.classList.add('hidden');
                     }
                 });
 
@@ -3739,6 +3875,11 @@
             }
 
             updateDisplay() {
+                if (!this.isInitialized) {
+                    console.log('⏳ BlogManager not yet initialized, skipping update');
+                    return;
+                }
+                
                 console.log('🔄 Updating display...');
                 
                 const visibleCount = this.filterArticles();
@@ -3746,70 +3887,85 @@
                 this.updatePagination();
                
                 // 検索結果なしの表示
+                this.handleNoResults(visibleCount);
+
+                // 強制再描画（モバイル対応）
+                this.forceRedraw();
+                
+                console.log('✅ Display update complete');
+            }
+
+            handleNoResults(visibleCount) {
                 const noResults = document.querySelector('.no-results');
                 if (noResults) noResults.remove();
                
                 if (visibleCount === 0) {
                     const blogGrid = document.getElementById('blogGrid');
-                    const noResultsDiv = document.createElement('div');
-                    noResultsDiv.className = 'no-results';
-                    noResultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-dim); font-size: 1.2rem; margin: 2rem 0; grid-column: 1 / -1;">該当する記事が見つかりませんでした。</p>';
-                    blogGrid.appendChild(noResultsDiv);
+                    if (blogGrid) {
+                        const noResultsDiv = document.createElement('div');
+                        noResultsDiv.className = 'no-results';
+                        noResultsDiv.innerHTML = '<p style="text-align: center; color: var(--text-dim); font-size: 1.2rem; margin: 2rem 0; grid-column: 1 / -1;">該当する記事が見つかりませんでした。</p>';
+                        blogGrid.appendChild(noResultsDiv);
+                    }
                 }
+            }
 
-                // モバイル用強制再描画
-                if (window.innerWidth <= 768) {
-                    const blogGrid = document.getElementById('blogGrid');
+            forceRedraw() {
+                const blogGrid = document.getElementById('blogGrid');
+                if (blogGrid && window.innerWidth <= 768) {
+                    // モバイル用強制再描画
                     blogGrid.style.display = 'none';
                     blogGrid.offsetHeight; // 強制リフロー
                     blogGrid.style.display = 'grid';
-                    
                     console.log('📱 Mobile force redraw completed');
                 }
             }
 
             paginateArticles() {
-                const visibleArticles = Array.from(this.articles).filter(article => 
-                    article.style.display !== 'none' && !article.classList.contains('hidden')
-                );
+                // 現在表示中の記事を取得（非表示でないもの）
+                const visibleArticles = Array.from(this.articles).filter(article => {
+                    const computedStyle = window.getComputedStyle(article);
+                    return computedStyle.display !== 'none' && !article.classList.contains('hidden');
+                });
 
                 const startIndex = (this.currentPage - 1) * this.articlesPerPage;
                 const endIndex = startIndex + this.articlesPerPage;
 
-                console.log('📄 Pagination:', {
+                console.log('📄 Pagination details:', {
                     page: this.currentPage,
-                    total: visibleArticles.length,
-                    start: startIndex,
-                    end: endIndex,
-                    perPage: this.articlesPerPage
+                    totalVisible: visibleArticles.length,
+                    startIndex: startIndex,
+                    endIndex: endIndex,
+                    perPage: this.articlesPerPage,
+                    maxPages: Math.ceil(visibleArticles.length / this.articlesPerPage)
                 });
 
-                // すべての表示中記事を一旦非表示
-                visibleArticles.forEach(article => {
-                    article.classList.add('hidden');
-                    article.style.display = 'none';
-                });
-
-                // 現在のページの記事のみ表示
+                // すべての表示対象記事を一旦非表示
                 visibleArticles.forEach((article, index) => {
                     if (index >= startIndex && index < endIndex) {
-                        article.classList.remove('hidden');
+                        // 現在のページに表示する記事
                         article.style.display = 'block';
                         article.style.visibility = 'visible';
+                        article.classList.remove('hidden');
                         
-                        // モバイルデバッグ
-                        if (window.innerWidth <= 768) {
-                            console.log(`📱 Page ${this.currentPage} - Showing article ${index}:`, article.dataset.title?.substring(0, 20));
+                        if (this.debugMode) {
+                            console.log(`📋 Page ${this.currentPage} - Showing article ${index + 1}:`, article.dataset.title?.substring(0, 30));
                         }
+                    } else {
+                        // 他のページの記事は非表示
+                        article.style.display = 'none';
+                        article.style.visibility = 'hidden';
                     }
                 });
             }
 
             getMaxPages() {
-                const visibleArticles = Array.from(this.articles).filter(article => 
-                    article.style.display !== 'none' && !article.classList.contains('hidden')
-                );
-                return Math.ceil(visibleArticles.length / this.articlesPerPage);
+                const visibleArticles = Array.from(this.articles).filter(article => {
+                    const computedStyle = window.getComputedStyle(article);
+                    return computedStyle.display !== 'none' && !article.classList.contains('hidden');
+                });
+                const maxPages = Math.ceil(visibleArticles.length / this.articlesPerPage);
+                return maxPages || 1;
             }
 
             updatePagination() {
@@ -3818,16 +3974,62 @@
                 const nextBtn = document.getElementById('nextBtn');
                 const pageInfo = document.getElementById('pageInfo');
 
+                if (!prevBtn || !nextBtn || !pageInfo) {
+                    console.error('❌ Pagination elements not found!');
+                    return;
+                }
+
                 prevBtn.disabled = this.currentPage === 1;
-                nextBtn.disabled = this.currentPage === maxPages || maxPages === 0;
-                pageInfo.textContent = `${this.currentPage} / ${maxPages || 1}`;
+                nextBtn.disabled = this.currentPage === maxPages;
+                pageInfo.textContent = `${this.currentPage} / ${maxPages}`;
+                
+                // ページネーション要素の表示制御
+                const paginationContainer = document.getElementById('blogPagination');
+                if (paginationContainer) {
+                    if (maxPages > 1) {
+                        paginationContainer.style.display = 'flex';
+                    } else {
+                        paginationContainer.style.display = 'none';
+                    }
+                }
                 
                 console.log('🔢 Pagination updated:', {
                     current: this.currentPage,
                     max: maxPages,
                     prevDisabled: prevBtn.disabled,
-                    nextDisabled: nextBtn.disabled
+                    nextDisabled: nextBtn.disabled,
+                    visible: maxPages > 1
                 });
+            }
+
+            // 緊急修復機能
+            emergencyFix() {
+                console.log('🚨 Emergency fix activated!');
+                this.resetAllArticles();
+                this.currentPage = 1;
+                this.currentCategory = 'all';
+                
+                // フィルターボタンをリセット
+                this.filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.category === 'all') {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // 最初のページの記事を強制表示
+                this.articles.forEach((article, index) => {
+                    if (index < this.articlesPerPage) {
+                        article.style.display = 'block';
+                        article.style.visibility = 'visible';
+                        article.classList.remove('hidden');
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+                
+                this.updatePagination();
+                console.log('🚨 Emergency fix completed!');
             }
         }
 
