@@ -68,19 +68,21 @@
             color: #1da1f2;
         }
 
-        /* メインヒーロー - 4人集合写真背景バージョン */
+        /* メインヒーロー - 4人集合写真背景バージョン（全体表示） */
         .hero {
             padding: 120px 0 60px;
             background: 
                 linear-gradient(135deg, rgba(45, 52, 54, 0.85) 0%, rgba(99, 110, 114, 0.8) 50%, rgba(116, 185, 255, 0.75) 100%),
                 url('https://raw.githubusercontent.com/rancorder/website/main/image/reina_1.png');
-            background-size: cover;
+            background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
             color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
         }
 
         .hero::before {
