@@ -328,5 +328,11 @@
         <image:caption>クリスタルキューブのアート</image:caption>
     </image:image>
 </url>
-
+        
+<url>
+    <loc>https://aistudio.netlify.app/prompt-generator.html</loc>
+    <lastmod>2025-08-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+</url>
 </urlset>
