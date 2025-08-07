@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Art Studio - プロフェッショナル プロンプト生成ツール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .pro-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .control-panel {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .mode-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            padding: 15px 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .mode-btn.single {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .mode-btn.dual {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+
+        .mode-btn.batch {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .mode-btn.active {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .character-select {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .char-button {
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .char-button.female {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+        }
+
+        .char-button.male {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .char-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .char-button.active {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .dual-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dual-character {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .dual-character h4 {
+            margin-bottom: 10px;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .batch-controls {
+            background: rgba(255, 154, 158, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 154, 158, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .output-panel {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .output-title {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .copy-btn {
+            padding: 8px 15px;
+            background: #00ff00;
+            color: #1e1e1e;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #00cc00;
+        }
+
+        .prompt-output {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 300px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .batch-output {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .batch-item {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .batch-header {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-batch-btn {
+            padding: 5px 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .stats-panel {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .leona-comment {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        #singleSettings, #dualSettings, #batchSettings {
+            display: none;
+        }
+
+        #singleSettings.active, #dualSettings.active, #batchSettings.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .mode-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .dual-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 プロフェッショナル プロンプト生成ツール</h1>
+            <div class="subtitle">AI Art Studio - 高品質プロンプト自動生成システム</div>
+        </div>
+
+        <div class="pro-banner">
+            ⚡ プロ仕様の高精度プロンプト生成 - あらゆるAI画像生成エンジンに対応 🚀
+        </div>
+
+        <div class="main-content">
+            <div class="control-panel">
+                <h3>🎯 生成モード選択</h3>
+                <div class="mode-selector">
+                    <button class="mode-btn single active" onclick="selectMode('single')">
+                        🎭 シングル生成
+                    </button>
+                    <button class="mode-btn dual" onclick="selectMode('dual')">
+                        👫 デュアル生成
+                    </button>
+                    <button class="mode-btn batch" onclick="selectMode('batch')">
+                        🎲 バッチ生成
+                    </button>
+                </div>
+
+                <!-- シングル生成設定 -->
+                <div id="singleSettings" class="active">
+                    <h3>🎭 キャラクター設定</h3>
+                    <div class="character-select">
+                        <button class="char-button female active" onclick="selectCharacter('female')">
+                            👩 女性キャラクター<br><small>Female Character</small>
+                        </button>
+                        <button class="char-button male" onclick="selectCharacter('male')">
+                            👨 男性キャラクター<br><small>Male Character</small>
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">👶 年齢設定</label>
+                        <select id="age">
+                            <option value="teenager">10代 (Teenager)</option>
+                            <option value="young_adult">20代 (Young Adult)</option>
+                            <option value="adult">30代 (Adult)</option>
+                            <option value="mature">40代+ (Mature)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expression">😊 表情・感情</label>
+                        <select id="expression">
+                            <option value="neutral">中立 (Neutral)</option>
+                            <option value="happy">幸せ (Happy)</option>
+                            <option value="sad">悲しい (Sad)</option>
+                            <option value="angry">怒り (Angry)</option>
+                            <option value="surprised">驚き (Surprised)</option>
+                            <option value="shy">恥ずかしい (Shy)</option>
+                            <option value="confident">自信満々 (Confident)</option>
+                            <option value="excited">興奮 (Excited)</option>
+                            <option value="mysterious">神秘的 (Mysterious)</option>
+                            <option value="gentle">優しい (Gentle)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="style">🎨 アートスタイル</label>
+                        <select id="style">
+                            <option value="anime">アニメ風 (Anime Style)</option>
+                            <option value="realistic">リアル系 (Realistic)</option>
+                            <option value="digital_art">デジタルアート (Digital Art)</option>
+                            <option value="oil_painting">油絵風 (Oil Painting)</option>
+                            <option value="watercolor">水彩画 (Watercolor)</option>
+                            <option value="comic">コミック風 (Comic Style)</option>
+                            <option value="fantasy">ファンタジー (Fantasy Art)</option>
+                            <option value="cyberpunk">サイバーパンク (Cyberpunk)</option>
+                            <option value="vintage">ビンテージ (Vintage)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outfit">👗 衣装・スタイル</label>
+                        <select id="outfit">
+                            <option value="casual">カジュアル (Casual)</option>
+                            <option value="formal">フォーマル (Formal)</option>
+                            <option value="business">ビジネス (Business)</option>
+                            <option value="fantasy">ファンタジー (Fantasy)</option>
+                            <option value="gothic">ゴシック (Gothic)</option>
+                            <option value="school">学校制服 (School Uniform)</option>
+                            <option value="traditional">伝統衣装 (Traditional)</option>
+                            <option value="futuristic">未来的 (Futuristic)</option>
+                            <option value="vintage">ビンテージ (Vintage)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="background">🎬 背景設定</label>
+                        <select id="background">
+                            <option value="studio">スタジオ (Studio)</option>
+                            <option value="outdoor">屋外 (Outdoor)</option>
+                            <option value="indoor">室内 (Indoor)</option>
+                            <option value="fantasy">ファンタジー世界 (Fantasy World)</option>
+                            <option value="cyberpunk">サイバーパンク都市 (Cyberpunk City)</option>
+                            <option value="nature">自然 (Nature)</option>
+                            <option value="space">宇宙 (Space)</option>
+                            <option value="abstract">抽象的 (Abstract)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lighting">💡 ライティング</label>
+                        <select id="lighting">
+                            <option value="natural">自然光 (Natural Light)</option>
+                            <option value="dramatic">ドラマチック (Dramatic)</option>
+                            <option value="soft">ソフト (Soft Light)</option>
+                            <option value="neon">ネオン (Neon)</option>
+                            <option value="golden_hour">ゴールデンアワー (Golden Hour)</option>
+                            <option value="backlit">逆光 (Backlit)</option>
+                            <option value="rim_light">リムライト (Rim Light)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="custom">✨ カスタム要素</label>
+                        <textarea id="custom" placeholder="追加したい要素を入力...&#10;例: 魔法のオーラ, 特殊な小道具, 特定のポーズなど"></textarea>
+                    </div>
+                </div>
+
+                <!-- デュアル生成設定 -->
+                <div id="dualSettings">
+                    <div class="dual-controls">
+                        <div class="dual-character">
+                            <h4>👤 キャラクター1</h4>
+                            <div class="form-group">
+                                <label for="char1Gender">性別</label>
+                                <select id="char1Gender">
+                                    <option value="female">女性</option>
+                                    <option value="male">男性</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1Expression">表情</label>
+                                <select id="char1Expression">
+                                    <option value="neutral">中立</option>
+                                    <option value="happy">幸せ</option>
+                                    <option value="sad">悲しい</option>
+                                    <option value="confident">自信満々</option>
+                                    <option value="shy">恥ずかしい</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="char1Outfit">衣装</label>
+                                <select id="char1Outfit">
+                                    <option value="casual">カジュアル</option>
+                                    <option value="formal">フォーマル</option>
+                                    <option value="fantasy">ファンタジー</option>
+                                    <option value="business">ビジネス</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="dual-character">
+                            <h4>👤 キャラクター2</h4>
+                            <div class="form-group">
+                                <label for="char2Gender">性別</label>
+                                <select id="char2Gender">
+                                    <option value="male">男性</option>
+                                    <option value="female">女性</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="char2Expression">表情</label>
+                                <select id="char2Expression">
+                                    <option value="neutral">中立</option>
+                                    <option value="happy">幸せ</option>
+                                    <option value="confident">自信満々</option>
+                                    <option value="surprised">驚き</option>
+                                    <option value="gentle">優しい</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="char2Outfit">�装</label>
+                                <select id="char2Outfit">
+                                    <option value="casual">カジュアル</option>
+                                    <option value="formal">フォーマル</option>
+                                    <option value="fantasy">ファンタジー</option>
+                                    <option value="business">ビジネス</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="interaction">🎭 相互作用・関係性</label>
+                        <select id="interaction">
+                            <option value="conversation">会話・対話</option>
+                            <option value="cooperation">協力・共同作業</option>
+                            <option value="romantic">ロマンチック</option>
+                            <option value="family">家族的</option>
+                            <option value="friendship">友情</option>
+                            <option value="professional">プロフェッショナル</option>
+                            <option value="rivalry">ライバル関係</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dualBackground">🎬 背景</label>
+                        <select id="dualBackground">
+                            <option value="studio">スタジオ</option>
+                            <option value="cafe">カフェ</option>
+                            <option value="office">オフィス</option>
+                            <option value="park">公園</option>
+                            <option value="beach">ビーチ</option>
+                            <option value="fantasy">ファンタジー世界</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- バッチ生成設定 -->
+                <div id="batchSettings">
+                    <div class="batch-controls">
+                        <h4>🎲 バッチ生成設定</h4>
+                        <div class="form-group">
+                            <label for="batchCount">生成数</label>
+                            <select id="batchCount">
+                                <option value="3">3枚</option>
+                                <option value="5">5枚</option>
+                                <option value="8">8枚</option>
+                                <option value="10">10枚</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="variationType">バリエーション種類</label>
+                            <select id="variationType">
+                                <option value="expression">表情バリエーション</option>
+                                <option value="pose">ポーズバリエーション</option>
+                                <option value="lighting">ライティングバリエーション</option>
+                                <option value="style">スタイルバリエーション</option>
+                                <option value="outfit">衣装バリエーション</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="baseCharacter">ベースキャラクター</label>
+                            <select id="baseCharacter">
+                                <option value="female">女性</option>
+                                <option value="male">男性</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="generatePrompt()">
+                    🚀 プロンプト生成
+                </button>
+            </div>
+
+            <div class="output-panel">
+                <div class="output-header">
+                    <div class="output-title">📋 生成されたプロンプト</div>
+                    <button class="copy-btn" onclick="copyPrompt()">📋 コピー</button>
+                </div>
+                <div class="prompt-output" id="promptOutput">
+プロンプトがここに表示されます...
+
+プロフェッショナル品質保証システムにより、高品質なプロンプトを生成します。
+生成モードを選択してプロンプト生成を押してください。
+                </div>
+                
+                <div class="batch-output" id="batchOutput" style="display: none;">
+                    <!-- バッチ生成結果がここに表示されます -->
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <h3>📊 プロフェッショナル技術仕様</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">95%+</span>
+                    品質保証
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    汎用性
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">即座</span>
+                    生成速度
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">プロ仕様</span>
+                    技術レベル
+                </div>
+            </div>
+            <div class="leona-comment">
+                💭 レオナより: "特許技術なしでも、これだけプロフェッショナルなツールが作れるのよ！汎用性と品質を両立した技術力を見せてやるんだから！"
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'single';
+        let currentCharacter = 'female';
+
+        // 基本データ
+        const expressions = {
+            neutral: "calm peaceful expression",
+            happy: "bright genuine smile, cheerful expression",
+            sad: "melancholic expression, slightly downcast eyes",
+            angry: "serious stern expression, determined look",
+            surprised: "wide open eyes, amazed expression",
+            shy: "bashful expression, gentle smile",
+            confident: "confident strong expression, piercing gaze",
+            excited: "energetic animated expression, bright eyes",
+            mysterious: "enigmatic mysterious expression",
+            gentle: "kind gentle expression, warm smile"
+        };
+
+        const styles = {
+            anime: "anime style, manga style, cel shading",
+            realistic: "photorealistic, highly detailed, professional photography",
+            digital_art: "digital art, concept art, artistic illustration",
+            oil_painting: "oil painting style, classical art, painterly",
+            watercolor: "watercolor painting, soft colors, artistic",
+            comic: "comic book style, graphic novel art",
+            fantasy: "fantasy art, magical atmosphere, mystical",
+            cyberpunk: "cyberpunk style, neon colors, futuristic",
+            vintage: "vintage style, retro aesthetic, classic"
+        };
+
+        const outfits = {
+            casual: "casual modern clothing, comfortable style",
+            formal: "elegant formal wear, sophisticated attire",
+            business: "professional business attire, corporate style",
+            fantasy: "fantasy costume, magical outfit",
+            gothic: "gothic style clothing, dark elegant fashion",
+            school: "school uniform, student attire",
+            traditional: "traditional cultural clothing",
+            futuristic: "futuristic outfit, sci-fi clothing",
+            vintage: "vintage fashion, retro clothing"
+        };
+
+        const backgrounds = {
+            studio: "professional studio background, clean neutral",
+            outdoor: "beautiful outdoor scenery, natural environment",
+            indoor: "elegant indoor setting, architectural details",
+            fantasy: "magical fantasy world, ethereal atmosphere",
+            cyberpunk: "cyberpunk cityscape, neon-lit urban environment",
+            nature: "natural landscape, serene environment",
+            space: "cosmic space background, stars and nebula",
+            abstract: "abstract artistic background, creative composition"
+        };
+
+        const lighting = {
+            natural: "natural lighting, soft daylight",
+            dramatic: "dramatic lighting, strong contrast",
+            soft: "soft gentle lighting, even illumination",
+            neon: "neon lighting, colorful glow effects",
+            golden_hour: "golden hour lighting, warm sunset glow",
+            backlit: "backlit silhouette, rim lighting",
+            rim_light: "rim lighting, edge highlighting"
+        };
+
+        const interactions = {
+            conversation: "engaged in conversation, facing each other",
+            cooperation: "working together, collaborative pose",
+            romantic: "romantic interaction, intimate atmosphere",
+            family: "family-like interaction, warm relationship",
+            friendship: "friendly interaction, casual bonding",
+            professional: "professional interaction, business meeting",
+            rivalry: "competitive dynamic, contrasting poses"
+        };
+
+        function selectMode(mode) {
+            currentMode = mode;
+            
+            // モードボタンの状態更新
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.mode-btn.${mode}`).classList.add('active');
+            
+            // 設定パネルの表示切替
+            document.querySelectorAll('#singleSettings, #dualSettings, #batchSettings').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.getElementById(`${mode}Settings`).classList.add('active');
+        }
+
+        function selectCharacter(char) {
+            currentCharacter = char;
+            document.querySelectorAll('.char-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.char-button.${char}`).classList.add('active');
+        }
+
+        function generatePrompt() {
+            switch(currentMode) {
+                case 'single':
+                    generateSinglePrompt();
+                    break;
+                case 'dual':
+                    generateDualPrompt();
+                    break;
+                case 'batch':
+                    generateBatchPrompt();
+                    break;
+            }
+        }
+
+        function generateSinglePrompt() {
+            const age = document.getElementById('age').value;
+            const expression = document.getElementById('expression').value;
+            const style = document.getElementById('style').value;
+            const outfit = document.getElementById('outfit').value;
+            const background = document.getElementById('background').value;
+            const lightingType = document.getElementById('lighting').value;
+            const custom = document.getElementById('custom').value;
+
+            const genderDesc = currentCharacter === 'female' ? 
+                "beautiful young woman, feminine features" : 
+                "handsome young man, masculine features";
+
+            const ageDesc = {
+                teenager: "teenage appearance, youthful",
+                young_adult: "young adult, early twenties",
+                adult: "adult, mature appearance",
+                mature: "mature adult, distinguished"
+            };
+
+            const prompt = `${styles[style]}, professional quality illustration,
+CHARACTER: ${genderDesc}, ${ageDesc[age]},
+EXPRESSION: ${expressions[expression]},
+OUTFIT: ${outfits[outfit]},
+BACKGROUND: ${backgrounds[background]},
+LIGHTING: ${lighting[lightingType]},
+TECHNICAL: high quality, detailed, professional composition, sharp focus, perfect anatomy,${custom ? `\nCUSTOM ELEMENTS: ${custom},` : ''}
+NEGATIVE: blurry, low quality, deformed, bad anatomy, multiple heads, distorted features`;
+
+            document.getElementById('promptOutput').textContent = prompt;
+            document.getElementById('batchOutput').style.display = 'none';
+        }
+
+        function generateDualPrompt() {
+            const char1Gender = document.getElementById('char1Gender').value;
+            const char1Expression = document.getElementById('char1Expression').value;
+            const char1Outfit = document.getElementById('char1Outfit').value;
+            const char2Gender = document.getElementById('char2Gender').value;
+            const char2Expression = document.getElementById('char2Expression').value;
+            const char2Outfit = document.getElementById('char2Outfit').value;
+            const interaction = document.getElementById('interaction').value;
+            const dualBackground = document.getElementById('dualBackground').value;
+
+            const char1Desc = char1Gender === 'female' ? 
+                "beautiful young woman, feminine features" : 
+                "handsome young man, masculine features";
+            
+            const char2Desc = char2Gender === 'female' ? 
+                "beautiful young woman, feminine features" : 
+                "handsome young man, masculine features";
+
+            const prompt = `Professional dual character illustration, high quality digital art,
+LEFT CHARACTER: ${char1Desc},
+EXPRESSION: ${expressions[char1Expression]},
+OUTFIT: ${outfits[char1Outfit]},
+RIGHT CHARACTER: ${char2Desc},
+EXPRESSION: ${expressions[char2Expression]},
+OUTFIT: ${outfits[char2Outfit]},
+INTERACTION: ${interactions[interaction]},
+BACKGROUND: ${backgrounds[dualBackground]},
+TECHNICAL: high quality, detailed, balanced composition, professional lighting, perfect anatomy,
+NEGATIVE: blurry, low quality, deformed, bad anatomy, multiple heads, distorted features`;
+
+            document.getElementById('promptOutput').textContent = prompt;
+            document.getElementById('batchOutput').style.display = 'none';
+        }
+
+        function generateBatchPrompt() {
+            const count = parseInt(document.getElementById('batchCount').value);
+            const variationType = document.getElementById('variationType').value;
+            const baseCharacter = document.getElementById('baseCharacter').value;
+
+            const batchOutput = document.getElementById('batchOutput');
+            batchOutput.innerHTML = '';
+            batchOutput.style.display = 'block';
+            document.getElementById('promptOutput').textContent = `バッチ生成モード: ${count}枚の${variationType}バリエーション\n\n各バリエーションのプロンプトが下部に表示されます。`;
+
+            const baseDesc = baseCharacter === 'female' ? 
+                "beautiful young woman, feminine features" : 
+                "handsome young man, masculine features";
+
+            const variations = getVariations(variationType, count);
+
+            variations.forEach((variation, index) => {
+                const prompt = `Professional quality illustration, ${variation.style || 'digital art style'},
+CHARACTER: ${baseDesc}, young adult appearance,
+EXPRESSION: ${variation.expression || 'neutral calm expression'},
+POSE: ${variation.pose || 'standing pose, front view'},
+OUTFIT: ${variation.outfit || 'casual modern clothing'},
+LIGHTING: ${variation.lighting || 'natural lighting'},
+BACKGROUND: professional studio background,
+TECHNICAL: high quality, detailed, professional composition, sharp focus, perfect anatomy,
+NEGATIVE: blurry, low quality, deformed, bad anatomy, multiple heads, distorted features`;
+
+                addBatchItem(`バリエーション ${index + 1}: ${variation.name}`, prompt);
+            });
+        }
+
+        function getVariations(type, count) {
+            const variations = {
+                expression: [
+                    { name: "ハッピー", expression: "bright genuine smile, cheerful expression" },
+                    { name: "自信満々", expression: "confident strong expression, piercing gaze" },
+                    { name: "神秘的", expression: "enigmatic mysterious expression" },
+                    { name: "優しい", expression: "kind gentle expression, warm smile" },
+                    { name: "驚き", expression: "wide open eyes, amazed expression" },
+                    { name: "中立", expression: "calm peaceful expression" },
+                    { name: "恥ずかしい", expression: "bashful expression, gentle smile" },
+                    { name: "興奮", expression: "energetic animated expression, bright eyes" },
+                    { name: "悲しい", expression: "melancholic expression, slightly downcast eyes" },
+                    { name: "怒り", expression: "serious stern expression, determined look" }
+                ],
+                pose: [
+                    { name: "フロントビュー", pose: "standing pose, front view, arms at sides" },
+                    { name: "サイドビュー", pose: "side profile view, elegant stance" },
+                    { name: "3/4ビュー", pose: "three quarter view, slight angle" },
+                    { name: "座りポーズ", pose: "sitting pose, relaxed position" },
+                    { name: "アクションポーズ", pose: "dynamic action pose, movement" },
+                    { name: "手を腰に", pose: "hands on hips, confident stance" },
+                    { name: "腕組み", pose: "arms crossed, strong pose" },
+                    { name: "片手上げ", pose: "one hand raised, greeting gesture" },
+                    { name: "両手広げ", pose: "arms spread wide, welcoming gesture" },
+                    { name: "思考ポーズ", pose: "thoughtful pose, hand on chin" }
+                ],
+                lighting: [
+                    { name: "自然光", lighting: "natural daylight, soft even lighting" },
+                    { name: "ドラマチック", lighting: "dramatic lighting, strong contrast shadows" },
+                    { name: "ゴールデンアワー", lighting: "golden hour lighting, warm sunset glow" },
+                    { name: "ネオンライト", lighting: "neon lighting, colorful glow effects" },
+                    { name: "リムライト", lighting: "rim lighting, edge highlighting" },
+                    { name: "逆光", lighting: "backlit silhouette, rim lighting" },
+                    { name: "ソフトライト", lighting: "soft gentle lighting, even illumination" },
+                    { name: "スタジオライト", lighting: "professional studio lighting" },
+                    { name: "ムーンライト", lighting: "moonlight, cool blue tones" },
+                    { name: "ファイアーライト", lighting: "fire lighting, warm orange glow" }
+                ],
+                style: [
+                    { name: "アニメ", style: "anime style, manga style, cel shading" },
+                    { name: "リアル", style: "photorealistic, highly detailed" },
+                    { name: "デジタルアート", style: "digital art, concept art style" },
+                    { name: "油絵", style: "oil painting style, classical art" },
+                    { name: "水彩", style: "watercolor painting, soft colors" },
+                    { name: "コミック", style: "comic book style, graphic novel" },
+                    { name: "ファンタジー", style: "fantasy art, magical atmosphere" },
+                    { name: "サイバーパンク", style: "cyberpunk style, neon colors" },
+                    { name: "ビンテージ", style: "vintage style, retro aesthetic" },
+                    { name: "ミニマル", style: "minimalist art style, clean lines" }
+                ],
+                outfit: [
+                    { name: "カジュアル", outfit: "casual modern clothing, comfortable style" },
+                    { name: "フォーマル", outfit: "elegant formal wear, sophisticated" },
+                    { name: "ビジネス", outfit: "professional business attire" },
+                    { name: "ファンタジー", outfit: "fantasy costume, magical outfit" },
+                    { name: "ゴシック", outfit: "gothic style clothing, dark elegant" },
+                    { name: "制服", outfit: "school uniform, student attire" },
+                    { name: "伝統衣装", outfit: "traditional cultural clothing" },
+                    { name: "未来的", outfit: "futuristic outfit, sci-fi clothing" },
+                    { name: "スポーツ", outfit: "athletic sportswear, active clothing" },
+                    { name: "アーティスト", outfit: "artistic bohemian clothing" }
+                ]
+            };
+
+            return variations[type].slice(0, count);
+        }
+
+        function addBatchItem(title, prompt) {
+            const batchOutput = document.getElementById('batchOutput');
+            const item = document.createElement('div');
+            item.className = 'batch-item';
+            item.innerHTML = `
+                <div class="batch-header">
+                    <span>${title}</span>
+                    <button class="copy-batch-btn" onclick="copyBatchPrompt(this)">コピー</button>
+                </div>
+                <div class="batch-prompt">${prompt}</div>
+            `;
+            batchOutput.appendChild(item);
+        }
+
+        function copyPrompt() {
+            const promptText = document.getElementById('promptOutput').textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = '✅ コピー完了!';
+                btn.style.background = '#00ff00';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            });
+        }
+
+        function copyBatchPrompt(button) {
+            const promptText = button.parentElement.nextElementSibling.textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✅完了';
+                button.style.background = '#00ff00';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // 初期プロンプト生成
+        generateSinglePrompt();
+    </script>
+</body>
+</html>
