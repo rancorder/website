@@ -1147,21 +1147,48 @@
     
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function switchTab(tabId) {
+            console.log('🔄 Switching to tab:', tabId);
+            
+            // Remove active from all tab contents
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             
+            // Remove active styling from all buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('bg-purple-600');
                 btn.classList.add('bg-gray-700');
             });
             
-            document.getElementById(tabId).classList.add('active');
+            // Add active to selected tab
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                console.log('✅ Activated tab:', tabId);
+            } else {
+                console.error('❌ Tab not found:', tabId);
+            }
             
+            // Add active styling to selected button
             const btn = document.querySelector(`[data-tab="${tabId}"]`);
-            btn.classList.remove('bg-gray-700');
-            btn.classList.add('bg-purple-600');
+            if (btn) {
+                btn.classList.remove('bg-gray-700');
+                btn.classList.add('bg-purple-600');
+                console.log('✅ Button updated for:', tabId);
+            } else {
+                console.error('❌ Button not found for tab:', tabId);
+            }
         }
+        
+        // Log available tabs on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📋 Available tabs:', 
+                Array.from(document.querySelectorAll('.tab-content')).map(t => t.id)
+            );
+            console.log('🎯 Available buttons:', 
+                Array.from(document.querySelectorAll('.tab-btn')).map(b => b.getAttribute('data-tab'))
+            );
+        });
         
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1185,3 +1212,11 @@
                 }
             });
         }, { threshold: 0.5 });
+        
+        // Observe all skill bars
+        document.querySelectorAll('.skill-fill').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
