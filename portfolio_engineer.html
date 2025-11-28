@@ -169,7 +169,8 @@
                     <div class="border-t border-white border-opacity-20 pt-4 mt-4">
                         <p class="text-sm opacity-90">
                             <strong>🚀 最新実績:</strong> BizSpec Translator - ビジネス要望をAIが技術仕様に30秒で変換。<br>
-                            FastAPI + React + Claude Sonnet 4で開発。要件定義工数を66%削減。
+                            FastAPI + React + Claude Sonnet 4で開発。要件定義工数を66%削減。<br>
+                            <strong>⚡ NEW:</strong> JavaScript版スクレイピングツール実装。マルチ言語対応力を実証。
                         </p>
                     </div>
                 </div>
@@ -432,6 +433,9 @@
                 <button onclick="switchTab('bizspec')" class="tab-btn bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg font-bold transition text-sm" data-tab="bizspec">
                     🤖 AI仕様変換
                 </button>
+                <button onclick="switchTab('treasure-scraper-js')" class="tab-btn bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg font-bold transition text-sm" data-tab="treasure-scraper-js">
+                    ⚡ JSスクレイピング
+                </button>
                 <button onclick="switchTab('treasure')" class="tab-btn bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg font-bold transition text-sm" data-tab="treasure">
                     🏭 EC監視
                 </button>
@@ -540,6 +544,100 @@
                                 <i class="fab fa-github mr-2"></i>View Code
                             </a>
                             <a href="https://github.com/rancorder/Biz_Spec_Translator#readme" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-bold transition">
+                                <i class="fas fa-book mr-2"></i>README
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Treasure Scraper JavaScript -->
+                <div id="treasure-scraper-js" class="tab-content">
+                    <div class="bg-gray-900 rounded-2xl p-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-3xl font-bold">⚡ Treasure Scraper JavaScript</h3>
+                                <p class="text-xl text-gray-300 mt-2">JavaScriptスクレイピングツール - Pythonからマルチ言語へ</p>
+                            </div>
+                            <span class="badge bg-green-600">Production</span>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 text-red-400">🎯 目的</h4>
+                                <ul class="text-gray-300 space-y-2">
+                                    <li>• マルチ言語対応力の証明</li>
+                                    <li>• JavaScript/Node.js実装</li>
+                                    <li>• Playwright（JS版）の習得</li>
+                                    <li>• スクレイピング技術の深化</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-3 text-green-400">✅ 特徴</h4>
+                                <ul class="text-gray-300 space-y-2">
+                                    <li>• Python版と同等の機能</li>
+                                    <li>• Playwright for Node.js</li>
+                                    <li>• 環境変数による設定管理</li>
+                                    <li>• クロスプラットフォーム対応</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-6 rounded-xl mb-6">
+                            <h4 class="text-xl font-bold mb-4 text-yellow-400">🔧 技術スタック</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-yellow-400">Node.js</div>
+                                    <div class="text-sm text-gray-400">ランタイム</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-blue-400">Playwright</div>
+                                    <div class="text-sm text-gray-400">自動化</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-purple-400">dotenv</div>
+                                    <div class="text-sm text-gray-400">環境変数</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-pink-400">ESM</div>
+                                    <div class="text-sm text-gray-400">モジュール</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-6 rounded-xl mb-6">
+                            <h4 class="text-xl font-bold mb-4 text-purple-400">📊 実装内容</h4>
+                            <div class="space-y-3 text-gray-300">
+                                <p>🎭 <strong>Playwright for Node.js:</strong> ブラウザ自動化、Chromium起動</p>
+                                <p>🔐 <strong>環境変数管理:</strong> .env経由の安全な認証情報管理</p>
+                                <p>📸 <strong>スクリーンショット:</strong> デバッグ用画像保存機能</p>
+                                <p>⏱️ <strong>待機処理:</strong> 動的コンテンツ読み込み対応</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-yellow-900 to-orange-900 p-4 rounded-lg mb-6">
+                            <h4 class="text-lg font-bold mb-2">💡 開発背景</h4>
+                            <p class="text-gray-300">AWS Lambda・pytest・スクラム経験不足で面談不調。くやしさをバネに、即座にJavaScriptでスクレイピングツールを実装。Python一本ではなく、マルチ言語対応力とレジリエンス（立ち直りの速さ）を証明。</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-900 to-purple-900 p-4 rounded-lg mb-6">
+                            <h4 class="text-lg font-bold mb-2">🚀 技術的価値</h4>
+                            <p class="text-gray-300">Pythonスクレイピングの知見を、JavaScriptに即座に移植。言語が違っても、スクレイピングの本質（ブラウザ自動化、要素選択、データ抽出）は同じ。マルチ言語エンジニアとしての適応力を実証。</p>
+                        </div>
+                        
+                        <div class="flex gap-3 flex-wrap mb-6">
+                            <span class="badge">Node.js</span>
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">Playwright</span>
+                            <span class="badge">dotenv</span>
+                            <span class="badge">ESM</span>
+                            <span class="badge">Cross-platform</span>
+                        </div>
+                        
+                        <div class="flex gap-3">
+                            <a href="https://github.com/rancorder/treasure-scraper-javascript" target="_blank" class="inline-block bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded-lg font-bold transition">
+                                <i class="fab fa-github mr-2"></i>View Code
+                            </a>
+                            <a href="https://github.com/rancorder/treasure-scraper-javascript/blob/main/README.md" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-bold transition">
                                 <i class="fas fa-book mr-2"></i>README
                             </a>
                         </div>
