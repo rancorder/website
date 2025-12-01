@@ -505,57 +505,86 @@
                     <div class="mb-12">
                         <h3 class="text-xl md:text-2xl font-bold mb-6 text-center text-pink-400 flex flex-col md:flex-row items-center justify-center gap-2">
                             <span>💎 Supporting Projects</span>
-                            <span class="text-sm opacity-75 md:ml-4">- 技術幅と学習力の証明</span>
+                            <span class="text-sm opacity-75 md:ml-4">- 技術幅と品質保証のエビデンス</span>
                         </h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                            <div class="project-card p-6 hover-lift">
-                                <h4 class="text-lg font-bold text-cyan-400 mb-2">🐳 2ndstreet Monitor</h4>
-                                <p class="text-xs opacity-75 mb-2">JavaScript + Docker実装</p>
-                                <p class="text-sm opacity-90 mb-3 flex-1">
-                                    <strong class="text-yellow-400">学習力の証明:</strong><br>
-                                    JS/Docker/Cron - 短期間で習得し本番運用。環境構築コストを劇的に低減。
-                                </p>
-                                <div class="flex flex-wrap gap-1 mb-2">
-                                    <span class="skill-badge text-xs">Node.js</span>
-                                    <span class="skill-badge text-xs">Docker</span>
-                                    <span class="skill-badge text-xs">Playwright</span>
+                            
+                            <div class="project-card p-6 hover-lift flex flex-col">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold text-cyan-400">🐳 2ndstreet Monitor</h4>
+                                    <span class="text-[10px] border border-green-500 text-green-400 px-2 py-0.5 rounded bg-green-900 bg-opacity-20 animate-pulse">
+                                        ● Running
+                                    </span>
                                 </div>
-                                <a href="https://github.com/rancorder/2ndstreet-monitor" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
-                                    GitHub →
+                                <p class="text-xs opacity-75 mb-3">JavaScript + Docker実装</p>
+                                
+                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-green-500">
+                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
+                                    <div class="flex gap-2 text-xs font-mono text-green-300">
+                                        <span>✅ Dockerized</span>
+                                        <span>✅ Cron: Active</span>
+                                    </div>
+                                </div>
+
+                                <p class="text-sm opacity-90 mb-4 flex-1">
+                                    環境構築コストをゼロにするコンテナ設計。誰のPCでも<code>docker-compose up</code>一発で動作保証。
+                                </p>
+                                
+                                <a href="https://github.com/rancorder/2ndstreet-monitor" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
+                                    <i class="fab fa-github"></i> Source Code
                                 </a>
                             </div>
                             
-                            <div class="project-card p-6 hover-lift">
-                                <h4 class="text-lg font-bold text-cyan-400 mb-2">🔒 Secure Zipper Pro</h4>
-                                <p class="text-xs opacity-75 mb-2">AES-256暗号化ツール</p>
-                                <p class="text-sm opacity-90 mb-3 flex-1">
-                                    <strong class="text-yellow-400">品質へのこだわり:</strong><br>
-                                    セキュリティポリシー準拠。型ヒント100%準拠でOSSとして公開。
-                                </p>
-                                <div class="flex flex-wrap gap-1 mb-2">
-                                    <span class="skill-badge text-xs">AES-256</span>
-                                    <span class="skill-badge text-xs">Type Hints</span>
+                            <div class="project-card p-6 hover-lift flex flex-col">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold text-cyan-400">🔒 Secure Zipper Pro</h4>
+                                    <span class="text-[10px] border border-blue-500 text-blue-400 px-2 py-0.5 rounded bg-blue-900 bg-opacity-20">
+                                        🛡️ Stable
+                                    </span>
                                 </div>
-                                <a href="https://github.com/rancorder/secure_zipper_pro" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
-                                    GitHub →
+                                <p class="text-xs opacity-75 mb-3">AES-256暗号化ツール</p>
+
+                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-blue-500">
+                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
+                                    <div class="flex gap-2 text-xs font-mono text-blue-300">
+                                        <span>✅ Mypy: Strict</span>
+                                        <span>✅ PEP8: Pass</span>
+                                    </div>
+                                </div>
+
+                                <p class="text-sm opacity-90 mb-4 flex-1">
+                                    Pythonの型ヒント(Type Hints)に100%準拠。静的解析を通しているため、実行時エラーのリスクを極小化。
+                                </p>
+
+                                <a href="https://github.com/rancorder/secure_zipper_pro" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
+                                    <i class="fab fa-github"></i> Source Code
                                 </a>
                             </div>
 
-                            <div class="project-card p-6 hover-lift">
-                                <h4 class="text-lg font-bold text-cyan-400 mb-2">⚡ Cypress E2E Template</h4>
-                                <p class="text-xs opacity-75 mb-2">CI/CD完備・即時実行基盤</p>
-                                <p class="text-sm opacity-90 mb-3 flex-1">
-                                    <strong class="text-yellow-400">品質保証の自動化:</strong><br>
-                                    セットアップ5分。GitHub Actions連携済みで、コミット毎に品質を担保する環境を即構築。
-                                </p>
-                                <div class="flex flex-wrap gap-1 mb-2">
-                                    <span class="skill-badge text-xs">Cypress</span>
-                                    <span class="skill-badge text-xs">GitHub Actions</span>
-                                    <span class="skill-badge text-xs">Node.js</span>
+                            <div class="project-card p-6 hover-lift flex flex-col">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold text-cyan-400">⚡ Cypress E2E</h4>
+                                    <span class="text-[10px] border border-pink-500 text-pink-400 px-2 py-0.5 rounded bg-pink-900 bg-opacity-20">
+                                        🤖 CI/CD Ready
+                                    </span>
                                 </div>
-                                <a href="https://github.com/rancorder/cypress-lambda-e2e" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
-                                    GitHub →
+                                <p class="text-xs opacity-75 mb-3">テスト自動化テンプレート</p>
+
+                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-pink-500">
+                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
+                                    <div class="flex gap-2 text-xs font-mono text-pink-300">
+                                        <span>✅ Tests: Passing</span>
+                                        <span>✅ Actions: On</span>
+                                    </div>
+                                </div>
+
+                                <p class="text-sm opacity-90 mb-4 flex-1">
+                                    「バグのない納品」を保証する仕組み。GitHub Actionsと連携し、コミット毎に自動テストを実行。
+                                </p>
+
+                                <a href="https://github.com/rancorder/cypress-lambda-e2e" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
+                                    <i class="fab fa-github"></i> Source Code
                                 </a>
                             </div>
                         </div>
