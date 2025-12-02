@@ -104,55 +104,6 @@
             clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
         }
         
-        .timeline {
-            position: relative;
-            padding-left: 1rem;
-        }
-        @media (min-width: 768px) {
-            .timeline { padding-left: 2rem; }
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 1.5rem;
-        }
-        @media (min-width: 768px) {
-            .timeline-item { padding-left: 2rem; }
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -0.4rem;
-            top: 0.5rem;
-            width: 1rem;
-            height: 1rem;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--primary);
-        }
-        @media (min-width: 768px) {
-            .timeline-item::before { left: -2.5rem; }
-        }
-        
-        .insight {
-            color: var(--accent);
-            font-weight: 700;
-            font-style: italic;
-            margin-top: 0.5rem;
-        }
-        
         .skill-badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
@@ -167,6 +118,18 @@
         .featured-project {
             border: 2px solid var(--accent);
             box-shadow: 0 0 30px rgba(255, 190, 11, 0.3);
+        }
+        
+        .new-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulseGlow 2s ease-in-out infinite;
         }
         
         .project-card {
@@ -190,6 +153,39 @@
             padding: 1rem;
             margin: 1rem 0;
         }
+        
+        /* 🆕 スキル一覧セクション用スタイル */
+        .skill-category {
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        
+        .skill-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 245, 255, 0.1);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: rgba(0, 245, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 245, 255, 0.3);
+        }
+        
+        .skill-level {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="text-white selection:bg-cyan-500 selection:text-black">
@@ -197,6 +193,7 @@
     <div class="fixed inset-0 cyber-grid pointer-events-none z-0"></div>
     
     <main class="relative z-10">
+        <!-- Hero Section -->
         <section class="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
             <div class="absolute inset-0 opacity-30 pointer-events-none">
                 <div class="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cyan-500 rounded-full filter blur-3xl animate-pulse" style="animation-duration: 4s;"></div>
@@ -229,38 +226,39 @@
                 </p>
                 
                 <div class="flex flex-col md:flex-row justify-center gap-4 mb-16 w-full md:w-auto px-8 md:px-0">
-                    <a href="#journey" class="btn-cyber w-full md:w-auto">📖 My Journey</a>
+                    <a href="#skills" class="btn-cyber w-full md:w-auto">💻 Skills</a>
                     <a href="#portfolio" class="btn-cyber w-full md:w-auto" style="border-color: #FF006E; color: #FF006E;">🏆 Portfolio</a>
                     <a href="#contact" class="btn-cyber w-full md:w-auto" style="border-color: #FFBE0B; color: #FFBE0B;">📧 Contact</a>
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
-                <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
-                    <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-cyan-400 whitespace-nowrap">
-                        99.9<span class="text-lg md:text-2xl">%</span>
+                    <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-cyan-400 whitespace-nowrap">
+                            99.9<span class="text-lg md:text-2xl">%</span>
+                        </div>
+                        <div class="opacity-80 text-[10px] sm:text-xs leading-tight">稼働率<br>(2024年実績)</div>
                     </div>
-                    <div class="opacity-80 text-[10px] sm:text-xs leading-tight">稼働率<br>(2024年実績)</div>
-                </div>
-                
-                <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
-                    <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-pink-400 whitespace-nowrap">
-                        ¥72<span class="text-lg md:text-2xl">万</span>
+                    
+                    <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-pink-400 whitespace-nowrap">
+                            ¥72<span class="text-lg md:text-2xl">万</span>
+                        </div>
+                        <div class="opacity-80 text-[10px] sm:text-xs leading-tight">月間削減<br>(人件費3名分)</div>
                     </div>
-                    <div class="opacity-80 text-[10px] sm:text-xs leading-tight">月間削減<br>(人件費3名分)</div>
-                </div>
-                
-                <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
-                    <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-yellow-400">
-                        43
+                    
+                    <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-yellow-400">
+                            43
+                        </div>
+                        <div class="opacity-80 text-[10px] sm:text-xs leading-tight">サイト数<br>(24/7監視中)</div>
                     </div>
-                    <div class="opacity-80 text-[10px] sm:text-xs leading-tight">サイト数<br>(24/7監視中)</div>
-                </div>
-                
-                <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
-                    <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-green-400">
-                        5x
+                    
+                    <div class="stat-card p-3 md:p-4 hover-lift flex flex-col justify-center items-center">
+                        <div class="text-2xl sm:text-3xl md:text-4xl font-black mb-1 text-green-400">
+                            5x
+                        </div>
+                        <div class="opacity-80 text-[10px] sm:text-xs leading-tight">開発速度<br>(AI協業)</div>
                     </div>
-                    <div class="opacity-80 text-[10px] sm:text-xs leading-tight">開発速度<br>(AI協業)</div>
                 </div>
             </div>
             
@@ -269,136 +267,169 @@
             </div>
         </section>
         
-        <section id="journey" class="py-20 relative">
+        <!-- 🆕 スキル一覧セクション -->
+        <section id="skills" class="py-20 relative bg-gradient-to-b from-transparent via-cyan-900 to-transparent">
             <div class="container mx-auto px-4 md:px-6">
-                <div class="max-w-4xl mx-auto">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-black mb-4 neon-text">📖 My Journey</h2>
-                        <p class="text-lg md:text-xl opacity-75">「楽しさ」が全ての始まりだった</p>
-                    </div>
-                    
-                    <div class="glass p-6 md:p-8 rounded-xl mb-12">
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-cyan-400">2007-2024: 営業17年の日々</h3>
-                                <p class="opacity-90 mb-2 text-sm md:text-base">営業として社内業務課題に向き合う毎日。</p>
-                                <p class="opacity-75 text-sm md:text-base">「この手動作業、何とかならないか...」</p>
-                                <p class="insight text-sm md:text-base">→ 非効率への疑問が積み重なる</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-cyan-400">2022: 最初の一歩</h3>
-                                <p class="opacity-90 mb-2 text-sm md:text-base">「Pythonで自動化できるらしい」</p>
-                                <p class="opacity-75 text-sm md:text-base">恐る恐る始めたExcelマクロ、データ集計の自動化...</p>
-                                <p class="insight text-sm md:text-base">→ そして、それは動いた</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-yellow-400">2023: 開眼 - "楽しい！"</h3>
-                                <p class="opacity-90 mb-2 text-base md:text-lg"><strong>「動いた瞬間、世界が変わった」</strong></p>
-                                <p class="opacity-75 text-sm md:text-base">デバッグの試行錯誤、エラーを乗り越えた達成感。</p>
-                                <p class="opacity-75 text-sm md:text-base">気づけば夜中の3時。それでも楽しくて止められない。</p>
-                                <p class="insight text-lg md:text-xl">→ 「自分のやりたいことはこれだ！」</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-cyan-400">2023-2024: のめり込み期</h3>
-                                <p class="opacity-90 mb-2 text-sm md:text-base">業務外でもコードを書く日々。</p>
-                                <p class="opacity-75 text-sm md:text-base">Playwright、FastAPI、機械学習...学習が止まらない。</p>
-                                <p class="insight text-sm md:text-base">→ 気づけば24/7稼働システムを構築</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-green-400">2024: 証明 - 月72万円削減達成</h3>
-                                <p class="opacity-90 mb-2 text-sm md:text-base">Master Controller (旧Treasure Factory Monitor) 本番稼働。</p>
-                                <p class="opacity-75 text-sm md:text-base">43サイト監視、人件費3名分の削減を実現。</p>
-                                <p class="insight text-sm md:text-base">→ 「楽しさ」がビジネス価値に変わった瞬間</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2 text-pink-400">2025: 進化 - Hybrid Engineerへ</h3>
-                                <p class="opacity-90 mb-2 text-sm md:text-base">JavaScript習得、Docker実装、AI協業開発。</p>
-                                <p class="opacity-75 text-sm md:text-base">BizSpec Translator公開 - 要件定義工数66%削減。</p>
-                                <p class="insight text-sm md:text-base">→ <strong>「短期間キャッチアップ力」を実証</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass p-6 rounded-xl" style="border: 2px solid var(--accent);">
-                        <h3 class="text-lg md:text-xl font-bold mb-3 text-yellow-400">💡 私の強み = 「楽しさ」から生まれた行動力</h3>
-                        <div class="space-y-2 opacity-90 text-sm md:text-base">
-                            <p>✅ <strong>のめり込む力:</strong> 楽しいから、誰に言われなくても学ぶ</p>
-                            <p>✅ <strong>短期間キャッチアップ:</strong> Python未経験 → 2年で本番運用レベル</p>
-                            <p>✅ <strong>技術幅の広さ:</strong> 必要なら何でも学ぶ（JS/Docker/AI...）</p>
-                            <p>✅ <strong>ビジネス視点:</strong> 営業17年の経験で「何を作るべきか」が分かる</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="py-20 relative bg-gradient-to-b from-transparent to-blue-900 to-transparent">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="max-w-5xl mx-auto">
+                <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-12">
-                        <h2 class="text-4xl md:text-5xl font-black mb-4 neon-text">⚡ Core Strength</h2>
-                        <p class="text-lg md:text-xl opacity-75">「できる幅」= Pythonだけじゃない</p>
+                        <h2 class="text-4xl md:text-5xl font-black mb-4 neon-text">💻 Technical Skills</h2>
+                        <p class="text-lg md:text-xl opacity-75 mb-2">実務で使用・本番運用経験のある技術</p>
+                        <p class="text-sm opacity-60">※ 全て実案件での使用実績あり</p>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="glass p-6 rounded-xl hover-lift">
-                            <div class="text-4xl mb-3">🐍</div>
-                            <h3 class="text-xl font-bold mb-3 text-cyan-400">Core: Python</h3>
-                            <div class="space-y-1 text-sm opacity-90">
-                                <div class="skill-badge">FastAPI / Flask</div>
-                                <div class="skill-badge">Playwright / Selenium</div>
-                                <div class="skill-badge">機械学習 (XGBoost)</div>
-                                <div class="skill-badge">SQLite / MySQL</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 言語 -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-code"></i>
+                                プログラミング言語
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fab fa-python text-blue-400"></i>
+                                    <span>Python</span>
+                                    <span class="skill-level">(主力)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-js text-yellow-400"></i>
+                                    <span>JavaScript</span>
+                                    <span class="skill-level">(実務)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-terminal text-green-400"></i>
+                                    <span>Bash</span>
+                                    <span class="skill-level">(運用)</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="glass p-6 rounded-xl hover-lift">
-                            <div class="text-4xl mb-3">🚀</div>
-                            <h3 class="text-xl font-bold mb-3 text-pink-400">Short-term Learn</h3>
-                            <div class="space-y-1 text-sm opacity-90">
-                                <div class="skill-badge">JavaScript / Node.js</div>
-                                <div class="skill-badge">Docker / Docker Compose</div>
-                                <div class="skill-badge">React (基礎)</div>
-                                <div class="skill-badge">AI API統合</div>
+                        <!-- フレームワーク -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-layer-group"></i>
+                                フレームワーク
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fas fa-bolt text-yellow-400"></i>
+                                    <span>FastAPI</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-react text-blue-400"></i>
+                                    <span>React</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-node-js text-green-400"></i>
+                                    <span>Node.js</span>
+                                </div>
                             </div>
-                            <p class="text-xs mt-3 opacity-75">※ 実案件で習得・本番運用中</p>
                         </div>
                         
-                        <div class="glass p-6 rounded-xl hover-lift">
-                            <div class="text-4xl mb-3">💼</div>
-                            <h3 class="text-xl font-bold mb-3 text-yellow-400">Business</h3>
-                            <div class="space-y-1 text-sm opacity-90">
-                                <div class="skill-badge">要件定義・ヒアリング</div>
-                                <div class="skill-badge">ROI分析</div>
-                                <div class="skill-badge">プレゼンテーション</div>
-                                <div class="skill-badge">クライアント折衝</div>
+                        <!-- テスト・品質管理 -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-check-circle"></i>
+                                テスト・品質管理 <span class="new-badge ml-2">NEW</span>
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fas fa-vial text-green-400"></i>
+                                    <span>pytest</span>
+                                    <span class="skill-level">(実装済み)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-robot text-purple-400"></i>
+                                    <span>Cypress</span>
+                                    <span class="skill-level">(E2E)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-chart-bar text-cyan-400"></i>
+                                    <span>pytest-cov</span>
+                                    <span class="skill-level">(カバレッジ)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- インフラ・DevOps -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-server"></i>
+                                インフラ・DevOps
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fab fa-docker text-blue-400"></i>
+                                    <span>Docker</span>
+                                    <span class="skill-level">(本番運用)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-github text-gray-400"></i>
+                                    <span>GitHub Actions</span>
+                                    <span class="skill-level">(CI/CD)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-cloud text-orange-400"></i>
+                                    <span>VPS</span>
+                                    <span class="skill-level">(運用中)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- データベース -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-database"></i>
+                                データベース
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fas fa-database text-blue-400"></i>
+                                    <span>MySQL</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-database text-cyan-400"></i>
+                                    <span>SQLite</span>
+                                    <span class="skill-level">(WALモード)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI・機械学習 -->
+                        <div class="skill-category">
+                            <h3 class="text-xl font-bold mb-4 text-cyan-400 flex items-center gap-2">
+                                <i class="fas fa-brain"></i>
+                                AI・機械学習
+                            </h3>
+                            <div class="flex flex-wrap gap-2">
+                                <div class="skill-item">
+                                    <i class="fas fa-robot text-purple-400"></i>
+                                    <span>Claude AI</span>
+                                    <span class="skill-level">(協業開発)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-microchip text-green-400"></i>
+                                    <span>Playwright</span>
+                                    <span class="skill-level">(スクレイピング)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="glass p-6 rounded-xl mt-8" style="border: 2px solid var(--primary);">
-                        <h3 class="text-lg font-bold mb-3 text-cyan-400">🎯 「短期間キャッチアップ力」の証明</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm opacity-90">
-                            <div>
-                                <p class="font-bold mb-1">JavaScript / Node.js</p>
-                                <p class="text-xs opacity-75">学習期間: 2ヶ月 → 本番運用(2ndstreet Monitor)</p>
+                    <!-- 学習スタイル -->
+                    <div class="glass p-6 md:p-8 rounded-xl mt-8">
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400 text-center">⚡ 短期間キャッチアップ実績</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-cyan-400 mb-2">3日</div>
+                                <div class="opacity-75">pytest実装<br>(30テスト完成)</div>
                             </div>
-                            <div>
-                                <p class="font-bold mb-1">Docker</p>
-                                <p class="text-xs opacity-75">学習期間: 3週間 → 実案件でコンテナ化完了</p>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-pink-400 mb-2">1週間</div>
+                                <div class="opacity-75">Docker化<br>(本番デプロイ)</div>
                             </div>
-                            <div>
-                                <p class="font-bold mb-1">Claude API統合</p>
-                                <p class="text-xs opacity-75">学習期間: 1週間 → BizSpec Translator公開</p>
-                            </div>
-                            <div>
-                                <p class="font-bold mb-1">React (基礎)</p>
-                                <p class="text-xs opacity-75">学習期間: 1ヶ月 → フロントエンド実装</p>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-yellow-400 mb-2">2週間</div>
+                                <div class="opacity-75">React習得<br>(SPA構築)</div>
                             </div>
                         </div>
                     </div>
@@ -406,6 +437,7 @@
             </div>
         </section>
         
+        <!-- Portfolio Section -->
         <section id="portfolio" class="py-20 relative">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-6xl mx-auto">
@@ -415,6 +447,7 @@
                         <p class="text-sm opacity-60">採用担当の方へ: まず⭐マークの2つをご覧ください</p>
                     </div>
                     
+                    <!-- Flagship Projects -->
                     <div class="mb-16">
                         <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center flex flex-col md:flex-row items-center justify-center gap-2">
                             <span class="text-yellow-400">⭐ Flagship Projects</span>
@@ -422,6 +455,7 @@
                         </h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- BizSpec Translator -->
                             <div class="project-card featured-project p-6 hover-lift">
                                 <div class="project-card-content">
                                     <div class="flex items-start justify-between mb-3">
@@ -461,6 +495,7 @@
                                 </a>
                             </div>
                             
+                            <!-- Master Controller -->
                             <div class="project-card featured-project p-6 hover-lift">
                                 <div class="project-card-content">
                                     <div class="flex items-start justify-between mb-3">
@@ -502,94 +537,101 @@
                         </div>
                     </div>
                     
+                    <!-- Supporting Projects -->
                     <div class="mb-12">
                         <h3 class="text-xl md:text-2xl font-bold mb-6 text-center text-pink-400 flex flex-col md:flex-row items-center justify-center gap-2">
                             <span>💎 Supporting Projects</span>
-                            <span class="text-sm opacity-75 md:ml-4">- 技術幅と品質保証のエビデンス</span>
+                            <span class="text-sm opacity-75 md:ml-4">- 技術幅と学習力の証明</span>
                         </h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                            
-                            <div class="project-card p-6 hover-lift flex flex-col">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg font-bold text-cyan-400">🐳 2ndstreet Monitor</h4>
-                                    <span class="text-[10px] border border-green-500 text-green-400 px-2 py-0.5 rounded bg-green-900 bg-opacity-20 animate-pulse">
-                                        ● Running
-                                    </span>
+                            <!-- 🆕 pytest実装プロジェクト -->
+                            <div class="project-card p-6 hover-lift" style="border: 2px solid #10b981;">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-lg font-bold text-cyan-400">🧪 pytest実装</h4>
+                                    <span class="new-badge">NEW</span>
                                 </div>
-                                <p class="text-xs opacity-75 mb-3">JavaScript + Docker実装</p>
-                                
-                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-green-500">
-                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
-                                    <div class="flex gap-2 text-xs font-mono text-green-300">
-                                        <span>✅ Dockerized</span>
-                                        <span>✅ Cron: Active</span>
+                                <p class="text-xs opacity-75 mb-2">本番システムへのテスト実装</p>
+                                <p class="text-sm opacity-90 mb-3 flex-1">
+                                    <strong class="text-green-400">品質保証の実証:</strong><br>
+                                    1,400行の本番コードに30個のテストを実装。カバレッジ26%達成。エンタープライズグレードの品質管理を実践。
+                                </p>
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    <span class="skill-badge text-xs">pytest</span>
+                                    <span class="skill-badge text-xs">pytest-cov</span>
+                                    <span class="skill-badge text-xs">Type Hints</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mb-3 text-center text-xs">
+                                    <div class="bg-black bg-opacity-30 p-2 rounded">
+                                        <div class="font-bold text-green-400">30</div>
+                                        <div class="opacity-75">テスト数</div>
+                                    </div>
+                                    <div class="bg-black bg-opacity-30 p-2 rounded">
+                                        <div class="font-bold text-blue-400">26%</div>
+                                        <div class="opacity-75">カバレッジ</div>
                                     </div>
                                 </div>
-
-                                <p class="text-sm opacity-90 mb-4 flex-1">
-                                    環境構築コストをゼロにするコンテナ設計。誰のPCでも<code>docker-compose up</code>一発で動作保証。
-                                </p>
-                                
-                                <a href="https://github.com/rancorder/2ndstreet-monitor" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
-                                    <i class="fab fa-github"></i> Source Code
+                                <a href="https://github.com/rancorder/pytest" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
+                                    GitHub →
                                 </a>
                             </div>
                             
-                            <div class="project-card p-6 hover-lift flex flex-col">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg font-bold text-cyan-400">🔒 Secure Zipper Pro</h4>
-                                    <span class="text-[10px] border border-blue-500 text-blue-400 px-2 py-0.5 rounded bg-blue-900 bg-opacity-20">
-                                        🛡️ Stable
-                                    </span>
-                                </div>
-                                <p class="text-xs opacity-75 mb-3">AES-256暗号化ツール</p>
-
-                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-blue-500">
-                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
-                                    <div class="flex gap-2 text-xs font-mono text-blue-300">
-                                        <span>✅ Mypy: Strict</span>
-                                        <span>✅ PEP8: Pass</span>
-                                    </div>
-                                </div>
-
-                                <p class="text-sm opacity-90 mb-4 flex-1">
-                                    Pythonの型ヒント(Type Hints)に100%準拠。静的解析を通しているため、実行時エラーのリスクを極小化。
+                            <!-- 2ndstreet Monitor -->
+                            <div class="project-card p-6 hover-lift">
+                                <h4 class="text-lg font-bold text-cyan-400 mb-2">🐳 2ndstreet Monitor</h4>
+                                <p class="text-xs opacity-75 mb-2">JavaScript + Docker実装</p>
+                                <p class="text-sm opacity-90 mb-3 flex-1">
+                                    <strong class="text-yellow-400">学習力の証明:</strong><br>
+                                    JS/Docker/Cron - 短期間で習得し本番運用。環境構築コストを劇的に低減。
                                 </p>
-
-                                <a href="https://github.com/rancorder/secure_zipper_pro" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
-                                    <i class="fab fa-github"></i> Source Code
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    <span class="skill-badge text-xs">Node.js</span>
+                                    <span class="skill-badge text-xs">Docker</span>
+                                    <span class="skill-badge text-xs">Playwright</span>
+                                </div>
+                                <a href="https://github.com/rancorder/2ndstreet-monitor" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
+                                    GitHub →
                                 </a>
                             </div>
-
-                            <div class="project-card p-6 hover-lift flex flex-col">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg font-bold text-cyan-400">⚡ Cypress E2E</h4>
-                                    <span class="text-[10px] border border-pink-500 text-pink-400 px-2 py-0.5 rounded bg-pink-900 bg-opacity-20">
-                                        🤖 CI/CD Ready
-                                    </span>
-                                </div>
-                                <p class="text-xs opacity-75 mb-3">テスト自動化テンプレート</p>
-
-                                <div class="bg-black bg-opacity-40 p-2 rounded mb-3 border-l-2 border-pink-500">
-                                    <p class="text-[10px] text-gray-400 mb-1">QUALITY EVIDENCE:</p>
-                                    <div class="flex gap-2 text-xs font-mono text-pink-300">
-                                        <span>✅ Tests: Passing</span>
-                                        <span>✅ Actions: On</span>
-                                    </div>
-                                </div>
-
-                                <p class="text-sm opacity-90 mb-4 flex-1">
-                                    「バグのない納品」を保証する仕組み。GitHub Actionsと連携し、コミット毎に自動テストを実行。
+                            
+                            <!-- Secure Zipper Pro -->
+                            <div class="project-card p-6 hover-lift">
+                                <h4 class="text-lg font-bold text-cyan-400 mb-2">🔒 Secure Zipper Pro</h4>
+                                <p class="text-xs opacity-75 mb-2">AES-256暗号化ツール</p>
+                                <p class="text-sm opacity-90 mb-3 flex-1">
+                                    <strong class="text-yellow-400">品質へのこだわり:</strong><br>
+                                    セキュリティポリシー準拠。型ヒント100%準拠でOSSとして公開。
                                 </p>
-
-                                <a href="https://github.com/rancorder/cypress-lambda-e2e" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto flex items-center gap-1">
-                                    <i class="fab fa-github"></i> Source Code
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    <span class="skill-badge text-xs">AES-256</span>
+                                    <span class="skill-badge text-xs">Type Hints</span>
+                                </div>
+                                <a href="https://github.com/rancorder/secure_zipper_pro" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
+                                    GitHub →
+                                </a>
+                            </div>
+                            
+                            <!-- Cypress E2E Template -->
+                            <div class="project-card p-6 hover-lift">
+                                <h4 class="text-lg font-bold text-cyan-400 mb-2">⚡ Cypress E2E Template</h4>
+                                <p class="text-xs opacity-75 mb-2">CI/CD完備・即時実行基盤</p>
+                                <p class="text-sm opacity-90 mb-3 flex-1">
+                                    <strong class="text-yellow-400">品質保証の自動化:</strong><br>
+                                    セットアップ5分。GitHub Actions連携済みで、コミット毎に品質を担保する環境を即構築。
+                                </p>
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    <span class="skill-badge text-xs">Cypress</span>
+                                    <span class="skill-badge text-xs">GitHub Actions</span>
+                                    <span class="skill-badge text-xs">Node.js</span>
+                                </div>
+                                <a href="https://github.com/rancorder/cypress-lambda-e2e" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-xs mt-auto">
+                                    GitHub →
                                 </a>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- その他の実績 -->
                     <details class="glass p-6 rounded-xl">
                         <summary class="cursor-pointer text-base md:text-lg font-bold text-gray-400 hover:text-cyan-400 transition select-none">
                             📦 その他の実績を見る (Face Match, Stock Prophet, Audio Analysis等)
@@ -617,6 +659,7 @@
             </div>
         </section>
         
+        <!-- 1コマンドデプロイ対応 -->
         <section class="py-20 relative bg-gradient-to-b from-transparent via-purple-900 to-transparent">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-4xl mx-auto">
@@ -661,6 +704,7 @@ $ docker-compose up -d
             </div>
         </section>
         
+        <!-- Contact Section -->
         <section id="contact" class="py-20 relative">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-4xl mx-auto text-center">
@@ -674,7 +718,7 @@ $ docker-compose up -d
                         <a href="https://github.com/rancorder" target="_blank" class="btn-cyber w-full md:w-auto">
                             <i class="fab fa-github mr-2"></i>GitHub
                         </a>
-                        <a href="mailto:your-email@example.com" class="btn-cyber w-full md:w-auto" style="border-color: #FF006E; color: #FF006E;">
+                        <a href="mailto:contact@example.com" class="btn-cyber w-full md:w-auto" style="border-color: #FF006E; color: #FF006E;">
                             <i class="fas fa-envelope mr-2"></i>Email
                         </a>
                     </div>
@@ -682,11 +726,12 @@ $ docker-compose up -d
                     <div class="glass p-6 md:p-8 rounded-xl text-left" style="border: 2px solid var(--primary);">
                         <h3 class="text-xl md:text-2xl font-bold mb-6 text-cyan-400 text-center md:text-left">🔥 Currently</h3>
                         <div class="space-y-3 opacity-90 text-sm md:text-base">
+                            <p>🧪 <strong>NEW:</strong> pytest実装完了 - 本番システムで30テスト実装</p>
                             <p>🤖 <strong>NEW:</strong> BizSpec Translator公開 - AI技術仕様変換ツール</p>
                             <p>🐳 <strong>NEW:</strong> 2ndstreet Monitor - JavaScript + Docker実装完了</p>
                             <p>🚀 <strong>Running:</strong> 43サイト24時間365日監視システム（2024年稼働率99.9%）</p>
-                            <p>📚 <strong>Learning:</strong> Kubernetes, Go, AWS (次の短期間キャッチアップ対象)</p>
-                            <p>💼 <strong>Seeking:</strong> フリーランス案件（Python開発 / AI活用コンサル / PM）</p>
+                            <p>📚 <strong>Learning:</strong> AWS Lambda, Serverless, Go (次の短期間キャッチアップ対象)</p>
+                            <p>💼 <strong>Seeking:</strong> フリーランス案件（Python開発 / サーバーレス / テスト自動化）</p>
                             <p>💰 <strong>Target:</strong> 月80-100万円 / フルリモート</p>
                             <p>🎯 <strong>Passion:</strong> 「楽しいから学ぶ」が原動力。技術で課題解決する喜びを分かち合える環境を求めています。</p>
                         </div>
@@ -724,9 +769,6 @@ $ docker-compose up -d
                 }
             });
         });
-        
-        console.log('✅ Portfolio Best Practice Edition loaded!');
-        console.log('💡 "楽しさ"が全ての始まり');
     </script>
 </body>
 </html>
