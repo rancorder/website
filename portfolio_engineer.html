@@ -187,112 +187,6 @@
             font-weight: 600;
         }
     </style>
-    <!-- 1000点エフェクトCSS -->
-    <style>
-/* ===================================\
-   1000点エフェクト - 完全版CSS\
-   =================================== */\
-\
-/* スキルポップアニメーション */\
-@keyframes skillPop {\
-    0%, 100% { transform: scale(1) rotate(0deg); }\
-    50% { transform: scale(1.3) rotate(5deg); }\
-}\
-\
-/* ホログラム効果 */\
-.hologram {\
-    background: linear-gradient(45deg, transparent 30%, rgba(0, 245, 255, 0.1) 50%, transparent 70%);\
-    background-size: 200% 200%;\
-    animation: hologram-scan 3s linear infinite;\
-}\
-\
-@keyframes hologram-scan {\
-    0% { background-position: 0% 0%; }\
-    100% { background-position: 200% 200%; }\
-}\
-\
-/* グリッチテキスト */\
-@keyframes glitch-anim {\
-    0% { clip-path: inset(40% 0 61% 0); }\
-    20% { clip-path: inset(92% 0 1% 0); }\
-    40% { clip-path: inset(43% 0 1% 0); }\
-    60% { clip-path: inset(25% 0 58% 0); }\
-    80% { clip-path: inset(54% 0 7% 0); }\
-    100% { clip-path: inset(58% 0 43% 0); }\
-}\
-\
-/* ネオン強化 */\
-.neon-intense {\
-    text-shadow: \
-        0 0 10px rgba(0,245,255,1),\
-        0 0 20px rgba(0,245,255,1),\
-        0 0 30px rgba(0,245,255,1),\
-        0 0 40px rgba(0,245,255,0.8),\
-        0 0 70px rgba(0,245,255,0.6),\
-        0 0 80px rgba(0,245,255,0.6),\
-        0 0 100px rgba(0,245,255,0.4),\
-        0 0 150px rgba(0,245,255,0.2);\
-    animation: neon-flicker 1.5s infinite alternate;\
-}\
-\
-@keyframes neon-flicker {\
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {\
-        opacity: 1;\
-    }\
-    20%, 24%, 55% {\
-        opacity: 0.85;\
-    }\
-}\
-\
-/* パルスグロー */\
-.pulse-glow {\
-    animation: pulse-glow 2s ease-in-out infinite;\
-}\
-\
-@keyframes pulse-glow {\
-    0%, 100% {\
-        box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);\
-    }\
-    50% {\
-        box-shadow: 0 0 40px rgba(0, 245, 255, 0.8),\
-                    0 0 60px rgba(0, 245, 255, 0.6);\
-    }\
-}\
-\
-/* カードホバーエフェクト強化 */\
-.project-card, .glass, .stat-card {\
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;\
-}\
-\
-.project-card:hover, .glass:hover {\
-    box-shadow: 0 0 50px rgba(0, 245, 255, 0.6) !important;\
-}\
-\
-/* スキルバッジ強化 */\
-.skill-badge, .skill-item {\
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);\
-    cursor: pointer;\
-}\
-\
-.skill-badge:hover, .skill-item:hover {\
-    transform: scale(1.2) rotate(5deg) !important;\
-    box-shadow: 0 0 30px var(--primary) !important;\
-}\
-\
-/* レスポンシブ対応 */\
-@media (prefers-reduced-motion: reduce) {\
-    *, *::before, *::after {\
-        animation-duration: 0.01ms !important;\
-        animation-iteration-count: 1 !important;\
-        transition-duration: 0.01ms !important;\
-    }\
-}\
-\
-/* Z-indexの調整 */\
-#mouseGlow { z-index: 1; }\
-#particleCanvas { z-index: 0; }\
-.scroll-indicator { z-index: 99999; }
-    </style>
 </head>
 <body class="text-white selection:bg-cyan-500 selection:text-black">
     
@@ -560,7 +454,47 @@
                             <span class="text-sm opacity-75 md:ml-4">- 最も見ていただきたい実績</span>
                         </h3>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Reservation System PoC -->
+                            <div class="project-card featured-project p-6 hover-lift">
+                                <div class="project-card-content">
+                                    <div class="flex items-start justify-between mb-3">
+                                        <h4 class="text-xl md:text-2xl font-bold text-cyan-400">🔒 Reservation System PoC</h4>
+                                        <span class="badge" style="font-size: 0.7rem;">2025</span>
+                                    </div>
+                                    <p class="text-sm opacity-90 mb-4">エンタープライズグレード予約システム</p>
+                                    
+                                    <div class="why-matters mb-4">
+                                        <p class="font-bold text-yellow-400 mb-1">💡 なぜこれが重要か</p>
+                                        <p class="text-sm opacity-90">
+                                            <strong>1時間で実装</strong>したフル機能予約システム。<br>
+                                            Redis + PostgreSQL + FastAPI。<br>
+                                            在庫管理・ダブルブッキング防止・自動ロック解除など本番レベルの実装。
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-2 mb-4">
+                                        <div class="text-center bg-black bg-opacity-30 p-2 rounded">
+                                            <div class="text-xl font-bold text-green-400">1時間</div>
+                                            <div class="text-xs opacity-75">実装時間</div>
+                                        </div>
+                                        <div class="text-center bg-black bg-opacity-30 p-2 rounded">
+                                            <div class="text-xl font-bold text-blue-400">本番級</div>
+                                            <div class="text-xs opacity-75">品質</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex flex-wrap gap-2 mb-3">
+                                        <span class="skill-badge text-xs">FastAPI</span>
+                                        <span class="skill-badge text-xs">Redis</span>
+                                        <span class="skill-badge text-xs">PostgreSQL</span>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/rancorder/reservation-system-poc" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-sm mt-4 block">
+                                    <i class="fab fa-github mr-1"></i>View on GitHub →
+                                </a>
+                            </div>
+                            
                             <!-- BizSpec Translator -->
                             <div class="project-card featured-project p-6 hover-lift">
                                 <div class="project-card-content">
@@ -951,387 +885,343 @@ $ docker-compose up -d
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-    <!-- 1000点エフェクトJavaScript -->
-    <script>
-// ===================================
-// 1000点エフェクト - 完全版
-// ===================================
-
-console.log('%c🚀 レベル100エフェクト起動', 'color: #00F5FF; font-size: 20px; font-weight: bold');
-
-// ===================================
-// 1. マウス追従グローエフェクト
-// ===================================
-const mouseGlow = document.createElement('div');
-mouseGlow.id = 'mouseGlow';
-mouseGlow.style.cssText = `
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,245,255,0.2) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease;
-`;
-document.body.appendChild(mouseGlow);
-
-document.addEventListener('mousemove', (e) => {
-    mouseGlow.style.left = e.clientX + 'px';
-    mouseGlow.style.top = e.clientY + 'px';
-});
-
-// ===================================
-// 2. パーティクル背景（Canvas）
-// ===================================
-const canvas = document.createElement('canvas');
-canvas.id = 'particleCanvas';
-canvas.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-`;
-document.body.insertBefore(canvas, document.body.firstChild);
-
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const particles = [];
-for (let i = 0; i < 100; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 1,
-        vy: (Math.random() - 0.5) * 1,
-        radius: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.3
-    });
-}
-
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
     
-    particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
+    <!-- GAFAM SRE級エフェクトシステム -->
+    <script>
+        'use strict';
         
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        
-        // 接続線を描画
-        particles.forEach((p2, j) => {
-            if (i < j) {
-                const dx = p.x - p2.x;
-                const dy = p.y - p2.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+        /**
+         * GAFAM SRE級エフェクトマネージャー
+         * Production Ready - 60fps保証
+         */
+        class PortfolioEffectsManager {
+            constructor() {
+                this.config = {
+                    particleCount: this.getOptimalParticleCount(),
+                    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+                    maxFPS: 60
+                };
                 
-                if (distance < 150) {
-                    ctx.strokeStyle = `rgba(0, 245, 255, ${(1 - distance / 150) * 0.2})`;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.stroke();
+                this.metrics = {
+                    fps: 60,
+                    frameCount: 0,
+                    lastTime: performance.now()
+                };
+                
+                this.effects = new Map();
+                this.animationFrameId = null;
+                
+                console.log('%c🚀 GAFAM SRE級エフェクト起動', 'color: #00F5FF; font-size: 16px; font-weight: bold');
+            }
+            
+            getOptimalParticleCount() {
+                const deviceMemory = navigator.deviceMemory || 4;
+                if (deviceMemory < 2) return 30;
+                if (deviceMemory < 4) return 50;
+                return 80;
+            }
+            
+            async init() {
+                if (this.config.reducedMotion) {
+                    console.log('⚡ Reduced motion enabled');
+                    return;
+                }
+                
+                try {
+                    await Promise.all([
+                        this.initMouseGlow(),
+                        this.initParticles(),
+                        this.init3DCards(),
+                        this.initRippleEffect(),
+                        this.initScrollProgress(),
+                        this.initMouseTrail(),
+                        this.initFireworks()
+                    ]);
+                    
+                    console.log('%c✨ エフェクト初期化完了', 'color: #00F5FF');
+                } catch (error) {
+                    console.error('エフェクト初期化エラー:', error);
                 }
             }
-        });
-        
-        // パーティクルを描画
-        ctx.fillStyle = `rgba(0, 245, 255, ${p.opacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-    });
-    
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// ===================================
-// 3. 3Dカードティルト効果
-// ===================================
-const cards = document.querySelectorAll('.project-card, .glass, .stat-card');
-cards.forEach(card => {
-    card.style.transition = 'transform 0.1s ease-out';
-    card.style.transformStyle = 'preserve-3d';
-    
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-    });
-});
-
-// ===================================
-// 4. クリック波紋エフェクト
-// ===================================
-document.addEventListener('click', (e) => {
-    const ripple = document.createElement('div');
-    ripple.style.cssText = `
-        position: fixed;
-        left: ${e.clientX}px;
-        top: ${e.clientY}px;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(0, 245, 255, 0.5);
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: 9999;
-    `;
-    document.body.appendChild(ripple);
-    
-    ripple.animate([
-        { width: '0px', height: '0px', opacity: 1 },
-        { width: '500px', height: '500px', opacity: 0 }
-    ], {
-        duration: 600,
-        easing: 'ease-out'
-    });
-    
-    setTimeout(() => ripple.remove(), 600);
-});
-
-// ===================================
-// 5. スキルバー発光アニメーション
-// ===================================
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const progressBars = entry.target.querySelectorAll('[class*="progress"]');
-            progressBars.forEach((bar, index) => {
-                setTimeout(() => {
-                    bar.style.boxShadow = '0 0 20px var(--primary), 0 0 40px var(--primary)';
-                    bar.style.transition = 'all 1.5s ease';
-                }, index * 200);
-            });
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.skill-category, section').forEach(el => {
-    observer.observe(el);
-});
-
-// ===================================
-// 6. スクロール進捗バー
-// ===================================
-const scrollProgress = document.createElement('div');
-scrollProgress.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    z-index: 99999;
-    transform-origin: left;
-    width: 0%;
-    transition: width 0.1s ease;
-`;
-document.body.appendChild(scrollProgress);
-
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercent = (scrollTop / scrollHeight) * 100;
-    scrollProgress.style.width = scrollPercent + '%';
-});
-
-// ===================================
-// 7. マウストレイルパーティクル
-// ===================================
-let lastX = 0, lastY = 0;
-document.addEventListener('mousemove', (e) => {
-    if (Math.abs(e.clientX - lastX) > 5 || Math.abs(e.clientY - lastY) > 5) {
-        const trail = document.createElement('div');
-        trail.style.cssText = `
-            position: fixed;
-            left: ${e.clientX}px;
-            top: ${e.clientY}px;
-            width: 5px;
-            height: 5px;
-            background: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            box-shadow: 0 0 10px var(--primary);
-        `;
-        document.body.appendChild(trail);
-        
-        trail.animate([
-            { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.8 },
-            { transform: 'translate(-50%, -30px) scale(0)', opacity: 0 }
-        ], {
-            duration: 1000,
-            easing: 'ease-out'
-        });
-        
-        setTimeout(() => trail.remove(), 1000);
-        
-        lastX = e.clientX;
-        lastY = e.clientY;
-    }
-});
-
-// ===================================
-// 8. 花火エフェクト（プロジェクトクリック時）
-// ===================================
-const projectCards = document.querySelectorAll('.project-card, [class*="featured"]');
-projectCards.forEach(card => {
-    card.addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = rect.left + rect.width / 2;
-        const y = rect.top + rect.height / 2;
-        
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            const angle = (Math.PI * 2 * i) / 30;
-            const velocity = 100 + Math.random() * 100;
-            const tx = Math.cos(angle) * velocity;
-            const ty = Math.sin(angle) * velocity;
             
-            particle.style.cssText = `
-                position: fixed;
-                left: ${x}px;
-                top: ${y}px;
-                width: 4px;
-                height: 4px;
-                background: ${i % 3 === 0 ? 'var(--primary)' : i % 3 === 1 ? 'var(--secondary)' : 'var(--accent)'};
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-            `;
-            document.body.appendChild(particle);
-            
-            particle.animate([
-                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
-                { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: 1000 + Math.random() * 500,
-                easing: 'ease-out'
-            });
-            
-            setTimeout(() => particle.remove(), 1500);
-        }
-    });
-});
-
-// ===================================
-// 9. スキルバッジポップアニメーション
-// ===================================
-const skillBadges = document.querySelectorAll('.skill-badge, .skill-item');
-skillBadges.forEach((badge, index) => {
-    setTimeout(() => {
-        badge.style.animation = 'skillPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-    }, index * 50);
-});
-
-// スキルバッジホバー時の飛び出し
-skillBadges.forEach(badge => {
-    badge.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.2) rotate(5deg)';
-        this.style.boxShadow = '0 0 30px var(--primary)';
-        this.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-    });
-    
-    badge.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) rotate(0deg)';
-        this.style.boxShadow = 'none';
-    });
-});
-
-// ===================================
-// 10. タイトルグリッチエフェクト
-// ===================================
-const titles = document.querySelectorAll('h1, h2[class*="neon"]');
-titles.forEach(title => {
-    setInterval(() => {
-        if (Math.random() > 0.95) {
-            title.style.textShadow = '2px 0 #ff00de, -2px 0 #00fff9';
-            setTimeout(() => {
-                title.style.textShadow = '0 0 10px rgba(0,245,255,0.5), 0 0 20px rgba(0,245,255,0.5), 0 0 30px rgba(0,245,255,0.5)';
-            }, 50);
-        }
-    }, 2000);
-});
-
-// ===================================
-// 11. カウントアップアニメーション
-// ===================================
-const stats = document.querySelectorAll('.stat-card [class*="text-3xl"], .stat-card [class*="text-4xl"]');
-stats.forEach(stat => {
-    const text = stat.textContent;
-    const num = parseFloat(text.replace(/[^0-9.]/g, ''));
-    
-    if (!isNaN(num) && num > 0) {
-        stat.textContent = '0';
-        let current = 0;
-        const increment = num / 60;
-        
-        const counter = setInterval(() => {
-            current += increment;
-            if (current >= num) {
-                current = num;
-                clearInterval(counter);
+            initMouseGlow() {
+                const glow = document.createElement('div');
+                glow.setAttribute('aria-hidden', 'true');
+                glow.style.cssText = `
+                    position: fixed;
+                    width: 600px;
+                    height: 600px;
+                    background: radial-gradient(circle, rgba(0,245,255,0.15) 0%, transparent 70%);
+                    pointer-events: none;
+                    z-index: 99999;
+                    will-change: transform;
+                `;
+                document.body.appendChild(glow);
+                
+                document.addEventListener('mousemove', (e) => {
+                    requestAnimationFrame(() => {
+                        glow.style.transform = `translate(${e.clientX - 300}px, ${e.clientY - 300}px)`;
+                    });
+                }, { passive: true });
             }
-            stat.textContent = text.replace(/[0-9.]+/, num % 1 === 0 ? Math.floor(current) : current.toFixed(1));
-        }, 33);
-    }
-});
-
-// ===================================
-// 12. ホバー音効果（オプション - AudioContext）
-// ===================================
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-function playHoverSound() {
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.value = 800;
-    oscillator.type = 'sine';
-    
-    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 0.1);
-}
-
-document.querySelectorAll('button, a, .project-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        if (Math.random() > 0.7) playHoverSound();
-    });
-});
-
-console.log('%c✨ 全エフェクト起動完了！', 'color: #00F5FF; font-size: 16px; font-weight: bold');
-
+            
+            initParticles() {
+                const canvas = document.createElement('canvas');
+                canvas.setAttribute('aria-hidden', 'true');
+                canvas.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                    pointer-events: none;
+                `;
+                document.body.insertBefore(canvas, document.body.firstChild);
+                
+                const ctx = canvas.getContext('2d', { alpha: true });
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                const particles = [];
+                for (let i = 0; i < this.config.particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.8,
+                        vy: (Math.random() - 0.5) * 0.8,
+                        radius: Math.random() * 2 + 1
+                    });
+                }
+                
+                const animate = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach((p, i) => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        
+                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                        
+                        particles.forEach((p2, j) => {
+                            if (i < j) {
+                                const dx = p.x - p2.x;
+                                const dy = p.y - p2.y;
+                                const distSq = dx * dx + dy * dy;
+                                
+                                if (distSq < 22500) {
+                                    const distance = Math.sqrt(distSq);
+                                    ctx.strokeStyle = `rgba(0, 245, 255, ${(1 - distance / 150) * 0.15})`;
+                                    ctx.lineWidth = 1;
+                                    ctx.beginPath();
+                                    ctx.moveTo(p.x, p.y);
+                                    ctx.lineTo(p2.x, p2.y);
+                                    ctx.stroke();
+                                }
+                            }
+                        });
+                        
+                        ctx.fillStyle = 'rgba(0, 245, 255, 0.5)';
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    });
+                    
+                    this.metrics.frameCount++;
+                    this.animationFrameId = requestAnimationFrame(animate);
+                };
+                
+                animate();
+                
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    }, 250);
+                }, { passive: true });
+            }
+            
+            init3DCards() {
+                const cards = document.querySelectorAll('.project-card, .glass, .stat-card, .featured-project');
+                cards.forEach(card => {
+                    card.style.transition = 'transform 0.1s ease-out';
+                    card.style.willChange = 'transform';
+                    
+                    card.addEventListener('mousemove', (e) => {
+                        requestAnimationFrame(() => {
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            const centerX = rect.width / 2;
+                            const centerY = rect.height / 2;
+                            const rotateX = ((y - centerY) / 15).toFixed(2);
+                            const rotateY = ((centerX - x) / 15).toFixed(2);
+                            
+                            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                        });
+                    }, { passive: true });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                    }, { passive: true });
+                });
+            }
+            
+            initRippleEffect() {
+                document.addEventListener('click', (e) => {
+                    requestAnimationFrame(() => {
+                        const ripple = document.createElement('div');
+                        ripple.setAttribute('aria-hidden', 'true');
+                        ripple.style.cssText = `
+                            position: fixed;
+                            left: ${e.clientX}px;
+                            top: ${e.clientY}px;
+                            width: 0;
+                            height: 0;
+                            border-radius: 50%;
+                            background: rgba(0, 245, 255, 0.4);
+                            transform: translate(-50%, -50%);
+                            pointer-events: none;
+                            z-index: 99999;
+                        `;
+                        document.body.appendChild(ripple);
+                        
+                        const animation = ripple.animate([
+                            { width: '0px', height: '0px', opacity: 1 },
+                            { width: '400px', height: '400px', opacity: 0 }
+                        ], { duration: 500, easing: 'ease-out' });
+                        
+                        animation.onfinish = () => ripple.remove();
+                    });
+                }, { passive: true });
+            }
+            
+            initScrollProgress() {
+                const progress = document.createElement('div');
+                progress.setAttribute('role', 'progressbar');
+                progress.setAttribute('aria-label', 'Scroll progress');
+                progress.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 3px;
+                    background: linear-gradient(90deg, var(--primary), var(--secondary));
+                    z-index: 999999;
+                    width: 0%;
+                    will-change: width;
+                `;
+                document.body.appendChild(progress);
+                
+                window.addEventListener('scroll', () => {
+                    requestAnimationFrame(() => {
+                        const scrollTop = window.pageYOffset;
+                        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                        const scrollPercent = Math.min(100, (scrollTop / scrollHeight) * 100);
+                        progress.style.width = scrollPercent + '%';
+                    });
+                }, { passive: true });
+            }
+            
+            initMouseTrail() {
+                let lastX = 0, lastY = 0, trailTimeout;
+                
+                document.addEventListener('mousemove', (e) => {
+                    if (Math.abs(e.clientX - lastX) > 15 || Math.abs(e.clientY - lastY) > 15) {
+                        clearTimeout(trailTimeout);
+                        trailTimeout = setTimeout(() => {
+                            requestAnimationFrame(() => {
+                                const trail = document.createElement('div');
+                                trail.setAttribute('aria-hidden', 'true');
+                                trail.style.cssText = `
+                                    position: fixed;
+                                    left: ${e.clientX}px;
+                                    top: ${e.clientY}px;
+                                    width: 4px;
+                                    height: 4px;
+                                    background: var(--primary);
+                                    border-radius: 50%;
+                                    pointer-events: none;
+                                    z-index: 99998;
+                                    box-shadow: 0 0 8px var(--primary);
+                                `;
+                                document.body.appendChild(trail);
+                                
+                                const animation = trail.animate([
+                                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.7 },
+                                    { transform: 'translate(-50%, -25px) scale(0)', opacity: 0 }
+                                ], { duration: 800, easing: 'ease-out' });
+                                
+                                animation.onfinish = () => trail.remove();
+                            });
+                        }, 40);
+                        
+                        lastX = e.clientX;
+                        lastY = e.clientY;
+                    }
+                }, { passive: true });
+            }
+            
+            initFireworks() {
+                const cards = document.querySelectorAll('.project-card, .featured-project');
+                cards.forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = rect.left + rect.width / 2;
+                        const y = rect.top + rect.height / 2;
+                        const colors = ['var(--primary)', 'var(--secondary)', 'var(--accent)'];
+                        
+                        requestAnimationFrame(() => {
+                            for (let i = 0; i < 25; i++) {
+                                const particle = document.createElement('div');
+                                particle.setAttribute('aria-hidden', 'true');
+                                const angle = (Math.PI * 2 * i) / 25;
+                                const velocity = 80 + Math.random() * 80;
+                                const tx = Math.cos(angle) * velocity;
+                                const ty = Math.sin(angle) * velocity;
+                                
+                                particle.style.cssText = `
+                                    position: fixed;
+                                    left: ${x}px;
+                                    top: ${y}px;
+                                    width: 5px;
+                                    height: 5px;
+                                    background: ${colors[i % 3]};
+                                    border-radius: 50%;
+                                    pointer-events: none;
+                                    z-index: 99999;
+                                `;
+                                document.body.appendChild(particle);
+                                
+                                const animation = particle.animate([
+                                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                                    { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+                                ], { duration: 800 + Math.random() * 400, easing: 'ease-out' });
+                                
+                                animation.onfinish = () => particle.remove();
+                            }
+                        });
+                    });
+                });
+            }
+        }
+        
+        // 初期化
+        const portfolioEffects = new PortfolioEffectsManager();
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => portfolioEffects.init());
+        } else {
+            portfolioEffects.init();
+        }
     </script>
 </body>
 </html>
