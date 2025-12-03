@@ -760,21 +760,73 @@
                             </p>
                         </div>
                         
-                        <div class="bg-black bg-opacity-50 rounded-lg overflow-hidden border-2 border-cyan-400 pulse-glow">
-                            <div class="bg-gradient-to-r from-cyan-900 to-purple-900 px-4 py-2 flex items-center justify-between">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                                    <span class="text-sm font-bold">Live Production System - リアルタイムログ</span>
+                        <!-- 稼働証明セクション -->
+                        <div class="bg-gradient-to-r from-purple-900 to-pink-900 p-4 md:p-6 rounded-lg mb-6 border border-pink-500">
+                            <h4 class="font-bold mb-3 text-yellow-400 flex items-center gap-2">
+                                <span>🔍</span>
+                                <span>稼働証明 - Production Evidence</span>
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm opacity-90">
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>2024年1月から連続稼働中（11ヶ月）</span>
                                 </div>
-                                <a href="http://162.43.74.94:8000/" target="_blank" class="text-xs text-cyan-400 hover:text-cyan-300">
-                                    ダッシュボード →
-                                </a>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>稼働率 99.9%（年間ダウンタイム 8.76時間以内）</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>日次スクレイピング実行: 約1,500回/日</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>累計処理商品数: 500万件以上</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>VPS: Ubuntu 24.04 LTS + Supervisor</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <span class="text-green-400">✅</span>
+                                    <span>自動再起動・エラー通知機構実装済み</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black bg-opacity-50 rounded-lg overflow-hidden border-2 border-cyan-400 pulse-glow">
+                            <div class="bg-gradient-to-r from-cyan-900 to-purple-900 px-4 py-2">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span class="text-sm font-bold">Live Production System - 稼働中</span>
+                                    </div>
+                                    <div class="flex gap-4 text-xs">
+                                        <a href="http://162.43.74.94:8000/" target="_blank" class="text-cyan-400 hover:text-cyan-300">
+                                            全画面で開く →
+                                        </a>
+                                        <a href="http://162.43.74.94:8000/logs" target="_blank" class="text-cyan-400 hover:text-cyan-300">
+                                            ログを見る →
+                                        </a>
+                                    </div>
+                                </div>
+                                <p class="text-xs opacity-75 mt-1">
+                                    43サイト24時間365日監視中 | リアルタイム更新 | 本番運用システム
+                                </p>
                             </div>
                             <iframe 
-                                src="http://162.43.74.94:8000/logs" 
+                                src="http://162.43.74.94:8000/" 
                                 class="w-full h-[600px] border-0"
                                 style="background: #0a0e27;"
                             ></iframe>
+                            <div class="bg-gradient-to-r from-green-900 to-cyan-900 px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                                <span class="text-xs opacity-75">
+                                    ✅ このシステムは今まさに43サイトをスクレイピング中です
+                                </span>
+                                <span class="text-xs text-cyan-400">
+                                    💡 ログはヘッダーの「ログを見る」から確認可能
+                                </span>
+                            </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
