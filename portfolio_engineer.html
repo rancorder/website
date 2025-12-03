@@ -187,6 +187,112 @@
             font-weight: 600;
         }
     </style>
+    <!-- 1000点エフェクトCSS -->
+    <style>
+/* ===================================\
+   1000点エフェクト - 完全版CSS\
+   =================================== */\
+\
+/* スキルポップアニメーション */\
+@keyframes skillPop {\
+    0%, 100% { transform: scale(1) rotate(0deg); }\
+    50% { transform: scale(1.3) rotate(5deg); }\
+}\
+\
+/* ホログラム効果 */\
+.hologram {\
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 245, 255, 0.1) 50%, transparent 70%);\
+    background-size: 200% 200%;\
+    animation: hologram-scan 3s linear infinite;\
+}\
+\
+@keyframes hologram-scan {\
+    0% { background-position: 0% 0%; }\
+    100% { background-position: 200% 200%; }\
+}\
+\
+/* グリッチテキスト */\
+@keyframes glitch-anim {\
+    0% { clip-path: inset(40% 0 61% 0); }\
+    20% { clip-path: inset(92% 0 1% 0); }\
+    40% { clip-path: inset(43% 0 1% 0); }\
+    60% { clip-path: inset(25% 0 58% 0); }\
+    80% { clip-path: inset(54% 0 7% 0); }\
+    100% { clip-path: inset(58% 0 43% 0); }\
+}\
+\
+/* ネオン強化 */\
+.neon-intense {\
+    text-shadow: \
+        0 0 10px rgba(0,245,255,1),\
+        0 0 20px rgba(0,245,255,1),\
+        0 0 30px rgba(0,245,255,1),\
+        0 0 40px rgba(0,245,255,0.8),\
+        0 0 70px rgba(0,245,255,0.6),\
+        0 0 80px rgba(0,245,255,0.6),\
+        0 0 100px rgba(0,245,255,0.4),\
+        0 0 150px rgba(0,245,255,0.2);\
+    animation: neon-flicker 1.5s infinite alternate;\
+}\
+\
+@keyframes neon-flicker {\
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {\
+        opacity: 1;\
+    }\
+    20%, 24%, 55% {\
+        opacity: 0.85;\
+    }\
+}\
+\
+/* パルスグロー */\
+.pulse-glow {\
+    animation: pulse-glow 2s ease-in-out infinite;\
+}\
+\
+@keyframes pulse-glow {\
+    0%, 100% {\
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);\
+    }\
+    50% {\
+        box-shadow: 0 0 40px rgba(0, 245, 255, 0.8),\
+                    0 0 60px rgba(0, 245, 255, 0.6);\
+    }\
+}\
+\
+/* カードホバーエフェクト強化 */\
+.project-card, .glass, .stat-card {\
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;\
+}\
+\
+.project-card:hover, .glass:hover {\
+    box-shadow: 0 0 50px rgba(0, 245, 255, 0.6) !important;\
+}\
+\
+/* スキルバッジ強化 */\
+.skill-badge, .skill-item {\
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);\
+    cursor: pointer;\
+}\
+\
+.skill-badge:hover, .skill-item:hover {\
+    transform: scale(1.2) rotate(5deg) !important;\
+    box-shadow: 0 0 30px var(--primary) !important;\
+}\
+\
+/* レスポンシブ対応 */\
+@media (prefers-reduced-motion: reduce) {\
+    *, *::before, *::after {\
+        animation-duration: 0.01ms !important;\
+        animation-iteration-count: 1 !important;\
+        transition-duration: 0.01ms !important;\
+    }\
+}\
+\
+/* Z-indexの調整 */\
+#mouseGlow { z-index: 1; }\
+#particleCanvas { z-index: 0; }\
+.scroll-indicator { z-index: 99999; }
+    </style>
 </head>
 <body class="text-white selection:bg-cyan-500 selection:text-black">
     
@@ -387,11 +493,6 @@
                                     <span>MySQL</span>
                                 </div>
                                 <div class="skill-item">
-                                    <i class="fas fa-database text-purple-400"></i>
-                                    <span>PostgreSQL</span>
-                                    <span class="skill-level">(トランザクション制御)</span>
-                                </div>
-                                <div class="skill-item">
                                     <i class="fas fa-database text-cyan-400"></i>
                                     <span>SQLite</span>
                                     <span class="skill-level">(WALモード)</span>
@@ -496,71 +597,6 @@
                                     </div>
                                 </div>
                                 <a href="https://github.com/rancorder/Biz_Spec_Translator" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-sm mt-4 block">
-                                    <i class="fab fa-github mr-1"></i>View on GitHub →
-                                </a>
-                            </div>
-                            
-                            <!-- Reservation System PoC -->
-                            <div class="project-card featured-project p-6 hover-lift">
-                                <div class="project-card-content">
-                                    <div class="flex items-start justify-between mb-3">
-                                        <h4 class="text-xl md:text-2xl font-bold text-cyan-400">🔒 Reservation System PoC</h4>
-                                        <div class="flex gap-2">
-                                            <span class="badge" style="font-size: 0.7rem;">2025</span>
-                                            <span class="new-badge">1h</span>
-                                        </div>
-                                    </div>
-                                    <p class="text-sm opacity-90 mb-4">エンタープライズグレード予約システム</p>
-                                    
-                                    <div class="why-matters mb-4">
-                                        <p class="font-bold text-yellow-400 mb-1">💡 なぜこれが重要か</p>
-                                        <p class="text-sm opacity-90">
-                                            <strong>実装速度 × 技術理解</strong>の証明。<br>
-                                            企業の要求技術を<br>
-                                            <strong>募集要項を見てから1時間で全実装</strong>。<br>
-                                            「経験年数」より「実装力」で勝負。
-                                        </p>
-                                    </div>
-                                    
-                                    <div class="space-y-2 mb-4 text-xs opacity-90">
-                                        <div class="flex items-start gap-1">
-                                            <span class="text-cyan-400">✓</span>
-                                            <span>Redis分散ロック（Lua原子性）</span>
-                                        </div>
-                                        <div class="flex items-start gap-1">
-                                            <span class="text-cyan-400">✓</span>
-                                            <span>楽観的・悲観的ロック両実装</span>
-                                        </div>
-                                        <div class="flex items-start gap-1">
-                                            <span class="text-cyan-400">✓</span>
-                                            <span>race condition完全対策</span>
-                                        </div>
-                                        <div class="flex items-start gap-1">
-                                            <span class="text-cyan-400">✓</span>
-                                            <span>冪等性実装（重複実行防止）</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-2 gap-2 mb-4">
-                                        <div class="text-center bg-black bg-opacity-30 p-2 rounded">
-                                            <div class="text-xl font-bold text-yellow-400">60分</div>
-                                            <div class="text-xs opacity-75">実装時間</div>
-                                        </div>
-                                        <div class="text-center bg-black bg-opacity-30 p-2 rounded">
-                                            <div class="text-xl font-bold text-green-400">100</div>
-                                            <div class="text-xs opacity-75">並行対応</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex flex-wrap gap-2 mb-3">
-                                        <span class="skill-badge text-xs">FastAPI</span>
-                                        <span class="skill-badge text-xs">Redis</span>
-                                        <span class="skill-badge text-xs">PostgreSQL</span>
-                                        <span class="skill-badge text-xs">分散ロック</span>
-                                        <span class="skill-badge text-xs">ACID</span>
-                                    </div>
-                                </div>
-                                <a href="https://github.com/rancorder/reservation-system-poc" target="_blank" class="text-cyan-400 hover:text-cyan-300 text-sm mt-4 block">
                                     <i class="fab fa-github mr-1"></i>View on GitHub →
                                 </a>
                             </div>
@@ -765,73 +801,21 @@
                             </p>
                         </div>
                         
-                        <!-- 稼働証明セクション -->
-                        <div class="bg-gradient-to-r from-purple-900 to-pink-900 p-4 md:p-6 rounded-lg mb-6 border border-pink-500">
-                            <h4 class="font-bold mb-3 text-yellow-400 flex items-center gap-2">
-                                <span>🔍</span>
-                                <span>稼働証明 - Production Evidence</span>
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm opacity-90">
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>2024年1月から連続稼働中（11ヶ月）</span>
-                                </div>
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>稼働率 99.9%（年間ダウンタイム 8.76時間以内）</span>
-                                </div>
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>日次スクレイピング実行: 約1,500回/日</span>
-                                </div>
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>累計処理商品数: 500万件以上</span>
-                                </div>
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>VPS: Ubuntu 24.04 LTS + Supervisor</span>
-                                </div>
-                                <div class="flex items-start gap-2">
-                                    <span class="text-green-400">✅</span>
-                                    <span>自動再起動・エラー通知機構実装済み</span>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="bg-black bg-opacity-50 rounded-lg overflow-hidden border-2 border-cyan-400 pulse-glow">
-                            <div class="bg-gradient-to-r from-cyan-900 to-purple-900 px-4 py-2">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                                        <span class="text-sm font-bold">Live Production System - 稼働中</span>
-                                    </div>
-                                    <div class="flex gap-4 text-xs">
-                                        <a href="http://162.43.74.94:8000/" target="_blank" class="text-cyan-400 hover:text-cyan-300">
-                                            全画面で開く →
-                                        </a>
-                                        <a href="http://162.43.74.94:8000/logs" target="_blank" class="text-cyan-400 hover:text-cyan-300">
-                                            ログを見る →
-                                        </a>
-                                    </div>
+                            <div class="bg-gradient-to-r from-cyan-900 to-purple-900 px-4 py-2 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                    <span class="text-sm font-bold">Live Production System</span>
                                 </div>
-                                <p class="text-xs opacity-75 mt-1">
-                                    43サイト24時間365日監視中 | リアルタイム更新 | 本番運用システム
-                                </p>
+                                <a href="http://162.43.74.94:8000/" target="_blank" class="text-xs text-cyan-400 hover:text-cyan-300">
+                                    全画面で開く →
+                                </a>
                             </div>
                             <iframe 
                                 src="http://162.43.74.94:8000/" 
                                 class="w-full h-[600px] border-0"
                                 style="background: #0a0e27;"
                             ></iframe>
-                            <div class="bg-gradient-to-r from-green-900 to-cyan-900 px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                                <span class="text-xs opacity-75">
-                                    ✅ このシステムは今まさに43サイトをスクレイピング中です
-                                </span>
-                                <span class="text-xs text-cyan-400">
-                                    💡 ログはヘッダーの「ログを見る」から確認可能
-                                </span>
-                            </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
@@ -929,11 +913,10 @@ $ docker-compose up -d
                     <div class="glass p-6 md:p-8 rounded-xl text-left" style="border: 2px solid var(--primary);">
                         <h3 class="text-xl md:text-2xl font-bold mb-6 text-cyan-400 text-center md:text-left">🔥 Currently</h3>
                         <div class="space-y-3 opacity-90 text-sm md:text-base">
-                            <p>🔒 <strong>NEW:</strong> Reservation System PoC完成 - エンタープライズグレード予約システムを1時間で実装</p>
                             <p>🧪 <strong>NEW:</strong> pytest実装完了 - 本番システムで30テスト実装</p>
                             <p>🤖 <strong>NEW:</strong> BizSpec Translator公開 - AI技術仕様変換ツール</p>
                             <p>🐳 <strong>NEW:</strong> 2ndstreet Monitor - JavaScript + Docker実装完了</p>
-                            <p>🚀 <strong>Running:</strong> 43サイト24時間365日監視システム(2024年稼働率99.9%)</p>
+                            <p>🚀 <strong>Running:</strong> 43サイト24時間365日監視システム（2024年稼働率99.9%）</p>
                             <p>📚 <strong>Learning:</strong> AWS Lambda, Serverless, Go (次の短期間キャッチアップ対象)</p>
                             <p>💼 <strong>Seeking:</strong> フリーランス案件（Python開発 / サーバーレス / テスト自動化）</p>
                             <p>💰 <strong>Target:</strong> 月80-100万円 / フルリモート</p>
@@ -968,4 +951,387 @@ $ docker-compose up -d
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
+    <!-- 1000点エフェクトJavaScript -->
+    <script>
+// ===================================
+// 1000点エフェクト - 完全版
+// ===================================
+
+console.log('%c🚀 レベル100エフェクト起動', 'color: #00F5FF; font-size: 20px; font-weight: bold');
+
+// ===================================
+// 1. マウス追従グローエフェクト
+// ===================================
+const mouseGlow = document.createElement('div');
+mouseGlow.id = 'mouseGlow';
+mouseGlow.style.cssText = `
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,245,255,0.2) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+`;
+document.body.appendChild(mouseGlow);
+
+document.addEventListener('mousemove', (e) => {
+    mouseGlow.style.left = e.clientX + 'px';
+    mouseGlow.style.top = e.clientY + 'px';
+});
+
+// ===================================
+// 2. パーティクル背景（Canvas）
+// ===================================
+const canvas = document.createElement('canvas');
+canvas.id = 'particleCanvas';
+canvas.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+`;
+document.body.insertBefore(canvas, document.body.firstChild);
+
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 1,
+        vy: (Math.random() - 0.5) * 1,
+        radius: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.3
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        
+        // 接続線を描画
+        particles.forEach((p2, j) => {
+            if (i < j) {
+                const dx = p.x - p2.x;
+                const dy = p.y - p2.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                    ctx.strokeStyle = `rgba(0, 245, 255, ${(1 - distance / 150) * 0.2})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+                }
+            }
+        });
+        
+        // パーティクルを描画
+        ctx.fillStyle = `rgba(0, 245, 255, ${p.opacity})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// ===================================
+// 3. 3Dカードティルト効果
+// ===================================
+const cards = document.querySelectorAll('.project-card, .glass, .stat-card');
+cards.forEach(card => {
+    card.style.transition = 'transform 0.1s ease-out';
+    card.style.transformStyle = 'preserve-3d';
+    
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+    });
+});
+
+// ===================================
+// 4. クリック波紋エフェクト
+// ===================================
+document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: fixed;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(0, 245, 255, 0.5);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 9999;
+    `;
+    document.body.appendChild(ripple);
+    
+    ripple.animate([
+        { width: '0px', height: '0px', opacity: 1 },
+        { width: '500px', height: '500px', opacity: 0 }
+    ], {
+        duration: 600,
+        easing: 'ease-out'
+    });
+    
+    setTimeout(() => ripple.remove(), 600);
+});
+
+// ===================================
+// 5. スキルバー発光アニメーション
+// ===================================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll('[class*="progress"]');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.boxShadow = '0 0 20px var(--primary), 0 0 40px var(--primary)';
+                    bar.style.transition = 'all 1.5s ease';
+                }, index * 200);
+            });
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.skill-category, section').forEach(el => {
+    observer.observe(el);
+});
+
+// ===================================
+// 6. スクロール進捗バー
+// ===================================
+const scrollProgress = document.createElement('div');
+scrollProgress.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    z-index: 99999;
+    transform-origin: left;
+    width: 0%;
+    transition: width 0.1s ease;
+`;
+document.body.appendChild(scrollProgress);
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+});
+
+// ===================================
+// 7. マウストレイルパーティクル
+// ===================================
+let lastX = 0, lastY = 0;
+document.addEventListener('mousemove', (e) => {
+    if (Math.abs(e.clientX - lastX) > 5 || Math.abs(e.clientY - lastY) > 5) {
+        const trail = document.createElement('div');
+        trail.style.cssText = `
+            position: fixed;
+            left: ${e.clientX}px;
+            top: ${e.clientY}px;
+            width: 5px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            box-shadow: 0 0 10px var(--primary);
+        `;
+        document.body.appendChild(trail);
+        
+        trail.animate([
+            { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.8 },
+            { transform: 'translate(-50%, -30px) scale(0)', opacity: 0 }
+        ], {
+            duration: 1000,
+            easing: 'ease-out'
+        });
+        
+        setTimeout(() => trail.remove(), 1000);
+        
+        lastX = e.clientX;
+        lastY = e.clientY;
+    }
+});
+
+// ===================================
+// 8. 花火エフェクト（プロジェクトクリック時）
+// ===================================
+const projectCards = document.querySelectorAll('.project-card, [class*="featured"]');
+projectCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            const angle = (Math.PI * 2 * i) / 30;
+            const velocity = 100 + Math.random() * 100;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity;
+            
+            particle.style.cssText = `
+                position: fixed;
+                left: ${x}px;
+                top: ${y}px;
+                width: 4px;
+                height: 4px;
+                background: ${i % 3 === 0 ? 'var(--primary)' : i % 3 === 1 ? 'var(--secondary)' : 'var(--accent)'};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+            `;
+            document.body.appendChild(particle);
+            
+            particle.animate([
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 1000 + Math.random() * 500,
+                easing: 'ease-out'
+            });
+            
+            setTimeout(() => particle.remove(), 1500);
+        }
+    });
+});
+
+// ===================================
+// 9. スキルバッジポップアニメーション
+// ===================================
+const skillBadges = document.querySelectorAll('.skill-badge, .skill-item');
+skillBadges.forEach((badge, index) => {
+    setTimeout(() => {
+        badge.style.animation = 'skillPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    }, index * 50);
+});
+
+// スキルバッジホバー時の飛び出し
+skillBadges.forEach(badge => {
+    badge.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.2) rotate(5deg)';
+        this.style.boxShadow = '0 0 30px var(--primary)';
+        this.style.transition = 'all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+    });
+    
+    badge.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+        this.style.boxShadow = 'none';
+    });
+});
+
+// ===================================
+// 10. タイトルグリッチエフェクト
+// ===================================
+const titles = document.querySelectorAll('h1, h2[class*="neon"]');
+titles.forEach(title => {
+    setInterval(() => {
+        if (Math.random() > 0.95) {
+            title.style.textShadow = '2px 0 #ff00de, -2px 0 #00fff9';
+            setTimeout(() => {
+                title.style.textShadow = '0 0 10px rgba(0,245,255,0.5), 0 0 20px rgba(0,245,255,0.5), 0 0 30px rgba(0,245,255,0.5)';
+            }, 50);
+        }
+    }, 2000);
+});
+
+// ===================================
+// 11. カウントアップアニメーション
+// ===================================
+const stats = document.querySelectorAll('.stat-card [class*="text-3xl"], .stat-card [class*="text-4xl"]');
+stats.forEach(stat => {
+    const text = stat.textContent;
+    const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    
+    if (!isNaN(num) && num > 0) {
+        stat.textContent = '0';
+        let current = 0;
+        const increment = num / 60;
+        
+        const counter = setInterval(() => {
+            current += increment;
+            if (current >= num) {
+                current = num;
+                clearInterval(counter);
+            }
+            stat.textContent = text.replace(/[0-9.]+/, num % 1 === 0 ? Math.floor(current) : current.toFixed(1));
+        }, 33);
+    }
+});
+
+// ===================================
+// 12. ホバー音効果（オプション - AudioContext）
+// ===================================
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+function playHoverSound() {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 800;
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
+}
+
+document.querySelectorAll('button, a, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        if (Math.random() > 0.7) playHoverSound();
+    });
+});
+
+console.log('%c✨ 全エフェクト起動完了！', 'color: #00F5FF; font-size: 16px; font-weight: bold');
+
+    </script>
+</body>
+</html>
