@@ -186,6 +186,128 @@
             opacity: 0.7;
             font-weight: 600;
         }
+        
+        /* 🔥 Hero Slider Styles */
+        .hero-slider-section {
+            background: linear-gradient(135deg, 
+                rgba(0,245,255,0.05) 0%, 
+                rgba(255,0,110,0.05) 50%,
+                rgba(255,190,11,0.05) 100%);
+            border-top: 2px solid rgba(0,245,255,0.3);
+            border-bottom: 2px solid rgba(0,245,255,0.3);
+            position: relative;
+        }
+
+        .hero-slider-container {
+            position: relative;
+            min-height: 600px;
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            position: relative;
+        }
+
+        .new-badge-large {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, 
+                rgba(0,245,255,0.3), 
+                rgba(255,0,110,0.3));
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .stat-card-slider {
+            background: rgba(26, 31, 58, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid rgba(0,245,255,0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card-slider:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,245,255,0.4);
+        }
+
+        .skill-badge-slider {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0,245,255,0.1);
+            border: 1px solid rgba(0,245,255,0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge-slider:hover {
+            background: rgba(0,245,255,0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0,245,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--primary);
+            box-shadow: 0 0 20px rgba(0,245,255,0.6);
+        }
+
+        .indicator:hover {
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-slider-container {
+                min-height: 800px;
+            }
+            
+            .new-badge-large {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+        }
     </style>
 </head>
 <body class="text-white selection:bg-cyan-500 selection:text-black">
@@ -264,6 +386,109 @@
             
             <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
                 <i class="fas fa-chevron-down text-3xl text-cyan-400 opacity-50"></i>
+            </div>
+        </section>
+        
+        <!-- 🔥 Hero Slider: New Projects Showcase -->
+        <section class="hero-slider-section relative overflow-hidden py-0">
+            <div class="hero-slider-container">
+                <!-- スライド1: Scraping Load Test -->
+                <div class="hero-slide active" data-slide="1">
+                    <div class="container mx-auto px-4 md:px-6 py-8 md:py-12">
+                        <div class="max-w-6xl mx-auto">
+                            <!-- NEWバッジ -->
+                            <div class="flex items-center justify-center mb-4">
+                                <span class="new-badge-large pulse-glow">
+                                    <i class="fas fa-star mr-2"></i>
+                                    NEW PROJECT
+                                </span>
+                            </div>
+                            
+                            <!-- タイトル -->
+                            <h2 class="text-3xl md:text-5xl font-black text-center mb-3 neon-text">
+                                🔬 Scraping Load Test
+                            </h2>
+                            
+                            <!-- サブタイトル -->
+                            <p class="text-lg md:text-2xl text-center mb-8 text-cyan-300">
+                                VPS 4GB制約下の並列限界検証 - 理論値と実測値で実証
+                            </p>
+                            
+                            <!-- 統計グリッド -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                <div class="stat-card-slider pulse-glow">
+                                    <div class="text-4xl md:text-6xl font-black text-cyan-400">43</div>
+                                    <div class="text-sm opacity-75 mt-2">サイト並列</div>
+                                    <div class="text-xs opacity-50 mt-1">24/7監視</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.2s;">
+                                    <div class="text-4xl md:text-6xl font-black text-yellow-400">95.1<span class="text-2xl">%</span></div>
+                                    <div class="text-sm opacity-75 mt-2">メモリ使用率</div>
+                                    <div class="text-xs opacity-50 mt-1">理論限界</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.4s;">
+                                    <div class="text-4xl md:text-6xl font-black text-pink-400">6,067<span class="text-2xl">%</span></div>
+                                    <div class="text-sm opacity-75 mt-2">ROI</div>
+                                    <div class="text-xs opacity-50 mt-1">投資回収率</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.6s;">
+                                    <div class="text-4xl md:text-6xl font-black text-green-400">¥182<span class="text-2xl">万</span></div>
+                                    <div class="text-sm opacity-75 mt-2">月間増益</div>
+                                    <div class="text-xs opacity-50 mt-1">8GB時</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 説明テキスト -->
+                            <p class="text-center text-base md:text-lg mb-8 opacity-90 max-w-4xl mx-auto leading-relaxed">
+                                k6による段階的負荷試験で、43サイト並列処理の限界を理論値（95.1%）と実測値で実証。
+                                Playwright（175MB）とNormal（20MB）の混在処理を分析し、
+                                <strong class="text-yellow-400">VPS 4GBでは43サイトが上限</strong>と結論。
+                                8GBアップグレードで<strong class="text-green-400">ROI 6,067%</strong>を試算。
+                            </p>
+                            
+                            <!-- 技術スタック -->
+                            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                                <span class="skill-badge-slider">k6</span>
+                                <span class="skill-badge-slider">FastAPI</span>
+                                <span class="skill-badge-slider">Playwright</span>
+                                <span class="skill-badge-slider">Docker</span>
+                                <span class="skill-badge-slider">Prometheus</span>
+                                <span class="skill-badge-slider">psutil</span>
+                            </div>
+                            
+                            <!-- CTAボタン -->
+                            <div class="flex flex-col md:flex-row justify-center gap-4">
+                                <a href="https://github.com/rancorder/scraping-load-test" 
+                                   target="_blank" 
+                                   class="btn-cyber">
+                                    <i class="fab fa-github mr-2"></i>
+                                    View on GitHub
+                                </a>
+                                <a href="#portfolio" 
+                                   class="btn-cyber" 
+                                   style="border-color: #FF006E; color: #FF006E;">
+                                    <i class="fas fa-folder-open mr-2"></i>
+                                    全プロジェクトを見る
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 背景エフェクト -->
+                    <div class="absolute inset-0 pointer-events-none opacity-20" style="z-index: -1;">
+                        <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl animate-pulse"></div>
+                        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500 rounded-full filter blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+                    </div>
+                </div>
+                
+                <!-- スライドインジケーター -->
+                <div class="slider-indicators">
+                    <button class="indicator active" data-slide="1" aria-label="Slide 1"></button>
+                    <!-- 将来的に追加プロジェクト用 -->
+                </div>
             </div>
         </section>
         
@@ -1567,6 +1792,43 @@ $ docker-compose up -d
         } else {
             portfolioEffects.init();
         }
+        
+        // 🔥 Hero Slider Auto-play
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            
+            if (slides.length === 0) return;
+            
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(ind => ind.classList.remove('active'));
+                
+                slides[index].classList.add('active');
+                if (indicators[index]) {
+                    indicators[index].classList.add('active');
+                }
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Auto-advance every 8 seconds (複数スライドがある場合のみ)
+            if (slides.length > 1) {
+                setInterval(nextSlide, 8000);
+            }
+            
+            // Manual navigation
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+            });
+        });
     </script>
 </body>
 </html>
