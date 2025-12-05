@@ -415,7 +415,7 @@
                             </p>
                             
                             <!-- 統計グリッド -->
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                                 <div class="stat-card-slider pulse-glow">
                                     <div class="text-4xl md:text-6xl font-black text-cyan-400">43</div>
                                     <div class="text-sm opacity-75 mt-2">サイト並列</div>
@@ -433,20 +433,14 @@
                                     <div class="text-sm opacity-75 mt-2">ROI</div>
                                     <div class="text-xs opacity-50 mt-1">投資回収率</div>
                                 </div>
-                                
-                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.6s;">
-                                    <div class="text-4xl md:text-6xl font-black text-green-400">¥182<span class="text-2xl">万</span></div>
-                                    <div class="text-sm opacity-75 mt-2">月間増益</div>
-                                    <div class="text-xs opacity-50 mt-1">8GB時</div>
-                                </div>
                             </div>
                             
                             <!-- 説明テキスト -->
                             <p class="text-center text-base md:text-lg mb-8 opacity-90 max-w-4xl mx-auto leading-relaxed">
                                 k6による段階的負荷試験で、43サイト並列処理の限界を理論値（95.1%）と実測値で実証。
                                 Playwright（175MB）とNormal（20MB）の混在処理を分析し、
-                                <strong class="text-yellow-400">VPS 4GBでは43サイトが上限</strong>と結論。
-                                8GBアップグレードで<strong class="text-green-400">ROI 6,067%</strong>を試算。
+                                <strong class="text-yellow-400">VPS 4GBでは43サイトが理論的限界</strong>と結論。
+                                メモリ使用率95.1%でギリギリの安定稼働を実現。
                             </p>
                             
                             <!-- 技術スタック -->
@@ -487,7 +481,146 @@
                 <!-- スライドインジケーター -->
                 <div class="slider-indicators">
                     <button class="indicator active" data-slide="1" aria-label="Slide 1"></button>
-                    <!-- 将来的に追加プロジェクト用 -->
+                    <button class="indicator" data-slide="2" aria-label="Slide 2"></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スライド2: SRE / Performance Testing -->
+        <section class="hero-slider-section relative overflow-hidden py-0" style="margin-top: -2px;">
+            <div class="hero-slider-container">
+                <div class="hero-slide" data-slide="2">
+                    <div class="container mx-auto px-4 md:px-6 py-8 md:py-12">
+                        <div class="max-w-6xl mx-auto">
+                            <!-- バッジ -->
+                            <div class="flex items-center justify-center mb-4">
+                                <span class="new-badge-large pulse-glow" style="background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(236,72,153,0.3)); border-color: #8b5cf6;">
+                                    <i class="fas fa-chart-line mr-2"></i>
+                                    NETFLIX/GOOGLE SREレベル
+                                </span>
+                            </div>
+                            
+                            <!-- タイトル -->
+                            <h2 class="text-3xl md:text-5xl font-black text-center mb-3" style="text-shadow: 0 0 10px rgba(139,92,246,0.5), 0 0 20px rgba(139,92,246,0.5);">
+                                🔬 Reliability Engineering Demo
+                            </h2>
+                            
+                            <!-- サブタイトル -->
+                            <p class="text-lg md:text-2xl text-center mb-8" style="color: #a78bfa;">
+                                本番級パフォーマンステスト - エラー率0%を実測で証明
+                            </p>
+                            
+                            <!-- 統計グリッド -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                <div class="stat-card-slider pulse-glow" style="border-color: rgba(139,92,246,0.3);">
+                                    <div class="text-4xl md:text-6xl font-black" style="color: #a78bfa;">13,060</div>
+                                    <div class="text-sm opacity-75 mt-2">リクエスト処理</div>
+                                    <div class="text-xs opacity-50 mt-1">成功率100%</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.2s; border-color: rgba(236,72,153,0.3);">
+                                    <div class="text-4xl md:text-6xl font-black text-pink-400">0<span class="text-2xl">%</span></div>
+                                    <div class="text-sm opacity-75 mt-2">エラー率</div>
+                                    <div class="text-xs opacity-50 mt-1">完全安定</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.4s; border-color: rgba(59,130,246,0.3);">
+                                    <div class="text-4xl md:text-6xl font-black text-blue-400">1.69<span class="text-2xl">ms</span></div>
+                                    <div class="text-sm opacity-75 mt-2">平均応答時間</div>
+                                    <div class="text-xs opacity-50 mt-1">P95: 2.37ms</div>
+                                </div>
+                                
+                                <div class="stat-card-slider pulse-glow" style="animation-delay: 0.6s; border-color: rgba(34,197,94,0.3);">
+                                    <div class="text-4xl md:text-6xl font-black text-green-400">100</div>
+                                    <div class="text-sm opacity-75 mt-2">同時ユーザー</div>
+                                    <div class="text-xs opacity-50 mt-1">VUs負荷試験</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 重要性の説明 -->
+                            <div class="mb-8 p-4 rounded-lg border" style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(236,72,153,0.1)); border-color: rgba(139,92,246,0.3);">
+                                <p class="font-bold mb-2 text-lg" style="color: #fbbf24;">
+                                    <i class="fas fa-lightbulb mr-2"></i>
+                                    なぜこれが重要か
+                                </p>
+                                <p class="text-base opacity-95 leading-relaxed">
+                                    多くのエンジニアが「負荷試験できます」と言う中、<strong style="color: #a78bfa;">実際に動作する6つのマイクロサービスを統合し、数値で証明</strong>。
+                                    k6で13,060リクエスト、Locustで同時100ユーザー負荷を実測。
+                                    <strong class="text-pink-400">エラー率0%</strong>、<strong class="text-blue-400">平均1.69ms</strong>は口だけではない実力の証明。
+                                </p>
+                            </div>
+                            
+                            <!-- システム構成 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <div class="p-4 rounded-lg" style="background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3);">
+                                    <h4 class="font-bold mb-3 text-sm" style="color: #a78bfa;">
+                                        <i class="fas fa-flask mr-2"></i>負荷試験
+                                    </h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li>• k6: 3シナリオ（Smoke/Load/Stress）</li>
+                                        <li>• Locust: WebUI + Python制御</li>
+                                        <li>• 13,060リクエスト処理（エラー率0%）</li>
+                                        <li>• 平均1.69ms、P95: 2.37ms</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 rounded-lg" style="background: rgba(236,72,153,0.1); border: 1px solid rgba(236,72,153,0.3);">
+                                    <h4 class="font-bold mb-3 text-sm text-pink-400">
+                                        <i class="fas fa-server mr-2"></i>システムアーキテクチャ
+                                    </h4>
+                                    <ul class="text-sm space-y-2 opacity-90">
+                                        <li>• FastAPI（非同期処理）</li>
+                                        <li>• Redis + PostgreSQL</li>
+                                        <li>• Grafana + Prometheus監視</li>
+                                        <li>• Docker Compose完全自動化</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- 技術スタック -->
+                            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2)); border-color: rgba(102,126,234,0.5);">k6</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(240,147,251,0.2), rgba(245,87,108,0.2)); border-color: rgba(240,147,251,0.5);">Locust</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(16,185,129,0.2)); border-color: rgba(52,211,153,0.5);">FastAPI</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(220,38,38,0.2)); border-color: rgba(239,68,68,0.5);">Redis</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(37,99,235,0.2)); border-color: rgba(59,130,246,0.5);">PostgreSQL</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(234,88,12,0.2)); border-color: rgba(249,115,22,0.5);">Grafana</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(234,179,8,0.2), rgba(202,138,4,0.2)); border-color: rgba(234,179,8,0.5);">Prometheus</span>
+                                <span class="skill-badge-slider" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(79,70,229,0.2)); border-color: rgba(99,102,241,0.5);">Docker</span>
+                            </div>
+                            
+                            <!-- 証明バッジ -->
+                            <div class="mb-8 p-3 rounded-lg border text-center" style="background: rgba(234,179,8,0.1); border-color: rgba(234,179,8,0.4);">
+                                <p class="text-sm font-bold" style="color: #fbbf24;">
+                                    <i class="fas fa-trophy mr-2"></i>
+                                    Netflix/Google SREレベルの技術力を<strong>GitHubで完全公開</strong>・即座にデモ実行可能
+                                </p>
+                            </div>
+                            
+                            <!-- CTAボタン -->
+                            <div class="flex flex-col md:flex-row justify-center gap-4">
+                                <a href="https://github.com/rancorder/reliability-engineering-demo" 
+                                   target="_blank" 
+                                   class="btn-cyber" 
+                                   style="border-color: #8b5cf6; color: #a78bfa;">
+                                    <i class="fab fa-github mr-2"></i>
+                                    View on GitHub
+                                </a>
+                                <a href="#portfolio" 
+                                   class="btn-cyber" 
+                                   style="border-color: #ec4899; color: #ec4899;">
+                                    <i class="fas fa-folder-open mr-2"></i>
+                                    全プロジェクトを見る
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 背景エフェクト -->
+                    <div class="absolute inset-0 pointer-events-none opacity-20" style="z-index: -1;">
+                        <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full filter blur-3xl animate-pulse" style="background: #8b5cf6;"></div>
+                        <div class="absolute bottom-0 right-1/4 w-96 h-96 rounded-full filter blur-3xl animate-pulse" style="background: #ec4899; animation-delay: 1s;"></div>
+                    </div>
                 </div>
             </div>
         </section>
