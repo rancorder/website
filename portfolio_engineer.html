@@ -118,11 +118,17 @@
             font-size: 0.75rem;
             margin: 0.25rem;
             white-space: nowrap;
+            transition: all 0.3s ease;  /* 🆕 追加 */
+            cursor: pointer;             /* 🆕 追加 */
         }
-        
-        .featured-project {
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 30px rgba(255, 190, 11, 0.3);
+
+        /* 🆕 ホバーエフェクト追加 */
+        .skill-badge:hover {
+            background: rgba(0, 245, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.8),
+                        0 0 60px rgba(0, 245, 255, 0.6),
+                        0 0 90px rgba(0, 245, 255, 0.4);
+            transform: translateY(-3px) scale(1.05);
         }
         
         .new-badge {
