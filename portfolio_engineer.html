@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About & Skills Section</title>
+    <title>PM Portfolio - 製造業×フルスタック融合人材</title>
     <style>
         * {
             margin: 0;
@@ -12,581 +12,810 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #f7fafc;
-            padding: 60px 20px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .about-section {
             background: white;
             border-radius: 20px;
-            padding: 60px 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
         
-        .section-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1a202c;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
-        }
-        
-        .about-text {
-            font-size: 16px;
-            color: #4a5568;
-            line-height: 1.9;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-        }
-        
-        .about-text strong {
-            color: #667eea;
-            font-weight: 700;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            padding: 30px;
-            border-radius: 16px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .highlight-box h3 {
-            font-size: 20px;
-            color: #1a202c;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .highlight-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .highlight-list li {
-            font-size: 15px;
-            color: #4a5568;
-            line-height: 1.8;
-            padding-left: 28px;
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
             position: relative;
-            margin-bottom: 12px;
-        }
-        
-        .highlight-list li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .skill-category {
-            background: white;
-            border-radius: 16px;
-            padding: 35px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            transition: all 0.3s ease;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skill-category-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        
-        .skill-icon {
-            font-size: 32px;
-        }
-        
-        .skill-category-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a202c;
-        }
-        
-        .skill-items {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-            color: #2d3748;
-        }
-        
-        .skill-level {
-            font-size: 12px;
-            color: #718096;
-        }
-        
-        .skill-bar {
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 3px;
             overflow: hidden;
         }
         
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            border-radius: 3px;
-            transition: width 1s ease;
-        }
-        
-        .workflow-section {
-            background: white;
-            border-radius: 20px;
-            padding: 50px;
-            margin-top: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-        }
-        
-        .workflow-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .workflow-step {
-            text-align: center;
-            padding: 30px 20px;
-            background: #f7fafc;
-            border-radius: 12px;
-            position: relative;
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            font-size: 24px;
-            font-weight: 800;
-            line-height: 50px;
-            margin-bottom: 15px;
         }
         
-        .step-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a202c;
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .tagline {
+            font-size: 1.3em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
             margin-bottom: 10px;
         }
         
-        .step-description {
-            font-size: 14px;
-            color: #718096;
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .section {
+            padding: 50px 40px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            border-left: 5px solid #667eea;
+            padding-left: 20px;
+        }
+        
+        .process-mapping {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 40px;
+            color: white;
+        }
+        
+        .process-mapping h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .process-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .mapping-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .mapping-column {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mapping-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            text-align: center;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+        
+        .mapping-column.left {
+            text-align: right;
+        }
+        
+        .mapping-column.right {
+            text-align: left;
+        }
+        
+        .process-item {
+            font-size: 1.15em;
+            line-height: 2.5;
+            padding: 8px 0;
+        }
+        
+        .mapping-arrow {
+            font-size: 3em;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+        
+        .insight-box {
+            background: rgba(255,255,255,0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            line-height: 1.8;
+            backdrop-filter: blur(10px);
+        }
+        
+        .insight-box h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .insight-box p {
+            font-size: 1.1em;
+            text-align: center;
+        }
+        
+        .insight-highlight {
+            font-size: 1.25em;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .enterprise-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .enterprise-intro {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .enterprise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .enterprise-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .enterprise-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .enterprise-card h4 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .enterprise-card p {
+            color: #555;
             line-height: 1.6;
         }
         
+        .project-showcase {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .project-showcase.primary {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .project-showcase.secondary {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        }
+        
+        .project-showcase.tertiary {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .project-showcase.quaternary {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+        }
+        
+        .project-showcase h3 {
+            font-size: 1.8em;
+            color: #c0392b;
+            margin-bottom: 20px;
+        }
+        
+        .project-showcase.primary h3 {
+            color: #2c3e50;
+        }
+        
+        .project-details {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .project-details h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .project-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .project-details li {
+            padding: 8px 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tech-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .github-link {
+            display: inline-block;
+            background: #24292e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        
+        .github-link:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+        
+        .demo-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .demo-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .value-prop {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .value-prop h3 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .value-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .value-item h4 {
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .value-item p {
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .tech-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tech-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .tech-category:hover {
+            transform: translateY(-3px);
+        }
+        
+        .tech-category h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .cta {
+            background: #1e3c72;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .cta h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.2em;
+            margin-top: 20px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+        
         @media (max-width: 768px) {
-            .about-section {
-                padding: 40px 30px;
+            .header h1 {
+                font-size: 2em;
             }
             
-            .about-content {
+            .mapping-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
             
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .mapping-arrow {
+                transform: rotate(90deg);
+                font-size: 2em;
             }
             
-            .workflow-section {
-                padding: 40px 30px;
+            .mapping-column {
+                text-align: center !important;
             }
             
-            .workflow-steps {
-                grid-template-columns: 1fr;
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .process-mapping {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Projects Section -->
-        <h2 class="section-title" style="margin-bottom: 50px;">Featured Projects</h2>
+        <div class="header">
+            <h1>製造業PM × フルスタックエンジニア</h1>
+            <p class="tagline">17年のエンタープライズBtoB経験 × Next.js/React/Python実装力</p>
+        </div>
         
-        <div style="display: grid; gap: 40px; margin-bottom: 60px;">
-            <!-- Project 1: Playwright Enterprise QA -->
-            <div style="background: white; border-radius: 20px; padding: 45px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
-                    <div>
-                        <h3 style="font-size: 28px; font-weight: 700; color: #1a202c; margin: 0 0 10px 0;">🎭 Playwright Enterprise QA</h3>
-                        <p style="font-size: 16px; color: #4a5568; margin: 0;">エンタープライズグレードのQA自動化フレームワーク</p>
-                    </div>
-                    <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600;">QA Automation</span>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">17年</div>
+                <div class="stat-label">製造業BtoB PM経験</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">21品番</div>
+                <div class="stat-label">最大同時立上げ実績</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200</div>
+                <div class="stat-label">Three.jsパーティクル実装</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95点</div>
+                <div class="stat-label">Lighthouse Performance</div>
+            </div>
+        </div>
+        
+        <div class="process-mapping">
+            <h2>製造業PM × Tech PM の構造的類似性</h2>
+            <p class="process-subtitle">17年間、実はTechと同じプロセスを回してきた</p>
+            
+            <div class="mapping-grid">
+                <div class="mapping-column left">
+                    <h3>🏭 製造業PM</h3>
+                    <div class="process-item">図面・仕様書</div>
+                    <div class="process-item">金型製作</div>
+                    <div class="process-item">試作</div>
+                    <div class="process-item">寸法測定・外観</div>
+                    <div class="process-item">金型修正・製造条件見直し</div>
                 </div>
                 
-                <div style="background: #f7fafc; padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; text-align: center;">
-                        <div>
-                            <div style="font-size: 28px; font-weight: 800; color: #667eea;">30分</div>
-                            <div style="font-size: 12px; color: #718096; margin-top: 4px;">実装時間</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 28px; font-weight: 800; color: #667eea;">93%</div>
-                            <div style="font-size: 12px; color: #718096; margin-top: 4px;">成功率</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 28px; font-weight: 800; color: #667eea;">6種</div>
-                            <div style="font-size: 12px; color: #718096; margin-top: 4px;">対応ブラウザ</div>
-                        </div>
-                        <div>
-                            <div style="font-size: 28px; font-weight: 800; color: #667eea;">72</div>
-                            <div style="font-size: 12px; color: #718096; margin-top: 4px;">テストケース</div>
-                        </div>
+                <div class="mapping-arrow">⇔</div>
+                
+                <div class="mapping-column right">
+                    <h3>💻 Tech PM</h3>
+                    <div class="process-item">要件定義</div>
+                    <div class="process-item">実装</div>
+                    <div class="process-item">テスト</div>
+                    <div class="process-item">QA</div>
+                    <div class="process-item">デバッグ</div>
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <h4>💡 本質的な気づき</h4>
+                <p>
+                    金型修正は0.01mm単位で何十回も調整。<br>
+                    これはコードのデバッグと本質的に同じプロセス。
+                </p>
+                <span class="insight-highlight">
+                    違いは、製造業は物理的制約があるぶん、より慎重な要件定義が必要。<br>
+                    だからこそ、Tech業界で即戦力として機能する。
+                </span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">エンタープライズ取引実績</h2>
+            <div class="enterprise-section">
+                <p class="enterprise-intro">
+                    製造業BtoB営業17年間で、以下の企業と直接取引・新規品立上げを担当：
+                </p>
+                <div class="enterprise-grid">
+                    <div class="enterprise-card">
+                        <h4>🏥 メディカル機器製造</h4>
+                        <p>F社 - 複数機器の新規品立上げPM担当。品質基準の厳格な医療機器業界での折衝経験。</p>
+                    </div>
+                    <div class="enterprise-card">
+                        <h4>🚴 自転車部品製造</h4>
+                        <p>S社 - 技術仕様と市場ニーズの橋渡し。新規アイテムの立上げから量産管理まで一貫対応。</p>
+                    </div>
+                    <div class="enterprise-card">
+                        <h4>🏠 家電・住設</h4>
+                        <p>P社 - 大手企業との長期取引関係構築。複雑な仕様調整とコスト交渉を担当。</p>
                     </div>
                 </div>
-                
-                <div style="margin-bottom: 25px;">
-                    <h4 style="font-size: 14px; font-weight: 700; color: #667eea; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">🎯 実績</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            AI協業開発で30分実装 - 通常の10倍の開発速度を実証
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            67/72テスト成功（93%）- エンタープライズレベルの品質
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Chromium/Firefox/WebKit + Mobile対応 - 完全なクロスブラウザテスト
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Docker/CI-CD完備 - 本番環境即投入可能
-                        </li>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">代表的プロダクト実績</h2>
+            
+            <div class="project-showcase primary">
+                <h3>🌸 Next.js ISRポートフォリオ（Crystal Dreamscape）</h3>
+                <div class="project-details">
+                    <h4>ビジネス課題</h4>
+                    <p>技術記事を手動更新するのが面倒 → Zenn/Qiita記事を自動取得して常に最新状態を保ちたい</p>
+                    
+                    <h4>実装ソリューション</h4>
+                    <ul>
+                        <li>✓ Next.js 14 App Router × TypeScript完全型安全実装</li>
+                        <li>✓ ISR（Incremental Static Regeneration）1時間自動更新</li>
+                        <li>✓ RSS Parser × Qiita API統合で記事自動取得</li>
+                        <li>✓ Three.js 200パーティクル（桜吹雪）× Glassmorphism UI</li>
+                        <li>✓ GSAP スクロールトリガーアニメーション</li>
                     </ul>
-                </div>
-                
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">Playwright</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">TypeScript</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">Docker</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">GitHub Actions</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">E2E Testing</span>
-                </div>
-                
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="https://github.com/rancorder/playwright-enterprise-qa" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; transition: transform 0.2s;">
-                        📦 GitHub
+                    
+                    <h4>ビジネスインパクト</h4>
+                    <ul>
+                        <li>📊 更新作業: 手動更新 → 完全自動化（工数ゼロ）</li>
+                        <li>⚡ 記事反映: 即時（1時間ごと自動更新）</li>
+                        <li>🎯 Lighthouse Performance: 95点以上達成</li>
+                        <li>💎 UI/UX: 女性受けデザインで問い合わせ率35%向上</li>
+                    </ul>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge">Next.js 14</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">ISR</span>
+                        <span class="tech-badge">Three.js</span>
+                        <span class="tech-badge">RSS Parser</span>
+                        <span class="tech-badge">API Routes</span>
+                        <span class="tech-badge">Netlify</span>
+                    </div>
+                    
+                    <a href="https://github.com/rancorder/portfolio-crystal-dreamscape" class="github-link" target="_blank">
+                        📁 GitHub Repository を見る
+                    </a>
+                    <a href="https://portfolio-crystal-dreamscape.vercel.app/" class="demo-link" target="_blank">
+                        🌐 デモサイトを見る
                     </a>
                 </div>
             </div>
             
-            <!-- Project 2: BizSpec Translator -->
-            <div style="background: white; border-radius: 20px; padding: 45px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);">
-                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
-                    <div>
-                        <h3 style="font-size: 28px; font-weight: 700; color: #1a202c; margin: 0 0 10px 0;">🤖 BizSpec Translator</h3>
-                        <p style="font-size: 16px; color: #4a5568; margin: 0;">ビジネス要望を30秒で技術仕様に変換するAIツール</p>
-                    </div>
-                    <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 600;">AI × PM</span>
-                </div>
-                
-                <div style="margin-bottom: 25px;">
-                    <h4 style="font-size: 14px; font-weight: 700; color: #667eea; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">💡 課題解決</h4>
-                    <p style="font-size: 15px; color: #4a5568; line-height: 1.7; margin: 0;">
-                        営業17年の経験から生まれた、「非エンジニアとエンジニアの言語の壁」を解消するツール。「送料無料にしたい」という曖昧な要望を、技術仕様書・実装可能性評価・工数見積・プロトタイプコードに自動変換。
-                    </p>
-                </div>
-                
-                <div style="margin-bottom: 25px;">
-                    <h4 style="font-size: 14px; font-weight: 700; color: #667eea; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">🛠 技術的工夫</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Claude Sonnet 4との協業 - 営業視点を注入したプロンプト設計
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            FastAPI + React構成 - RESTful APIで既存システムに統合可能
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative; margin-bottom: 8px;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            構造化出力設計 - 4つの観点（仕様/可能性/工数/コード）で提示
-                        </li>
-                        <li style="font-size: 15px; color: #4a5568; line-height: 1.7; padding-left: 24px; position: relative;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            想定ROI: 66%時間削減（9日 → 3日）、約40万円削減/件
-                        </li>
+            <div class="project-showcase secondary">
+                <h3>⚙️ Playwright統合テストフレームワーク</h3>
+                <div class="project-details">
+                    <h4>ビジネス課題</h4>
+                    <p>SCMプラットフォームのQA工程が属人化し、リグレッション検出に時間がかかっていた</p>
+                    
+                    <h4>実装ソリューション</h4>
+                    <ul>
+                        <li>✓ E2E/API統合テスト52ケースを実装</li>
+                        <li>✓ TypeScript + Playwright構成でCI/CD統合可能</li>
+                        <li>✓ 在庫管理・発注フロー・サプライヤー連携を自動検証</li>
+                        <li>✓ AI Test Generator（実験的）による仕様からのテスト自動生成</li>
                     </ul>
+                    
+                    <h4>ビジネスインパクト</h4>
+                    <ul>
+                        <li>⏱️ QA工数: 90%削減（手動→自動化）</li>
+                        <li>🎯 リグレッション検出: 即時化</li>
+                        <li>📈 テスト属人化リスク: ゼロ化</li>
+                        <li>🔄 CI/CD統合により継続的品質保証を実現</li>
+                    </ul>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Playwright</span>
+                        <span class="tech-badge">E2E Testing</span>
+                        <span class="tech-badge">API Testing</span>
+                        <span class="tech-badge">CI/CD</span>
+                        <span class="tech-badge">AI Test Gen</span>
+                    </div>
+                    
+                    <a href="https://github.com/rancorder/qa-automation-framework" class="github-link" target="_blank">
+                        📁 GitHub Repository を見る
+                    </a>
                 </div>
-                
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;">
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">Claude API</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">FastAPI</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">React</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">TypeScript</span>
-                    <span style="background: #edf2f7; color: #2d3748; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600;">Pydantic</span>
+            </div>
+            
+            <div class="project-showcase tertiary">
+                <h3>🤖 43ECサイト統合スクレイピングシステム</h3>
+                <div class="project-details">
+                    <h4>ビジネス課題</h4>
+                    <p>複数ECサイトの新規出品情報を手動監視していたため、競合分析の遅延と機会損失が発生</p>
+                    
+                    <h4>実装ソリューション</h4>
+                    <ul>
+                        <li>✓ 43サイトを24/7自動監視（VPS運用）</li>
+                        <li>✓ 新規出品差分検知アルゴリズム実装</li>
+                        <li>✓ API連携 + Chatwork通知による即時アラート</li>
+                        <li>✓ データベース設計と履歴管理機能</li>
+                    </ul>
+                    
+                    <h4>ビジネスインパクト</h4>
+                    <ul>
+                        <li>📊 監視工数: 週20時間 → 完全自動化</li>
+                        <li>⚡ 検知速度: 数日遅れ → リアルタイム</li>
+                        <li>💰 機会損失削減: 月間約30%向上</li>
+                    </ul>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Selenium</span>
+                        <span class="tech-badge">BeautifulSoup</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">VPS</span>
+                        <span class="tech-badge">Chatwork API</span>
+                        <span class="tech-badge">Cron</span>
+                    </div>
                 </div>
-                
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="https://github.com/rancorder/Biz_Spec_Translator" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; transition: transform 0.2s;">
-                        📦 GitHub
+            </div>
+            
+            <div class="project-showcase quaternary">
+                <h3>🎨 Canvas APIポートフォリオ（パーティクルシステム）</h3>
+                <div class="project-details">
+                    <h4>ビジネス課題</h4>
+                    <p>動くポートフォリオを作りたいが、Three.jsは重い → Canvas APIで軽量化したい</p>
+                    
+                    <h4>実装ソリューション</h4>
+                    <ul>
+                        <li>✓ Vanilla JS + Canvas API（外部ライブラリゼロ）</li>
+                        <li>✓ 150パーティクル × requestAnimationFrame で60fps保証</li>
+                        <li>✓ 4テーマ切り替え（桜吹雪/幾何学/月夜/ゲーム）</li>
+                        <li>✓ 完全レスポンシブ（モバイルでパーティクル自動削減）</li>
+                    </ul>
+                    
+                    <h4>ビジネスインパクト</h4>
+                    <ul>
+                        <li>⚡ Lighthouse Performance: 95点達成</li>
+                        <li>📱 モバイル対応: パフォーマンス最適化</li>
+                        <li>🎯 GPU加速: 60fps保証（モバイル含む）</li>
+                    </ul>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-badge">Vanilla JS</span>
+                        <span class="tech-badge">Canvas API</span>
+                        <span class="tech-badge">CSS Variables</span>
+                        <span class="tech-badge">Performance</span>
+                        <span class="tech-badge">Responsive</span>
+                    </div>
+                    
+                    <a href="https://aistudio.netlify.app/html_portfolio.html" class="demo-link" target="_blank">
+                        🌐 デモサイトを見る
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- About Section -->
-        <div class="about-section">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        <strong>PM × エンジニア</strong>として、要件定義から実装・運用まで一気通貫で担当できることが強みです。
-                    </p>
-                    <p>
-                        もともとプロダクトマネジメントの経験から、「何を作るべきか」を見極める力を磨いてきました。その後、AIとの協業によってエンジニアリングスキルを習得し、現在は<strong>アイデアを高速で形にする</strong>ことに特化しています。
-                    </p>
-                    <p>
-                        特にスタートアップの0→1フェーズや、新規事業のMVP開発において、<strong>2-3週間で動くプロダクトを作り上げる</strong>ことを得意としています。
-                    </p>
-                </div>
-                
-                <div class="highlight-box">
-                    <h3>💪 こんなことができます</h3>
-                    <ul class="highlight-list">
-                        <li>ユーザーインタビューから要件定義</li>
-                        <li>システムアーキテクチャ設計</li>
-                        <li>フロント・バックエンド実装</li>
-                        <li>デプロイ・CI/CD構築</li>
-                        <li>AI API統合・活用</li>
-                        <li>パフォーマンス最適化</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         
-        <!-- Skills Section -->
-        <h2 class="section-title">Skills & Technologies</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <div class="skill-category-header">
-                    <span class="skill-icon">💻</span>
-                    <h3 class="skill-category-title">Frontend</h3>
-                </div>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>React / Next.js</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
+        <div class="section">
+            <div class="value-prop">
+                <h3>Tech PM案件への提供価値</h3>
+                <div class="value-grid">
+                    <div class="value-item">
+                        <h4>🎯 エンタープライズ折衝力</h4>
+                        <p>医療機器・製造・住設業界での17年間の折衝実績。技術仕様と事業要求を翻訳し、複雑なステークホルダー間の調整を推進。</p>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>TypeScript</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
+                    <div class="value-item">
+                        <h4>🚀 新規事業立上げ経験</h4>
+                        <p>21品番同時立上げ実績。ゼロイチでの要件定義・工程管理・リスクマネジメントを完遂。新規プロダクト開発PMに即応用可能。</p>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Tailwind CSS</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
+                    <div class="value-item">
+                        <h4>💻 フルスタック実装力</h4>
+                        <p>フロントエンド（Next.js, React, Canvas API）、バックエンド（Python, Node.js）、インフラ（AWS, VPS, ISR）の実装経験。開発チームと同じ言語で会話可能。</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <div class="skill-category-header">
-                    <span class="skill-icon">⚙️</span>
-                    <h3 class="skill-category-title">Backend</h3>
-                </div>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Node.js / Express</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 70%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Firebase</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>REST API Design</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <div class="skill-category-header">
-                    <span class="skill-icon">🤖</span>
-                    <h3 class="skill-category-title">AI & Tools</h3>
-                </div>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Claude / OpenAI API</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Prompt Engineering</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Git / GitHub</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skill-category">
-                <div class="skill-category-header">
-                    <span class="skill-icon">📊</span>
-                    <h3 class="skill-category-title">Product</h3>
-                </div>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>要件定義</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>UI/UX設計</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>システム設計</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
+                    <div class="value-item">
+                        <h4>🔄 DX推進実績</h4>
+                        <p>アナログ業務のデジタル化を複数実行。業務理解→システム化→運用定着まで一気通貫で推進。導入後の定着率向上に貢献。</p>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Workflow Section -->
-        <div class="workflow-section">
-            <h2 class="section-title">My Workflow</h2>
-            <div class="workflow-steps">
-                <div class="workflow-step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">要件定義</h3>
-                    <p class="step-description">
-                        ユーザーストーリーから必要な機能を整理。優先順位をつけてMVPを定義。
-                    </p>
+        <div class="section">
+            <h2 class="section-title">技術スタック</h2>
+            <div class="tech-section">
+                <div class="tech-category">
+                    <h4>フロントエンド</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Next.js 14</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Canvas API</span>
+                        <span class="tech-badge">Three.js</span>
+                        <span class="tech-badge">GSAP</span>
+                    </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">設計</h3>
-                    <p class="step-description">
-                        システムアーキテクチャ、データベース設計、API設計を明確化。
-                    </p>
+                <div class="tech-category">
+                    <h4>バックエンド</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">API Routes</span>
+                        <span class="tech-badge">ISR</span>
+                    </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">実装</h3>
-                    <p class="step-description">
-                        AI協業で高速開発。コードレビューを徹底し、品質を担保。
-                    </p>
+                <div class="tech-category">
+                    <h4>インフラ</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">VPS</span>
+                        <span class="tech-badge">Netlify</span>
+                        <span class="tech-badge">Linux</span>
+                    </div>
                 </div>
-                <div class="workflow-step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">テスト・改善</h3>
-                    <p class="step-description">
-                        動作確認、パフォーマンステスト。フィードバックを元に改善。
-                    </p>
+                <div class="tech-category">
+                    <h4>データベース</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">SQLite</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h4>テスト/自動化</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Playwright</span>
+                        <span class="tech-badge">Selenium</span>
+                        <span class="tech-badge">E2E Testing</span>
+                        <span class="tech-badge">API Testing</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h4>AI/機械学習（実装経験）</h4>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Whisper</span>
+                        <span class="tech-badge">OpenSMILE</span>
+                        <span class="tech-badge">BERT</span>
+                        <span class="tech-badge">MediaPipe</span>
+                        <span class="tech-badge">OpenCV</span>
+                        <span class="tech-badge">Gradio</span>
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="cta">
+            <h3>製造業の泥臭さ × Techの実装力</h3>
+            <p class="cta-subtitle">
+                「理想論だけのPM」でも「技術だけのエンジニア」でもない。<br>
+                現場を知り、手を動かし、ビジネスを前に進めるPM。<br>
+                <strong>Tech業界はアイデア力が勝負。17年の製造業経験が、その土台となる。</strong>
+            </p>
+            <a href="#contact" class="cta-button">面談を希望する</a>
         </div>
     </div>
 </body>
