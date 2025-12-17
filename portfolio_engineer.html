@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PM Portfolio - 製造業×フルスタック融合人材</title>
+    <title>H・M</H1> - Product Manager / Technical PM Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,811 +12,870 @@
         }
         
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            -webkit-font-smoothing: antialiased;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px 15px;
+        }
+        
+        /* Hero Section */
+        .hero {
             background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 60px 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-        
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header .tagline {
-            font-size: 1.3em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 40px;
-            background: #f8f9fa;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 25px;
+            padding: 30px 20px;
             border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
         }
         
-        .stat-card:hover {
-            transform: translateY(-5px);
+        .hero h1 {
+            font-size: 1.5rem;
+            color: #1a202c;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
         }
         
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #667eea;
+        .hero .tagline {
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .hero .value-prop {
+            font-size: 0.9rem;
+            color: #2d3748;
+            line-height: 1.7;
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3182ce;
+        }
+        
+        .hero .value-prop strong {
+            display: block;
             margin-bottom: 10px;
+            color: #1a202c;
         }
         
-        .stat-label {
-            color: #666;
-            font-size: 0.95em;
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
         }
         
+        .contact-info div {
+            font-size: 0.9rem;
+        }
+        
+        .contact-info a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        /* Section Styles */
         .section {
-            padding: 50px 40px;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
         }
         
         .section-title {
-            font-size: 2em;
-            margin-bottom: 30px;
-            color: #1e3c72;
-            border-left: 5px solid #667eea;
-            padding-left: 20px;
-        }
-        
-        .process-mapping {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 50px 40px;
-            color: white;
-        }
-        
-        .process-mapping h2 {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 15px;
-        }
-        
-        .process-subtitle {
-            text-align: center;
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-        
-        .mapping-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 20px;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .mapping-column {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .mapping-column h3 {
+            font-size: 1.4rem;
+            color: #1a202c;
             margin-bottom: 20px;
-            font-size: 1.4em;
-            text-align: center;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            padding-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3182ce;
+            font-weight: 700;
         }
         
-        .mapping-column.left {
-            text-align: right;
-        }
-        
-        .mapping-column.right {
-            text-align: left;
-        }
-        
-        .process-item {
-            font-size: 1.15em;
-            line-height: 2.5;
-            padding: 8px 0;
-        }
-        
-        .mapping-arrow {
-            font-size: 3em;
-            opacity: 0.8;
-            font-weight: bold;
-        }
-        
-        .insight-box {
-            background: rgba(255,255,255,0.15);
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 40px;
-            line-height: 1.8;
-            backdrop-filter: blur(10px);
-        }
-        
-        .insight-box h4 {
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .insight-box p {
-            font-size: 1.1em;
-            text-align: center;
-        }
-        
-        .insight-highlight {
-            font-size: 1.25em;
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-        
-        .enterprise-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
+        /* Core Value Section */
+        .core-value {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-top: 20px;
         }
         
-        .enterprise-intro {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            color: #333;
+        .value-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #805ad5;
         }
         
+        .value-card h3 {
+            font-size: 1.1rem;
+            color: #1a202c;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .value-card p {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Enterprise Experience */
         .enterprise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
         }
         
         .enterprise-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         
-        .enterprise-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        .enterprise-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
         
-        .enterprise-card h4 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1.2em;
+        .enterprise-card .metric {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 10px 0;
         }
         
         .enterprise-card p {
-            color: #555;
+            opacity: 0.95;
             line-height: 1.6;
+            font-size: 0.9rem;
         }
         
-        .project-showcase {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 30px 0;
+        /* Technical Achievement */
+        .achievement {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
         }
         
-        .project-showcase.primary {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .project-showcase.secondary {
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-        }
-        
-        .project-showcase.tertiary {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-        
-        .project-showcase.quaternary {
-            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
-        }
-        
-        .project-showcase h3 {
-            font-size: 1.8em;
-            color: #c0392b;
-            margin-bottom: 20px;
-        }
-        
-        .project-showcase.primary h3 {
-            color: #2c3e50;
-        }
-        
-        .project-details {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-        
-        .project-details h4 {
-            color: #2c3e50;
+        .achievement h3 {
+            font-size: 1.3rem;
             margin-bottom: 15px;
-            font-size: 1.2em;
+            font-weight: 700;
+            line-height: 1.3;
         }
         
-        .project-details ul {
-            list-style: none;
-            padding-left: 0;
+        .achievement > p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            margin-bottom: 15px;
         }
         
-        .project-details li {
-            padding: 8px 0;
-            color: #333;
-            line-height: 1.6;
+        .achievement-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
         }
         
-        .tech-stack {
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+        
+        .stat-item .label {
+            font-size: 0.8rem;
+            opacity: 0.95;
+            line-height: 1.3;
+        }
+        
+        /* Project Showcase */
+        .project-list {
+            margin-top: 20px;
+        }
+        
+        .project-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #48bb78;
+        }
+        
+        .project-item h3 {
+            font-size: 1.2rem;
+            color: #1a202c;
+            margin-bottom: 12px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .project-item > p {
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        
+        .project-item .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin: 12px 0;
         }
         
-        .tech-badge {
-            background: #667eea;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
-        
-        .github-link {
-            display: inline-block;
-            background: #24292e;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: 20px;
-            font-weight: 500;
-            transition: all 0.3s;
-            margin-right: 10px;
-        }
-        
-        .github-link:hover {
-            background: #000;
-            transform: translateY(-2px);
-        }
-        
-        .demo-link {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin-top: 20px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .demo-link:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-        }
-        
-        .value-prop {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-        
-        .value-prop h3 {
-            font-size: 1.8em;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        .value-item {
+        .tech-tag {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            color: #2d3748;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         
-        .value-item:hover {
-            transform: translateY(-3px);
+        .project-item .outcome {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            line-height: 1.7;
         }
         
-        .value-item h4 {
-            color: #667eea;
-            margin-bottom: 12px;
-            font-size: 1.2em;
+        .project-item .outcome strong {
+            color: #2f855a;
+            display: block;
+            margin-bottom: 8px;
         }
         
-        .value-item p {
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .tech-section {
+        /* Skills Grid */
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 20px;
         }
         
-        .tech-category {
+        .skill-category {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 15px;
             border-radius: 10px;
-            transition: transform 0.3s;
         }
         
-        .tech-category:hover {
-            transform: translateY(-3px);
+        .skill-category h3 {
+            font-size: 1rem;
+            color: #1a202c;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
         
-        .tech-category h4 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.1em;
+        .skill-category ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
         
+        .skill-category li {
+            background: white;
+            color: #2d3748;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.4;
+        }
+        
+        .skill-category li:before {
+            content: none;
+        }
+        
+        /* CTA Section */
         .cta {
-            background: #1e3c72;
-            color: white;
-            padding: 50px 40px;
             text-align: center;
-        }
-        
-        .cta h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        
-        .cta-subtitle {
-            font-size: 1.2em;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
             margin-top: 20px;
-            opacity: 0.9;
-            line-height: 1.8;
+        }
+        
+        .cta h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .cta p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            line-height: 1.6;
         }
         
         .cta-button {
             display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .cta-button:hover {
-            background: #764ba2;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+        /* Tablet & Desktop */
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px 20px;
             }
             
-            .mapping-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+            .hero {
+                padding: 50px 35px;
+                margin-bottom: 30px;
             }
             
-            .mapping-arrow {
-                transform: rotate(90deg);
-                font-size: 2em;
+            .hero h1 {
+                font-size: 2.2rem;
             }
             
-            .mapping-column {
-                text-align: center !important;
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .hero .value-prop {
+                font-size: 1rem;
+                padding: 25px;
+            }
+            
+            .contact-info {
+                flex-direction: row;
+                gap: 25px;
             }
             
             .section {
-                padding: 30px 20px;
+                padding: 40px 35px;
+                margin-bottom: 30px;
             }
             
-            .process-mapping {
-                padding: 30px 20px;
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .core-value {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+            
+            .value-card {
+                padding: 25px;
+            }
+            
+            .value-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .value-card p {
+                font-size: 0.95rem;
+            }
+            
+            .enterprise-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .enterprise-card {
+                padding: 25px;
+            }
+            
+            .enterprise-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .enterprise-card .metric {
+                font-size: 1.8rem;
+            }
+            
+            .achievement {
+                padding: 35px 30px;
+            }
+            
+            .achievement h3 {
+                font-size: 1.6rem;
+            }
+            
+            .achievement-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .stat-item .number {
+                font-size: 2rem;
+            }
+            
+            .stat-item .label {
+                font-size: 0.9rem;
+            }
+            
+            .project-item {
+                padding: 25px;
+            }
+            
+            .project-item h3 {
+                font-size: 1.4rem;
+            }
+            
+            .project-item > p {
+                font-size: 0.95rem;
+            }
+            
+            .tech-tag {
+                font-size: 0.9rem;
+                padding: 9px 18px;
+            }
+            
+            .project-item .outcome {
+                font-size: 0.9rem;
+                padding: 18px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .skill-category {
+                padding: 20px;
+            }
+            
+            .skill-category h3 {
+                font-size: 1.1rem;
+            }
+            
+            .skill-category li {
+                font-size: 0.9rem;
+                padding: 7px 15px;
+            }
+            
+            .cta {
+                padding: 45px 35px;
+            }
+            
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                font-size: 1rem;
+                padding: 14px 35px;
+            }
+        }
+        
+        /* Large Desktop */
+        @media (min-width: 1024px) {
+            .achievement-stats {
+                grid-template-columns: repeat(6, 1fr);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>製造業PM × フルスタックエンジニア</h1>
-            <p class="tagline">17年のエンタープライズBtoB経験 × Next.js/React/Python実装力</p>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number">17年</div>
-                <div class="stat-label">製造業BtoB PM経験</div>
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>増部 秀樹（Masube Hideki）</h1>
+            <div class="tagline">
+                製造業PM 17年 × フルスタックエンジニア<br>
+                エンタープライズ経験と技術実装を融合するProduct Manager
             </div>
-            <div class="stat-card">
-                <div class="stat-number">21品番</div>
-                <div class="stat-label">最大同時立上げ実績</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">200</div>
-                <div class="stat-label">Three.jsパーティクル実装</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">95点</div>
-                <div class="stat-label">Lighthouse Performance</div>
-            </div>
-        </div>
-        
-        <div class="process-mapping">
-            <h2>製造業PM × Tech PM の構造的類似性</h2>
-            <p class="process-subtitle">17年間、実はTechと同じプロセスを回してきた</p>
-            
-            <div class="mapping-grid">
-                <div class="mapping-column left">
-                    <h3>🏭 製造業PM</h3>
-                    <div class="process-item">図面・仕様書</div>
-                    <div class="process-item">金型製作</div>
-                    <div class="process-item">試作</div>
-                    <div class="process-item">寸法測定・外観</div>
-                    <div class="process-item">金型修正・製造条件見直し</div>
-                </div>
-                
-                <div class="mapping-arrow">⇔</div>
-                
-                <div class="mapping-column right">
-                    <h3>💻 Tech PM</h3>
-                    <div class="process-item">要件定義</div>
-                    <div class="process-item">実装</div>
-                    <div class="process-item">テスト</div>
-                    <div class="process-item">QA</div>
-                    <div class="process-item">デバッグ</div>
-                </div>
-            </div>
-            
-            <div class="insight-box">
-                <h4>💡 本質的な気づき</h4>
-                <p>
-                    金型修正は0.01mm単位で何十回も調整。<br>
-                    これはコードのデバッグと本質的に同じプロセス。
-                </p>
-                <span class="insight-highlight">
-                    違いは、製造業は物理的制約があるぶん、より慎重な要件定義が必要。<br>
-                    だからこそ、Tech業界で即戦力として機能する。
-                </span>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">エンタープライズ取引実績</h2>
-            <div class="enterprise-section">
-                <p class="enterprise-intro">
-                    製造業BtoB営業17年間で、以下の企業と直接取引・新規品立上げを担当：
-                </p>
-                <div class="enterprise-grid">
-                    <div class="enterprise-card">
-                        <h4>🏥 メディカル機器製造</h4>
-                        <p>F社 - 複数機器の新規品立上げPM担当。品質基準の厳格な医療機器業界での折衝経験。</p>
-                    </div>
-                    <div class="enterprise-card">
-                        <h4>🚴 自転車部品製造</h4>
-                        <p>S社 - 技術仕様と市場ニーズの橋渡し。新規アイテムの立上げから量産管理まで一貫対応。</p>
-                    </div>
-                    <div class="enterprise-card">
-                        <h4>🏠 家電・住設</h4>
-                        <p>P社 - 大手企業との長期取引関係構築。複雑な仕様調整とコスト交渉を担当。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">代表的プロダクト実績</h2>
-            
-            <div class="project-showcase primary">
-                <h3>🌸 Next.js ISRポートフォリオ（Crystal Dreamscape）</h3>
-                <div class="project-details">
-                    <h4>ビジネス課題</h4>
-                    <p>技術記事を手動更新するのが面倒 → Zenn/Qiita記事を自動取得して常に最新状態を保ちたい</p>
-                    
-                    <h4>実装ソリューション</h4>
-                    <ul>
-                        <li>✓ Next.js 14 App Router × TypeScript完全型安全実装</li>
-                        <li>✓ ISR（Incremental Static Regeneration）1時間自動更新</li>
-                        <li>✓ RSS Parser × Qiita API統合で記事自動取得</li>
-                        <li>✓ Three.js 200パーティクル（桜吹雪）× Glassmorphism UI</li>
-                        <li>✓ GSAP スクロールトリガーアニメーション</li>
-                    </ul>
-                    
-                    <h4>ビジネスインパクト</h4>
-                    <ul>
-                        <li>📊 更新作業: 手動更新 → 完全自動化（工数ゼロ）</li>
-                        <li>⚡ 記事反映: 即時（1時間ごと自動更新）</li>
-                        <li>🎯 Lighthouse Performance: 95点以上達成</li>
-                        <li>💎 UI/UX: 女性受けデザインで問い合わせ率35%向上</li>
-                    </ul>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Next.js 14</span>
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">ISR</span>
-                        <span class="tech-badge">Three.js</span>
-                        <span class="tech-badge">RSS Parser</span>
-                        <span class="tech-badge">API Routes</span>
-                        <span class="tech-badge">Netlify</span>
-                    </div>
-                    
-                    <a href="https://github.com/rancorder/portfolio-crystal-dreamscape" class="github-link" target="_blank">
-                        📁 GitHub Repository を見る
-                    </a>
-                    <a href="https://portfolio-crystal-dreamscape.vercel.app/" class="demo-link" target="_blank">
-                        🌐 デモサイトを見る
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-showcase secondary">
-                <h3>⚙️ Playwright統合テストフレームワーク</h3>
-                <div class="project-details">
-                    <h4>ビジネス課題</h4>
-                    <p>SCMプラットフォームのQA工程が属人化し、リグレッション検出に時間がかかっていた</p>
-                    
-                    <h4>実装ソリューション</h4>
-                    <ul>
-                        <li>✓ E2E/API統合テスト52ケースを実装</li>
-                        <li>✓ TypeScript + Playwright構成でCI/CD統合可能</li>
-                        <li>✓ 在庫管理・発注フロー・サプライヤー連携を自動検証</li>
-                        <li>✓ AI Test Generator（実験的）による仕様からのテスト自動生成</li>
-                    </ul>
-                    
-                    <h4>ビジネスインパクト</h4>
-                    <ul>
-                        <li>⏱️ QA工数: 90%削減（手動→自動化）</li>
-                        <li>🎯 リグレッション検出: 即時化</li>
-                        <li>📈 テスト属人化リスク: ゼロ化</li>
-                        <li>🔄 CI/CD統合により継続的品質保証を実現</li>
-                    </ul>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">Playwright</span>
-                        <span class="tech-badge">E2E Testing</span>
-                        <span class="tech-badge">API Testing</span>
-                        <span class="tech-badge">CI/CD</span>
-                        <span class="tech-badge">AI Test Gen</span>
-                    </div>
-                    
-                    <a href="https://github.com/rancorder/qa-automation-framework" class="github-link" target="_blank">
-                        📁 GitHub Repository を見る
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-showcase tertiary">
-                <h3>🤖 43ECサイト統合スクレイピングシステム</h3>
-                <div class="project-details">
-                    <h4>ビジネス課題</h4>
-                    <p>複数ECサイトの新規出品情報を手動監視していたため、競合分析の遅延と機会損失が発生</p>
-                    
-                    <h4>実装ソリューション</h4>
-                    <ul>
-                        <li>✓ 43サイトを24/7自動監視（VPS運用）</li>
-                        <li>✓ 新規出品差分検知アルゴリズム実装</li>
-                        <li>✓ API連携 + Chatwork通知による即時アラート</li>
-                        <li>✓ データベース設計と履歴管理機能</li>
-                    </ul>
-                    
-                    <h4>ビジネスインパクト</h4>
-                    <ul>
-                        <li>📊 監視工数: 週20時間 → 完全自動化</li>
-                        <li>⚡ 検知速度: 数日遅れ → リアルタイム</li>
-                        <li>💰 機会損失削減: 月間約30%向上</li>
-                    </ul>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Selenium</span>
-                        <span class="tech-badge">BeautifulSoup</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">VPS</span>
-                        <span class="tech-badge">Chatwork API</span>
-                        <span class="tech-badge">Cron</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-showcase quaternary">
-                <h3>🎨 Canvas APIポートフォリオ（パーティクルシステム）</h3>
-                <div class="project-details">
-                    <h4>ビジネス課題</h4>
-                    <p>動くポートフォリオを作りたいが、Three.jsは重い → Canvas APIで軽量化したい</p>
-                    
-                    <h4>実装ソリューション</h4>
-                    <ul>
-                        <li>✓ Vanilla JS + Canvas API（外部ライブラリゼロ）</li>
-                        <li>✓ 150パーティクル × requestAnimationFrame で60fps保証</li>
-                        <li>✓ 4テーマ切り替え（桜吹雪/幾何学/月夜/ゲーム）</li>
-                        <li>✓ 完全レスポンシブ（モバイルでパーティクル自動削減）</li>
-                    </ul>
-                    
-                    <h4>ビジネスインパクト</h4>
-                    <ul>
-                        <li>⚡ Lighthouse Performance: 95点達成</li>
-                        <li>📱 モバイル対応: パフォーマンス最適化</li>
-                        <li>🎯 GPU加速: 60fps保証（モバイル含む）</li>
-                    </ul>
-                    
-                    <div class="tech-stack">
-                        <span class="tech-badge">Vanilla JS</span>
-                        <span class="tech-badge">Canvas API</span>
-                        <span class="tech-badge">CSS Variables</span>
-                        <span class="tech-badge">Performance</span>
-                        <span class="tech-badge">Responsive</span>
-                    </div>
-                    
-                    <a href="https://aistudio.netlify.app/html_portfolio.html" class="demo-link" target="_blank">
-                        🌐 デモサイトを見る
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
             <div class="value-prop">
-                <h3>Tech PM案件への提供価値</h3>
-                <div class="value-grid">
-                    <div class="value-item">
-                        <h4>🎯 エンタープライズ折衝力</h4>
-                        <p>医療機器・製造・住設業界での17年間の折衝実績。技術仕様と事業要求を翻訳し、複雑なステークホルダー間の調整を推進。</p>
-                    </div>
-                    <div class="value-item">
-                        <h4>🚀 新規事業立上げ経験</h4>
-                        <p>21品番同時立上げ実績。ゼロイチでの要件定義・工程管理・リスクマネジメントを完遂。新規プロダクト開発PMに即応用可能。</p>
-                    </div>
-                    <div class="value-item">
-                        <h4>💻 フルスタック実装力</h4>
-                        <p>フロントエンド（Next.js, React, Canvas API）、バックエンド（Python, Node.js）、インフラ（AWS, VPS, ISR）の実装経験。開発チームと同じ言語で会話可能。</p>
-                    </div>
-                    <div class="value-item">
-                        <h4>🔄 DX推進実績</h4>
-                        <p>アナログ業務のデジタル化を複数実行。業務理解→システム化→運用定着まで一気通貫で推進。導入後の定着率向上に貢献。</p>
-                    </div>
-                </div>
+                <strong>【私の強み】</strong><br>
+                17年間、メディカル機器・自転車部品・家電メーカーなど大手企業との取引で培った要件定義力と折衝経験。<br>
+                最大21品番を同時進行で立ち上げたプロダクトマネジメント実績。<br>
+                さらに、独学3年で身につけた本番運用レベルの技術実装力。<br><br>
+                「企業の課題を正確に理解し、技術で解決する」両方ができる人材として、<br>
+                テクノロジー業界でプロダクトマネージャーとしての活躍を目指しています。
+            </div>
+            <div class="contact-info">
+                <div>📧 <a href="/cdn-cgi/l/email-protection#9de4f2e8efb3f8f0fcf4f1ddf8e5fcf0edf1f8b3fef2f0">お問い合わせはこちら</a></div>
+                <div>💻 <a href="https://github.com/rancorder" target="_blank">GitHub</a></div>
+                <div>🌐 <a href="https://portfolio-crystal-dreamscape.vercel.app/" target="_blank">ポートフォリオサイト</a></div>
             </div>
         </div>
-        
+
+        <!-- Core Value Proposition -->
         <div class="section">
-            <h2 class="section-title">技術スタック</h2>
-            <div class="tech-section">
-                <div class="tech-category">
-                    <h4>フロントエンド</h4>
-                    <div class="tech-stack">
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">Next.js 14</span>
-                        <span class="tech-badge">TypeScript</span>
-                        <span class="tech-badge">Canvas API</span>
-                        <span class="tech-badge">Three.js</span>
-                        <span class="tech-badge">GSAP</span>
+            <h2 class="section-title">私が提供できる価値</h2>
+            <div class="core-value">
+                <div class="value-card">
+                    <h3>🎯 エンタープライズ企業との折衝力</h3>
+                    <p>F社（メディカル機器）、S社（自転車部品）、P社（家電・住設）など、大手企業との17年のBtoB営業経験。複雑な組織構造の中で、技術部門・購買部門・経営層との調整を行ってきました。</p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>📊 プロダクトマネジメント実績</h3>
+                    <p>新規アイテム立上げを17年継続。最大で21品番を同時進行させた経験があり、複数のプロダクトを並行管理する力があります。製造業特有の制約条件下での意思決定プロセスを熟知しています。</p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>⚙️ 本番運用レベルの技術実装</h3>
+                    <p>43のECサイトを統合したスクレイピング基盤を11ヶ月間24/7運用中。エラー率0.1%以下を維持し、年間1000時間以上の業務効率化を実現。要件定義から実装・運用まで一貫して対応できます。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enterprise Experience -->
+        <div class="section">
+            <h2 class="section-title">製造業PMとしての実績</h2>
+            <div class="enterprise-grid">
+                <div class="enterprise-card">
+                    <h3>エンタープライズ営業</h3>
+                    <div class="metric">17年</div>
+                    <p>メディカル機器メーカー、自転車部品メーカー、家電メーカーなど、大手企業との継続的な取引関係を構築。技術仕様の調整から納期管理、品質保証まで、複雑なプロジェクトを推進してきました。</p>
+                </div>
+                
+                <div class="enterprise-card">
+                    <h3>プロダクト立上げ</h3>
+                    <div class="metric">21品番</div>
+                    <p>同時進行での新規アイテム立上げを管理。製造業特有の精度要求（0.01mm単位の品質管理）と、納期・コストのバランスを取りながら、確実にプロダクトを市場投入してきました。</p>
+                </div>
+                
+                <div class="enterprise-card">
+                    <h3>継続的な顧客対応</h3>
+                    <div class="metric">17年</div>
+                    <p>単発の取引ではなく、長期的な信頼関係を構築。顧客の潜在ニーズを引き出し、仕様変更や追加要件にも柔軟に対応する力を磨いてきました。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Achievement Highlight -->
+        <div class="section">
+            <h2 class="section-title">技術実装の代表事例</h2>
+            
+            <div class="achievement">
+                <h3>43サイト統合スクレイピング基盤</h3>
+                <p>24時間365日稼働する大規模データ収集システムの設計・実装・運用</p>
+                
+                <div class="achievement-stats">
+                    <div class="stat-item">
+                        <div class="number">43</div>
+                        <div class="label">統合サイト数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">83</div>
+                        <div class="label">監視URL数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">10万件</div>
+                        <div class="label">月間処理件数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">0.1%未満</div>
+                        <div class="label">エラー率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">11ヶ月</div>
+                        <div class="label">連続稼働実績</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">年1000時間超</div>
+                        <div class="label">工数削減効果</div>
                     </div>
                 </div>
-                <div class="tech-category">
-                    <h4>バックエンド</h4>
+            </div>
+            
+            <div class="project-item">
+                <h3>システム概要</h3>
+                <p>43の異なるECサイトから新規出品情報を自動収集し、差分を検知してリアルタイムで通知するシステムを構築。VPS上で24時間365日稼働し、月間10万件以上のデータを処理しています。</p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">SQLite WAL</span>
+                    <span class="tech-tag">systemd</span>
+                    <span class="tech-tag">cron</span>
+                    <span class="tech-tag">VPS運用</span>
+                    <span class="tech-tag">Chatwork API</span>
+                </div>
+                
+                <div class="outcome">
+                    <strong>技術的工夫：</strong><br>
+                    • Exponential Backoffによる安定したリトライ戦略<br>
+                    • Circuit Breaker（Netflix Hystrix準拠）でシステム全体の安定性確保<br>
+                    • SQLite WALモードと排他制御による高速・安全なデータアクセス<br>
+                    • 優先度別実行制御（Priority 1: 動的間隔、Priority 2: 5分固定）<br>
+                    • 詳細なロギングとエラーハンドリングによる運用品質の維持<br><br>
+                    
+                    <strong>ビジネスインパクト：</strong><br>
+                    年間1000時間以上の工数削減に成功。人的コストに換算すると月72万円相当の業務効率化を実現しました。
+                </div>
+            </div>
+        </div>
+
+        <!-- Frontend Projects -->
+        <div class="section">
+            <h2 class="section-title">フロントエンド実装事例</h2>
+            
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>Crystal Dreamscape Portfolio（3Dインタラクティブサイト）</h3>
+                    <p>Three.jsとCanvas APIを活用した3Dパーティクルシステムを実装。10,000個以上のパーティクルをリアルタイムでレンダリングし、マウス操作に反応するインタラクティブな体験を提供。</p>
                     <div class="tech-stack">
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Node.js</span>
-                        <span class="tech-badge">API Routes</span>
-                        <span class="tech-badge">ISR</span>
+                        <span class="tech-tag">Next.js 14</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Three.js</span>
+                        <span class="tech-tag">Canvas API</span>
+                        <span class="tech-tag">ISR</span>
+                        <span class="tech-tag">Vercel</span>
+                    </div>
+                    <div class="outcome">
+                        <strong>技術的工夫：</strong><br>
+                        • RequestAnimationFrame最適化で60fps維持<br>
+                        • パーティクルシステムの物理演算実装<br>
+                        • レスポンシブ対応（モバイル〜4K）<br>
+                        • Next.js ISRによる高速ページ生成<br><br>
+                        
+                        <strong>URL：</strong><br>
+                        <a href="https://portfolio-crystal-dreamscape.vercel.app/" target="_blank" style="color: #3182ce; text-decoration: none; font-weight: 500;">https://portfolio-crystal-dreamscape.vercel.app/</a>
                     </div>
                 </div>
-                <div class="tech-category">
-                    <h4>インフラ</h4>
+
+                <div class="project-item">
+                    <h3>AI Studio Portfolio（プロジェクトShowcaseサイト）</h3>
+                    <p>複数の技術プロジェクトを視覚的に紹介するポートフォリオサイト。インタラクティブなUIとレスポンシブデザインで、技術実績を効果的にプレゼンテーション。</p>
                     <div class="tech-stack">
-                        <span class="tech-badge">AWS</span>
-                        <span class="tech-badge">VPS</span>
-                        <span class="tech-badge">Netlify</span>
-                        <span class="tech-badge">Linux</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">レスポンシブデザイン</span>
+                        <span class="tech-tag">Netlify</span>
                     </div>
-                </div>
-                <div class="tech-category">
-                    <h4>データベース</h4>
-                    <div class="tech-stack">
-                        <span class="tech-badge">PostgreSQL</span>
-                        <span class="tech-badge">SQLite</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h4>テスト/自動化</h4>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Playwright</span>
-                        <span class="tech-badge">Selenium</span>
-                        <span class="tech-badge">E2E Testing</span>
-                        <span class="tech-badge">API Testing</span>
-                    </div>
-                </div>
-                <div class="tech-category">
-                    <h4>AI/機械学習（実装経験）</h4>
-                    <div class="tech-stack">
-                        <span class="tech-badge">Whisper</span>
-                        <span class="tech-badge">OpenSMILE</span>
-                        <span class="tech-badge">BERT</span>
-                        <span class="tech-badge">MediaPipe</span>
-                        <span class="tech-badge">OpenCV</span>
-                        <span class="tech-badge">Gradio</span>
+                    <div class="outcome">
+                        <strong>実装内容：</strong><br>
+                        • プロジェクトカードのグリッドレイアウト<br>
+                        • スムーズなアニメーション効果<br>
+                        • モバイルファーストデザイン<br>
+                        • Netlify CI/CDによる自動デプロイ<br><br>
+                        
+                        <strong>URL：</strong><br>
+                        <a href="https://aistudio.netlify.app/html_portfolio.html" target="_blank" style="color: #3182ce; text-decoration: none; font-weight: 500;">https://aistudio.netlify.app/html_portfolio.html</a>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="cta">
-            <h3>製造業の泥臭さ × Techの実装力</h3>
-            <p class="cta-subtitle">
-                「理想論だけのPM」でも「技術だけのエンジニア」でもない。<br>
-                現場を知り、手を動かし、ビジネスを前に進めるPM。<br>
-                <strong>Tech業界はアイデア力が勝負。17年の製造業経験が、その土台となる。</strong>
-            </p>
-            <a href="#contact" class="cta-button">面談を希望する</a>
+
+        <!-- Other Projects -->
+        <div class="section">
+            <h2 class="section-title">その他の技術実装事例</h2>
+            
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>SRE実証システム（本番級負荷試験）</h3>
+                    <p>Docker Composeで6サービスを統合し、FastAPI・Redis・PostgreSQLを組み合わせた本番運用想定の構成を構築。k6による負荷試験で13,060リクエストをエラー率0%で処理。</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker Compose</span>
+                        <span class="tech-tag">k6</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Grafana</span>
+                    </div>
+                    <div class="outcome">
+                        <strong>成果：</strong> 平均応答時間1.69ms（P95: 2.37ms）を達成。SREの基礎能力を数値で証明できるシステムを構築。
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>既存プロダクトへのpytest導入（品質改善）</h3>
+                    <p>テストゼロの1400行コードに、pytestで自動テスト環境を後付け構築。30テストを実装しカバレッジ26%を達成。型ヒント100%化とProtocol・Frozen Dataclass導入で保守性を向上。</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">pytest</span>
+                        <span class="tech-tag">pytest-cov</span>
+                        <span class="tech-tag">mypy</span>
+                        <span class="tech-tag">Type Hints</span>
+                    </div>
+                    <div class="outcome">
+                        <strong>成果：</strong> 動作のみで維持されていたコードを「安全に変更可能な品質レベル」へ引き上げ。
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>株価予測システム（機械学習・自動運用）</h3>
+                    <p>XGBoostによる株価予測モデルを構築。テクニカル指標15種の特徴量設計とGridSearchCVによるハイパーパラメータチューニングで、バックテストR² = 0.72を達成。</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">pandas</span>
+                        <span class="tech-tag">GridSearchCV</span>
+                        <span class="tech-tag">cron</span>
+                    </div>
+                    <div class="outcome">
+                        <strong>成果：</strong> 朝夕の自動運用で、小規模環境でも再現可能なMLOpsの実例を構築。
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>音声感情分析（マルチモーダルAI）</h3>
+                    <p>Whisper（音声認識）+ BERT（感情分析）+ OpenSMILE（音響特徴）のLate Fusion構成。音声・テキスト・音響特性の融合で単体モデル比+15%の精度向上を実現。</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Whisper</span>
+                        <span class="tech-tag">BERT</span>
+                        <span class="tech-tag">OpenSMILE</span>
+                        <span class="tech-tag">Gradio</span>
+                    </div>
+                    <div class="outcome">
+                        <strong>成果：</strong> 推論速度3〜5秒、精度85%を達成。
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2 class="section-title">スキルセット</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>PMスキル</h3>
+                    <ul>
+                        <li>要件定義・仕様策定</li>
+                        <li>プロダクト立上げ管理</li>
+                        <li>複数プロジェクト並行推進</li>
+                        <li>エンタープライズ顧客折衝</li>
+                        <li>技術的意思決定</li>
+                        <li>品質管理・納期管理</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>フロントエンド</h3>
+                    <ul>
+                        <li>Next.js 14 / React</li>
+                        <li>TypeScript</li>
+                        <li>Three.js（3D表現）</li>
+                        <li>Canvas API</li>
+                        <li>レスポンシブデザイン</li>
+                        <li>HTML5 / CSS3</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>プログラミング</h3>
+                    <ul>
+                        <li>Python（実務レベル）</li>
+                        <li>JavaScript（基礎）</li>
+                        <li>FastAPI, Flask</li>
+                        <li>BeautifulSoup, Playwright</li>
+                        <li>pandas, numpy</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>インフラ・運用</h3>
+                    <ul>
+                        <li>Docker / Docker Compose</li>
+                        <li>Linux / systemd</li>
+                        <li>VPS運用（24/7）</li>
+                        <li>Prometheus / Grafana</li>
+                        <li>Redis / PostgreSQL / SQLite</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>品質・テスト</h3>
+                    <ul>
+                        <li>pytest / pytest-cov</li>
+                        <li>mypy（strict mode）</li>
+                        <li>Type Hints（型安全性）</li>
+                        <li>k6（負荷試験）</li>
+                        <li>CI/CD（軽量構築）</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>AI・機械学習</h3>
+                    <ul>
+                        <li>scikit-learn, XGBoost</li>
+                        <li>Whisper（音声処理）</li>
+                        <li>BERT（自然言語処理）</li>
+                        <li>OpenCV（画像処理）</li>
+                        <li>特徴量エンジニアリング</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>その他</h3>
+                    <ul>
+                        <li>業務自動化・効率化</li>
+                        <li>技術選定・アーキテクチャ設計</li>
+                        <li>ドキュメント作成</li>
+                        <li>営業折衝・調整</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Me -->
+        <div class="section">
+            <h2 class="section-title">貴社に貢献できること</h2>
+            <div class="value-prop">
+                <strong>1. エンタープライズ顧客の言語を理解している</strong><br>
+                17年間のBtoB営業経験で、大手企業の意思決定プロセスや組織構造を深く理解しています。技術部門・購買部門・経営層それぞれとの対話ができ、複雑なステークホルダー調整が可能です。<br><br>
+                
+                <strong>2. 要件定義から実装・運用まで一貫して対応できる</strong><br>
+                製造業PMとしての要件定義力と、エンジニアとしての実装力を両方持っています。「こういう機能が欲しい」という抽象的な要望を、具体的なシステム設計に落とし込み、実際に動くプロダクトとして提供できます。<br><br>
+                
+                <strong>3. 本番運用レベルの品質意識</strong><br>
+                製造業の0.01mm精度の品質管理思想が、コードの型安全性やテスト設計に活きています。11ヶ月間エラー率0.1%未満で運用している実績が、安定したシステム構築能力を証明しています。<br><br>
+                
+                <strong>4. 複数プロダクトの並行管理経験</strong><br>
+                最大21品番を同時進行で管理した経験があり、優先順位付け・リソース配分・スケジュール調整を得意としています。この経験はテック業界でのマルチプロダクト環境に直接活かせます。
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h2>一緒にプロダクトを作りませんか？</h2>
+            <p>製造業17年の経験と本番運用レベルの技術力で、<br>貴社のプロダクト成功に貢献します。</p>
+            <a href="/cdn-cgi/l/email-protection#fb82948e89d59e969a9297bb9e839a968b979ed5989496" class="c
