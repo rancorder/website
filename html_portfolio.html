@@ -27,7 +27,6 @@
            Theme Variables
            ======================================== */
         
-        /* Cyberpunk */
         body.theme-cyberpunk {
             --bg-primary: #0A0E27;
             --bg-secondary: #1A1F3A;
@@ -41,7 +40,6 @@
             --particle-line: rgba(0, 245, 255, 0.2);
         }
         
-        /* Minimal Elegant - 桜吹雪モード */
         body.theme-minimal {
             --bg-primary: #FFFFFF;
             --bg-secondary: #F8F9FA;
@@ -55,7 +53,6 @@
             --particle-line: rgba(255, 183, 213, 0.2);
         }
         
-        /* Dark Professional */
         body.theme-dark {
             --bg-primary: #111827;
             --bg-secondary: #1F2937;
@@ -69,7 +66,6 @@
             --particle-line: rgba(16, 185, 129, 0.15);
         }
         
-        /* Gradient Modern - 桜吹雪モード */
         body.theme-gradient {
             --bg-primary: #1E1B4B;
             --bg-secondary: #312E81;
@@ -147,12 +143,12 @@
         }
         
         /* ========================================
-           Theme Switcher
+           Theme Switcher - モバイル対応（下部固定）
            ======================================== */
         
         .theme-switcher {
             position: fixed;
-            top: 20px;
+            bottom: 20px;
             right: 20px;
             z-index: 9999;
             display: flex;
@@ -166,8 +162,8 @@
         }
         
         .theme-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 2px solid var(--border);
             background: var(--bg-secondary);
@@ -176,7 +172,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         
         .theme-btn:hover {
@@ -212,7 +208,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
             position: relative;
             z-index: 10;
         }
@@ -222,65 +218,69 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 80px 20px;
+            padding: 60px 16px;
         }
         
         @media (max-width: 768px) {
             section {
                 min-height: auto;
-                padding: 60px 20px;
+                padding: 40px 16px;
             }
             
             .theme-switcher {
-                top: 10px;
-                right: 10px;
+                bottom: 16px;
+                right: 16px;
                 padding: 8px;
                 gap: 6px;
             }
             
             .theme-btn {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
             }
         }
         
         /* ========================================
-           Hero Section
+           Hero Section - モバイル完全対応
            ======================================== */
         
         .hero-title {
-            font-size: clamp(3rem, 12vw, 6rem);
+            font-size: clamp(1.8rem, 10vw, 6rem);
             font-weight: 900;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--text-secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            line-height: 1.1;
+            line-height: 1.2;
             text-shadow: 0 0 60px var(--accent);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .hero-subtitle {
-            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.5rem);
             color: var(--text-secondary);
             margin-bottom: 1rem;
             font-weight: 600;
+            line-height: 1.5;
         }
         
         .hero-story {
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            font-size: clamp(0.85rem, 3vw, 1.2rem);
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 500;
             opacity: 0.9;
+            line-height: 1.5;
         }
         
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.8rem;
+            margin-top: 2rem;
         }
         
         .stat-card {
@@ -288,10 +288,11 @@
             backdrop-filter: blur(20px);
             border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 1.5rem 1rem;
+            padding: 1rem 0.8rem;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            min-width: 0;
         }
         
         .stat-card:hover {
@@ -301,15 +302,16 @@
         }
         
         .stat-number {
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(1.5rem, 5vw, 3rem);
             font-weight: 900;
             color: var(--accent);
             font-family: 'Orbitron', sans-serif;
             text-shadow: 0 0 20px var(--accent);
+            word-wrap: break-word;
         }
         
         .stat-label {
-            font-size: 0.75rem;
+            font-size: clamp(0.7rem, 2vw, 0.75rem);
             color: var(--text-secondary);
             margin-top: 0.5rem;
             opacity: 0.8;
@@ -321,7 +323,7 @@
         
         .about-section {
             min-height: auto;
-            padding: 60px 20px;
+            padding: 40px 16px;
         }
         
         .about-content {
@@ -329,15 +331,17 @@
             backdrop-filter: blur(20px);
             border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 3rem 2rem;
+            padding: 1.5rem;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
         
         .about-text {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             line-height: 1.8;
             color: var(--text-primary);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .about-text strong {
@@ -361,7 +365,8 @@
         .skill-item span {
             font-weight: 600;
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            word-wrap: break-word;
         }
         
         .progress-bar {
@@ -388,13 +393,13 @@
         }
         
         /* ========================================
-           Tech Stack
+           Tech Stack - モバイル最適化
            ======================================== */
         
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 0.8rem;
             margin-top: 2rem;
         }
         
@@ -403,11 +408,12 @@
             backdrop-filter: blur(20px);
             border: 2px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem 1rem;
+            padding: 1rem 0.5rem;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            min-width: 0;
         }
         
         .tech-item:hover {
@@ -417,7 +423,7 @@
         }
         
         .tech-item i {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
             color: var(--accent);
             margin-bottom: 0.5rem;
             filter: drop-shadow(0 0 10px var(--accent));
@@ -425,20 +431,21 @@
         
         .tech-item span {
             display: block;
-            font-size: 0.75rem;
+            font-size: clamp(0.7rem, 2vw, 0.75rem);
             color: var(--text-secondary);
             font-weight: 600;
+            word-wrap: break-word;
         }
         
         /* ========================================
-           Portfolio
+           Portfolio - 完全モバイル対応
            ======================================== */
         
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
         
         .portfolio-card {
@@ -446,7 +453,7 @@
             backdrop-filter: blur(20px);
             border: 2px solid var(--border);
             border-radius: 16px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -491,23 +498,28 @@
         }
         
         .portfolio-icon {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 6vw, 2.5rem);
             margin-bottom: 1rem;
             filter: drop-shadow(0 0 15px var(--accent));
         }
         
         .portfolio-title {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.4;
         }
         
         .portfolio-desc {
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 1rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         
         .portfolio-desc strong {
@@ -527,8 +539,9 @@
             background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: clamp(0.7rem, 2vw, 0.75rem);
             color: var(--text-secondary);
+            white-space: nowrap;
         }
         
         .portfolio-link {
@@ -537,7 +550,7 @@
             gap: 0.5rem;
             color: var(--accent);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.9rem);
             margin-top: 1rem;
             transition: all 0.3s ease;
             position: relative;
@@ -563,13 +576,13 @@
         }
         
         .btn {
-            padding: 1rem 2rem;
+            padding: 0.9rem 1.8rem;
             background: transparent;
             border: 2px solid var(--accent);
             color: var(--accent);
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -578,6 +591,8 @@
             text-decoration: none;
             position: relative;
             overflow: hidden;
+            min-height: 44px;
+            justify-content: center;
         }
         
         .btn::before {
@@ -610,7 +625,6 @@
             z-index: 1;
         }
         
-        /* Primary CTA */
         .btn-primary {
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
             border: none;
@@ -632,7 +646,7 @@
            ======================================== */
         
         .section-title {
-            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-size: clamp(1.8rem, 7vw, 3.5rem);
             font-weight: 900;
             text-align: center;
             margin-bottom: 1rem;
@@ -641,13 +655,15 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 40px var(--accent);
+            word-wrap: break-word;
         }
         
         .section-subtitle {
             text-align: center;
             color: var(--text-secondary);
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             margin-bottom: 2rem;
+            word-wrap: break-word;
         }
         
         /* ========================================
@@ -689,29 +705,31 @@
         }
         
         /* ========================================
-           Responsive
+           Responsive - 完全モバイル対応
            ======================================== */
         
         @media (max-width: 640px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
             }
             
             .tech-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: 0.75rem;
+                gap: 0.6rem;
             }
             
             .tech-item {
-                padding: 1rem 0.5rem;
+                padding: 0.8rem 0.4rem;
             }
             
             .tech-item i {
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
             
             .portfolio-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
             }
             
             .contact-buttons {
@@ -725,7 +743,64 @@
             }
             
             .about-content {
-                padding: 2rem 1.5rem;
+                padding: 1.2rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(1.5rem, 9vw, 6rem);
+                line-height: 1.3;
+            }
+            
+            .portfolio-card {
+                padding: 1.2rem;
+            }
+            
+            .portfolio-title {
+                font-size: 1rem;
+            }
+            
+            .portfolio-desc {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* 極小画面対応（320px〜） */
+        @media (max-width: 360px) {
+            .container {
+                padding: 0 12px;
+            }
+            
+            section {
+                padding: 30px 12px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+            
+            .stat-card {
+                padding: 0.8rem 0.6rem;
+            }
+            
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .about-content {
+                padding: 1rem;
+            }
+            
+            .portfolio-card {
+                padding: 1rem;
             }
         }
     </style>
@@ -738,12 +813,12 @@
     <!-- Background Grid -->
     <div class="cyber-grid"></div>
     
-    <!-- Theme Switcher -->
+    <!-- Theme Switcher - 下部固定 -->
     <div class="theme-switcher">
-        <button class="theme-btn active" data-theme="cyberpunk" title="Cyberpunk">🎮</button>
-        <button class="theme-btn" data-theme="minimal" title="Sakura Mode">🌸</button>
-        <button class="theme-btn" data-theme="dark" title="Dark">🌙</button>
-        <button class="theme-btn" data-theme="gradient" title="Gradient Sakura">🎨</button>
+        <button class="theme-btn active" data-theme="cyberpunk" title="Cyberpunk" aria-label="Cyberpunk theme">🎮</button>
+        <button class="theme-btn" data-theme="minimal" title="Sakura Mode" aria-label="Sakura theme">🌸</button>
+        <button class="theme-btn" data-theme="dark" title="Dark" aria-label="Dark theme">🌙</button>
+        <button class="theme-btn" data-theme="gradient" title="Gradient Sakura" aria-label="Gradient theme">🎨</button>
     </div>
     
     <!-- Particle Canvas -->
@@ -760,7 +835,7 @@
                 <p class="hero-story">
                     プロジェクト成功率93% | クライアント満足度4.8/5.0
                 </p>
-                <p style="color: var(--text-secondary); font-size: clamp(0.9rem, 3vw, 1.1rem); max-width: 600px; margin: 1rem auto 0;">
+                <p style="color: var(--text-secondary); font-size: clamp(0.85rem, 2.5vw, 1.1rem); max-width: 600px; margin: 1rem auto 0; line-height: 1.6;">
                     このサイト自体が実装力の証明<br>
                     Canvas API × テーマ別パーティクル切り替え
                 </p>
@@ -1047,7 +1122,7 @@
             <div class="text-center" style="width: 100%;">
                 <h2 class="section-title">Contact</h2>
                 <p class="section-subtitle">フロントエンド案件募集中</p>
-                <p style="color: var(--text-secondary); font-size: 1rem; margin-bottom: 2rem;">
+                <p style="color: var(--text-secondary); font-size: clamp(0.9rem, 2.5vw, 1rem); margin-bottom: 2rem; line-height: 1.6;">
                     フリーランス / リモート / 月80-120万円<br>
                     要件定義から実装まで一貫対応
                 </p>
@@ -1121,9 +1196,8 @@
         
         const particles = [];
         const particleCount = window.innerWidth < 768 ? 50 : 150;
-        let currentMode = 'geometric'; // 'sakura' or 'geometric'
+        let currentMode = 'geometric';
         
-        // マウス座標
         let mouseX = 0;
         let mouseY = 0;
         
@@ -1132,7 +1206,6 @@
             mouseY = e.clientY;
         });
         
-        // 桜パーティクル生成
         function createSakuraParticles() {
             particles.length = 0;
             for (let i = 0; i < particleCount; i++) {
@@ -1150,7 +1223,6 @@
             }
         }
         
-        // 幾何学パーティクル生成
         function createGeometricParticles() {
             particles.length = 0;
             for (let i = 0; i < particleCount; i++) {
@@ -1164,10 +1236,8 @@
             }
         }
         
-        // 初期化
         createGeometricParticles();
         
-        // テーマ変更時のモード切り替え
         function updateParticleMode() {
             const theme = body.className.replace('theme-', '');
             if (theme === 'minimal' || theme === 'gradient') {
@@ -1179,7 +1249,6 @@
             }
         }
         
-        // 桜の色
         function getSakuraColor(index) {
             const colors = [
                 'rgba(255, 183, 213, ',
@@ -1190,7 +1259,6 @@
             return colors[index];
         }
         
-        // 桜の花びら描画
         function drawSakura(x, y, radius, colorIndex, alpha, rotation) {
             ctx.save();
             ctx.translate(x, y);
@@ -1218,7 +1286,6 @@
             ctx.restore();
         }
         
-        // パーティクル色取得
         function getParticleColor() {
             const theme = body.className.replace('theme-', '');
             const colors = {
@@ -1241,19 +1308,16 @@
             return colors[theme] || colors.cyberpunk;
         }
         
-        // アニメーションループ
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             if (currentMode === 'sakura') {
-                // 桜吹雪モード
                 particles.forEach((p, index) => {
                     p.y += p.vy;
                     p.x += p.vx;
                     p.x += Math.sin(Date.now() * 0.001 + index) * 0.3;
                     p.rotation += p.rotationSpeed;
                     
-                    // マウス反応
                     const dx = mouseX - p.x;
                     const dy = mouseY - p.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
@@ -1262,7 +1326,6 @@
                         p.y -= (dy / dist) * 2;
                     }
                     
-                    // リセット
                     if (p.y > canvas.height + 50) {
                         p.y = -50;
                         p.x = Math.random() * canvas.width;
@@ -1273,7 +1336,6 @@
                     drawSakura(p.x, p.y, p.radius, p.colorIndex, p.alpha, p.rotation);
                 });
             } else {
-                // 幾何学モード
                 const particleColor = getParticleColor();
                 const lineColorBase = getLineColor();
                 
@@ -1284,7 +1346,6 @@
                     if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                     if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
                     
-                    // 接続線描画
                     particles.forEach((p2, j) => {
                         if (i < j) {
                             const dx = p.x - p2.x;
@@ -1304,7 +1365,6 @@
                         }
                     });
                     
-                    // パーティクル描画
                     ctx.shadowBlur = 15;
                     ctx.shadowColor = particleColor;
                     ctx.fillStyle = particleColor;
@@ -1320,7 +1380,6 @@
         
         animate();
         
-        // リサイズ対応
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
